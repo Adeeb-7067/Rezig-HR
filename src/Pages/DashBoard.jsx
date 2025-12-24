@@ -219,36 +219,88 @@ const DashBoard = () => {
   };
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28"];
-  const StatsCard = ({ title, img, heading1, heading2, data, color }) => {
-    return (
-      <div
-        className="w-full  md:w-[100%]   bg-white dark:bg-gray-800 border-t-4 rounded-lg drop-shadow-md py-1   px-4 h-30  transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
-        style={{ borderTopColor: color }}
-      >
-        <h2 className="text-[0.9rem] text-[#464549] font-bold mb-2 flex  ">{title}</h2>
-        <div className="flex items-center gap-4">
+  // const StatsCard = ({ title, img, heading1, heading2, data, color }) => {
+  //   return (
+  //     <div
+  //       className="w-full  md:w-[100%]   bg-white dark:bg-gray-800 border-t-4 rounded-lg drop-shadow-md py-1   px-4 h-30  transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+  //       style={{ borderTopColor: color }}
+  //     >
+  //       <h2 className="text-[0.9rem] text-[#464549] font-bold mb-2 flex  ">{title}</h2>
+  //       <div className="flex items-center gap-4">
 
-          <div className="flex items-center gap-4 w-full">
-            <img src={img} alt={heading1} className="w-8 h-8 mb-2" />
-            <div className="">
+  //         <div className="flex items-center gap-4 w-full">
+  //           <img src={img} alt={heading1} className="w-8 h-8 mb-2" />
+  //           <div className="">
 
-              <h4 className="text-[10px]  xl:text-[0.7rem]  text-[#464549] dark:text-gray-400 font-semibold line-clamp-1">
-                {heading1}
-              </h4>
-              <p className="text-[0.9rem] text-[#9376CA] font-bold">{data}</p>
-              <h4 className="text-[10px]  xl:text-[0.7rem]  text-[#464549] dark:text-gray-400 font-semibold line-clamp-1">
-                {heading2}
-              </h4>
-              <p className="text-[0.9rem] text-[#9376CA] font-bold">{data}</p>
-            </div>
-          </div>
-          <div className="h-[20px] w-[20px]">
-            <IoIosArrowForward />
-          </div>
+  //             <h4 className="text-[10px]  xl:text-[0.7rem]  text-[#464549] dark:text-gray-400 font-semibold line-clamp-1">
+  //               {heading1}
+  //             </h4>
+  //             <p className="text-[0.9rem] text-[#9376CA] font-bold">{data}</p>
+  //             <h4 className="text-[10px]  xl:text-[0.7rem]  text-[#464549] dark:text-gray-400 font-semibold line-clamp-1">
+  //               {heading2}
+  //             </h4>
+  //             <p className="text-[0.9rem] text-[#9376CA] font-bold">{data}</p>
+  //           </div>
+  //         </div>
+  //         <div className="h-[20px] w-[20px]">
+  //           <IoIosArrowForward />
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+  
+
+
+const StatsCard = ({
+  mainHeading,
+  totalEmployees,
+  newJoiners,
+  newJoinersGrowth,
+  resigned,
+  attritionRate,
+  color,
+  heading1,
+  heading2,
+  showPercentage
+}) => {
+  return (
+    <div
+      className="w-full bg-white dark:bg-gray-800 border-t-4 rounded-xl shadow-md  p-3 hover:shadow-lg transition"
+      style={{ borderTopColor: color }}
+    >
+      {/* Top Section */}
+      <div className="text-center mb-1 leading-tight">
+        <p className=" text-[0.8rem] md:text-[1rem] font-bold text-[#8629DF]">{totalEmployees}</p>
+        <p className="text-gray-900 font-semibold text-[0.7rem] md:text-[0.8rem] dark:text-gray-400">{mainHeading}</p>
+      </div>
+
+      {/* Bottom Section - Two Stats */}
+      <div className="flex justify-between ">
+        {/* New Joiners */}
+        <div className="leading-tight">
+          <p className="text-[0.8rem] md:text-sm font-bold text-[#8629DF] text-center">{newJoiners}</p>
+          <p className="text-black font-semibold text-[0.6rem] md:text-[0.76rem] dark:text-gray-400 text-center">{heading1}</p>
+          <p className="text-green-500 text-[0.7rem]">
+            +{newJoinersGrowth}% Growth
+          </p>
+        </div>
+
+        {/* Resigned */}
+        <div className="text-right leading-tight">
+          <p className="text-[0.8rem] md:text-sm font-bold text-[#8629DF] text-center">{resigned}</p>
+          <p className="text-black font-semibold text-[0.6rem] md:text-[0.76rem] dark:text-gray-400 text-center">{heading2}</p>
+          <p className="text-red-500 text-[0.7rem]">
+            {attritionRate}% Attrition Rate
+          </p>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+
+  
   const CustomLabel = ({
     cx,
     cy,
@@ -350,8 +402,13 @@ const DashBoard = () => {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   ">
         <StatsCard
-          title={"Active Employees"}
+          mainHeading={"Active Employees"}
           img={Stat01}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
           heading1={"New  Joiners"}
           heading2={"Resigned Employees"}
 
@@ -360,7 +417,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat02}
-          title={"Statutory Applied"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Statutory Applied"}
           heading1={"Not  Applied"}
           heading2={"PT Location Change"}
 
@@ -369,7 +431,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat03}
-          title={"Attendence Present"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Attendence Present"}
           heading1={"On Leave "}
           heading2={"Long Absentee"}
 
@@ -378,7 +445,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat04}
-          title={"Wishes Birthday"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Wishes Birthday"}
           heading1={"New joiners"}
           heading2={"Work Anniversary"}
 
@@ -387,7 +459,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat05}
-          title={"Total Investment"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Total Investment"}
           heading1={"New Regime"}
           heading2={"Old Regime"}
 
@@ -396,7 +473,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat06}
-          title={"Salary Change"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Salary Change"}
           heading1={"Increment"}
           heading2={"Deduction"}
 
@@ -405,7 +487,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat07}
-          title={"Leave Requests"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"Leave Requests"}
           heading1={"Approved Leaves"}
           heading2={"Declined Leaves"}
 
@@ -414,7 +501,12 @@ const DashBoard = () => {
         />
         <StatsCard
           img={Stat08}
-          title={"New Hires"}
+          totalEmployees={"2,845"}
+          newJoiners={"85"}
+          newJoinersGrowth={"5"}
+          resigned={"12"}
+          attritionRate={"1.5"}
+          mainHeading={"New Hires"}
           heading1={"Onboarding"}
           heading2={"Background Check"}
 

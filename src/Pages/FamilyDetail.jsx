@@ -270,25 +270,62 @@ const FamilyDetail = ({onNext,onPrev}) => {
             />
           </div>
         </div>
-        <div className="flex justify-end mt-1 w-full gap-2  ">
-          <button 
-            onClick={()=>onPrev()}
-            className="bg-white dark:bg-[#E4E6EB]/10 border text-[#8629DF] font-semibold cursor-pointer text-[0.7rem] border-[#8629DF] py-1 rounded-sm w-1/5 my-3 ">
-              Previous
-            </button>
-            <button 
-            className="bg-white dark:bg-[#E4E6EB]/10 border text-[#8629DF] font-semibold text-[0.7rem] border-[#8629DF] py-1 rounded-sm w-1/5 my-3 ">
-              Reset
-            </button>
-            <button
-              onClick={() => {toast.success('Submit completed')
-                window.location.reload()
-                }}
-              className="bg-[#8629DF] text-white font-semibold text-[0.7rem] w-1/5 py-1 my-3  cursor-pointer rounded-sm"
-            >
-              Submit
-            </button>
-          </div>
+    <div
+  className="
+    flex flex-row sm:flex-row 
+    justify-end 
+    w-full 
+    gap-2 
+    mt-2
+  "
+>
+  <button
+    onClick={onPrev}
+    className="
+      bg-white dark:bg-[#E4E6EB]/10
+      border border-[#8629DF]
+      text-[#8629DF]
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+  >
+    Previous
+  </button>
+
+  <button
+    className="
+      bg-white dark:bg-[#E4E6EB]/10
+      border border-[#8629DF]
+      text-[#8629DF]
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+  >
+    Reset
+  </button>
+
+  <button
+    onClick={onNext}
+    className="
+      bg-[#8629DF]
+      text-white
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+  >
+    Next
+  </button>
+</div>
+
       </div>
     </div>
   );

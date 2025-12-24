@@ -1,42 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { BsEye, BsPlusSquareFill } from "react-icons/bs";
-import { FaEye, FaEdit, FaPlus } from "react-icons/fa";
-import { FiEye } from "react-icons/fi";
-import {
-  HiAdjustmentsHorizontal,
-  HiOutlineDocument,
-  HiOutlineEye,
-} from "react-icons/hi2";
-import { IoSearch } from "react-icons/io5";
-import { RiDeleteBinLine } from "react-icons/ri";
-import ViewIcon from "../Assets/ViewIcon.png";
-import EditIcon from "../Assets/EditIcon.png";
-import DeleteIcon from "../Assets/DeleteIcon.png";
-import SearchIcon from "../Assets/Searchicon.png";
-import { MdArrowDropDown } from "react-icons/md";
-import { LuRefreshCw } from "react-icons/lu";
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { IoMdArrowDropdown, IoMdArrowDropup, IoMdSearch } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 import { CiExport, CiImport } from "react-icons/ci";
-import { Delete, Eye, Pencil, Trash2 } from "lucide-react";
+import { MdArrowDropDown } from "react-icons/md";
+import { LuRefreshCw } from "react-icons/lu";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import SearchIcon from "../Assets/Searchicon.png";
 
 const EmployeList = () => {
   const [open, setOpen] = useState(false);
-  
+  const dropdownRef = useRef(null);
+  const filterDropdownRefs = useRef({});
+
   // Active filters that are currently applied to the table
   const [activeFilters, setActiveFilters] = useState({
-    unitName: "",
-    department: "",
-    location: "",
-    designation: "",
-    grade: "",
-    level: "",
+    unitName: [],
+    department: [],
+    location: [],
+    designation: [],
+    grade: [],
+    level: [],
   });
 
   // Which filters are visible in the UI (checkboxes)
@@ -60,12 +50,22 @@ const EmployeList = () => {
   });
 
   const [tempFilterValues, setTempFilterValues] = useState({
-    unitName: "",
-    department: "",
-    location: "",
-    designation: "",
-    grade: "",
-    level: "",
+    unitName: [],
+    department: [],
+    location: [],
+    designation: [],
+    grade: [],
+    level: [],
+  });
+
+  // Track which dropdowns are open
+  const [openDropdowns, setOpenDropdowns] = useState({
+    unitName: false,
+    department: false,
+    location: false,
+    designation: false,
+    grade: false,
+    level: false,
   });
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -129,16 +129,20 @@ const EmployeList = () => {
 
   const dropdownData = {
     unitName: ["Kajal Thakur", "Finance Unit", "Tech Unit"],
-    department: ["IT", "Design", "Marketing"],
+    department: [
+      "Human Resources",
+      "Finance",
+      "Operations",
+      "Sales",
+      "Marketing",
+      "IT/ Technology",
+      "Customer Support",
+      "Procurement",
+    ],
     location: ["Bhopal", "Indore", "Delhi"],
     designation: ["UX/UI Designer", "Developer", "Manager"],
     grade: ["G1", "G2", "G3"],
     level: ["L1", "L2", "L3"],
-  };
-
-  // Handle temporary changes in the dropdown (not applied yet)
-  const handleTempFilterChange = (key, value) => {
-    setTempFilterValues((prev) => ({ ...prev, [key]: value }));
   };
 
   // Handle temporary checkbox changes (not applied yet)
@@ -146,7 +150,7 @@ const EmployeList = () => {
     setTempVisibleFilters((prev) => ({ ...prev, [key]: checked }));
     // If unchecking, also clear the temporary filter value
     if (!checked) {
-      setTempFilterValues((prev) => ({ ...prev, [key]: "" }));
+      setTempFilterValues((prev) => ({ ...prev, [key]: [] }));
     }
   };
 
@@ -160,14 +164,14 @@ const EmployeList = () => {
   // Reset filters - clear everything
   const handleResetFilters = () => {
     const resetValues = {
-      unitName: "",
-      department: "",
-      location: "",
-      designation: "",
-      grade: "",
-      level: "",
+      unitName: [],
+      department: [],
+      location: [],
+      designation: [],
+      grade: [],
+      level: [],
     };
-    
+
     const resetVisible = {
       unitName: false,
       department: false,
@@ -185,9 +189,100 @@ const EmployeList = () => {
 
   // Remove individual active filter
   const handleRemoveFilter = (key) => {
-    setActiveFilters((prev) => ({ ...prev, [key]: "" }));
+    setActiveFilters((prev) => ({ ...prev, [key]: [] }));
     setActiveVisibleFilters((prev) => ({ ...prev, [key]: false }));
   };
+
+  // Remove specific filter value
+  const handleRemoveFilterValue = (filterKey, value) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [filterKey]: prev[filterKey].filter((item) => item !== value),
+    }));
+  };
+
+  // Toggle dropdown open/close
+  const toggleDropdown = (key) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  // Close all dropdowns
+  const closeAllDropdowns = () => {
+    setOpenDropdowns({
+      unitName: false,
+      department: false,
+      location: false,
+      designation: false,
+      grade: false,
+      level: false,
+    });
+  };
+
+  // Close specific dropdown
+  const closeDropdown = (key) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [key]: false,
+    }));
+  };
+
+  // Handle dropdown item selection (multi-select)
+  const handleDropdownItemClick = (filterKey, item) => {
+    setActiveFilters((prev) => {
+      const currentValues = prev[filterKey];
+      if (currentValues.includes(item)) {
+        // Remove item if already selected
+        return {
+          ...prev,
+          [filterKey]: currentValues.filter((i) => i !== item),
+        };
+      } else {
+        // Add item if not selected
+        return {
+          ...prev,
+          [filterKey]: [...currentValues, item],
+        };
+      }
+    });
+  };
+
+  // Handle select all for a filter
+  const handleSelectAll = (filterKey) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [filterKey]: [...dropdownData[filterKey]],
+    }));
+  };
+
+  // Handle clear all for a filter
+  const handleClearAll = (filterKey) => {
+    setActiveFilters((prev) => ({
+      ...prev,
+      [filterKey]: [],
+    }));
+  };
+
+  // Effect for main filter dropdown click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   // Initialize temp states when dropdown opens
   useEffect(() => {
@@ -199,47 +294,176 @@ const EmployeList = () => {
 
   // Filter data based on search query and active filters
   const filterData = employees.filter((item) => {
-    const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
-    
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
     // Check if item matches all active filters
-    const matchesFilters = Object.entries(activeFilters).every(([key, value]) => {
-      if (!value) return true; // No filter applied for this field
-      
-      // For department filter, check if item's department includes the filter value
-      if (key === 'department') {
-        return item.department.toLowerCase().includes(value.toLowerCase());
+    const matchesFilters = Object.entries(activeFilters).every(
+      ([key, values]) => {
+        if (values.length === 0) return true; // No filter applied for this field
+
+        // For department filter, check if item's department matches any selected value
+        if (key === "department") {
+          return values.some((value) =>
+            item.department.toLowerCase().includes(value.toLowerCase())
+          );
+        }
+
+        // For other filters, you might need to adjust based on your data structure
+        // Assuming employees data has these fields
+        return values.some((value) =>
+          String(item[key] || "")
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        );
       }
-      
-      // For other filters, you might need to adjust based on your data structure
-      return String(item[key] || '').toLowerCase().includes(value.toLowerCase());
-    });
-    
+    );
+
     return matchesSearch && matchesFilters;
   });
 
-  // Render dropdowns based on ACTIVE visible filters (not temporary)
-  const renderDropdown = (key, label) => {
-    if (!activeVisibleFilters[key]) return null;
+  // Dropdown Component with click outside functionality
+  const DropdownComponent = ({ filterKey, label }) => {
+    const dropdownRef = useRef(null);
+
+    // Store ref in parent's ref object
+    useEffect(() => {
+      filterDropdownRefs.current[filterKey] = dropdownRef;
+      return () => {
+        delete filterDropdownRefs.current[filterKey];
+      };
+    }, [filterKey]);
+
+    // Click outside effect for this dropdown
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target)
+        ) {
+          // Check if click is on any of the other dropdown buttons
+          const isClickOnOtherDropdownButton = Object.keys(
+            filterDropdownRefs.current
+          ).some((key) => {
+            if (key === filterKey) return false;
+            const otherButton = document.querySelector(
+              `[data-filter-button="${key}"]`
+            );
+            return otherButton && otherButton.contains(event.target);
+          });
+
+          if (!isClickOnOtherDropdownButton) {
+            closeDropdown(filterKey);
+          }
+        }
+      }
+
+      if (openDropdowns[filterKey]) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
+
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [filterKey, openDropdowns[filterKey]]);
+
+    if (!activeVisibleFilters[filterKey]) return null;
+
+    const isOpen = openDropdowns[filterKey];
+    const currentValues = activeFilters[filterKey];
+    const allValues = dropdownData[filterKey];
+    const isAllSelected = currentValues.length === allValues.length;
 
     return (
-      <div className="flex flex-col">
-        <select
-          className="border-2 px-2 py-1 rounded-4xl w-fit text-[0.7rem]"
-          value={activeFilters[key]}
-          onChange={(e) => {
-            // This now directly updates active filters since dropdowns are outside the filter panel
-            setActiveFilters(prev => ({ ...prev, [key]: e.target.value }));
-          }}
+      <div ref={dropdownRef} className="relative flex flex-col">
+        <button
+          data-filter-button={filterKey}
+          onClick={() => toggleDropdown(filterKey)}
+          className="border border-gray-300 px-5 py-2  rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white hover:bg-gray-50 transition-colors"
         >
-          <option className="text-[0.7rem]" value="">
-            {label}
-          </option>
-          {dropdownData[key].map((item) => (
-            <option className="text-[0.7rem]" key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
+          <div className="flex flex-col items-start">
+            <span className="text-gray-700 text-[0.7rem] font-medium">
+              {label}
+            </span>
+            {/* {currentValues.length > 0 && (
+              <span className="text-xs text-gray-500">
+                {currentValues.length} selected
+              </span>
+            )} */}
+          </div>
+          <span className="text-gray-500 mt-1">
+            {isOpen ? (
+              <IoMdArrowDropdown className="w-4 h-4" />
+            ) : (
+              <IoMdArrowDropup className="w-4 h-4" />
+            )}
+          </span>
+        </button>
+
+        {isOpen && (
+          <div className="absolute mt-1 border border-gray-200  dark:border-[#8629DF] rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
+            <div className="p-3 no-scrollbar">
+
+              
+              {/* Select All / Clear All */}
+              <div className="flex justify-between items-center mb-3">
+                <button
+                  onClick={() => isAllSelected ? handleClearAll(filterKey) : handleSelectAll(filterKey)}
+                  className="text-sm text-[#8629DF] dark:text-[#8629DF]  font-medium"
+                >
+                  {isAllSelected ? "Clear All" : "Select All"}
+                </button>
+                {/* <span className="text-xs text-gray-500">
+                  {currentValues.length} of {allValues.length} selected
+                </span> */}
+              </div>
+
+              <hr className="mb-3" />
+
+              {/* Filter Items */}
+              <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar ">
+                {allValues.map((item) => (
+                  <div
+                    key={item}
+                    onClick={() => handleDropdownItemClick(filterKey, item)}
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50  dark:hover:bg-gray-700  cursor-pointer rounded "
+                  >
+                    <div
+                      className={`w-4 h-4 flex items-center justify-center border rounded ${
+                        currentValues.includes(item)
+                          ? "bg-[#8629DF] border-[#8629DF]"
+                          : "border-gray-300"
+                      }`}
+                    >
+                      {currentValues.includes(item) && (
+                        <svg
+                          className="w-2.5 h-2.5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            d="M5 13l4 4L19 7"
+                          ></path>
+                        </svg>
+                      )}
+                    </div>
+                    <span className="text-[0.7rem]   font-semibold">
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -254,7 +478,7 @@ const EmployeList = () => {
 
         {/* Buttons */}
         <div className="flex gap-0 sm:gap-3">
-          <div className="bg-[#8629DF] text-white text-[0.7rem] px-4  w-full rounded-sm flex justify-center items-center gap-1 py-1  ">
+          <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4  w-full rounded-sm flex justify-center items-center gap-1 py-1  ">
             <Link
               to="/info"
               className="flex items-center justify-center gap-1 text-[0.7rem]  md:text-[0.8rem]"
@@ -265,7 +489,7 @@ const EmployeList = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="grid grid-cols-2 md:flex  md:justify-around  gap-2 md:gap-2 w-full flex-wrap-reverse md:flex-nowrap">
         <div
           className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[70%] xl:h-[35px] 
@@ -281,57 +505,62 @@ const EmployeList = () => {
         </div>
 
         <button
-          onClick={() => setOpen(prev => !prev)}
+          onClick={() => setOpen((prev) => !prev)}
           className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0  min-w-[50%]  md:min-w-[5rem]  rounded-sm flex items-center justify-center gap-1"
         >
           <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
-          Filter  {open ? (<>
-          <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
-          </>) : (<>
-          <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
-          </>)}
+          Filter{" "}
+          {open ? (
+            <>
+              <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
+            </>
+          ) : (
+            <>
+              <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
+            </>
+          )}
         </button>
-        
+
         <button className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
           <CiImport className="md:w-4 md:h-4" />
           Bulk Export
         </button>
-        
+
         <button className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2  md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
           <CiExport className="md:w-4 md:h-4" />
           Bulk Import
         </button>
       </div>
 
-      {/* Active Filter Dropdowns (shown based on ACTIVE visible filters) */}
-      <div className="flex gap-4 flex-wrap my-4">
-        {renderDropdown("unitName", "Unit")}
-        {renderDropdown("department", "Department")}
-        {renderDropdown("location", "Location")}
-        {renderDropdown("designation", "Designation")}
-        {renderDropdown("grade", "Grade")}
-        {renderDropdown("level", "Level")}
+      <div className="flex gap-3 flex-wrap my-4">
+        {filterOptions.map((filter) => (
+          <DropdownComponent
+            key={filter.key}
+            filterKey={filter.key}
+            label={filter.label}
+          />
+        ))}
       </div>
-      
+
       {/* Active Filter Tags */}
       <div className="mt-4">
-        <div className="flex flex-wrap gap-2 ">
-          {Object.entries(activeFilters).map(([key, value]) => {
-            if (!value) return null;
-            return (
+        <div className="flex flex-wrap gap-2">
+          {Object.entries(activeFilters).map(([key, values]) => {
+            if (values.length === 0 || !activeVisibleFilters[key]) return null;
+            return values.map((value, index) => (
               <div
-                key={key}
-                className="bg-gray-200/60 px-3 py-1 rounded-sm text-xs flex items-center gap-2"
+                key={`${key}-${value}-${index}`}
+                className="bg-gray-100 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
               >
-                <span className="font-semibold text-[0.7rem]">{value}</span>
+                <span className="text-gray-900 text-[0.7rem]">{value}</span>
                 <button
-                  onClick={() => handleRemoveFilter(key)}
-                  className="text-gray-700 hover:text-red-500 text-lg cursor-pointer leading-none"
+                  onClick={() => handleRemoveFilterValue(key, value)}
+                  className="text-gray-500 hover:text-red-500 text-lg cursor-pointer leading-none w-4 h-4 flex items-center justify-center"
                 >
                   ×
                 </button>
               </div>
-            );
+            ));
           })}
         </div>
       </div>
@@ -446,50 +675,53 @@ const EmployeList = () => {
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="flex flex-col sm:flex-row justify-end items-center mt-6 mx-4 text-xs sm:text-sm text-gray-600 gap-3 flex-wrap">
-          {/* Left: Pagination numbers */}
-          <div className="flex items-center gap-2 flex-wrap">
-            <button className="px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-              &lt; Back
-            </button>
+   {/* Pagination */}
+<div className="flex flex-col lg:flex-row justify-between md:justify-between items-center mt-6 mx-4 text-xs sm:text-sm text-gray-600 gap-4">
 
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-              <button
-                key={num}
-                className={`px-3 py-1 border rounded ${num === 1
-                  ? "bg-[#8629DF] text-white border-[#8629DF]"
-                  : "border-[#8629DF] hover:bg-[#8629DF] hover:text-white"
-                  }`}
-              >
-                {num}
-              </button>
-            ))}
+  {/* Pagination numbers */}
+  <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center lg:justify-end">
+    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+      &lt; Back
+    </button>
 
-            <span className="px-2">...</span>
+    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+      <button
+        key={num}
+        className={`px-2 sm:px-3 py-1 border rounded ${
+          num === 1
+            ? "bg-[#8629DF] text-white border-[#8629DF]"
+            : "border-[#8629DF] hover:bg-[#8629DF] hover:text-white"
+        }`}
+      >
+        {num}
+      </button>
+    ))}
 
-            <button className="px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-              25
-            </button>
+    <span className="px-1 sm:px-2">...</span>
 
-            <button className="px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-              Next &gt;
-            </button>
-          </div>
+    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+      25
+    </button>
 
-          {/* Right: Result per page */}
-          <div className="flex gap-1.5">
-            <p className="text-black dark:text-gray-400 mt-1">
-              Results per page{" "}
-            </p>
-            <select className="border rounded px-2 py-1 dark:bg-gray-800">
-              <option>50</option>
-              <option>100</option>
-              <option>150</option>
-            </select>
-          </div>
-        </div>
-        
+    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+      Next &gt;
+    </button>
+  </div>
+
+  {/* Results per page */}
+  <div className="flex items-center gap-2 justify-center lg:justify-end">
+    <p className="text-black dark:text-gray-400">
+      Results per page
+    </p>
+    <select className="border rounded px-2 py-1 dark:bg-gray-800">
+      <option>50</option>
+      <option>100</option>
+      <option>150</option>
+    </select>
+  </div>
+</div>
+
+
         {/* Footer */}
         <div className="flex justify-end w-full text-black dark:text-gray-400 text-xs sm:text-sm mt-3 p-4">
           1-50 of 125
@@ -498,66 +730,46 @@ const EmployeList = () => {
 
       {/* Filter Dropdown */}
       {open && (
-        <div className="fixed inset-0 flex justify-end top-55 right-5 z-50 overflow-auto no-scrollbar ">
-          <div className="bg-white rounded-xs shadow-xl w-full max-w-xs p-6 overflow-y-auto h-[550px]">
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl cursor-pointer"
-            >
-              ✕
-            </button>
+        <div className="fixed inset-0 flex justify-end top-50 md:top-52 md:right-55 z-50 overflow-auto no-scrollbar ">
+          <div
+            ref={dropdownRef}
+            className="bg-white rounded-xl shadow-xl w-auto   p-3 overflow-y-auto h-fit  border  no-scrollbar"
+          >
+            <h2 className="text-lg font-semibold text-gray-700 mb-3 w-full border-b-2">
+              Filter
+            </h2>
 
-            <h2 className="text-lg font-semibold text-gray-700 mb-3">Filter</h2>
-
-            <div className="space-y-2 border-b pb-4">
+            <div className="space-y-2">
               {filterOptions.map((f) => (
-                <label key={f.key} className="flex items-center gap-2 text-sm text-gray-700">
+                <label
+                  key={f.key}
+                  className="flex items-center gap-2 text-[0.7rem] text-gray-700"
+                >
                   <input
                     type="checkbox"
                     className="w-4 h-4 accent-[#9376CA]"
                     checked={tempVisibleFilters[f.key]}
-                    onChange={(e) => handleTempCheckboxChange(f.key, e.target.checked)}
+                    onChange={(e) =>
+                      handleTempCheckboxChange(f.key, e.target.checked)
+                    }
                   />
                   {f.label}
                 </label>
               ))}
             </div>
 
-            {/* Filter Dropdowns (TEMPORARY - shown based on TEMP visible filters) */}
-            {/* <div className="mt-4 space-y-3">
-              {filterOptions.map((f) => 
-                tempVisibleFilters[f.key] && (
-                  <div key={f.key} className="space-y-1">
-                    <label className="text-sm font-medium text-gray-700">{f.label}</label>
-                    <select
-                      className="w-full border rounded px-2 py-1 text-sm"
-                      value={tempFilterValues[f.key]}
-                      onChange={(e) => handleTempFilterChange(f.key, e.target.value)}
-                    >
-                      <option value="">Select {f.label}</option>
-                      {dropdownData[f.key].map((item) => (
-                        <option key={item} value={item}>
-                          {item}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                )
-              )}
-            </div> */}
-            <div className="mt-6 flex flex-col gap-3">
-              <button 
-                onClick={handleApplyFilters}
-                className="flex items-center justify-center gap-2 bg-[#9376CA] text-white px-5 py-2 rounded-md shadow hover:bg-[#7a5fb8]"
-              >
-                <img src={SearchIcon} className="w-5 h-5" /> Apply
-              </button>
-
-              <button 
+            <div className="mt-3 flex gap-2">
+              <button
                 onClick={handleResetFilters}
-                className="flex items-center justify-center gap-2 bg-gray-200 border px-5 py-2 rounded-md shadow text-gray-700 hover:bg-gray-300"
+                className="flex items-center text-sm justify-center gap-1  cursor-pointer bg-gray-200 border px-3 py-1 rounded-md shadow text-gray-700 hover:bg-gray-300"
               >
                 <LuRefreshCw /> Reset
+              </button>
+              <button
+                onClick={handleApplyFilters}
+                className="flex items-center justify-center gap-1 cursor-pointer bg-[#9376CA] text-white text-sm px-3 py-1 rounded-md shadow hover:bg-[#7a5fb8]"
+              >
+                <img src={SearchIcon} className="w-4 h-4" /> Apply
               </button>
             </div>
           </div>

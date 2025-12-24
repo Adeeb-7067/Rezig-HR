@@ -6,7 +6,7 @@ import SignIn from './Pages/SignIn';
 import ForgotPassword from './Pages/ForgotPassword';
 import NewPassword from './Pages/NewPassword';
 import OTPverification from './Pages/OTPverification';
-import DashBoard from './Pages/DashBoard'; 
+import DashBoard from './Pages/DashBoard';
 import EmployeList from './Pages/EmployeList'
 import PersnalInfo from './Pages/PersonalInfo';
 import StatutoryDatails from './Pages/StatutoryDetails';
@@ -41,21 +41,21 @@ const App = () => {
             </Layout>
           }
         />
-        <Route 
-        path='/info'
-        element={
-          <Layout>
-            <Info/>
-          </Layout>
-        }
+        <Route
+          path='/info'
+          element={
+            <Layout>
+              <Info />
+            </Layout>
+          }
         />
         <Route
-        path='/monthlyAttendance'
-        element={
-          <Layout>
-            <MonthlyAttendence/>
-          </Layout>
-        }
+          path='/monthlyAttendance'
+          element={
+            <Layout>
+              <MonthlyAttendence />
+            </Layout>
+          }
         />
       </Routes>
     </Router>

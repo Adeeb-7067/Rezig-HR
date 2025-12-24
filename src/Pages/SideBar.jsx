@@ -30,9 +30,9 @@ const SideBar = () => {
     },
 
     {
-      name: "Widgets",
+      name: "MonthlyAttendance",
       icon: <HiOutlineDuplicate className="h-5 w-5" />,
-      path: "/",
+      path: "/monthlyAttendance",
     },
     {
       name: "Graphs & Charts",
