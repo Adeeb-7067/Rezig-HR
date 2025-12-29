@@ -49,7 +49,6 @@ export default function Layout({ children }) {
 
         {mobileOpen && !isDesktop && (
           <div className="fixed inset-0 z-30 flex md:hidden">
-            {/* Overlay */}
             <button
               type="button"
               aria-label="Close sidebar overlay"

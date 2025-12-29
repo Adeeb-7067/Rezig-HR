@@ -406,12 +406,14 @@ const EmployeList = () => {
         {isOpen && (
           <div className="absolute mt-1 border border-gray-200  dark:border-[#8629DF] rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
             <div className="p-3 no-scrollbar">
-
-              
               {/* Select All / Clear All */}
               <div className="flex justify-between items-center mb-3">
                 <button
-                  onClick={() => isAllSelected ? handleClearAll(filterKey) : handleSelectAll(filterKey)}
+                  onClick={() =>
+                    isAllSelected
+                      ? handleClearAll(filterKey)
+                      : handleSelectAll(filterKey)
+                  }
                   className="text-sm text-[#8629DF] dark:text-[#8629DF]  font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
@@ -504,22 +506,68 @@ const EmployeList = () => {
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
 
-        <button
-          onClick={() => setOpen((prev) => !prev)}
-          className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0  min-w-[50%]  md:min-w-[5rem]  rounded-sm flex items-center justify-center gap-1"
-        >
-          <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
-          Filter{" "}
-          {open ? (
-            <>
-              <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
-            </>
-          ) : (
-            <>
+        <div className="relative">
+          <button
+            onClick={() => setOpen((prev) => !prev)}
+            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+          >
+            <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
+            Filter{" "}
+            {open ? (
               <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
-            </>
+            ) : (
+              <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
+            )}
+          </button>
+
+          {/* Filter Dropdown - Fixed positioning */}
+          {open && (
+            <div
+              ref={dropdownRef}
+              className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
+            >
+              <div className="bg-white rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-700 mb-3  border-b-2 pb-2">
+                  Filter
+                </h2>
+
+                <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2  no-scrollbar">
+                  {filterOptions.map((f) => (
+                    <label
+                      key={f.key}
+                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 hover:bg-gray-50 p-1 rounded"
+                    >
+                      <input
+                        type="checkbox"
+                        className="w-4 h-4 accent-[#9376CA]"
+                        checked={tempVisibleFilters[f.key]}
+                        onChange={(e) =>
+                          handleTempCheckboxChange(f.key, e.target.checked)
+                        }
+                      />
+                      {f.label}
+                    </label>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex gap-2 pt-3 border-t">
+                  <button
+                    onClick={handleResetFilters}
+                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
+                  >
+                    <LuRefreshCw className="w-3 h-3" /> Reset
+                  </button>
+                  <button
+                    onClick={handleApplyFilters}
+                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-[#9376CA] text-white px-3 py-2 rounded-md hover:bg-[#7a5fb8] text-sm"
+                  >
+                    <img src={SearchIcon} className="w-4 h-4" /> Apply
+                  </button>
+                </div>
+              </div>
+            </div>
           )}
-        </button>
+        </div>
 
         <button className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
           <CiImport className="md:w-4 md:h-4" />
@@ -675,52 +723,48 @@ const EmployeList = () => {
           ))}
         </div>
 
-   {/* Pagination */}
-<div className="flex flex-col lg:flex-row justify-between md:justify-between items-center mt-6 mx-4 text-xs sm:text-sm text-gray-600 gap-4">
+        {/* Pagination */}
+        <div className="flex flex-col lg:flex-row justify-between md:justify-between items-center mt-6 mx-4 text-xs sm:text-sm text-gray-600 gap-4">
+          {/* Pagination numbers */}
+          <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center lg:justify-end">
+            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+              &lt; Back
+            </button>
 
-  {/* Pagination numbers */}
-  <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center lg:justify-end">
-    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-      &lt; Back
-    </button>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+              <button
+                key={num}
+                className={`px-2 sm:px-3 py-1 border rounded ${
+                  num === 1
+                    ? "bg-[#8629DF] text-white border-[#8629DF]"
+                    : "border-[#8629DF] hover:bg-[#8629DF] hover:text-white"
+                }`}
+              >
+                {num}
+              </button>
+            ))}
 
-    {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-      <button
-        key={num}
-        className={`px-2 sm:px-3 py-1 border rounded ${
-          num === 1
-            ? "bg-[#8629DF] text-white border-[#8629DF]"
-            : "border-[#8629DF] hover:bg-[#8629DF] hover:text-white"
-        }`}
-      >
-        {num}
-      </button>
-    ))}
+            <span className="px-1 sm:px-2">...</span>
 
-    <span className="px-1 sm:px-2">...</span>
+            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+              25
+            </button>
 
-    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-      25
-    </button>
+            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+              Next &gt;
+            </button>
+          </div>
 
-    <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
-      Next &gt;
-    </button>
-  </div>
-
-  {/* Results per page */}
-  <div className="flex items-center gap-2 justify-center lg:justify-end">
-    <p className="text-black dark:text-gray-400">
-      Results per page
-    </p>
-    <select className="border rounded px-2 py-1 dark:bg-gray-800">
-      <option>50</option>
-      <option>100</option>
-      <option>150</option>
-    </select>
-  </div>
-</div>
-
+          {/* Results per page */}
+          <div className="flex items-center gap-2 justify-center lg:justify-end">
+            <p className="text-black dark:text-gray-400">Results per page</p>
+            <select className="border rounded px-2 py-1 dark:bg-gray-800">
+              <option>50</option>
+              <option>100</option>
+              <option>150</option>
+            </select>
+          </div>
+        </div>
 
         {/* Footer */}
         <div className="flex justify-end w-full text-black dark:text-gray-400 text-xs sm:text-sm mt-3 p-4">
@@ -729,7 +773,7 @@ const EmployeList = () => {
       </div>
 
       {/* Filter Dropdown */}
-      {open && (
+      {/* {open && (
         <div className="fixed inset-0 flex justify-end top-50 md:top-52 md:right-55 z-50 overflow-auto no-scrollbar ">
           <div
             ref={dropdownRef}
@@ -774,7 +818,7 @@ const EmployeList = () => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
