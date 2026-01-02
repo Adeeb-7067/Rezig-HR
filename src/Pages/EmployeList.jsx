@@ -506,7 +506,7 @@ const EmployeList = () => {
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
 
-        <div className="relative">
+        <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1 ">
           <button
             onClick={() => setOpen((prev) => !prev)}
             className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"

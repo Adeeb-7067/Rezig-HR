@@ -531,7 +531,7 @@ const MonthlyAttendanceImport = () => {
             if (values.length === 0 || !activeVisibleFilters[key]) return null;
             return values.map((value, index) => (
               <div
-                key={`${key}-${value}-${index}`}
+                key={`${key}-${value}-${index}`} 
                 className="bg-gray-100 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
               >
                 <span className="text-gray-900 text-[0.7rem]">{value}</span>
@@ -602,7 +602,7 @@ const MonthlyAttendanceImport = () => {
             </div>
 
             <button className="flex items-center gap-1 bg-[#8629DF] text-white text-xs p-3 rounded-sm hover:bg-purple-700">
-              <Upload className="h-4 w-4" /> Import and Save
+              <Upload className="h-4 w-4" /> Import and Save.   
             </button>
           </div>
         </div>
