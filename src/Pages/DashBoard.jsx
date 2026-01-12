@@ -8,7 +8,6 @@ import Stat05 from "../Assets/Stats-5.png";
 import Stat06 from "../Assets/Stats-6.png";
 import Stat07 from "../Assets/Stats-7.png";
 import Stat08 from "../Assets/Stats-8.png";
-import { IoIosArrowForward } from "react-icons/io";
 import {
   PieChart,
   Pie,
@@ -88,9 +87,9 @@ const DashBoard = () => {
   const monthlyData = [
     {
       id: 1,
-      name: "Jan", // Using 'name' to match your JSX
+      name: "Jan", 
       department: "UI/UX designer",
-      performance_score: "XSW", // Using consistent property name
+      performance_score: "XSW", 
     },
     {
       id: 2,
@@ -397,7 +396,6 @@ const StatsCard = ({
   const today = new Date();
   const formatted = `${today.getDate()}-${today.getMonth() + 1
     }-${today.getFullYear()}`;
-
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   ">
@@ -411,7 +409,6 @@ const StatsCard = ({
           attritionRate={"1.5"}
           heading1={"New  Joiners"}
           heading2={"Resigned Employees"}
-
           data={"400"}
           color={"#007AFF"}
         />

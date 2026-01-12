@@ -1,8 +1,29 @@
-import { CalendarDays, UserCheck2Icon } from "lucide-react";
+import {
+  ArrowBigUp,
+  CalendarDays,
+  Download,
+  Import,
+  Upload,
+  UserCheck2Icon,
+} from "lucide-react";
 import { useState } from "react";
 import { CiGrid41, CiGrid42 } from "react-icons/ci";
 import { FaUserCircle } from "react-icons/fa";
 import MonthlyAttendanceImport from "./MonthlyAttendanceImport";
+import {
+  MdOutlineKeyboardArrowDown,
+  MdOutlineKeyboardArrowUp,
+} from "react-icons/md";
+import Attendance1 from "../Assets/Attendance1.svg";
+import Attendance2 from "../Assets/Attendance2.svg";
+import Attendance3 from "../Assets/Attendance3.svg";
+import Attendance4 from "../Assets/Attendance4.svg";
+import Attendance5 from "../Assets/Attendance5.svg";
+import Attendance6 from "../Assets/Attendance6.svg";
+import Attendance7 from "../Assets/Attendance7.svg";
+import Attendance8 from "../Assets/Attendance8.svg";
+import Attendance9 from "../Assets/Attendance9.svg";
+import Attendance10 from "../Assets/Attendance10.svg";
 export default function AttendanceImport() {
   const [showCards, setShowCards] = useState(true);
 
@@ -13,54 +34,43 @@ export default function AttendanceImport() {
   return (
     <div className="p-6 min-h-screen text-sm text-gray-800">
       {/* Toggle Button */}
-      <div className="flex justify-end mb-6">
-        <button
-          onClick={toggleCards}
-          className="flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md border border-gray-300 hover:shadow-md cursor-pointer transition-all duration-300 active:scale-95"
-        >
+      <div
+        className="flex justify-between cursor-pointer   bg-primary rounded-sm p-0.5"
+        onClick={toggleCards}
+      >
+        <h1 className="text-white font-semibold  text-[1.4rem] px-2 py-1">
+          Attendance
+        </h1>
+        <button className="flex items-center justify-center gap-2  m-2 px-0.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-sm border border-gray-300 hover:shadow-md cursor-pointer transition-all duration-300 active:scale-95">
           <span
-            className={`transition-transform duration-300 ${
-              showCards ? "rotate-0 scale-100" : "rotate-180 scale-90"
-            }`}
+          // className={`transition-transform duration-300  ${
+          //   showCards ? "rotate-0 scale-100" : "rotate-180 scale-90"
+          // }`}
           >
-            {showCards ? <CiGrid41 size={18} /> : <CiGrid42 size={18} />}
+            {showCards ? (
+              <MdOutlineKeyboardArrowUp size={22} />
+            ) : (
+              <MdOutlineKeyboardArrowDown size={22} />
+            )}
           </span>
         </button>
       </div>
 
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 transition-all duration-500 ${
+        className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-2  transition-all duration-500 ${
           showCards
             ? "opacity-100 max-h-[1000px]"
             : "opacity-0 max-h-0  overflow-hidden "
         }`}
       >
-        <Section title="Data Input & Imports" showCards={showCards}>
+        <Section showCards={showCards}>
+          <h1 className="text-[0.9rem] text-gray-400 mb-2">
+            Data Input & Imports
+          </h1>
           <div className="space-y-3">
             <ActionCard
               color="bg-[#8629DF]"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-
-                  <line x1="3" y1="10" x2="21" y2="10" />
-
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-
-                  <circle cx="12" cy="15" r="2" />
-
-                  <path d="M8 20c0-2.2 1.8-4 4-4s4 1.8 4 4" />
-                </svg>
-              }
+              icon={Attendance1}
               title="Import Monthly Attendance"
               desc="Upload Full Attendance Records For A Month"
               showCards={showCards}
@@ -68,38 +78,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-blue-600"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-
-                  <line x1="3" y1="9" x2="21" y2="9" />
-
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-
-                  <text
-                    x="12"
-                    y="17"
-                    text-anchor="middle"
-                    font-size="7"
-                    font-family="Arial, sans-serif"
-                    fill="currentColor"
-                    font-weight="bold"
-                  >
-                    07
-                  </text>
-
-                  {/* <path d="M15.5 15.5l1.5 1.5 3-3" /> */}
-                </svg>
-              }
+              icon={Attendance2}
               title="Import Weekly Off"
               desc="Bulk Upload Weekly Offs For Employees"
               showCards={showCards}
@@ -107,27 +86,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-indigo-600"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10" />
-
-                  <rect x="6" y="10" width="12" height="4" rx="1" />
-                  <line x1="8" y1="14" x2="8" y2="18" />
-                  <line x1="16" y1="14" x2="16" y2="18" />
-
-                  <circle cx="17.5" cy="6.5" r="3" />
-                  <line x1="16.5" y1="5.5" x2="18.5" y2="7.5" />
-                  <line x1="18.5" y1="5.5" x2="16.5" y2="7.5" />
-                </svg>
-              }
+              icon={Attendance3}
               title="Import Attendance LWP Dates"
               desc="Bulk Upload LWP Dates For Selected Employees"
               showCards={showCards}
@@ -135,25 +94,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-sky-600"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 2a10 10 0 1 1-7.07 2.93" />
-
-                  <line x1="12" y1="6" x2="12" y2="11" />
-                  <line x1="12" y1="11" x2="9" y2="11" />
-                  <rect x="13" y="13" width="7" height="5" rx="1" />
-
-                  <path d="M14.5 13v-1a2 2 0 0 1 4 0v1" />
-                </svg>
-              }
+              icon={Attendance4}
               title="Import OT Hours/Day"
               desc="Upload Daily Overtime Hours In Bulk"
               showCards={showCards}
@@ -161,33 +102,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-orange-500"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M21 12a9 9 0 0 0-15.5-6.36" />
-                  <polyline points="5 3 5 7 9 7" />
-
-                  <path d="M3 12a9 9 0 0 0 15.5 6.36" />
-                  <polyline points="19 21 19 17 15 17" />
-
-                  {/* <rect x="8" y="5" width="8" height="14" rx="1" /> */}
-
-                  <line x1="11" y1="9" x2="14" y2="9" />
-                  <line x1="11" y1="13" x2="14" y2="13" />
-                  {/* <line x1="11" y1="17" x2="14" y2="17" /> */}
-
-                  <polyline points="9 9 9.5 9.5 10.5 8.5" />
-                  <polyline points="9 13 9.5 13.5 10.5 12.5" />
-                  {/* <polyline points="9 17 9.5 17.5 10.5 16.5" /> */}
-                </svg>
-              }
+              icon={Attendance5}
               title="Import Regularization/Leave"
               desc="Upload Approved Leaves Or Corrections"
               showCards={showCards}
@@ -197,30 +112,14 @@ export default function AttendanceImport() {
         </Section>
 
         {/* Scheduling & Assignments Section */}
-        <Section title="Scheduling & Assignments" showCards={showCards}>
+        <Section showCards={showCards}>
+          <h1 className="text-[0.9rem] text-gray-400 mb-2">
+            Scheduling & Assignments{" "}
+          </h1>
           <div className="space-y-3">
             <ActionCard
               color="bg-green-600"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="5" r="2" />
-                  <path d="M8.5 10c0-2 1.6-3 3.5-3s3.5 1 3.5 3" />
-
-                  <circle cx="6" cy="15" r="2" />
-                  <path d="M3 20c0-2 1.6-3 3-3s3 1 3 3" />
-
-                  <circle cx="18" cy="15" r="2" />
-                  <path d="M15 20c0-2 1.6-3 3-3s3 1 3 3" />
-                </svg>
-              }
+              icon={Attendance6}
               title="Assign Shift"
               desc="Allocate Day, Night, Or Rotational Shifts"
               showCards={showCards}
@@ -228,31 +127,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-emerald-600"
-              icon={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" />
-
-                  <line x1="3" y1="9" x2="21" y2="9" />
-
-                  <line x1="8" y1="2" x2="8" y2="6" />
-                  <line x1="16" y1="2" x2="16" y2="6" />
-
-                  <rect x="6" y="12" width="2" height="2" />
-                  <rect x="10" y="12" width="2" height="2" />
-                  <rect x="14" y="12" width="2" height="2" />
-
-                  {/* <line x1="13.5" y1="15.5" x2="19.5" y2="21.5" />
-                  <line x1="19.5" y1="15.5" x2="13.5" y2="21.5" /> */}
-                </svg>
-              }
+              icon={Attendance7}
               title="Assign Holiday"
               desc="Set Official Holidays For Employees / Groups"
               showCards={showCards}
@@ -260,7 +135,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-blue-500"
-              icon={<CalendarDays size={30} />}
+              icon={Attendance8}
               title="Assign Weekly Off"
               desc="Define Weekly Offs For Employees"
               showCards={showCards}
@@ -270,11 +145,14 @@ export default function AttendanceImport() {
         </Section>
 
         {/* Processing & Adjustments Section */}
-        <Section title="Processing & Adjustments" showCards={showCards}>
+        <Section showCards={showCards}>
+          <h1 className="text-[0.9rem] text-gray-400 mb-2">
+            Processing & Adjustments{" "}
+          </h1>
           <div className="space-y-3">
             <ActionCard
               color="bg-purple-600"
-              icon={<UserCheck2Icon size={32} />}
+              icon={Attendance9}
               title="Attendance Process"
               desc="Process Final Attendance, Shifts & OT"
               showCards={showCards}
@@ -282,7 +160,7 @@ export default function AttendanceImport() {
             />
             <ActionCard
               color="bg-orange-500"
-              icon={<FaUserCircle size={32} />}
+              icon={Attendance10}
               title="Attendance Punch Correction"
               desc="Correct Missing Or Wrong Punch Times"
               showCards={showCards}
@@ -291,7 +169,6 @@ export default function AttendanceImport() {
           </div>
         </Section>
       </div>
-
 
       {/* Empty State - Shows when cards are hidden */}
       {/* <div className={`transition-all duration-500 text-center py-12 ${!showCards ? 'opacity-100' : 'opacity-0 max-h-0 overflow-hidden'}`}>
@@ -304,10 +181,36 @@ export default function AttendanceImport() {
         </p>
       </div> */}
 
-
-<div>
+      <div className="mt-16 md:mt-0">
         <MonthlyAttendanceImport />
-</div>
+      </div>
+      {/* Buttons */}
+      <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-6 h-7">
+        <button
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1.2 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+        >
+          <span className="flex justify-center gap-3">
+            <Download className="h-3 w-3 mt-0.4" />
+            Export
+          </span>
+        </button>
+        <button
+          type="button"
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1.2 rounded-sm w-[50%] sm:w-auto md:w-fit px-4 cursor-pointer"
+        >
+          <span className="flex justify-center gap-3">
+            <Upload className="h-3 w-3 mt-0.5" />
+            Import and Save
+          </span>
+        </button>
+      </div>
     </div>
   );
 }
@@ -348,7 +251,8 @@ function ActionCard({ icon, title, desc, color, showCards, delay = 0 }) {
       <div
         className={`h-10 w-10 flex items-center justify-center rounded-md text-white ${color} transition-transform duration-300 group-hover:scale-110`}
       >
-        <span className="h-8 w-8">{icon}</span>
+        {/* <span className="h-8 w-8">{icon}</span> */}
+        <img src={icon} className=" h-8 w-8" alt={title} />
       </div>
       <div className="transition-all duration-300">
         <p className="font-semibold text-[0.9rem] group-hover:translate-x-1">

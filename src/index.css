@@ -1,16 +1,32 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-html ,body{
+html,
+body {
   letter-spacing: 0.5px;
   font-weight: normal;
+  scrollbar-gutter: stable both-edges;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .drops option {
-background-color: aquamarine;
-  }
-  .drops option:hover {
-    background-color: blueviolet !important;
-  }
+  background-color: aquamarine;
+}
+.drops option:hover {
+  background-color: blueviolet !important;
+}
+.text-Primary{
+font-size: 0.7rem;  
+font-weight: 600;
+}
+
+.bg-primary{
+  background-color: #8629DF;
+}
 
 @custom-variant dark (&:is(.dark *));
 .date-input::-webkit-datetime-edit,
@@ -20,7 +36,7 @@ background-color: aquamarine;
 }
 
 .date-input {
-  color: transparent;      
+  color: transparent;
   text-shadow: 0 0 0 black;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -30,9 +46,10 @@ background-color: aquamarine;
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

@@ -228,6 +228,7 @@ const EmployeList = () => {
       [key]: false,
     }));
   };
+  const isAnyFilterChecked = Object.values(tempVisibleFilters).some(Boolean);
 
   // Handle dropdown item selection (multi-select)
   const handleDropdownItemClick = (filterKey, item) => {
@@ -539,7 +540,7 @@ const EmployeList = () => {
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 accent-[#9376CA]"
+                        className="w-4 h-4 accent-[#8629DF]"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -559,7 +560,14 @@ const EmployeList = () => {
                   </button>
                   <button
                     onClick={handleApplyFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-[#9376CA] text-white px-3 py-2 rounded-md hover:bg-[#7a5fb8] text-sm"
+                    disabled={!isAnyFilterChecked}
+                    className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
+    ${
+      isAnyFilterChecked
+        ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
+        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+    }
+  `}
                   >
                     <img src={SearchIcon} className="w-4 h-4" /> Apply
                   </button>

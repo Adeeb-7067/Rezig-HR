@@ -14,6 +14,8 @@ import {
   Upload,
 } from "lucide-react";
 import { BiRecycle } from "react-icons/bi";
+import SelectField from "@/components/SelectFeild";
+import DragandUpload from "@/components/ui/DragandUpload";
 
 const MonthlyAttendanceImport = () => {
   const [open, setOpen] = useState(false);
@@ -84,6 +86,7 @@ const MonthlyAttendanceImport = () => {
   const [fileName, setFileName] = useState("");
   const [importing, setImporting] = useState(false);
   const [monthYear, setMonthYear] = useState("2025-04");
+  const isAnyFilterChecked = Object.values(tempVisibleFilters).some(Boolean);
 
   const filterOptions = [
     { key: "unitName", label: "Unit Name" },
@@ -252,11 +255,6 @@ const MonthlyAttendanceImport = () => {
         fileInputRef.current.value = "";
       }
     }, 1500);
-  };
-
-  const handleDownloadTemplate = () => {
-    alert("Downloading template...");
-    // In a real app, this would trigger a file download
   };
 
   // Effect for main filter dropdown click outside
@@ -482,7 +480,7 @@ const MonthlyAttendanceImport = () => {
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 accent-[#9376CA]"
+                        className="w-4 h-4 accent-[#8629DF]"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -502,7 +500,14 @@ const MonthlyAttendanceImport = () => {
                   </button>
                   <button
                     onClick={handleApplyFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-[#9376CA] text-white px-3 py-2 rounded-md hover:bg-[#7a5fb8] text-sm"
+                    disabled={!isAnyFilterChecked}
+                    className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
+               ${
+                 isAnyFilterChecked
+                   ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
+                   : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+               }
+             `}
                   >
                     <img src={SearchIcon} className="w-4 h-4" /> Apply
                   </button>
@@ -531,7 +536,7 @@ const MonthlyAttendanceImport = () => {
             if (values.length === 0 || !activeVisibleFilters[key]) return null;
             return values.map((value, index) => (
               <div
-                key={`${key}-${value}-${index}`} 
+                key={`${key}-${value}-${index}`}
                 className="bg-gray-100 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
               >
                 <span className="text-gray-900 text-[0.7rem]">{value}</span>
@@ -550,31 +555,47 @@ const MonthlyAttendanceImport = () => {
       <hr className="text-gray-500" />
 
       <div className="bg-white border border-gray-200 rounded-sm px-6 py-5">
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-8 lg:gap-10">
           {/* LEFT SIDE */}
           <div className="space-y-4">
-            {/* Leave Template */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
+            <div className="flex gap-2 justify-between w-full">
+              <label
+                htmlFor="Month -Year"
+                className="text-[0.7rem] w-[50%] mt-3"
+              >
                 Leave Template ID
               </label>
-              <select className="w-full h-9 border border-gray-300 text-sm px-2 focus:outline-none">
-                <option>Monthly</option>
-              </select>
+
+              <SelectField
+                name={"Leave Template Id "}
+                className="lg:w-[70%]  "
+                options={[
+                  { value: "", label: "Select Title" },
+                  { value: "monthly", label: "Monthly." },
+                ]}
+              />
             </div>
 
-            {/* Month Year */}
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
+            <div className="flex gap-2 justify-between w-full">
+              <label
+                htmlFor="Month -Year"
+                className="text-[0.7rem] w-[50%] mt-3"
+              >
                 Month - Year
               </label>
-              <select className="w-full h-9 border border-gray-300 text-sm px-2 focus:outline-none">
-                <option>Apr-2025</option>
-              </select>
+
+              <SelectField
+                name={"Month - Year "}
+                className="lg:w-[70%] "
+                options={[
+                  { value: "", label: "Select Title" },
+                  { value: "monthly", label: "Monthly." },
+                ]}
+              />
             </div>
 
             {/* Action buttons */}
-            <div className="flex gap-2 pt-1">
+            {/* <div className="flex gap-2 pt-1">
               <button className="flex items-center gap-1 bg-[#8629DF] text-white text-xs py-2 px-4 rounded-sm hover:bg-purple-700">
                 <Download className="h-4 w-4" /> Export
               </button>
@@ -582,11 +603,11 @@ const MonthlyAttendanceImport = () => {
               <button className="flex items-center gap-1 bg-gray-100 text-gray-700 text-xs py-2 px-4 border border-gray-300 rounded-sm hover:bg-gray-200">
                 <RefreshCcw className="h-4 w-4 " /> Reset
               </button>
-            </div>
+            </div> */}
           </div>
-
+          <div className="hidden lg:block bg-gray-200 w-px"></div>
           {/* RIGHT SIDE */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4 items-center flex flex-col">
             <div>
               <label className="block text-xs text-gray-500 mb-1">
                 Select Attendance Excel File
@@ -602,11 +623,15 @@ const MonthlyAttendanceImport = () => {
             </div>
 
             <button className="flex items-center gap-1 bg-[#8629DF] text-white text-xs p-3 rounded-sm hover:bg-purple-700">
-              <Upload className="h-4 w-4" /> Import and Save.   
+              <Upload className="h-4 w-4" /> Import and Save.
             </button>
+          </div> */}
+          <div>
+            <DragandUpload />
           </div>
         </div>
       </div>
+
     </div>
   );
 };
