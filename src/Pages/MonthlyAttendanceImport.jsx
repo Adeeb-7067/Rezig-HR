@@ -496,7 +496,8 @@ const MonthlyAttendanceImport = () => {
                     onClick={handleResetFilters}
                     className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
                   >
-                    <LuRefreshCw className="w-3 h-3" /> Reset
+                    {/* <LuRefreshCw className="w-3 h-3" /> */}
+                    Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
@@ -509,7 +510,8 @@ const MonthlyAttendanceImport = () => {
                }
              `}
                   >
-                    <img src={SearchIcon} className="w-4 h-4" /> Apply
+                    {/* <img src={SearchIcon} className="w-4 h-4" /> */}
+                    Apply
                   </button>
                 </div>
               </div>
@@ -554,7 +556,7 @@ const MonthlyAttendanceImport = () => {
 
       <hr className="text-gray-500" />
 
-      <div className="bg-white border border-gray-200 rounded-sm px-6 py-5">
+      <div className="bg-white  border border-gray-200 rounded-sm px-6 py-5">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-8 lg:gap-10">
           {/* LEFT SIDE */}
           <div className="space-y-4">
@@ -567,11 +569,12 @@ const MonthlyAttendanceImport = () => {
               </label>
 
               <SelectField
-                name={"Leave Template Id "}
+                name={"Leave Template Id"}
+                value={"Select Id"}
                 className="lg:w-[70%]  "
                 options={[
                   { value: "", label: "Select Title" },
-                  { value: "monthly", label: "Monthly." },
+                  { value: "monthly", label: "Monthly."},
                 ]}
               />
             </div>
@@ -586,10 +589,12 @@ const MonthlyAttendanceImport = () => {
 
               <SelectField
                 name={"Month - Year "}
+                value={"Select Type"}
                 className="lg:w-[70%] "
                 options={[
                   { value: "", label: "Select Title" },
-                  { value: "monthly", label: "Monthly." },
+                  { value: "monthly", label: "Monthly" },
+                  { value: "Year", label: "Year" },
                 ]}
               />
             </div>
@@ -631,7 +636,6 @@ const MonthlyAttendanceImport = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

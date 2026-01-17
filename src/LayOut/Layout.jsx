@@ -32,7 +32,7 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden ">
+    <div className="h-screen w-[100%] flex flex-col overflow-hidden ">
       <div className="flex-none z-10">
         <Navbar onMenuClick={toggleSideBar} />
       </div>
@@ -56,7 +56,7 @@ export default function Layout({ children }) {
               onClick={() => setMobileOpen(false)}
             />
             {/* Drawer */}
-            <aside className="relative w-[11rem] bg-white dark:border-r  dark:bg-gray-900 shadow-xl h-full overflow-y-auto transform transition-transform duration-300 ease-in-out translate-x-0">
+            <aside className="relative w-[12rem] bg-white dark:border-r  dark:bg-gray-900 shadow-xl h-full overflow-y-auto transform transition-transform duration-300 ease-in-out translate-x-0 z-[99999]">
               <SideBar isCollapsed={false} />
             </aside>
           </div> 

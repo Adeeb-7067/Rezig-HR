@@ -201,13 +201,26 @@ const EmployeList = () => {
     }));
   };
 
-  // Toggle dropdown open/close
-  const toggleDropdown = (key) => {
-    setOpenDropdowns((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
+// Update the toggleDropdown function in your component
+const toggleDropdown = (key) => {
+  setOpenDropdowns((prev) => {
+    const newState = {
+      unitName: false,
+      department: false,
+      location: false,
+      designation: false,
+      grade: false,
+      level: false,
+    };
+    
+    if (!prev[key]) {
+      newState[key] = true;
+    }
+    
+    return newState;
+  });
+};
+
 
   // Close all dropdowns
   const closeAllDropdowns = () => {
@@ -325,151 +338,164 @@ const EmployeList = () => {
   });
 
   // Dropdown Component with click outside functionality
-  const DropdownComponent = ({ filterKey, label }) => {
-    const dropdownRef = useRef(null);
+// Dropdown Component with click outside functionality
+const DropdownComponent = ({ filterKey, label }) => {
+  const dropdownRef = useRef(null);
 
-    // Store ref in parent's ref object
-    useEffect(() => {
-      filterDropdownRefs.current[filterKey] = dropdownRef;
-      return () => {
-        delete filterDropdownRefs.current[filterKey];
-      };
-    }, [filterKey]);
+  // Store ref in parent's ref object
+  useEffect(() => {
+    filterDropdownRefs.current[filterKey] = dropdownRef;
+    return () => {
+      delete filterDropdownRefs.current[filterKey];
+    };
+  }, [filterKey]);
 
-    // Click outside effect for this dropdown
-    useEffect(() => {
-      function handleClickOutside(event) {
-        if (
-          dropdownRef.current &&
-          !dropdownRef.current.contains(event.target)
-        ) {
-          // Check if click is on any of the other dropdown buttons
-          const isClickOnOtherDropdownButton = Object.keys(
-            filterDropdownRefs.current
-          ).some((key) => {
-            if (key === filterKey) return false;
-            const otherButton = document.querySelector(
-              `[data-filter-button="${key}"]`
-            );
-            return otherButton && otherButton.contains(event.target);
-          });
+  // Click outside effect for this dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        // Check if click is on any of the other dropdown buttons
+        const isClickOnOtherDropdownButton = Object.keys(
+          filterDropdownRefs.current
+        ).some((key) => {
+          if (key === filterKey) return false;
+          const otherButton = document.querySelector(
+            `[data-filter-button="${key}"]`
+          );
+          return otherButton && otherButton.contains(event.target);
+        });
 
-          if (!isClickOnOtherDropdownButton) {
-            closeDropdown(filterKey);
-          }
+        if (!isClickOnOtherDropdownButton) {
+          closeDropdown(filterKey);
         }
       }
+    }
 
-      if (openDropdowns[filterKey]) {
-        document.addEventListener("mousedown", handleClickOutside);
-      } else {
-        document.removeEventListener("mousedown", handleClickOutside);
-      }
+    if (openDropdowns[filterKey]) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
 
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-    }, [filterKey, openDropdowns[filterKey]]);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [filterKey, openDropdowns[filterKey]]);
 
-    if (!activeVisibleFilters[filterKey]) return null;
+  // Toggle dropdown with single-open functionality
+  const handleToggleDropdown = (key) => {
+    // Close all dropdowns first
+    const newOpenDropdowns = {
+      unitName: false,
+      department: false,
+      location: false,
+      designation: false,
+      grade: false,
+      level: false,
+    };
+    
+    // If the clicked dropdown wasn't already open, open it
+    if (!openDropdowns[key]) {
+      newOpenDropdowns[key] = true;
+    }
+    
+    setOpenDropdowns(newOpenDropdowns);
+  };
 
-    const isOpen = openDropdowns[filterKey];
-    const currentValues = activeFilters[filterKey];
-    const allValues = dropdownData[filterKey];
-    const isAllSelected = currentValues.length === allValues.length;
+  if (!activeVisibleFilters[filterKey]) return null;
 
-    return (
-      <div ref={dropdownRef} className="relative flex flex-col">
-        <button
-          data-filter-button={filterKey}
-          onClick={() => toggleDropdown(filterKey)}
-          className="border border-gray-300 px-5 py-2  rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white hover:bg-gray-50 transition-colors"
-        >
-          <div className="flex flex-col items-start">
-            <span className="text-gray-700 text-[0.7rem] font-medium">
-              {label}
-            </span>
-            {/* {currentValues.length > 0 && (
-              <span className="text-xs text-gray-500">
-                {currentValues.length} selected
-              </span>
-            )} */}
-          </div>
-          <span className="text-gray-500 mt-1">
-            {isOpen ? (
-              <IoMdArrowDropdown className="w-4 h-4" />
-            ) : (
-              <IoMdArrowDropup className="w-4 h-4" />
-            )}
+  const isOpen = openDropdowns[filterKey];
+  const currentValues = activeFilters[filterKey];
+  const allValues = dropdownData[filterKey];
+  const isAllSelected = currentValues.length === allValues.length;
+
+  return (
+    <div ref={dropdownRef} className="relative flex flex-col">
+      <button
+        data-filter-button={filterKey}
+        onClick={() => handleToggleDropdown(filterKey)}
+        className="border border-gray-300 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white hover:bg-gray-50 transition-colors"
+      >
+        <div className="flex flex-col items-start">
+          <span className="text-gray-700 text-[0.7rem] font-medium">
+            {label}
           </span>
-        </button>
+        </div>
+        <span className="text-gray-500 mt-1">
+          {isOpen ? (
+            <IoMdArrowDropup className="w-4 h-4" />
+          ) : (
+            <IoMdArrowDropdown className="w-4 h-4" />
+          )}
+        </span>
+      </button>
 
-        {isOpen && (
-          <div className="absolute mt-1 border border-gray-200  dark:border-[#8629DF] rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
-            <div className="p-3 no-scrollbar">
-              {/* Select All / Clear All */}
-              <div className="flex justify-between items-center mb-3">
-                <button
-                  onClick={() =>
-                    isAllSelected
-                      ? handleClearAll(filterKey)
-                      : handleSelectAll(filterKey)
-                  }
-                  className="text-sm text-[#8629DF] dark:text-[#8629DF]  font-medium"
+      {isOpen && (
+        <div className="absolute mt-1 border border-gray-200 dark:border-[#8629DF] rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
+          <div className="p-3 no-scrollbar">
+            {/* Select All / Clear All */}
+            <div className="flex justify-between items-center mb-3">
+              <button
+                onClick={() =>
+                  isAllSelected
+                    ? handleClearAll(filterKey)
+                    : handleSelectAll(filterKey)
+                }
+                className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
+              >
+                {isAllSelected ? "Clear All" : "Select All"}
+              </button>
+            </div>
+
+            <hr className="mb-3" />
+
+            {/* Filter Items */}
+            <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar">
+              {allValues.map((item) => (
+                <div
+                  key={item}
+                  onClick={() => handleDropdownItemClick(filterKey, item)}
+                  className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                 >
-                  {isAllSelected ? "Clear All" : "Select All"}
-                </button>
-                {/* <span className="text-xs text-gray-500">
-                  {currentValues.length} of {allValues.length} selected
-                </span> */}
-              </div>
-
-              <hr className="mb-3" />
-
-              {/* Filter Items */}
-              <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar ">
-                {allValues.map((item) => (
                   <div
-                    key={item}
-                    onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50  dark:hover:bg-gray-700  cursor-pointer rounded "
+                    className={`w-4 h-4 flex items-center justify-center border rounded ${
+                      currentValues.includes(item)
+                        ? "bg-[#8629DF] border-[#8629DF]"
+                        : "border-gray-300"
+                    }`}
                   >
-                    <div
-                      className={`w-4 h-4 flex items-center justify-center border rounded ${
-                        currentValues.includes(item)
-                          ? "bg-[#8629DF] border-[#8629DF]"
-                          : "border-gray-300"
-                      }`}
-                    >
-                      {currentValues.includes(item) && (
-                        <svg
-                          className="w-2.5 h-2.5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="3"
-                            d="M5 13l4 4L19 7"
-                          ></path>
-                        </svg>
-                      )}
-                    </div>
-                    <span className="text-[0.7rem]   font-semibold">
-                      {item}
-                    </span>
+                    {currentValues.includes(item) && (
+                      <svg
+                        className="w-2.5 h-2.5 text-white"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="3"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                    )}
                   </div>
-                ))}
-              </div>
+                  <span className="text-[0.7rem] font-semibold">
+                    {item}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
-        )}
-      </div>
-    );
-  };
+        </div>
+      )}
+    </div>
+  );
+};
 
   return (
     <div className="p-2 sm:p-4 ">
@@ -556,7 +582,8 @@ const EmployeList = () => {
                     onClick={handleResetFilters}
                     className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
                   >
-                    <LuRefreshCw className="w-3 h-3" /> Reset
+                    {/* <LuRefreshCw className="w-3 h-3" />  */}
+                    Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
@@ -564,12 +591,13 @@ const EmployeList = () => {
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
     ${
       isAnyFilterChecked
-        ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
+        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
         : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
     }
   `}
                   >
-                    <img src={SearchIcon} className="w-4 h-4" /> Apply
+                    {/*     <img src={SearchIcon} className="w-4 h-4" /> */}
+                    Apply
                   </button>
                 </div>
               </div>
