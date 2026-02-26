@@ -5,21 +5,113 @@ import { IoMdArrowDropdown, IoMdArrowDropup, IoMdSearch } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 import { CiExport, CiImport } from "react-icons/ci";
 import { MdArrowDropDown } from "react-icons/md";
-import { LuRefreshCw } from "react-icons/lu";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { ChevronDown, Eye, Pencil, Trash2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import SearchIcon from "../Assets/Searchicon.png";
+
+const InlineSelect = ({
+  value,
+  onChange,
+  options = [],
+  placeholder = "Select an option",
+  className = "",
+}) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (val) => {
+    onChange(val);
+    setOpen(false);
+  };
+
+  return (
+    <div ref={ref} className="relative w-24">
+      {/* Trigger */}
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className={`
+          w-[4rem] h-7.5 px-3 py-1.5
+          rounded-sm text-[0.7rem]
+          flex items-center justify-between
+          bg-white dark:bg-gray-800
+          border border-gray-300 dark:border-gray-700
+          text-gray-600 dark:text-gray-100
+          shadow-sm
+          hover:border-gray-400 dark:hover:border-gray-500
+          focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset
+          transition-all duration-200
+          ${className}
+        `}
+      >
+        <span className={!value ? "text-gray-400 dark:text-gray-500" : ""}>
+          {value || placeholder}
+        </span>
+
+        <ChevronDown
+          size={14}
+          className={`transition-transform ${
+            open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+          }`}
+        />
+      </button>
+
+      {/* Dropdown */}
+      {open && (
+        <ul
+          className="
+            absolute z-20 mt-1 w-full
+            rounded-sm shadow-lg
+            border border-gray-200 dark:border-gray-700
+            bg-white dark:bg-gray-800
+            text-[0.7rem]
+            max-h-40 overflow-y-auto
+          "
+        >
+          {options.map((opt) => (
+            <li
+              key={opt.value}
+              onClick={() => handleSelect(opt.value)}
+              className={`
+                px-3 py-1.5 cursor-pointer
+                transition-all duration-150
+                hover:bg-[#9853F9]/15 hover:text-[#9853F9]
+                dark:text-gray-100
+                ${
+                  value === opt.value
+                    ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                    : ""
+                }
+              `}
+            >
+              {opt.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 const EmployeList = () => {
   const [open, setOpen] = useState(false);
+  const [limit, setLimit] = useState("10");
   const dropdownRef = useRef(null);
   const filterDropdownRefs = useRef({});
 
-  // Active filters that are currently applied to the table
   const [activeFilters, setActiveFilters] = useState({
     unitName: [],
     department: [],
@@ -201,26 +293,25 @@ const EmployeList = () => {
     }));
   };
 
-// Update the toggleDropdown function in your component
-const toggleDropdown = (key) => {
-  setOpenDropdowns((prev) => {
-    const newState = {
-      unitName: false,
-      department: false,
-      location: false,
-      designation: false,
-      grade: false,
-      level: false,
-    };
-    
-    if (!prev[key]) {
-      newState[key] = true;
-    }
-    
-    return newState;
-  });
-};
+  // Update the toggleDropdown function in your component
+  const toggleDropdown = (key) => {
+    setOpenDropdowns((prev) => {
+      const newState = {
+        unitName: false,
+        department: false,
+        location: false,
+        designation: false,
+        grade: false,
+        level: false,
+      };
 
+      if (!prev[key]) {
+        newState[key] = true;
+      }
+
+      return newState;
+    });
+  };
 
   // Close all dropdowns
   const closeAllDropdowns = () => {
@@ -320,7 +411,7 @@ const toggleDropdown = (key) => {
         // For department filter, check if item's department matches any selected value
         if (key === "department") {
           return values.some((value) =>
-            item.department.toLowerCase().includes(value.toLowerCase())
+            item.department.toLowerCase().includes(value.toLowerCase()),
           );
         }
 
@@ -329,173 +420,171 @@ const toggleDropdown = (key) => {
         return values.some((value) =>
           String(item[key] || "")
             .toLowerCase()
-            .includes(value.toLowerCase())
+            .includes(value.toLowerCase()),
         );
-      }
+      },
     );
 
     return matchesSearch && matchesFilters;
   });
 
   // Dropdown Component with click outside functionality
-// Dropdown Component with click outside functionality
-const DropdownComponent = ({ filterKey, label }) => {
-  const dropdownRef = useRef(null);
+  // Dropdown Component with click outside functionality
+  const DropdownComponent = ({ filterKey, label }) => {
+    const dropdownRef = useRef(null);
 
-  // Store ref in parent's ref object
-  useEffect(() => {
-    filterDropdownRefs.current[filterKey] = dropdownRef;
-    return () => {
-      delete filterDropdownRefs.current[filterKey];
-    };
-  }, [filterKey]);
+    // Store ref in parent's ref object
+    useEffect(() => {
+      filterDropdownRefs.current[filterKey] = dropdownRef;
+      return () => {
+        delete filterDropdownRefs.current[filterKey];
+      };
+    }, [filterKey]);
 
-  // Click outside effect for this dropdown
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
-        // Check if click is on any of the other dropdown buttons
-        const isClickOnOtherDropdownButton = Object.keys(
-          filterDropdownRefs.current
-        ).some((key) => {
-          if (key === filterKey) return false;
-          const otherButton = document.querySelector(
-            `[data-filter-button="${key}"]`
-          );
-          return otherButton && otherButton.contains(event.target);
-        });
+    // Click outside effect for this dropdown
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target)
+        ) {
+          // Check if click is on any of the other dropdown buttons
+          const isClickOnOtherDropdownButton = Object.keys(
+            filterDropdownRefs.current,
+          ).some((key) => {
+            if (key === filterKey) return false;
+            const otherButton = document.querySelector(
+              `[data-filter-button="${key}"]`,
+            );
+            return otherButton && otherButton.contains(event.target);
+          });
 
-        if (!isClickOnOtherDropdownButton) {
-          closeDropdown(filterKey);
+          if (!isClickOnOtherDropdownButton) {
+            closeDropdown(filterKey);
+          }
         }
       }
-    }
 
-    if (openDropdowns[filterKey]) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
+      if (openDropdowns[filterKey]) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [filterKey, openDropdowns[filterKey]]);
+
+    // Toggle dropdown with single-open functionality
+    const handleToggleDropdown = (key) => {
+      // Close all dropdowns first
+      const newOpenDropdowns = {
+        unitName: false,
+        department: false,
+        location: false,
+        designation: false,
+        grade: false,
+        level: false,
+      };
+
+      // If the clicked dropdown wasn't already open, open it
+      if (!openDropdowns[key]) {
+        newOpenDropdowns[key] = true;
+      }
+
+      setOpenDropdowns(newOpenDropdowns);
     };
-  }, [filterKey, openDropdowns[filterKey]]);
 
-  // Toggle dropdown with single-open functionality
-  const handleToggleDropdown = (key) => {
-    // Close all dropdowns first
-    const newOpenDropdowns = {
-      unitName: false,
-      department: false,
-      location: false,
-      designation: false,
-      grade: false,
-      level: false,
-    };
-    
-    // If the clicked dropdown wasn't already open, open it
-    if (!openDropdowns[key]) {
-      newOpenDropdowns[key] = true;
-    }
-    
-    setOpenDropdowns(newOpenDropdowns);
-  };
+    if (!activeVisibleFilters[filterKey]) return null;
 
-  if (!activeVisibleFilters[filterKey]) return null;
+    const isOpen = openDropdowns[filterKey];
+    const currentValues = activeFilters[filterKey];
+    const allValues = dropdownData[filterKey];
+    const isAllSelected = currentValues.length === allValues.length;
 
-  const isOpen = openDropdowns[filterKey];
-  const currentValues = activeFilters[filterKey];
-  const allValues = dropdownData[filterKey];
-  const isAllSelected = currentValues.length === allValues.length;
-
-  return (
-    <div ref={dropdownRef} className="relative flex flex-col">
-      <button
-        data-filter-button={filterKey}
-        onClick={() => handleToggleDropdown(filterKey)}
-        className="border border-gray-300 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white hover:bg-gray-50 transition-colors"
-      >
-        <div className="flex flex-col items-start">
-          <span className="text-gray-700 text-[0.7rem] font-medium">
-            {label}
+    return (
+      <div ref={dropdownRef} className="relative flex flex-col">
+        <button
+          data-filter-button={filterKey}
+          onClick={() => handleToggleDropdown(filterKey)}
+          className="border border-gray-300 dark:border-gray-400 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
+        >
+          <div className="flex flex-col items-start">
+            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
+              {label}
+            </span>
+          </div>
+          <span className="text-gray-500 mt-1">
+            {isOpen ? (
+              <IoMdArrowDropup className="w-4 h-4" />
+            ) : (
+              <IoMdArrowDropdown className="w-4 h-4" />
+            )}
           </span>
-        </div>
-        <span className="text-gray-500 mt-1">
-          {isOpen ? (
-            <IoMdArrowDropup className="w-4 h-4" />
-          ) : (
-            <IoMdArrowDropdown className="w-4 h-4" />
-          )}
-        </span>
-      </button>
+        </button>
 
-      {isOpen && (
-        <div className="absolute mt-1 border border-gray-200 dark:border-[#8629DF] rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
-          <div className="p-3 no-scrollbar">
-            {/* Select All / Clear All */}
-            <div className="flex justify-between items-center mb-3">
-              <button
-                onClick={() =>
-                  isAllSelected
-                    ? handleClearAll(filterKey)
-                    : handleSelectAll(filterKey)
-                }
-                className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
-              >
-                {isAllSelected ? "Clear All" : "Select All"}
-              </button>
-            </div>
-
-            <hr className="mb-3" />
-
-            {/* Filter Items */}
-            <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar">
-              {allValues.map((item) => (
-                <div
-                  key={item}
-                  onClick={() => handleDropdownItemClick(filterKey, item)}
-                  className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
+        {isOpen && (
+          <div className="absolute mt-1 border border-gray-200  dark:border-gray-400 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
+            <div className="p-3 no-scrollbar">
+              {/* Select All / Clear All */}
+              <div className="flex justify-between items-center mb-3">
+                <button
+                  onClick={() =>
+                    isAllSelected
+                      ? handleClearAll(filterKey)
+                      : handleSelectAll(filterKey)
+                  }
+                  className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
                 >
+                  {isAllSelected ? "Clear All" : "Select All"}
+                </button>
+              </div>
+
+              <hr className="mb-3" />
+
+              {/* Filter Items */}
+              <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar">
+                {allValues.map((item) => (
                   <div
-                    className={`w-4 h-4 flex items-center justify-center border rounded ${
-                      currentValues.includes(item)
-                        ? "bg-[#8629DF] border-[#8629DF]"
-                        : "border-gray-300"
-                    }`}
+                    key={item}
+                    onClick={() => handleDropdownItemClick(filterKey, item)}
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
-                    {currentValues.includes(item) && (
-                      <svg
-                        className="w-2.5 h-2.5 text-white"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="3"
-                          d="M5 13l4 4L19 7"
-                        ></path>
-                      </svg>
-                    )}
+                    <div
+                      className={`w-4 h-4 flex items-center justify-center border rounded ${
+                        currentValues.includes(item)
+                          ? "bg-[#8629DF] border-[#8629DF]"
+                          : "border-gray-300"
+                      }`}
+                    >
+                      {currentValues.includes(item) && (
+                        <svg
+                          className="w-2.5 h-2.5 text-white"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="3"
+                            d="M5 13l4 4L19 7"
+                          ></path>
+                        </svg>
+                      )}
+                    </div>
+                    <span className="text-[0.7rem] font-semibold">{item}</span>
                   </div>
-                  <span className="text-[0.7rem] font-semibold">
-                    {item}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
-  );
-};
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="p-2 sm:p-4 ">
@@ -528,7 +617,7 @@ const DropdownComponent = ({ filterKey, label }) => {
             type="text"
             placeholder="Search here"
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent"
+            className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
           />
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
@@ -553,8 +642,8 @@ const DropdownComponent = ({ filterKey, label }) => {
               ref={dropdownRef}
               className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
             >
-              <div className="bg-white rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-700 mb-3  border-b-2 pb-2">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400">
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3  border-b-2 pb-2">
                   Filter
                 </h2>
 
@@ -562,7 +651,7 @@ const DropdownComponent = ({ filterKey, label }) => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 hover:bg-gray-50 p-1 rounded"
+                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                     >
                       <input
                         type="checkbox"
@@ -580,7 +669,7 @@ const DropdownComponent = ({ filterKey, label }) => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
+                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
                   >
                     {/* <LuRefreshCw className="w-3 h-3" />  */}
                     Reset
@@ -634,9 +723,11 @@ const DropdownComponent = ({ filterKey, label }) => {
             return values.map((value, index) => (
               <div
                 key={`${key}-${value}-${index}`}
-                className="bg-gray-100 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
+                className="bg-gray-100 dark:bg-gray-800 dark:borde-gray-400 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
               >
-                <span className="text-gray-900 text-[0.7rem]">{value}</span>
+                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                  {value}
+                </span>
                 <button
                   onClick={() => handleRemoveFilterValue(key, value)}
                   className="text-gray-500 hover:text-red-500 text-lg cursor-pointer leading-none w-4 h-4 flex items-center justify-center"
@@ -653,7 +744,7 @@ const DropdownComponent = ({ filterKey, label }) => {
       <div className="rounded-sm mt-5 shadow drop-shadow-xs  border border-gray-200 dark:border-gray-600">
         <div className="overflow-x-auto no-scrollbar">
           <div
-            className="text-[0.7rem] min-w-[1050px] sm:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-[#8629DF] dark:bg-gray-900 py-1 px-4 min-h-[40px] "
+            className="text-[0.7rem] min-w-[1050px] lg:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-[#8629DF] dark:bg-gray-900 py-1 px-4 min-h-[40px] "
             style={{
               display: "grid",
               gridTemplateColumns:
@@ -682,7 +773,7 @@ const DropdownComponent = ({ filterKey, label }) => {
           {filterData.map((emp, index) => (
             <div
               key={index}
-              className="min-w-[1050px] sm:min-w-full  text-[0.7rem] sm:text-[0.7.2rem] py-2 px-3 border-b border-gray-100 dark:border-gray-700  dark:text-gray-400 hover:bg-gray-200/30 dark:hover:bg-gray-500/30 dark:bg-[#A1A1AA]/5 "
+              className="min-w-[1050px] lg:min-w-full  text-[0.7rem] sm:text-[0.7.2rem] py-2 px-3 border-b border-gray-100 dark:border-gray-700  dark:text-gray-400 hover:bg-gray-200/30 dark:hover:bg-gray-500/30 dark:bg-[#A1A1AA]/5 "
               style={{
                 display: "grid",
                 gridTemplateColumns:
@@ -760,51 +851,78 @@ const DropdownComponent = ({ filterKey, label }) => {
         </div>
 
         {/* Pagination */}
-        <div className="flex flex-col lg:flex-row justify-between md:justify-between items-center mt-6 mx-4 text-xs sm:text-sm text-gray-600 gap-4">
+        <div
+          className="flex flex-col lg:flex-row justify-between items-center mt-6 mx-4 text-xs sm:text-sm 
+  text-gray-600 dark:text-gray-400 gap-4"
+        >
           {/* Pagination numbers */}
           <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center lg:justify-end">
-            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+            <button
+              className="px-2 sm:px-3 py-1 border rounded 
+      border-[#8629DF] dark:border-[#A970FF]
+      hover:bg-[#8629DF] hover:text-white"
+            >
               &lt; Back
             </button>
 
             {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
               <button
                 key={num}
-                className={`px-2 sm:px-3 py-1 border rounded ${
-                  num === 1
-                    ? "bg-[#8629DF] text-white border-[#8629DF]"
-                    : "border-[#8629DF] hover:bg-[#8629DF] hover:text-white"
-                }`}
+                className={`px-2 sm:px-3 py-1 border rounded transition
+          ${
+            num === 1
+              ? "bg-[#8629DF] text-white border-[#8629DF]"
+              : "border-[#8629DF] dark:border-[#A970FF] text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
+          }`}
               >
                 {num}
               </button>
             ))}
 
-            <span className="px-1 sm:px-2">...</span>
+            <span className="px-1 sm:px-2 text-gray-500 dark:text-gray-400">
+              ...
+            </span>
 
-            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+            <button
+              className="px-2 sm:px-3 py-1 border rounded 
+      border-[#8629DF] dark:border-[#A970FF]
+      text-gray-700 dark:text-gray-300
+      hover:bg-[#8629DF] hover:text-white"
+            >
               25
             </button>
 
-            <button className="px-2 sm:px-3 py-1 border rounded border-[#8629DF] hover:bg-[#8629DF] hover:text-white">
+            <button
+              className="px-2 sm:px-3 py-1 border rounded 
+      border-[#8629DF] dark:border-[#A970FF]
+      hover:bg-[#8629DF] hover:text-white"
+            >
               Next &gt;
             </button>
           </div>
 
           {/* Results per page */}
           <div className="flex items-center gap-2 justify-center lg:justify-end">
-            <p className="text-black dark:text-gray-400">Results per page</p>
-            <select className="border rounded px-2 py-1 dark:bg-gray-800">
-              <option>50</option>
-              <option>100</option>
-              <option>150</option>
-            </select>
+            <p className="text-gray-800 dark:text-gray-400">Results per page</p>
+
+            <InlineSelect
+              value={limit}
+              onChange={setLimit}
+              options={[
+                { label: "50", value: "50" },
+                { label: "100", value: "100" },
+                { label: "150", value: "150" },
+              ]}
+            />
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex justify-end w-full text-black dark:text-gray-400 text-xs sm:text-sm mt-3 p-4">
-          1-50 of 125
+        <div
+          className="flex justify-end w-full text-xs sm:text-sm mt-3 p-4
+  text-gray-800 dark:text-gray-400"
+        >
+          1–50 of 125
         </div>
       </div>
 

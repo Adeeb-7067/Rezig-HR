@@ -8,12 +8,12 @@ import NewPassword from './Pages/NewPassword';
 import OTPverification from './Pages/OTPverification';
 import DashBoard from './Pages/DashBoard';
 import EmployeList from './Pages/EmployeList'
-import PersnalInfo from './Pages/PersonalInfo';
-import StatutoryDatails from './Pages/StatutoryDetails';
-import SalaryAssigment from './Pages/SalaryAssigment';
-import FamilyDetail from './Pages/FamilyDetail';
+import OrganizationDetails from './Pages/organizationDetails'
+import PfConfiguration from './Pages/pfConfiguration';
+
 import Info from './Pages/info';
 import MonthlyAttendence from './Pages/MonthlyAttendence';
+import IncomeTaxConfiguration from './Pages/IncomeTaxConfiguration';
 const App = () => {
   return (
     <Router>
@@ -57,6 +57,32 @@ const App = () => {
             </Layout>
           }
         />
+         <Route
+          path="/organizationDetails"
+          element={
+            <Layout>
+              <OrganizationDetails />
+            </Layout>
+          }
+        />
+      
+         <Route
+          path="/pfConfiguration"
+          element={
+            <Layout>
+              < PfConfiguration/>
+            </Layout>
+          }
+        />
+             <Route
+          path="/incomeTax"
+          element={
+            <Layout>
+              < IncomeTaxConfiguration/>
+            </Layout>
+          }
+        />
+
       </Routes>
     </Router>
   );

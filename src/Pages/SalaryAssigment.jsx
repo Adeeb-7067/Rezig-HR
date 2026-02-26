@@ -33,7 +33,7 @@ const Calendar = ({
 }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(
-    value ? new Date(value) : null
+    value ? new Date(value) : null,
   );
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
@@ -126,7 +126,7 @@ const Calendar = ({
     const newDate = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
-      day
+      day,
     );
     setSelectedDate(newDate);
     setIsCalendarOpen(false);
@@ -170,12 +170,12 @@ const Calendar = ({
                        isSelected
                          ? "bg-purple-600 text-white"
                          : isToday
-                         ? "text-black"
-                         : "hover:bg-purple-500 dark:hover:bg-purple-500 text-gray-900 dark:text-gray-100"
+                           ? "text-black"
+                           : "hover:bg-purple-500 dark:hover:bg-purple-500 text-gray-900 dark:text-gray-100"
                      }`}
         >
           {day}
-        </div>
+        </div>,
       );
     }
 
@@ -186,7 +186,7 @@ const Calendar = ({
   const prevMonth = (e) => {
     e.stopPropagation();
     setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1),
     );
   };
 
@@ -194,7 +194,7 @@ const Calendar = ({
   const nextMonth = (e) => {
     e.stopPropagation();
     setCurrentDate(
-      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1),
     );
   };
 
@@ -349,7 +349,7 @@ const Calendar = ({
             selectedDate
               ? "text-gray-700 dark:text-gray-100"
               : "text-gray-400 dark:text-gray-500",
-            className
+            className,
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4 text-gray-400 text-[0.7rem] dark:text-gray-400" />
@@ -414,7 +414,7 @@ const Datefeild = ({
         className={cn(
           "border-0 shadow-none focus:ring-0 hover:bg-transparent dark:hover:bg-transparent",
           "!px-1 !py-1",
-          className
+          className,
         )}
         style={{ width: "100%", ...style }}
         showLabel={false}
@@ -590,7 +590,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       onChange={(e) =>
                         handlePayHeadChange(idx, "checked", e.target.checked)
                       }
-                      className="h-3 w-3 accent-[#58585A]"
+                      className="h-3 w-3 accent-[#8629DF]"
                     />
                     <span className="text-[13px]">{item.name}</span>
                   </td>
@@ -727,7 +727,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
     const handleOneTimePaymentChange = (id, field, value) => {
       setPaymentsData((prev) => {
         const updated = prev.oneTimePayments.map((r) =>
-          r.id === id ? { ...r, [field]: value } : r
+          r.id === id ? { ...r, [field]: value } : r,
         );
         return { ...prev, oneTimePayments: updated };
       });
@@ -755,7 +755,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
           return {
             ...prev,
             oneTimePayments: withoutSplits.map((r) =>
-              r.id === parentId ? parent : r
+              r.id === parentId ? parent : r,
             ),
           };
         }
@@ -792,7 +792,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       setPaymentsData((prev) => ({
         ...prev,
         oneTimePayments: prev.oneTimePayments.map((r) =>
-          r.id === id ? { ...r, date: value } : r
+          r.id === id ? { ...r, date: value } : r,
         ),
       }));
     };
@@ -802,7 +802,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       .flatMap((parent) => {
         if (parent.showSplits) {
           const splits = paymentsData.oneTimePayments.filter(
-            (r) => r.parentId === parent.id
+            (r) => r.parentId === parent.id,
           );
           return [parent, ...splits];
         }
@@ -845,7 +845,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                             handleOneTimePaymentChange(
                               row.id,
                               "checked",
-                              e.target.checked
+                              e.target.checked,
                             )
                           }
                         />
@@ -870,7 +870,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                           handleOneTimePaymentChange(
                             row.id,
                             "amount",
-                            e.target.value
+                            e.target.value,
                           )
                         }
                         className="w-24 text-center rounded px-2 py-1 focus:outline-none focus:ring-0 text-[0.7rem] border border-gray-300"

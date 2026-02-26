@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { cn } from "@/lib/utils"; 
-import { ChevronDown } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ChevronDown, Info } from "lucide-react";
 
 const SelectField = ({
   label,
@@ -9,11 +9,30 @@ const SelectField = ({
   onChange,
   options = [],
   className = "",
+  info = null,
 }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const iconRef = useRef(null);
+  const tooltipRef = useRef(null);
 
-  // close dropdown when clicking outside
+  // Position tooltip when shown
+  useEffect(() => {
+    if (showTooltip && iconRef.current && tooltipRef.current) {
+      const iconRect = iconRef.current.getBoundingClientRect();
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      const top = iconRect.top + scrollTop - tooltipRect.height - 8;
+      const left = iconRect.left + scrollLeft + (iconRect.width / 2) - (tooltipRect.width / 2);
+
+      tooltipRef.current.style.top = `${Math.max(4, top)}px`;
+      tooltipRef.current.style.left = `${Math.max(4, left)}px`;
+    }
+  }, [showTooltip]);
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -31,12 +50,36 @@ const SelectField = ({
 
   return (
     <div className="w-full relative" ref={dropdownRef}>
-      {/* Label */}
-      <label className="block text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200 mb-1">
-        {label}
-      </label>
+      <div className="flex items-center gap-1 mb-1">
+        {info && (
+          <div className="relative">
+            <Info
+              ref={iconRef}
+              size={12}
+              className="text-[#8629DF] cursor-help"
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            />
+            {showTooltip && (
+              <div
+                ref={tooltipRef}
+                className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
+                style={{
+                  transform: 'translateX(0)',
+                }}
+              >
+                {info}
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+              </div>
+            )}
+          </div>
+        )}
+        <label className="block text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200">
+          {label}
+        </label>
+      </div>
 
-      {/* Trigger */}
+      {/* Rest of the component remains the same */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -48,7 +91,7 @@ const SelectField = ({
           "shadow-sm focus:ring-2 focus:ring-[#9853F9] focus:ring-inset focus:outline-none",
           "hover:border-gray-400 dark:hover:border-gray-500",
           "transition-all duration-200 ease-in-out",
-          className
+          className,
         )}
       >
         <span className={value ? "" : "text-gray-400 dark:text-gray-500"}>
@@ -67,7 +110,7 @@ const SelectField = ({
           className={cn(
             "absolute z-10 mt-1 w-full rounded-sm shadow-lg border border-gray-200 dark:border-gray-700",
             "bg-white dark:bg-gray-800 text-[0.7rem]",
-            "max-h-40 overflow-y-auto transition-all duration-150 ease-in-out no-scrollbar"
+            "max-h-40 overflow-y-auto transition-all duration-150 ease-in-out no-scrollbar",
           )}
         >
           {options.map((opt) => (
@@ -76,9 +119,9 @@ const SelectField = ({
               onClick={() => handleSelect(opt.value)}
               className={cn(
                 "px-4 py-1.5 cursor-pointer transition-all duration-150 ease-in-out",
-                "hover:bg-[#9853F9]/15 hover:text-[#9853F9]",
+                "hover:bg-[#9853F9]/15 hover:text-[#9853F9] dark:text-gray-50",
                 value === opt.value &&
-                  "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                  "bg-[#9853F9]/20 text-[#9853F9] font-medium",
               )}
             >
               {opt.label}

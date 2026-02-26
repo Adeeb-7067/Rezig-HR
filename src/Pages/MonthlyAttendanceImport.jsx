@@ -13,7 +13,6 @@ import {
   RefreshCcw,
   Upload,
 } from "lucide-react";
-import { BiRecycle } from "react-icons/bi";
 import SelectField from "@/components/SelectFeild";
 import DragandUpload from "@/components/ui/DragandUpload";
 
@@ -288,11 +287,11 @@ const MonthlyAttendanceImport = () => {
   useEffect(() => {
     function handleClickOutside(event) {
       const isClickInsideDropdown = Object.values(
-        filterDropdownRefs.current
+        filterDropdownRefs.current,
       ).some((ref) => ref.current && ref.current.contains(event.target));
 
       const isClickOnDropdownButton = event.target.closest(
-        "[data-filter-button]"
+        "[data-filter-button]",
       );
 
       if (!isClickInsideDropdown && !isClickOnDropdownButton) {
@@ -339,10 +338,10 @@ const MonthlyAttendanceImport = () => {
         <button
           data-filter-button={filterKey}
           onClick={() => toggleDropdown(filterKey)}
-          className="border border-gray-300 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white hover:bg-gray-50 transition-colors"
+          className="border border-gray-300 dark:border-gray-500 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 text-[0.7rem] font-medium">
+            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
               {label}
             </span>
             {/* {currentValues.length > 0 && (
@@ -361,7 +360,7 @@ const MonthlyAttendanceImport = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute mt-1 border border-gray-200 rounded-lg bg-white drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
+          <div className="absolute mt-1 border border-gray-200 dark:border-gray-500 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
             <div className="p-3">
               <div className="flex justify-between items-center mb-3">
                 <button
@@ -410,7 +409,9 @@ const MonthlyAttendanceImport = () => {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] font-semibold">{item}</span>
+                    <span className="text-[0.7rem] dark:text-gray-50 font-semibold">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -426,15 +427,15 @@ const MonthlyAttendanceImport = () => {
       {/* Top Actions */}
       <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-8 w-full">
         <div>
-          <h1 className="text-md sm:text-xl font-semibold text-[#252C58]">
+          <h1 className="text-md sm:text-xl font-semibold text-[#252C58] dark:text-gray-50">
             Import Monthly Attendance
           </h1>
         </div>
       </div>
       {/* Buttons */}
-      <div className="flex justify-between gap-2 shadow-sm p-3">
+      <div className="flex justify-between gap-2  p-3">
         <div
-          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[70%] xl:h-[40px] 
+          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[65%] xl:h-[36px] 
        focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
         >
           <input
@@ -442,7 +443,7 @@ const MonthlyAttendanceImport = () => {
             placeholder="Search here"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent"
+            className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
           />
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
@@ -467,8 +468,8 @@ const MonthlyAttendanceImport = () => {
               ref={dropdownRef}
               className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
             >
-              <div className="bg-white rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-700 mb-3  border-b-2 pb-2">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-600">
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-3  border-b-2 pb-2">
                   Filter
                 </h2>
 
@@ -476,7 +477,7 @@ const MonthlyAttendanceImport = () => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 hover:bg-gray-50 p-1 rounded"
+                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                     >
                       <input
                         type="checkbox"
@@ -494,7 +495,7 @@ const MonthlyAttendanceImport = () => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
+                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 dark:text-gray-50 dark:border-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
                   >
                     {/* <LuRefreshCw className="w-3 h-3" /> */}
                     Reset
@@ -539,9 +540,11 @@ const MonthlyAttendanceImport = () => {
             return values.map((value, index) => (
               <div
                 key={`${key}-${value}-${index}`}
-                className="bg-gray-100 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
+                className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200 dark:border-gray-500"
               >
-                <span className="text-gray-900 text-[0.7rem]">{value}</span>
+                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                  {value}
+                </span>
                 <button
                   onClick={() => handleRemoveFilterValue(key, value)}
                   className="text-gray-500 hover:text-red-500 text-lg cursor-pointer leading-none w-4 h-4 flex items-center justify-center"
@@ -556,14 +559,14 @@ const MonthlyAttendanceImport = () => {
 
       <hr className="text-gray-500" />
 
-      <div className="bg-white  border border-gray-200 rounded-sm px-6 py-5">
+      <div className="bg-white dark:bg-gray-900  border border-gray-200 dark:border-gray-400 rounded-sm px-6 py-5">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-8 lg:gap-10">
           {/* LEFT SIDE */}
           <div className="space-y-4">
-            <div className="flex gap-2 justify-between w-full">
+            <div className="flex flex-col gap-2 justify-between w-full">
               <label
                 htmlFor="Month -Year"
-                className="text-[0.7rem] w-[50%] mt-3"
+                className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
               >
                 Leave Template ID
               </label>
@@ -574,15 +577,15 @@ const MonthlyAttendanceImport = () => {
                 className="lg:w-[70%]  "
                 options={[
                   { value: "", label: "Select Title" },
-                  { value: "monthly", label: "Monthly."},
+                  { value: "monthly", label: "Monthly." },
                 ]}
               />
             </div>
 
-            <div className="flex gap-2 justify-between w-full">
+            <div className="flex flex-col gap-2 justify-between w-full">
               <label
                 htmlFor="Month -Year"
-                className="text-[0.7rem] w-[50%] mt-3"
+                className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
               >
                 Month - Year
               </label>
@@ -610,7 +613,7 @@ const MonthlyAttendanceImport = () => {
               </button>
             </div> */}
           </div>
-          <div className="hidden lg:block bg-gray-200 w-px"></div>
+          <div className="hidden lg:block bg-gray-200 dark:bg-gray-500 w-px"></div>
           {/* RIGHT SIDE */}
           {/* <div className="space-y-4 items-center flex flex-col">
             <div>

@@ -32,8 +32,8 @@ export default function AttendanceImport() {
   };
 
   return (
-    <div className="p-6 min-h-screen text-sm text-gray-800">
-      <div className=" p-4 rounded-sm shadow drop-shadow-xs border border-gray-100 dark:border-gray-500 dark:bg-gray-900   ">
+    <div className="p-0 md:p-6 min-h-screen text-sm text-gray-800">
+      <div className="p-0 md:p-4 rounded-sm shadow drop-shadow-xs border border-gray-100 dark:border-gray-500 dark:bg-gray-900   ">
         {/* Toggle Button */}
 
         <div
@@ -184,7 +184,7 @@ export default function AttendanceImport() {
         </p>
       </div> */}
 
-      <div className="mt-16 md:mt-0">
+      <div className="mt-16 md:mt-0 ">
         <MonthlyAttendanceImport />
       </div>
       {/* Buttons */}
@@ -253,7 +253,7 @@ function ActionCard({ icon, title, desc, color, showCards, delay = 0 }) {
   return (
     <div
       className={`
-        flex items-center gap-3 bg-white dark:bg-gray-800 p-3 cursor-pointer rounded-sm 
+        flex items-center gap-3 bg-gray-100 dark:bg-gray-800 p-3 cursor-pointer rounded-sm 
         hover:bg-[#8629DF]/90 hover:text-white dark:text-white hover:shadow-lg hover:scale-[1.02]
         transition-all duration-300 ease-out
         ${showCards ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}

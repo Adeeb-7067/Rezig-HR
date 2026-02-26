@@ -19,13 +19,13 @@ body {
 .drops option:hover {
   background-color: blueviolet !important;
 }
-.text-Primary{
-font-size: 0.7rem;  
-font-weight: 600;
+.text-Primary {
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
-.bg-primary{
-  background-color: #8629DF;
+.bg-primary {
+  background-color: #8629df;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -49,7 +49,6 @@ font-weight: 600;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
-
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -158,6 +157,26 @@ font-weight: 600;
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+.table-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  min-height: 6px;
+  margin: 6px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: #8629df;
+  min-height: 6px;
+  border-radius: 7px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb:hover {
+  background: #6d1fc7;
+}
 @layer base {
   * {
     @apply border-border outline-ring/50;
