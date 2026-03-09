@@ -40,6 +40,7 @@ const PaycodeMaster = () => {
                         : "Create Formula"
                 }
                 onButtonClick={() => setShowCreate(true)}
+                showCreate={showCreate}
             />
 
             {/* PAYCODE TAB */}

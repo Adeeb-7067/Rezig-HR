@@ -177,7 +177,7 @@ const ComponentList = () => {
                                                     <div>{item.type}</div>
 
                                                     <div className="flex justify-center">
-                                                        <button className="w-8 h-8 rounded-md bg-purple-100 text-purple-600 hover:bg-primary hover:text-white transition">
+                                                        <button className="w-8 h-8 rounded-md bg-purple-100 text-purple-600 hover:bg-[#8629DF] hover:text-white transition">
                                                             +
                                                         </button>
                                                     </div>
