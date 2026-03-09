@@ -3,8 +3,9 @@ import { FiLayout, FiUser } from "react-icons/fi";
 import { HiOutlineDuplicate } from "react-icons/hi";
 import { GoTriangleRight } from "react-icons/go";
 import { GrConfigure } from "react-icons/gr";
-
 import { useNavigate } from "react-router-dom";
+import { ICONS } from "@/lib/constant";
+
 
 /* =========================
    MENU CONFIG (SCALABLE)
@@ -13,66 +14,186 @@ import { useNavigate } from "react-router-dom";
 const menuItems = [
   {
     name: "Dashboard",
-    icon: <FiLayout className="h-5 w-5" />,
+    icon: (
+      <img
+        src={ICONS.dashboard}
+        alt="dashboard"
+        className="h-5 w-5 object-contain"
+      />
+    ),
     path: "/dashboard",
   },
+  // {
+  //   name: "Configuration",
+  //   icon: <GrConfigure className="h-4.5 w-4.5" />,
+  //   children: [
+  //     {
+  //       name: "PF Configuration",
+  //       path: "/pfConfiguration",
+  //     },
+  //     {
+  //       name: "Income Tax Configuration",
+  //       path: "/incomeTax",
+  //     },
+  //     {
+  //       name: "Payroll",
+  //       children: [
+  //         {
+  //           name: "Statutory Configuration",
+  //           path: "/statuoryConfiguration",
+  //         },
+  //         {
+  //           name: "Income Tax and Tax Configuration",
+  //           path: "/payroll/tax",
+  //         },
+  //         {
+  //           name: "Pay code master and Formula",
+  //           children: [
+  //             {
+  //               name: "Earnings",
+  //               path: "/payroll/paycode/earnings",
+  //             },
+  //             {
+  //               name: "Deductions",
+  //               path: "/payroll/paycode/deductions",
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Leave",
+  //       path: "/leave",
+  //     },
+  //     {
+  //       name: "OrganizationDetails",
+  //       path: "/organizationDetails",
+  //     },
+  //   ],
+  // },
+
   {
     name: "Configuration",
-    icon: <GrConfigure className="h-4.5 w-4.5" />,
+    icon: (<img
+      src={ICONS.configuration}
+      alt="configuration"
+      className="h-5 w-5 object-contain"
+    />),
     children: [
       {
-        name: "PF Configuration",
-        path: "/pfConfiguration",
+        name: "Organization Details",
+        path: "/organizationdetails",
+      },
+      {
+        name: "Statutory Configuration",
+        path: "/pfconfiguration",
       },
       {
         name: "Income Tax Configuration",
-        path: "/incomeTax",
+        path: "/incometax",
       },
       {
-        name: "Payroll",
-        children: [
-          {
-            name: "Statutory Configuration",
-            path: "/statuoryConfiguration",
-          },
-          {
-            name: "Income Tax and Tax Configuration",
-            path: "/payroll/tax",
-          },
-          {
-            name: "Pay code master and Formula",
-            children: [
-              {
-                name: "Earnings",
-                path: "/payroll/paycode/earnings",
-              },
-              {
-                name: "Deductions",
-                path: "/payroll/paycode/deductions",
-              },
-            ],
-          },
-        ],
+        name: "Pay Code Master and Formula",
+        path: "/paycodemaster",
       },
       {
-        name: "Leave",
+        name: "Attendance Configuration",
+        path: "/attendence-configuration",
+      },
+      {
+        name: "Leave Configuration",
         path: "/leave",
-      },
-      {
-        name: "OrganizationDetails",
-        path: "/organizationDetails",
       },
     ],
   },
+
   {
     name: "Employee List",
-    icon: <FiUser className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.employee}
+      alt="employee"
+      className="h-5 w-5 object-contain"
+    />),
     path: "/EmployeeList",
   },
   {
     name: "Attendance",
-    icon: <HiOutlineDuplicate className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.attendance}
+      alt="attendance"
+      className="h-5 w-5 object-contain"
+    />),
     path: "/monthlyAttendance",
+  },
+
+  //add
+  {
+    name: "Attendance Regularization",
+    icon: (<img
+      src={ICONS.AttendanceRegularization}
+      alt="attendanceRegularization"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/attendance-regularization",
+  },
+
+  {
+    name: "Loan Assignment",
+    icon: (<img
+      src={ICONS.LoanAssignment}
+      alt="loanAssignment"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/loan-assignment",
+  },
+
+  {
+    name: "Payroll Dashboard",
+    icon: (<img
+      src={ICONS.payrollDashboard}
+      alt="payrollDashboard"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/payroll-dashboard",
+  },
+
+  {
+    name: "Employee Dashboard",
+    icon: (<img
+      src={ICONS.employeeDashboard}
+      alt="employeeDashboard"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/employee-dashboard",
+  },
+
+  {
+    name: "Reports",
+    icon: (<img
+      src={ICONS.report}
+      alt="report"
+      className="h-5 w-5 object-contain"
+    />),
+    children: [
+      {
+        name: "Report Builder",
+        path: "/report-builder",
+      },
+      {
+        name: "Bank Builder",
+        path: "/bank-builder",
+      },
+    ],
+  },
+
+  {
+    name: "Full and Final Individual",
+    icon: (<img
+      src={ICONS.fullAndFinal}
+      alt="fullAndFinal"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/full-final",
   },
 ];
 
@@ -85,10 +206,9 @@ const Level0MenuItem = ({ item, isActive, onClick }) => {
     <div
       onClick={onClick}
       className={`flex items-center justify-between text-[0.7rem] p-2 rounded-sm font-semibold cursor-pointer transition-colors
-        ${
-          isActive
-            ? "bg-[#8629DF] text-white dark:bg-[#8629DF] dark:text-white"
-            : "text-[#111111]/90 hover:bg-[#8629DF] hover:text-white dark:text-gray-300 dark:hover:bg-[#8629DF] dark:hover:text-white"
+        ${isActive
+          ? "bg-[#8629DF] text-white dark:bg-[#8629DF] dark:text-white"
+          : "text-[#111111]/90 hover:bg-[#8629DF] hover:text-white dark:text-gray-300 dark:hover:bg-[#8629DF] dark:hover:text-white"
         }`}
     >
       <div className="flex items-center gap-2">
@@ -109,10 +229,9 @@ const Level1MenuItem = ({ item, isActive, onClick, hasArrow }) => {
       <div
         onClick={onClick}
         className={`relative flex items-center gap-2 text-[0.7rem] font-semibold cursor-pointer transition-all
-          ${
-            isActive
-              ? "bg-[#F3E9FF] text-[#8629DF] dark:bg-gray-800 dark:text-[#A855F7] rounded-sm w-fit px-3 py-1"
-              : "text-[#111111]/90 dark:text-gray-300 px-2 py-1 rounded-sm hover:bg-[#8629DF] hover:text-white dark:hover:bg-[#8629DF] dark:hover:text-white"
+          ${isActive
+            ? "bg-[#F3E9FF] text-[#8629DF] dark:bg-gray-800 dark:text-[#A855F7] rounded-sm w-fit px-3 py-1"
+            : "text-[#111111]/90 dark:text-gray-300 px-2 py-1 rounded-sm hover:bg-[#8629DF] hover:text-white dark:hover:bg-[#8629DF] dark:hover:text-white"
           }`}
       >
         {/* Left triangle indicator (ACTIVE ONLY) */}
@@ -140,10 +259,9 @@ const Level2MenuItem = ({ item, isActive, onClick, hasArrow }) => {
       <div
         onClick={onClick}
         className={`relative flex items-center gap-2 text-[0.7rem] font-semibold cursor-pointer transition-all
-          ${
-            isActive
-              ? "text-[#8629DF] dark:text-[#A855F7] rounded-sm w-fit px-3 py-1"
-              : "text-[#111111]/90 dark:text-gray-300 px-2 py-1 rounded-sm hover:bg-[#8629DF] hover:text-white dark:hover:bg-[#8629DF] dark:hover:text-white"
+          ${isActive
+            ? "text-[#8629DF] dark:text-[#A855F7] rounded-sm w-fit px-3 py-1"
+            : "text-[#111111]/90 dark:text-gray-300 px-2 py-1 rounded-sm hover:bg-[#8629DF] hover:text-white dark:hover:bg-[#8629DF] dark:hover:text-white"
           }`}
       >
         {/* Left triangle indicator (ACTIVE ONLY) */}
@@ -170,10 +288,9 @@ const Level3MenuItem = ({ item, isActive, onClick }) => {
     <div
       onClick={onClick}
       className={`flex items-center text-[0.7rem] p-2 ml-12 rounded-sm font-semibold cursor-pointer transition-colors
-        ${
-          isActive
-            ? "bg-[#8629DF] text-white dark:bg-[#8629DF] dark:text-white"
-            : "text-[#111111]/90 hover:bg-[#8629DF] hover:text-white dark:text-gray-300 dark:hover:bg-[#8629DF] dark:hover:text-white"
+        ${isActive
+          ? "bg-[#8629DF] text-white dark:bg-[#8629DF] dark:text-white"
+          : "text-[#111111]/90 hover:bg-[#8629DF] hover:text-white dark:text-gray-300 dark:hover:bg-[#8629DF] dark:hover:text-white"
         }`}
     >
       {item.name}
@@ -219,9 +336,9 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
         }}
       />
 
-      {openConfig && (
+      {/* {openConfig && (
         <div className="mt-1 space-y-2">
-          {/* Admin */}
+     
           <Level1MenuItem
             item={configItem.children[0]}
             isActive={activeItem === "pfConfiguration"}
@@ -232,7 +349,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
             hasArrow={false}
           />
 
-          {/* Attendance */}
+   
           <Level1MenuItem
             item={configItem.children[1]}
             isActive={activeItem === "incomeTax"}
@@ -243,7 +360,6 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
             hasArrow={false}
           />
 
-          {/* Payroll */}
           <div>
             <Level1MenuItem
               item={configItem.children[2]}
@@ -266,7 +382,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
 
             {openPayroll && (
               <div className="mt-1 space-y-1.5">
-                {/* Statutory Configuration */}
+             
                 <Level2MenuItem
                   item={configItem.children[2].children[0]}
                   isActive={activeItem === "Statutory Configuration"}
@@ -277,7 +393,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
                   hasArrow={false}
                 />
 
-                {/* Income Tax and Tax Configuration */}
+                
                 <Level2MenuItem
                   item={configItem.children[2].children[1]}
                   isActive={activeItem === "Income Tax and Tax Configuration"}
@@ -288,7 +404,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
                   hasArrow={false}
                 />
 
-                {/* Pay code master and Formula */}
+             
                 <div>
                   <Level2MenuItem
                     item={configItem.children[2].children[2]}
@@ -305,7 +421,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
 
                   {openPayCode && (
                     <div className="mt-1">
-                      {/* Earnings */}
+                 
                       <Level3MenuItem
                         item={configItem.children[2].children[2].children[0]}
                         isActive={activeItem === "Earnings"}
@@ -315,7 +431,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
                         }}
                       />
 
-                      {/* Deductions */}
+          
                       <Level3MenuItem
                         item={configItem.children[2].children[2].children[1]}
                         isActive={activeItem === "Deductions"}
@@ -331,7 +447,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
             )}
           </div>
 
-          {/* Leave */}
+ 
           <Level1MenuItem
             item={configItem.children[3]}
             isActive={activeItem === "Leave"}
@@ -342,7 +458,7 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
             hasArrow={false}
           />
 
-          {/* OrganizationDetails */}
+        
           <Level1MenuItem
             item={configItem.children[4]}
             isActive={activeItem === "OrganizationDetails"}
@@ -353,11 +469,72 @@ const ConfigurationMenu = ({ activeItem, setActiveItem }) => {
             hasArrow={false}
           />
         </div>
+      )} */}
+
+      {openConfig && (
+        <div className="mt-1 space-y-2">
+          {configItem.children.map((child) => (
+            <Level1MenuItem
+              key={child.name}
+              item={child}
+              isActive={activeItem === child.name}
+              onClick={() => {
+                setActiveItem(child.name);
+                navigate(child.path);
+              }}
+            />
+          ))}
+        </div>
       )}
+
     </div>
   );
 };
 
+
+const ReportsMenu = ({ activeItem, setActiveItem }) => {
+
+  const [openReports, setOpenReports] = useState(false);
+  const reportsItem = menuItems.find((item) => item.name === "Reports");
+  const navigate = useNavigate();
+
+  if (!reportsItem) return null;
+
+  return (
+    <div>
+
+      {/* Main Reports */}
+      <Level0MenuItem
+        item={reportsItem}
+        isActive={activeItem === "Reports"}
+        onClick={() => {
+          setOpenReports(!openReports);
+          setActiveItem("Reports");
+        }}
+      />
+
+      {/* Children */}
+      {openReports && (
+        <div className="mt-1 space-y-2">
+
+          {reportsItem.children.map((child) => (
+            <Level1MenuItem
+              key={child.name}
+              item={child}
+              isActive={activeItem === child.name}
+              onClick={() => {
+                setActiveItem(child.name);
+                navigate(child.path);
+              }}
+            />
+          ))}
+
+        </div>
+      )}
+
+    </div>
+  );
+};
 /* =========================
    SIDEBAR COMPONENT
 ========================= */
@@ -385,24 +562,52 @@ const SideBar = () => {
       />
 
       {/* Employee List */}
-      <Level0MenuItem
+      {/* <Level0MenuItem
         item={menuItems[2]}
         isActive={activeItem === "Employee List"}
         onClick={() => {
           setActiveItem("Employee List");
           navigate("/EmployeeList");
         }}
-      />
+      /> */}
 
       {/* Attendance */}
-      <Level0MenuItem
+      {/* <Level0MenuItem
         item={menuItems[3]}
         isActive={activeItem === "Attendance"}
         onClick={() => {
           setActiveItem("Attendance");
           navigate("/monthlyAttendance");
         }}
-      />
+      /> */}
+
+      {/* Other menu items */}
+      {menuItems.slice(2).map((item) => {
+
+        if (item.name === "Reports") {
+          return (
+            <ReportsMenu
+              key={item.name}
+              activeItem={activeItem}
+              setActiveItem={setActiveItem}
+            />
+          );
+        }
+
+        return (
+          <Level0MenuItem
+            key={item.name}
+            item={item}
+            isActive={activeItem === item.name}
+            onClick={() => {
+              setActiveItem(item.name);
+              if (item.path) navigate(item.path);
+            }}
+          />
+        );
+
+      })}
+
     </div>
   );
 };

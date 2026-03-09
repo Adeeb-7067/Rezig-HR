@@ -1,4 +1,4 @@
-"use client";
+;
 import React, { useState, useEffect } from "react";
 import SideBar from "../Pages/SideBar";
 import Navbar from "../Pages/Navbar";
@@ -9,7 +9,7 @@ function useMediaQuery(query) {
     if (typeof window === "undefined") return;
     const m = window.matchMedia(query);
     const onChange = () => setMatches(m.matches);
-    onChange(); 
+    onChange();
     m.addEventListener("change", onChange);
     return () => m.removeEventListener("change", onChange);
   }, [query]);
@@ -39,9 +39,8 @@ export default function Layout({ children }) {
 
       <div className="flex flex-1 overflow-hidden">
         <aside
-          className={`hidden md:block bg-white dark:border-r dark:bg-gray-900 shadow-xl overflow-y-auto transition-all duration-300 ease-in-out ${
-            desktopOpen ? "w-48" : "w-0"
-          }`}
+          className={`hidden md:block bg-white dark:border-r dark:bg-gray-900 shadow-xl overflow-y-auto transition-all duration-300 ease-in-out ${desktopOpen ? "w-48" : "w-0"
+            }`}
           aria-hidden={!isDesktop}
         >
           <SideBar isCollapsed={!desktopOpen} />
@@ -59,7 +58,7 @@ export default function Layout({ children }) {
             <aside className="relative w-[12rem] bg-white dark:border-r  dark:bg-gray-900 shadow-xl h-full overflow-y-auto transform transition-transform duration-300 ease-in-out translate-x-0 z-[999999]">
               <SideBar isCollapsed={false} />
             </aside>
-          </div> 
+          </div>
         )}
 
         {/* Main content */}

@@ -10,6 +10,7 @@ const SelectField = ({
   options = [],
   className = "",
   info = null,
+  unSelectLabel
 }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -94,14 +95,19 @@ const SelectField = ({
           className,
         )}
       >
-        <span className={value ? "" : "text-gray-400 dark:text-gray-500"}>
+        {/* <span className={value ? "" : "text-gray-400 dark:text-gray-500"}>
           {value || "Select an option"}
+        </span> */}
+        <span
+          className={`truncate ${value ? "text-gray-700 dark:text-gray-100" : "text-gray-400"
+            }`}
+        >
+          {options.find((opt) => opt.value === value)?.label || unSelectLabel}
         </span>
         <ChevronDown
           size={14}
-          className={`transition-transform ${
-            open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
-          }`}
+          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+            }`}
         />
       </button>
 
@@ -121,7 +127,7 @@ const SelectField = ({
                 "px-4 py-1.5 cursor-pointer transition-all duration-150 ease-in-out",
                 "hover:bg-[#9853F9]/15 hover:text-[#9853F9] dark:text-gray-50",
                 value === opt.value &&
-                  "bg-[#9853F9]/20 text-[#9853F9] font-medium",
+                "bg-[#9853F9]/20 text-[#9853F9] font-medium",
               )}
             >
               {opt.label}
