@@ -12,7 +12,7 @@ const ComponentGroupTable = ({ search = "", groups }) => {
 
     return (
 
-        <div className="border border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="border  border-gray-200 dark:border-gray-700 overflow-hidden">
 
             {/* Scroll only body */}
             <div className="max-h-[350px] overflow-y-auto table-scroll">

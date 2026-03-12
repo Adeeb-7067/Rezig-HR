@@ -123,7 +123,7 @@ const PaycodeList = ({ data }) => {
             </div>
             {/* Footer */}
             <div className="flex justify-end p-4">
-                <button className="border border-[#7B2FF7] text-[#7B2FF7] text-xs px-4 py-1.5 rounded-md hover:bg-[#7B2FF7] hover:text-white transition">
+                <button className="border border-[#7B2FF7] text-[#7B2FF7] text-xs sm:text-[0.7rem]   py-1   rounded-sm w-full sm:w-auto md:w-24 hover:bg-[#8629df] hover:text-white transition">
                     Log Report
                 </button>
             </div>

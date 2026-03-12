@@ -1,12 +1,14 @@
-;
+"use client";
+
 import { useState } from "react";
+
 import AttendanceTemplate from "./AttendenceTemplate/AttendanceTemplate";
 import ShiftConfiguration from "./ShiftConfiguration/ShiftConfiguration";
-import SectionCard from "@/components/cards/SectionCard";
 import ShiftCategoryMaster from "./ShiftCategoryMaster/ShiftCategoryMaster";
 import ShiftMaster from "./ShiftMaster/ShiftMaster";
 
 const AttendanceLayout = () => {
+
     const [activeTab, setActiveTab] = useState("attendance");
 
     const tabs = [
@@ -17,30 +19,47 @@ const AttendanceLayout = () => {
     ];
 
     return (
-        <div>
+        <div className="w-full">
 
             {/* Tabs */}
-            <div className="w-full flex gap-10 text-Header  border-b border-gray-200">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`pb-2 transition-all duration-200 ${activeTab === tab.id
-                            ? "text-purple-600 border-b-2 border-purple-600"
-                            : "text-gray-500 hover:text-purple-600"
-                            }`}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+            <div className="border-b border-gray-200 overflow-x-auto no-scrollbar">
+
+                <div className="flex gap-6 sm:gap-10 min-w-max px-1">
+
+                    {tabs.map((tab) => {
+
+                        const isActive = activeTab === tab.id;
+
+                        return (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`
+                  whitespace-nowrap
+                  pb-2 text-sm sm:text-base
+                  transition-all duration-200
+                  ${isActive
+                                        ? "text-purple-600 border-b-2 border-purple-600"
+                                        : "text-gray-500 hover:text-purple-600"
+                                    }
+                `}
+                            >
+                                {tab.label}
+                            </button>
+                        );
+                    })}
+
+                </div>
+
             </div>
 
             {/* Content */}
-            <div className="w-full mt-6">
+            <div className="mt-6">
+
                 {activeTab === "attendance" && <AttendanceTemplate />}
+                {activeTab === "category" && <ShiftCategoryMaster />}
+                {activeTab === "shift" && <ShiftMaster />}
                 {activeTab === "config" && <ShiftConfiguration />}
-                {activeTab === "category" && < ShiftCategoryMaster />}
-                {activeTab === "shift" && < ShiftMaster />}
             </div>
 
         </div>

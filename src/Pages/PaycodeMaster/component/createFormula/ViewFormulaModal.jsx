@@ -14,32 +14,15 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
             />
 
             {/* Modal */}
-            <div className="
-        relative w-full max-w-2xl
-        bg-white dark:bg-gray-900
-        rounded-xl shadow-2xl
-        overflow-hidden
-        animate-in fade-in zoom-in-95
-      ">
+            <div className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
 
                 {/* Header */}
-                <div className="
-          flex justify-between items-center
-          px-6 py-4
-          bg-gradient-to-r bg-primary
-          text-white
-        ">
-                    <h2 className="text-sm font-semibold">
-                        View Formula
-                    </h2>
+                <div className="flex justify-between items-center px-6 py-3 bg-gradient-to-r bg-primary text-white">
+                    <h2 className="text-sm font-semibold">View Formula</h2>
 
                     <button
                         onClick={onClose}
-                        className="
-              w-8 h-8 flex items-center justify-center
-              rounded-full bg-white/20 hover:bg-white/30
-              transition
-            "
+                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white/30 hover:bg-white/40 transition"
                     >
                         <X size={16} />
                     </button>
@@ -48,74 +31,73 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
                 {/* Body */}
                 <div className="p-6 space-y-6 text-sm">
 
-                    {/* Status Box */}
-                    <div className="
-            bg-gray-50 dark:bg-gray-800
-            border border-gray-200 dark:border-gray-700
-            rounded-lg p-4 space-y-4
-          ">
-                        <p className="font-medium text-gray-700 dark:text-gray-200">
+                    {/* Status Section */}
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-5 bg-gray-50 dark:bg-gray-800">
+
+                        <p className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
                             Status
                         </p>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-8 text-gray-600 dark:text-gray-300">
+                        <div className="border-t border-gray-200 dark:border-gray-700 mb-4" />
 
-                            <div className="flex gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-10 text-gray-600 dark:text-gray-300">
+
+                            <div>
                                 <span className="font-medium text-gray-700 dark:text-gray-200">
-                                    Formula Code :
+                                    Formula Code
                                 </span>
-                                <span>{data?.code}</span>
+                                <span className="mx-2">:</span>
+                                {data?.code}
                             </div>
 
-                            <div className="flex gap-2">
+                            <div>
                                 <span className="font-medium text-gray-700 dark:text-gray-200">
-                                    Description :
+                                    Description
                                 </span>
-                                <span>{data?.desc}</span>
+                                <span className="mx-2">:</span>
+                                {data?.desc}
                             </div>
 
-                            <div className="flex gap-2">
+                            <div>
                                 <span className="font-medium text-gray-700 dark:text-gray-200">
-                                    Sequence :
+                                    Sequence
                                 </span>
-                                <span>{data?.sequence}</span>
+                                <span className="mx-2">:</span>
+                                {data?.sequence}
                             </div>
 
-                            <div className="flex gap-2">
+                            <div>
                                 <span className="font-medium text-gray-700 dark:text-gray-200">
-                                    Calculation Based On :
+                                    Calculation Based On
                                 </span>
-                                <span>Monthly CTC</span>
+                                <span className="mx-2">:</span>
+                                Monthly CTC
                             </div>
 
-                            <div className="flex gap-2">
+                            <div>
                                 <span className="font-medium text-gray-700 dark:text-gray-200">
-                                    Actual Payhead Amount :
+                                    Actual Payhead Amount
                                 </span>
-                                <span>No</span>
+                                <span className="mx-2">:</span>
+                                No
                             </div>
 
                         </div>
                     </div>
 
-                    {/* Formula Expression */}
-                    <div className="
-            bg-gray-50 dark:bg-gray-800
-            border border-gray-200 dark:border-gray-700
-            rounded-lg p-4
-          ">
-                        <p className="font-medium mb-3 text-gray-700 dark:text-gray-200">
+                    {/* Formula Section */}
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-5 bg-gray-50 dark:bg-gray-800">
+
+                        <p className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
                             Formula Expression
                         </p>
 
-                        <div className="
-              bg-white dark:bg-gray-900
-              border border-gray-200 dark:border-gray-700
-              rounded-md p-3 text-gray-700 dark:text-gray-200
-              font-mono
-            ">
+                        <div className="border-t border-gray-200 dark:border-gray-700 mb-4" />
+
+                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md p-3 text-gray-700 dark:text-gray-200 font-mono">
                             {data?.formula}
                         </div>
+
                     </div>
 
                 </div>

@@ -56,7 +56,11 @@ export default function Layout({ children }) {
             />
             {/* Drawer */}
             <aside className="relative w-[12rem] bg-white dark:border-r  dark:bg-gray-900 shadow-xl h-full overflow-y-auto transform transition-transform duration-300 ease-in-out translate-x-0 z-[999999]">
-              <SideBar isCollapsed={false} />
+              {/* <SideBar isCollapsed={false} /> */}
+              <SideBar
+                isCollapsed={false}
+                setSidebarOpen={setMobileOpen}
+              />
             </aside>
           </div>
         )}

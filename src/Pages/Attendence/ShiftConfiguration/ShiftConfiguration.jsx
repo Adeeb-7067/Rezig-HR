@@ -51,12 +51,12 @@ const ShiftConfiguration = () => {
             </div>
 
             {/* Footer */}
-            <div className="flex justify-end gap-4 mt-8">
-                <button className="px-6 py-2 text-xs font-medium border border-purple-600 text-purple-600 rounded-md hover:bg-purple-50 transition">
+            <div className="flex justify-end gap-4 mt-8 mb-10">
+                <button className="px-6 py-1 text-xs font-medium border border-purple-600 text-purple-600 rounded-sm hover:bg-purple-50 transition">
                     Reset
                 </button>
 
-                <button className="px-6 py-2 text-xs font-medium bg-purple-600 text-white rounded-md hover:bg-purple-700 transition">
+                <button className="px-6 py-1 rounded-sm text-xs font-medium bg-purple-600 text-white  hover:bg-purple-700 transition">
                     Update
                 </button>
             </div>
