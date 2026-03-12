@@ -639,8 +639,64 @@ const menuItems = [
         className="h-5 w-5 object-contain"
       />
     ),
+    icon: (
+      <img
+        src={ICONS.dashboard}
+        alt="dashboard"
+        className="h-5 w-5 object-contain"
+      />
+    ),
     path: "/dashboard",
   },
+  // {
+  //   name: "Configuration",
+  //   icon: <GrConfigure className="h-4.5 w-4.5" />,
+  //   children: [
+  //     {
+  //       name: "PF Configuration",
+  //       path: "/pfConfiguration",
+  //     },
+  //     {
+  //       name: "Income Tax Configuration",
+  //       path: "/incomeTax",
+  //     },
+  //     {
+  //       name: "Payroll",
+  //       children: [
+  //         {
+  //           name: "Statutory Configuration",
+  //           path: "/statuoryConfiguration",
+  //         },
+  //         {
+  //           name: "Income Tax and Tax Configuration",
+  //           path: "/payroll/tax",
+  //         },
+  //         {
+  //           name: "Pay code master and Formula",
+  //           children: [
+  //             {
+  //               name: "Earnings",
+  //               path: "/payroll/paycode/earnings",
+  //             },
+  //             {
+  //               name: "Deductions",
+  //               path: "/payroll/paycode/deductions",
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Leave",
+  //       path: "/leave",
+  //     },
+  //     {
+  //       name: "OrganizationDetails",
+  //       path: "/organizationDetails",
+  //     },
+  //   ],
+  // },
+
   // {
   //   name: "Configuration",
   //   icon: <GrConfigure className="h-4.5 w-4.5" />,
@@ -697,7 +753,36 @@ const menuItems = [
       alt="configuration"
       className="h-5 w-5 object-contain"
     />),
+    icon: (<img
+      src={ICONS.configuration}
+      alt="configuration"
+      className="h-5 w-5 object-contain"
+    />),
     children: [
+      {
+        name: "Organization Details",
+        path: "/organizationdetails",
+      },
+      {
+        name: "Statutory Configuration",
+        path: "/pfconfiguration",
+      },
+      {
+        name: "Income Tax Configuration",
+        path: "/incometax",
+      },
+      {
+        name: "Pay Code Master and Formula",
+        path: "/paycodemaster",
+      },
+      {
+        name: "Attendance Configuration",
+        path: "/attendence-configuration",
+      },
+      {
+        name: "Leave Configuration",
+        path: "/leave",
+      },
       {
         name: "Organization Details",
         path: "/organizationdetails",
@@ -725,8 +810,14 @@ const menuItems = [
     ],
   },
 
+
   {
     name: "Employee List",
+    icon: (<img
+      src={ICONS.employee}
+      alt="employee"
+      className="h-5 w-5 object-contain"
+    />),
     icon: (<img
       src={ICONS.employee}
       alt="employee"
@@ -736,6 +827,11 @@ const menuItems = [
   },
   {
     name: "Attendance",
+    icon: (<img
+      src={ICONS.attendance}
+      alt="attendance"
+      className="h-5 w-5 object-contain"
+    />),
     icon: (<img
       src={ICONS.attendance}
       alt="attendance"
@@ -762,7 +858,7 @@ const menuItems = [
       alt="loanAssignment"
       className="h-5 w-5 object-contain"
     />),
-    path: "/loan-assignment",
+    path: "/loanAssigment",
   },
 
   {
@@ -772,7 +868,7 @@ const menuItems = [
       alt="payrollDashboard"
       className="h-5 w-5 object-contain"
     />),
-    path: "/payroll-dashboard",
+    path: "/payrollDashboard",
   },
 
   {
@@ -792,7 +888,20 @@ const menuItems = [
       alt="report"
       className="h-5 w-5 object-contain"
     />),
+    icon: (<img
+      src={ICONS.report}
+      alt="report"
+      className="h-5 w-5 object-contain"
+    />),
     children: [
+      {
+        name: "Report Builder",
+        path: "/report-builder",
+      },
+      {
+        name: "Bank Builder",
+        path: "/bank-builder",
+      },
       {
         name: "Report Builder",
         path: "/report-builder",
@@ -814,6 +923,46 @@ const menuItems = [
     path: "/full-final",
   },
 ];
+
+
+
+// const menuItems = [
+//   {
+//     name: "Dashboard",
+//     icon: <img src={ICONS.dashboard} className="h-5 w-5" />,
+//     path: "/dashboard",
+//   },
+//   {
+//     name: "Configuration",
+//     icon: <img src={ICONS.configuration} className="h-5 w-5" />,
+//     children: [
+//       { name: "Organization Details", path: "/organizationdetails" },
+//       { name: "Statutory Configuration", path: "/pfconfiguration" },
+//       { name: "Income Tax Configuration", path: "/incometax" },
+//       { name: "Pay Code Master and Formula", path: "/paycodemaster" },
+//       { name: "Attendance Configuration", path: "/attendence-configuration" },
+//       { name: "Leave Configuration", path: "/leave" },
+//     ],
+//   },
+//   {
+//     name: "Employee List",
+//     icon: <img src={ICONS.employee} className="h-5 w-5" />,
+//     path: "/EmployeeList",
+//   },
+//   {
+//     name: "Attendance",
+//     icon: <img src={ICONS.attendance} className="h-5 w-5" />,
+//     path: "/monthlyAttendance",
+//   },
+//   {
+//     name: "Reports",
+//     icon: <img src={ICONS.report} className="h-5 w-5" />,
+//     children: [
+//       { name: "Report Builder", path: "/report-builder" },
+//       { name: "Bank Builder", path: "/bank-builder" },
+//     ],
+//   },
+// ];
 
 /* =========================
    LEVEL 0 ITEM

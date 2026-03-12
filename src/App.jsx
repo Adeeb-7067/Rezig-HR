@@ -107,6 +107,14 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./LayOut/Layout";
+import LeaveConfiguration from "./Pages/Leave/LeaveConfiguration";
+import AttendanceLayout from "./Pages/Attendence/AttendanceLayout";
+import ReportBuilder from "./Pages/ReportBuilder/ReportBuilder";
+import BankBuilder from "./Pages/BankBuilder/BankBuilder";
+import AddLoan from "./Pages/LoanAssigment/addLoan";
+import LoanAssignmentDetail from "./Pages/LoanAssigment/loanAssigmentDetails";
+import LoanAssignment from "./Pages/LoanAssigment/loanAssigment";
+import PayrollDashboard from "./Pages/Payroll Dashboard/PayrollDashboard";
 
 /* ================= LAZY LOAD PAGES ================= */
 
@@ -177,15 +185,38 @@ const App = () => {
           {/* Reports */}
           <Route path="/report-builder" element={<Layout><ReportBuilder /></Layout>} />
           <Route path="/bank-builder" element={<Layout><BankBuilder /></Layout>} />
-
-          {/* Payroll */}
-          <Route path="/payrolldashboard" element={<Layout><PayrollDashboard /></Layout>} />
-
-          {/* Loan */}
-          <Route path="/loanassignment" element={<Layout><LoanAssignment /></Layout>} />
-          <Route path="/loanassignmentdetails" element={<Layout><LoanAssignmentDetail /></Layout>} />
-          <Route path="/addloan" element={<Layout><AddLoan /></Layout>} />
-
+          <Route
+            path="/payrollDashboard"
+            element={
+              <Layout>
+                < PayrollDashboard />
+              </Layout>
+            }
+          />
+          <Route
+            path="/loanAssigment"
+            element={
+              <Layout>
+                < LoanAssignment />
+              </Layout>
+            }
+          />
+          <Route
+            path="/loanAssigmentDetails"
+            element={
+              <Layout>
+                < LoanAssignmentDetail />
+              </Layout>
+            }
+          />
+          <Route
+            path="/addLoan"
+            element={
+              <Layout>
+                < AddLoan />
+              </Layout>
+            }
+          />
         </Routes>
       </Suspense>
     </Router>
