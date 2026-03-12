@@ -1,6 +1,7 @@
 // import React from 'react';
 // import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+
 // import Layout from './LayOut/Layout';
 // import SignIn from './Pages/SignIn';
 // import ForgotPassword from './Pages/ForgotPassword';
@@ -103,17 +104,11 @@
 
 
 
-
-
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./LayOut/Layout";
-import LeaveConfiguration from "./Pages/Leave/LeaveConfiguration";
-import AttendanceLayout from "./Pages/Attendence/AttendanceLayout";
-import ReportBuilder from "./Pages/ReportBuilder/ReportBuilder";
-import BankBuilder from "./Pages/BankBuilder/BankBuilder";
 
-/* ---------------- LAZY LOAD PAGES ---------------- */
+/* ================= LAZY LOAD PAGES ================= */
 
 const SignIn = lazy(() => import("./Pages/SignIn"));
 const ForgotPassword = lazy(() => import("./Pages/ForgotPassword"));
@@ -129,7 +124,17 @@ const MonthlyAttendence = lazy(() => import("./Pages/MonthlyAttendence"));
 const IncomeTaxConfiguration = lazy(() => import("./Pages/IncomeTaxConfiguration"));
 const PaycodeMaster = lazy(() => import("./Pages/PaycodeMaster/PaycodeMaster"));
 
-/* ---------------- LOADER ---------------- */
+const LeaveConfiguration = lazy(() => import("./Pages/Leave/LeaveConfiguration"));
+const AttendanceLayout = lazy(() => import("./Pages/Attendence/AttendanceLayout"));
+const ReportBuilder = lazy(() => import("./Pages/ReportBuilder/ReportBuilder"));
+const BankBuilder = lazy(() => import("./Pages/BankBuilder/BankBuilder"));
+
+const PayrollDashboard = lazy(() => import("./Pages/Payroll Dashboard/PayrollDashboard"));
+const LoanAssignment = lazy(() => import("./Pages/LoanAssigment/loanAssigment"));
+const LoanAssignmentDetail = lazy(() => import("./Pages/LoanAssigment/loanAssigmentDetails"));
+const AddLoan = lazy(() => import("./Pages/LoanAssigment/addLoan"));
+
+/* ================= PAGE LOADER ================= */
 
 const PageLoader = () => (
   <div className="flex items-center justify-center h-screen">
@@ -137,33 +142,50 @@ const PageLoader = () => (
   </div>
 );
 
+/* ================= APP ================= */
+
 const App = () => {
   return (
     <Router>
       <Suspense fallback={<PageLoader />}>
         <Routes>
 
-          {/* ---------------- AUTH ROUTES ---------------- */}
+          {/* ========= AUTH ROUTES ========= */}
 
           <Route path="/" element={<SignIn />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/new-password" element={<NewPassword />} />
-          <Route path="/OTP-verification" element={<OTPverification />} />
+          <Route path="/otp-verification" element={<OTPverification />} />
 
-          {/* ---------------- PROTECTED ROUTES ---------------- */}
+          {/* ========= PROTECTED ROUTES ========= */}
 
           <Route path="/dashboard" element={<Layout><DashBoard /></Layout>} />
           <Route path="/employeelist" element={<Layout><EmployeList /></Layout>} />
           <Route path="/info" element={<Layout><Info /></Layout>} />
           <Route path="/monthlyattendance" element={<Layout><MonthlyAttendence /></Layout>} />
+
+          {/* Configuration */}
           <Route path="/organizationdetails" element={<Layout><OrganizationDetails /></Layout>} />
           <Route path="/pfconfiguration" element={<Layout><PfConfiguration /></Layout>} />
           <Route path="/incometax" element={<Layout><IncomeTaxConfiguration /></Layout>} />
           <Route path="/paycodemaster" element={<Layout><PaycodeMaster /></Layout>} />
+
+          {/* Attendance & Leave */}
           <Route path="/leave" element={<Layout><LeaveConfiguration /></Layout>} />
           <Route path="/attendence-configuration" element={<Layout><AttendanceLayout /></Layout>} />
+
+          {/* Reports */}
           <Route path="/report-builder" element={<Layout><ReportBuilder /></Layout>} />
           <Route path="/bank-builder" element={<Layout><BankBuilder /></Layout>} />
+
+          {/* Payroll */}
+          <Route path="/payrolldashboard" element={<Layout><PayrollDashboard /></Layout>} />
+
+          {/* Loan */}
+          <Route path="/loanassignment" element={<Layout><LoanAssignment /></Layout>} />
+          <Route path="/loanassignmentdetails" element={<Layout><LoanAssignmentDetail /></Layout>} />
+          <Route path="/addloan" element={<Layout><AddLoan /></Layout>} />
+
         </Routes>
       </Suspense>
     </Router>

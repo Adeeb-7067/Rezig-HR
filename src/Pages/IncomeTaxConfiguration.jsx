@@ -35,7 +35,26 @@ const data = [
     startYear: "01 Apr 2025",
     endYear: "31 Mar 2026",
   },
+  {
+    lowerLimit: "1.00",
+    upperLimit: "400000.00",
+    percent: "0.00",
+    regime: "Old",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
+  {
+    lowerLimit: "1.00",
+    upperLimit: "400000.00",
+    percent: "0.00",
+    regime: "Old",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
 ];
+
 const ToggleField = ({
   label,
   name,
@@ -292,9 +311,9 @@ const TaxConfigurationTable = ({ taxData }) => {
   return (
     <div className="rounded-sm mt-5 shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
       {/* SINGLE SCROLL CONTAINER */}
-      <div className="overflow-auto no-scrollbar max-h-[400px] table-scroll">
+      <div className="overflow-auto no-scrollbar  table-scroll">
         {/* Inner wrapper */}
-        <div className="min-w-[1150px]">
+        <div className="min-w-[1050px] lg:min-w-full">
           {/* Header */}
           <div
             className="text-[0.7rem] font-semibold text-white 
@@ -302,7 +321,7 @@ const TaxConfigurationTable = ({ taxData }) => {
             style={{
               display: "grid",
               gridTemplateColumns:
-                "60px 120px 120px 90px 100px 150px 140px 140px 80px 80px",
+                "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
               gap: "6px",
               alignItems: "center",
             }}
@@ -323,11 +342,11 @@ const TaxConfigurationTable = ({ taxData }) => {
           {taxData.map((tax, index) => (
             <div
               key={index}
-              className="text-[0.7rem] py-2 px-4 border-b hover:bg-gray-100"
+              className="text-[0.7rem] py-2 px-3 border-b hover:bg-gray-100"
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "60px 120px 120px 90px 100px 150px 140px 140px 80px 80px",
+                  "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
                 gap: "6px",
                 alignItems: "center",
               }}
@@ -370,7 +389,7 @@ const IncomeTaxConfiguration = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="col-span-1">
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold mb-1 text-gray-500">
                   Tax Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -446,7 +465,7 @@ const IncomeTaxConfiguration = () => {
                 </div>
               </div>
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold mb-1 text-gray-500">
                   Investment Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -481,7 +500,7 @@ const IncomeTaxConfiguration = () => {
             </div>
             <div className="col-span-1">
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Tax Rebate Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -554,7 +573,7 @@ const IncomeTaxConfiguration = () => {
               </div>
 
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Exemption Details
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -641,7 +660,7 @@ const IncomeTaxConfiguration = () => {
         {activeTab === "its" && (
           <div>
             <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-              <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+              <h1 className="text-base font-semibold  mb-1 text-gray-500">
                 Tax Configuration
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -661,7 +680,9 @@ const IncomeTaxConfiguration = () => {
                 <SelectField
                   name={"Slab Type"}
                   label={"Slab Type"}
-                  options={[{ label: "Select Slab Type", value: "Select Slab Type" }]}
+                  options={[
+                    { label: "Select Slab Type", value: "Select Slab Type" },
+                  ]}
                 />{" "}
                 <InputField name={" Lower Limit"} label={"Lower Limit"} />
                 <InputField name={" Upper Limit"} label={"Upper Limit"} />

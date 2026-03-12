@@ -105,7 +105,7 @@ const pfConfiguration = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="col-span-1">
                 <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                  <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                  <h1 className="text-base font-semibold  mb-1 text-gray-500">
                     PF Configuration
                   </h1>
 
@@ -139,7 +139,7 @@ const pfConfiguration = () => {
                   </div>
                 </div>
                 <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                  <h1 className="text-xl font-semibold  mb-1 text-gray-500 ">
+                  <h1 className="text-base font-semibold  mb-1 text-gray-500 ">
                     Account
                   </h1>
 
@@ -315,7 +315,7 @@ const pfConfiguration = () => {
           <div>
             <div className="">
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   ESI Configuration
                 </h1>
 
@@ -432,7 +432,7 @@ const pfConfiguration = () => {
           <div>
             <div>
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Professional Tax (PT) Configuration
                 </h1>
 
@@ -477,7 +477,7 @@ const pfConfiguration = () => {
         )}
         {activeTab === "lwf" && (
           <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-            <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+            <h1 className="text-base font-semibold  mb-1 text-gray-500">
               Labour Welfare Fund (LWF) Configuration
             </h1>
 

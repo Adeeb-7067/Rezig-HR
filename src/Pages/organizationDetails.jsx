@@ -103,7 +103,7 @@ const organizationDetails = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             <div className="col-span-1">
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Organization Details
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -160,7 +160,7 @@ const organizationDetails = () => {
                 </div>
               </div>
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-6">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Organization Admin Images
                 </h1>
 
@@ -189,7 +189,7 @@ const organizationDetails = () => {
 
             <div className="col-span-1">
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Organization Communication Details
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-4  ">
@@ -228,7 +228,7 @@ const organizationDetails = () => {
               </div>
 
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Database Configuration
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -246,7 +246,7 @@ const organizationDetails = () => {
                 </div>
               </div>
               <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
-                <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+                <h1 className="text-base font-semibold  mb-1 text-gray-500">
                   Organization ESS Images
                 </h1>
 
@@ -281,7 +281,7 @@ const organizationDetails = () => {
               <div className="grid grid-cols-1  lg:grid-cols-2 gap-4">
                 <div className="col-span-1">
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                    <h1 className="text-xl font-semibold  mb-3 text-gray-500 ">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500 ">
                       Organization Configuration
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 space-y-3">
@@ -342,7 +342,7 @@ const organizationDetails = () => {
                   </div>
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                    <h1 className="text-xl font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       Attendance Parameters
                     </h1>
 
@@ -396,7 +396,7 @@ const organizationDetails = () => {
                   </div>
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                    <h1 className="text-xl font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       Attendance Parameters
                     </h1>
 
@@ -491,7 +491,7 @@ const organizationDetails = () => {
 
                 <div className="col-span-1">
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg ">
-                    <h1 className="text-xl font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       E-Mail Parameters
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 space-y-2">
@@ -547,7 +547,7 @@ const organizationDetails = () => {
                   </div>
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4 ">
-                    <h1 className="text-lg font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       Salary, Arrear, Reimbursement and Overtime Parameters
                     </h1>
 
@@ -618,7 +618,7 @@ const organizationDetails = () => {
                   </div>
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4 ">
-                    <h1 className="text-lg font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       Apply Admin/ESS Password Configuration
                     </h1>
 
@@ -672,7 +672,7 @@ const organizationDetails = () => {
                   </div>
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4 ">
-                    <h1 className="text-lg font-semibold  mb-3 text-gray-500">
+                    <h1 className="text-base font-semibold  mb-3 text-gray-500">
                       Select feilds for identical check on Employee Master
                     </h1>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 space-y-4">
