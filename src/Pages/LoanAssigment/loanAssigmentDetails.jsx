@@ -388,7 +388,7 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
 
       {/* Right: file upload */}
       <div className="w-52 flex-shrink-0">
-        <FileUploadZone />
+        <FileUploadZone />          
       </div>
     </div>
 
