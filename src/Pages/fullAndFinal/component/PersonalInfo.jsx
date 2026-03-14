@@ -104,21 +104,19 @@ export default function PersonalInfo({ onNext }) {
                     <button
                         onClick={() => setOpenFilter((prev) => !prev)}
                         className="flex items-center gap-1 px-4 py-2 rounded-sm
-            bg-[#8629DF] text-white text-sm"
+        bg-[#8629DF] text-white text-sm"
                     >
                         <HiAdjustmentsHorizontal />
                         Filter
                     </button>
 
                     {openFilter && (
-
                         <EmployeeFilter
                             onApply={(filters) => {
                                 console.log("Selected Filters:", filters);
                                 setOpenFilter(false);
                             }}
                         />
-
                     )}
 
                 </div>
