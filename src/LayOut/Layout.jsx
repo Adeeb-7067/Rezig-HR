@@ -1,4 +1,4 @@
-;
+
 import React, { useState, useEffect } from "react";
 import SideBar from "../Pages/SideBar";
 import Navbar from "../Pages/Navbar";

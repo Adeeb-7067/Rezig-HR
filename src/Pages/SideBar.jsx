@@ -625,58 +625,245 @@ import { ICONS } from "@/lib/constant";
    MENU CONFIG
 ========================= */
 
+
 const menuItems = [
   {
     name: "Dashboard",
-    icon: <img src={ICONS.dashboard} className="h-5 w-5" />,
+    icon: (
+      <img
+        src={ICONS.dashboard}
+        alt="dashboard"
+        className="h-5 w-5 object-contain"
+      />
+    ),
     path: "/dashboard",
   },
+  // {
+  //   name: "Configuration",
+  //   icon: <GrConfigure className="h-4.5 w-4.5" />,
+  //   children: [
+  //     {
+  //       name: "PF Configuration",
+  //       path: "/pfConfiguration",
+  //     },
+  //     {
+  //       name: "Income Tax Configuration",
+  //       path: "/incomeTax",
+  //     },
+  //     {
+  //       name: "Payroll",
+  //       children: [
+  //         {
+  //           name: "Statutory Configuration",
+  //           path: "/statuoryConfiguration",
+  //         },
+  //         {
+  //           name: "Income Tax and Tax Configuration",
+  //           path: "/payroll/tax",
+  //         },
+  //         {
+  //           name: "Pay code master and Formula",
+  //           children: [
+  //             {
+  //               name: "Earnings",
+  //               path: "/payroll/paycode/earnings",
+  //             },
+  //             {
+  //               name: "Deductions",
+  //               path: "/payroll/paycode/deductions",
+  //             },
+  //           ],
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       name: "Leave",
+  //       path: "/leave",
+  //     },
+  //     {
+  //       name: "OrganizationDetails",
+  //       path: "/organizationDetails",
+  //     },
+  //   ],
+  // },
+
   {
     name: "Configuration",
-    icon: <img src={ICONS.configuration} className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.configuration}
+      alt="configuration"
+      className="h-5 w-5 object-contain"
+    />),
     children: [
-      { name: "Organization Details", path: "/organizationdetails" },
-      { name: "Statutory Configuration", path: "/pfconfiguration" },
-      { name: "Income Tax Configuration", path: "/incometax" },
-      { name: "Pay Code Master and Formula", path: "/paycodemaster" },
-      { name: "Attendance Configuration", path: "/attendence-configuration" },
-      { name: "Leave Configuration", path: "/leave" },
+      {
+        name: "Organization Details",
+        path: "/organizationdetails",
+      },
+      {
+        name: "Statutory Configuration",
+        path: "/pfconfiguration",
+      },
+      {
+        name: "Income Tax Configuration",
+        path: "/incometax",
+      },
+      {
+        name: "Pay Code Master and Formula",
+        path: "/paycodemaster",
+      },
+      {
+        name: "Attendance Configuration",
+        path: "/attendence-configuration",
+      },
+      {
+        name: "Leave Configuration",
+        path: "/leave",
+      },
     ],
   },
+
   {
     name: "Employee List",
-    icon: <img src={ICONS.employee} className="h-5 w-5" />,
-    path: "/employeelist",
+    icon: (<img
+      src={ICONS.employee}
+      alt="employee"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/EmployeeList",
   },
   {
     name: "Attendance",
-    icon: <img src={ICONS.attendance} className="h-5 w-5" />,
-    path: "/monthlyattendance",
+    icon: (<img
+      src={ICONS.attendance}
+      alt="attendance"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/monthlyAttendance",
   },
+
+  //add
   {
     name: "Attendance Regularization",
-    icon: <img src={ICONS.AttendanceRegularization} className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.AttendanceRegularization}
+      alt="attendanceRegularization"
+      className="h-5 w-5 object-contain"
+    />),
     path: "/attendance-regularization",
   },
+
   {
     name: "Loan Assignment",
-    icon: <img src={ICONS.LoanAssignment} className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.LoanAssignment}
+      alt="loanAssignment"
+      className="h-5 w-5 object-contain"
+    />),
     path: "/loanassignment",
   },
+
   {
     name: "Payroll Dashboard",
-    icon: <img src={ICONS.payrollDashboard} className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.payrollDashboard}
+      alt="payrollDashboard"
+      className="h-5 w-5 object-contain"
+    />),
     path: "/payrolldashboard",
   },
+
+  {
+    name: "Employee Dashboard",
+    icon: (<img
+      src={ICONS.employeeDashboard}
+      alt="employeeDashboard"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/employee-dashboard",
+  },
+
   {
     name: "Reports",
-    icon: <img src={ICONS.report} className="h-5 w-5" />,
+    icon: (<img
+      src={ICONS.report}
+      alt="report"
+      className="h-5 w-5 object-contain"
+    />),
     children: [
-      { name: "Report Builder", path: "/report-builder" },
-      { name: "Bank Builder", path: "/bank-builder" },
+      {
+        name: "Report Builder",
+        path: "/report-builder",
+      },
+      {
+        name: "Bank Builder",
+        path: "/bank-builder",
+      },
     ],
   },
+
+  {
+    name: "Full and Final Individual",
+    icon: (<img
+      src={ICONS.fullAndFinal}
+      alt="fullAndFinal"
+      className="h-5 w-5 object-contain"
+    />),
+    path: "/full-final",
+  },
 ];
+
+// const menuItems = [
+//   {
+//     name: "Dashboard",
+//     icon: <img src={ICONS.dashboard} className="h-5 w-5" />,
+//     path: "/dashboard",
+//   },
+//   {
+//     name: "Configuration",
+//     icon: <img src={ICONS.configuration} className="h-5 w-5" />,
+//     children: [
+//       { name: "Organization Details", path: "/organizationdetails" },
+//       { name: "Statutory Configuration", path: "/pfconfiguration" },
+//       { name: "Income Tax Configuration", path: "/incometax" },
+//       { name: "Pay Code Master and Formula", path: "/paycodemaster" },
+//       { name: "Attendance Configuration", path: "/attendence-configuration" },
+//       { name: "Leave Configuration", path: "/leave" },
+//     ],
+//   },
+//   {
+//     name: "Employee List",
+//     icon: <img src={ICONS.employee} className="h-5 w-5" />,
+//     path: "/employeelist",
+//   },
+//   {
+//     name: "Attendance",
+//     icon: <img src={ICONS.attendance} className="h-5 w-5" />,
+//     path: "/monthlyattendance",
+//   },
+//   {
+//     name: "Attendance Regularization",
+//     icon: <img src={ICONS.AttendanceRegularization} className="h-5 w-5" />,
+//     path: "/attendance-regularization",
+//   },
+//   {
+//     name: "Loan Assignment",
+//     icon: <img src={ICONS.LoanAssignment} className="h-5 w-5" />,
+//     path: "/loanassignment",
+//   },
+//   {
+//     name: "Payroll Dashboard",
+//     icon: <img src={ICONS.payrollDashboard} className="h-5 w-5" />,
+//     path: "/payrolldashboard",
+//   },
+//   {
+//     name: "Reports",
+//     icon: <img src={ICONS.report} className="h-5 w-5" />,
+//     children: [
+//       { name: "Report Builder", path: "/report-builder" },
+//       { name: "Bank Builder", path: "/bank-builder" },
+//     ],
+//   },
+// ];
 
 /* =========================
    LEVEL 0 ITEM
@@ -686,10 +873,10 @@ const Level0MenuItem = ({ item, active, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className={`flex items-center gap-2 p-2 text-Secondary font-semibold rounded cursor-pointer
+      className={`flex items-center gap-2 p-2 text-Secondary font-semibold rounded cursor-pointer transition
       ${active
           ? "bg-[#8629DF] text-white"
-          : "text-gray-700 hover:bg-[#8629DF] hover:text-white"
+          : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
         }`}
     >
       {item.icon}
@@ -697,7 +884,6 @@ const Level0MenuItem = ({ item, active, onClick }) => {
     </div>
   );
 };
-
 /* =========================
    LEVEL 1 ITEM
 ========================= */
@@ -707,10 +893,10 @@ const Level1MenuItem = ({ item, active, onClick }) => {
     <div className="ml-6 relative">
       <div
         onClick={onClick}
-        className={`flex items-center text-Primary font-medium px-2 py-1 cursor-pointer rounded
+        className={`flex items-center text-Primary font-medium px-2 py-1 cursor-pointer rounded transition
         ${active
-            ? "bg-[#F3E9FF] text-[#8629DF]"
-            : "text-gray-700 hover:bg-[#8629DF] hover:text-white"
+            ? "bg-[#F3E9FF] text-[#8629DF] dark:bg-[#2a1b44]"
+            : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
           }`}
       >
         {active && (
@@ -726,14 +912,20 @@ const Level1MenuItem = ({ item, active, onClick }) => {
    SIDEBAR
 ========================= */
 
-const SideBar = () => {
+const SideBar = ({ setSidebarOpen }) => {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("Dashboard");
   const [openMenu, setOpenMenu] = useState(null);
 
   const handleNavigation = (name, path) => {
     setActiveItem(name);
+
     if (path) navigate(path);
+
+    // mobile sidebar close
+    if (setSidebarOpen) {
+      setSidebarOpen(false);
+    }
   };
 
   const toggleMenu = (menuName) => {
@@ -741,7 +933,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className="bg-white flex flex-col gap-1 mt-3 mx-4 overflow-y-auto">
+    <div className="bg-white dark:bg-gray-900 flex flex-col gap-1 mt-3 mx-4 overflow-y-auto rounded-lg p-2">
 
       {menuItems.map((item) => {
 
