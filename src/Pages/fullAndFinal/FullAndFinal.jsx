@@ -2,10 +2,13 @@ import { useState, useRef, useEffect } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 
-import EmployeeCard from "../../AttendanceRegularisation/components/EmployeeCard";
-import EmployeeFilter from "../common/EmployeeFilter";
+import EmployeeFilter from "./common/EmployeeFilter";
+import PersonalDetails from "./component/PersonalDetails";
+import EmployeeCardFull from "./component/EmployeeCardFull";
+import LoanDetails from "./component/LoanDetails";
 
-export default function PersonalInfo({ onNext }) {
+
+export default function FullAndFinal({ onNext }) {
 
     const searchRef = useRef(null);
 
@@ -98,51 +101,50 @@ export default function PersonalInfo({ onNext }) {
 
                 </div>
 
+
                 {/* FILTER BUTTON */}
                 <div className="relative">
-
                     <button
-                        onClick={() => setOpenFilter((prev) => !prev)}
+                        onClick={() => {
+                            console.log("click");
+                            setOpenFilter((prev) => !prev);
+                        }}
                         className="flex items-center gap-1 px-4 py-2 rounded-sm
-        bg-[#8629DF] text-white text-sm"
+    bg-[#8629DF] text-white text-sm"
                     >
                         <HiAdjustmentsHorizontal />
                         Filter
                     </button>
 
                     {openFilter && (
-                        <EmployeeFilter
-                            onApply={(filters) => {
-                                console.log("Selected Filters:", filters);
-                                setOpenFilter(false);
-                            }}
-                        />
+                        <div className="absolute top-full right-0 mt-2 z-[999]">
+                            <EmployeeFilter
+                                onApply={(filters) => {
+                                    console.log("Selected Filters:", filters);
+                                    setOpenFilter(false);
+                                }}
+                            />
+                        </div>
                     )}
 
                 </div>
 
             </div>
 
-            {/* EMPLOYEE CARD */}
+
+
             {selectedEmployee && (
-                <EmployeeCard employee={selectedEmployee} />
+                <>
+                    <EmployeeCardFull employee={selectedEmployee} />
+
+                    <PersonalDetails
+                        onSave={() => {
+                            onNext();
+                        }}
+                    />
+                    <LoanDetails />
+                </>
             )}
-
-            {/* BUTTONS */}
-            <div className="flex justify-end gap-3">
-
-                <button className="border px-5 py-2 rounded">
-                    Reset
-                </button>
-
-                <button
-                    onClick={onNext}
-                    className="bg-purple-600 text-white px-6 py-2 rounded"
-                >
-                    Save
-                </button>
-
-            </div>
 
         </div>
     );

@@ -36,7 +36,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                 </table>
             </div>
 
-            <div className="flex justify-end gap-3">
+            {/* <div className="flex justify-end gap-3">
 
                 <button onClick={onPrev} className="border px-4 py-2 rounded">
                     Previous
@@ -53,8 +53,60 @@ export default function VariablePayment({ onNext, onPrev }) {
                     Save
                 </button>
 
+            </div> */}
+            <div
+                className="
+    flex flex-row sm:flex-row 
+    justify-end 
+    w-full 
+    gap-2 
+    mt-3
+  "
+            >
+                <button
+                    className="
+      bg-white dark:bg-[#E4E6EB]/10
+      border border-[#8629DF]
+      text-[#8629DF]
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+                    onClick={onPrev}
+                >
+                    Previous
+                </button>
+                <button
+                    className="
+      bg-white dark:bg-[#E4E6EB]/10
+      border border-[#8629DF]
+      text-[#8629DF]
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+                >
+                    Reset
+                </button>
+                <button
+                    className="
+      bg-[#8629DF]
+      text-white
+      font-semibold
+      text-xs sm:text-[0.7rem]
+      py-1
+      rounded-sm
+      w-full sm:w-auto md:w-24
+    "
+                    onClick={onNext}
+                >
+                    Save
+                </button>
             </div>
-
         </div>
     );
 }

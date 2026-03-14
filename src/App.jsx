@@ -106,7 +106,9 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./LayOut/Layout";
 import AttendanceRegularisation from "./Pages/AttendanceRegularisation/AttendanceRegularisation";
-import SeparationFlow from "./Pages/fullAndFinal/SeparationFlow";
+
+import FullAndFinal from "./Pages/fullAndFinal/FullAndFinal";
+import MultiStepForm from "./Pages/fullAndFinal/MultiStepForm";
 
 /* ================= LAZY LOAD PAGES ================= */
 
@@ -198,7 +200,7 @@ const App = () => {
           <Route path="/loanassignmentdetails" element={<Layout><LoanAssignmentDetail /></Layout>} />
           <Route path="/addloan" element={<Layout><AddLoan /></Layout>} />
           <Route path="/attendance-regularization" element={<Layout><AttendanceRegularisation /></Layout>} />
-          <Route path="/full-final" element={<Layout><SeparationFlow /></Layout>} />
+          <Route path="/full-final" element={<Layout><MultiStepForm /></Layout>} />
 
         </Routes>
       </Suspense>
