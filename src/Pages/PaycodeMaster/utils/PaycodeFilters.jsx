@@ -15,7 +15,7 @@ const PaycodeFilters = ({
             </h2>
 
             {/* Filters Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl ">
 
                 <SelectField
                     label="Show Pay Head Type"

@@ -538,7 +538,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
   };
 
   return (
-    <div className="p-4 sm:p-6 bg-white dark:bg-gray-900 min-h-screen">
+    <div className="p-3 sm:p-4 md:p-6 bg-white dark:bg-gray-900 min-h-screen w-full min-w-0 max-w-full overflow-x-hidden">
       {/* ── Edit Installment Modal ── */}
       {editingLoan && (
         <EditInstallmentModal
@@ -548,12 +548,12 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
       )}
 
       {/* ── Header ── */}
-      <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-8 w-full">
-        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50">
+      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
+        <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
           Loan Assigment
         </h1>
-        <div className="flex gap-0 sm:gap-3">
-          <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1">
+        <div className="flex gap-2 sm:gap-3 shrink-0">
+          <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px]">
             <Link
               to="/addLoan"
               className="flex items-center justify-center gap-1 text-[0.7rem] md:text-[0.8rem]"
@@ -566,8 +566,8 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
       </div>
 
       {/* ── Employee Info Card ── */}
-      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 mb-5 bg-white dark:bg-gray-800 w-[50%]">
-        <div className="flex items-start gap-4">
+      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-5 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[480px] lg:w-[50%]">
+        <div className="flex flex-col sm:flex-row items-start gap-4">
           {employee.avatar ? (
             <img
               src={employee.avatar}
@@ -637,35 +637,35 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
 
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-3">
         {/* ── Stats row ── */}
-        <div className="flex items-center gap-3 mb-5 flex-wrap px-4 py-3">
+        <div className="flex flex-wrap items-center gap-3 mb-5 px-2 sm:px-4 py-3">
           <div className="flex items-center gap-2 py-1 px-2 border border-gray-200 dark:border-gray-600 rounded-sm">
             <SmallAvatar name={employee.name} />
-            <span className="text-[0.7rem] font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap">
+            <span className="text-[0.7rem] font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap truncate max-w-[140px] sm:max-w-none">
               {employee.unitId} | {String(employee.name).slice(0, 9)} Shar
             </span>
           </div>
 
-          <div className="flex items-center gap-2 rounded-sm py-2.5 px-2 border border-gray-200 dark:border-gray-600">
+          <div className="flex items-center gap-2 rounded-sm py-2.5 px-2 border border-gray-200 dark:border-gray-600 min-w-0">
             <HiOutlineOfficeBuilding className="w-4 h-4 text-[#8629DF] flex-shrink-0" />
-            <span className="text-[0.7rem] text-gray-900 dark:text-gray-300 whitespace-nowrap font-semibold">
+            <span className="text-[0.7rem] text-gray-900 dark:text-gray-300 whitespace-nowrap font-semibold truncate max-w-[180px] sm:max-w-none">
               Department : {employee.department}
             </span>
           </div>
 
-          <div className="flex-1" />
+          <div className="flex-1 min-w-[20px]" />
 
           {/* Balance Amount box */}
-          <div className="border-t-4 border-[#CB30E0] rounded-sm px-8 py-1 text-center min-w-[150px] shadow-sm">
-            <p className="text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
+          <div className="border-t-4 border-[#CB30E0] rounded-sm px-4 sm:px-8 py-1 text-center min-w-[120px] sm:min-w-[150px] shadow-sm flex-shrink-0">
+            <p className="text-[0.9rem] sm:text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.balanceAmount}
             </p>
-            <p className="text-[0.7rem] text-gray-900 tracking-wide">
+            <p className="text-[0.65rem] sm:text-[0.7rem] text-gray-900 tracking-wide">
               Balance Amount
             </p>
           </div>
 
           {/* Installment Paid box */}
-          <div className="border-t-4 border-green-400 rounded-sm px-8 py-1 text-center min-w-[150px] shadow-sm">
+          <div className="border-t-4 border-green-400 rounded-sm px-4 sm:px-8 py-1 text-center min-w-[120px] sm:min-w-[150px] shadow-sm flex-shrink-0">
             <p className="text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.installmentPaid}
             </p>
@@ -681,8 +681,8 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
         </p>
 
         {/* ── Table ── */}
-        <div className="rounded-sm overflow-hidden border border-gray-200 dark:border-gray-700">
-          <table className="w-full text-[0.7rem] border-collapse">
+        <div className="rounded-sm overflow-x-auto overflow-y-hidden border border-gray-200 dark:border-gray-700">
+          <table className="w-full text-[0.7rem] border-collapse min-w-[640px]">
             <thead>
               <tr className="bg-[#8629DF] text-white text-left">
                 {[

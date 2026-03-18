@@ -4,6 +4,9 @@ import FullAndFinal from "./FullAndFinal";
 import AttendanceAdjustment from "./component/AttendanceAdjustment";
 import Stepper from "@/Pages/Stepper";
 import VariablePayment from "./component/VariablePayment";
+import CompliancePayment from "./component/CompliancePayment";
+import InvestmentDetails from "./component/InvestmentDetails";
+import ViewFinalizedReports from "./component/ViewFinalizedReports";
 
 export default function MultiStepForm() {
 
@@ -13,7 +16,9 @@ export default function MultiStepForm() {
         "Personal Info",
         "Attendance Adjustment",
         "Variable payment",
-        "Compliance payment"
+        "Compliance payment",
+        "Investment Details",
+        "View Finalized Reports"
     ];
 
     return (
@@ -36,10 +41,26 @@ export default function MultiStepForm() {
 
             {step === 2 && (
                 <VariablePayment
-                    onNext={() => setStep(2)}
-                    onPrev={() => setStep(0)}
+                    onNext={() => setStep(3)}
+                    onPrev={() => setStep(1)}
                 />
             )}
+
+            {step === 3 && (
+                <CompliancePayment
+                    onNext={() => setStep(4)}
+                    onPrev={() => setStep(2)}
+                />
+            )}
+
+            {step === 4 && (
+                <InvestmentDetails
+                    onNext={() => setStep(5)}
+                    onPrev={() => setStep(3)}
+                />
+            )}
+
+            {step === 5 && <ViewFinalizedReports />}
 
         </div>
     );

@@ -14,7 +14,7 @@ const TabsHeader = ({
             <div className="flex gap-6 overflow-x-auto">
                 <button
                     onClick={() => setActiveTab("paycode")}
-                    className={`pb-2 px-10 text-sm font-medium whitespace-nowrap transition ${activeTab === "paycode"
+                    className={`pb-2 px-10 text-lg font-medium whitespace-nowrap transition ${activeTab === "paycode"
                         ? "border-b-2 border-purple-600 text-purple-600"
                         : "text-gray-500 dark:text-gray-400 hover:text-purple-600"
                         }`}
@@ -24,7 +24,7 @@ const TabsHeader = ({
 
                 <button
                     onClick={() => setActiveTab("formula")}
-                    className={`pb-2 px-10 text-sm font-medium whitespace-nowrap transition ${activeTab === "formula"
+                    className={`pb-2 px-10 text-lg font-medium whitespace-nowrap transition ${activeTab === "formula"
                         ? "border-b-2 border-purple-600 text-purple-600"
                         : "text-gray-500 dark:text-gray-400 hover:text-purple-600"
                         }`}

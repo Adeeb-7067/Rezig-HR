@@ -59,9 +59,8 @@ const InlineSelect = ({
 
         <ChevronDown
           size={14}
-          className={`transition-transform ${
-            open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
-          }`}
+          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+            }`}
         />
       </button>
 
@@ -85,10 +84,9 @@ const InlineSelect = ({
                 transition-all duration-150
                 hover:bg-[#9853F9]/15 hover:text-[#9853F9]
                 dark:text-gray-100
-                ${
-                  value === opt.value
-                    ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
-                    : ""
+                ${value === opt.value
+                  ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                  : ""
                 }
               `}
             >
@@ -562,8 +560,8 @@ const LoanAssignment = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute mt-1 border border-gray-200 dark:border-gray-400 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
-            <div className="p-3 no-scrollbar">
+          <div className="absolute mt-1 border border-gray-200 dark:border-gray-400 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-[100] w-48 max-h-80 overflow-y-auto top-full no-scrollbar">
+            <div className="p-3">
               <div className="flex justify-between items-center mb-3">
                 <button
                   onClick={() =>
@@ -587,11 +585,10 @@ const LoanAssignment = () => {
                     className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
-                      className={`w-4 h-4 flex items-center justify-center border rounded ${
-                        currentValues.includes(item)
-                          ? "bg-[#8629DF] border-[#8629DF]"
-                          : "border-gray-300"
-                      }`}
+                      className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item)
+                        ? "bg-[#8629DF] border-[#8629DF]"
+                        : "border-gray-300"
+                        }`}
                     >
                       {currentValues.includes(item) && (
                         <svg
@@ -633,32 +630,30 @@ const LoanAssignment = () => {
         />
       )}
       {!selectedEmployee && (
-        <div className="p-2 sm:p-4">
+        <div className="p-3 min-h-screen sm:p-4 md:p-5 w-full min-w-0 max-w-full overflow-x-hidden">
           {/* Header */}
-          <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-8 w-full  ">
-               <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 ">
-                 Loan Assigment
-               </h1>
-       
-               {/* Buttons */}
-               <div className="flex gap-0 sm:gap-3">
-                 <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4  w-full rounded-sm flex justify-center items-center gap-1 py-1  ">
-                   <Link
-                     to="/addLoan"
-                     className="flex items-center justify-center gap-1 text-[0.7rem]  md:text-[0.8rem]"
-                   >
-                     <AiOutlinePlus className="md:w-4 md:h-4 font-semibold" />
-                     Add Loan
-                   </Link>
-                 </div>
-               </div>
-             </div>
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
+            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
+              Loan Assigment
+            </h1>
+            <div className="flex gap-2 sm:gap-3 shrink-0">
+              <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px] sm:min-w-0">
+                <Link
+                  to="/addLoan"
+                  className="flex items-center justify-center gap-1 text-[0.7rem] sm:text-[0.8rem]"
+                >
+                  <AiOutlinePlus className="w-4 h-4 font-semibold shrink-0" />
+                  Add Loan
+                </Link>
+              </div>
+            </div>
+          </div>
 
           {/* Search and Filter Bar */}
-          <div className="grid grid-cols-2 md:flex md:justify-around gap-2 md:gap-2 w-full flex-wrap-reverse md:flex-nowrap">
+          <div className="grid grid-cols-2 md:flex gap-2 w-full">
             <div ref={searchRef} className="relative w-full md:w-[90%]">
               <div
-                className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[35px] 
+                className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[44px] 
     focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
               >
                 <input
@@ -702,12 +697,12 @@ const LoanAssignment = () => {
               )}
             </div>
 
-            <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1">
+            <div className="relative">
               <button
                 onClick={() => setOpen((prev) => !prev)}
-                className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+                className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[1.2rem] px-4 py-2 md:py-1.5 min-w-[80px] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-[36px] md:h-[44px] w-full sm:w-auto"
               >
-                <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
+                <HiAdjustmentsHorizontal className="md:w-6 md:h-6" />
                 Filter{" "}
                 {open ? (
                   <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
@@ -719,9 +714,9 @@ const LoanAssignment = () => {
               {open && (
                 <div
                   ref={dropdownRef}
-                  className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
+                  className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400">
+                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
                     <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3 border-b-2 pb-2">
                       Filter
                     </h2>
@@ -756,11 +751,10 @@ const LoanAssignment = () => {
                         onClick={handleApplyFilters}
                         disabled={!isAnyFilterChecked}
                         className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-    ${
-      isAnyFilterChecked
-        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-    }
+    ${isAnyFilterChecked
+                            ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+                            : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                          }
   `}
                       >
                         Apply
@@ -783,7 +777,7 @@ const LoanAssignment = () => {
           </div>
 
           {/* Filter Dropdowns */}
-          <div className="flex gap-3 flex-wrap my-4">
+          <div className="flex gap-2 sm:gap-3 flex-wrap my-4">
             {filterOptions.map((filter) => (
               <DropdownComponent
                 key={filter.key}

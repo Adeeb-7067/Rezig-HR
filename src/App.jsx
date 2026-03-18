@@ -142,6 +142,7 @@ const BankBuilder = lazy(() => import("./Pages/BankBuilder/BankBuilder"));
 
 /* Payroll */
 const PayrollDashboard = lazy(() => import("./Pages/Payroll Dashboard/PayrollDashboard"));
+const EmployeeDashboard = lazy(() => import("./Pages/Employee Dashboard/EmployeeDashboard"));
 
 /* Loan */
 const LoanAssignment = lazy(() => import("./Pages/LoanAssigment/loanAssigment"));
@@ -194,6 +195,7 @@ const App = () => {
 
           {/* -------- PAYROLL -------- */}
           <Route path="/payrolldashboard" element={<Layout><PayrollDashboard /></Layout>} />
+          <Route path="/employee-dashboard" element={<Layout><EmployeeDashboard /></Layout>} />
 
           {/* -------- LOAN -------- */}
           <Route path="/loanassignment" element={<Layout><LoanAssignment /></Layout>} />

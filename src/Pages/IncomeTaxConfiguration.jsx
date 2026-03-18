@@ -375,6 +375,69 @@ const TaxConfigurationTable = ({ taxData }) => {
 
 const IncomeTaxConfiguration = () => {
   const [activeTab, setActiveTab] = useState("itc");
+  const [formData, setFormData] = useState({
+    // Tax Configuration
+    " Start Financial Year": "",
+    " End Financial Year": "",
+    "Surcharge(%)": "10.00",
+    " Education Cess Charge(%)": "4.00",
+    " Surcharge Qualifying Amount": "500000000.00",
+    " TDS-Consultant(%)": "2400.00",
+    "  Deduct TDS in higher slab (if PAN is available)": "No",
+    "  Deduct TDS Proportionate": "No",
+    "  Do Not Deduct Hold Employee TDS": "No",
+    "  Generate ETDS Company Wise (Unit Name)": "No",
+    "Default Tax Deduction Regime ": "New Tax Regime",
+    " Add the tax deducted on Perq. with tax challan": "No",
+    " Deduct Tax in case of Negative Net Salary Also ": "No",
+    "Project Car Prequisite": "No",
+
+    // Investment Configuration
+    " Default Status for Chapter VI-A": "let the user choose ",
+    " Tax Based on confirm Docs ": "Dec 2025 ",
+    " PAN mandatory on investment declarations ": "No",
+    " Max investment Declaration Request ": "",
+
+    // Tax Rebate Configuration
+    " Max Credit Limit (old Regime)": "1200000.00",
+    " Max Tax Credit Limit (New Regime)": "600000.00",
+    "  Tax Credit Amount Old Regime": "",
+    "  Tax Credit Amount New Regime": "",
+    " Old Regime Standard Deduction": "50000.00",
+    " New Regime Standard Deduction": "750000.00",
+    " Super Senior Citizen Age": "2400.00",
+    "  Senior Citizen Age": "2400.00",
+    " Arrear TDS in Pay Month": "Both",
+
+    // Exemption Details
+    " Max Children for Education Allowance": "2",
+    " LandLord PAN Rent Limit": "10000.00",
+    " Max Children for School Allowance": "2400.00",
+    " Max Children for Hostel Allowance": "7200.00",
+    " Do Not Deduct Hold Employee on TDS": "No",
+    " Generate ETDS Company Wise (Unit Name)": "No",
+    " Chapter VI-A Approval": "Admin",
+    " Housing Loan Intrest Exemption Limit": "20000.00",
+    " CLA Exemption Calculation": "Prorate with Paid Days",
+    " HRA Exemption Calculation": "Actual rent Paid Amount",
+    " Gratuity Exemption Limit": "200000.00",
+    " Consultant Tax  Exemption Limit": "200000.00",
+
+    // Tax Slab (if needed in this tab)
+    " Higher Tax Slab": "No",
+    " Lower Limit": "",
+    " Upper Limit": "",
+    " Tax Percent": "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const tabs = [
     { label: "Income Tax Configuration", value: "itc" },
     { label: "Income Tax Slab ", value: "its" },
@@ -396,71 +459,105 @@ const IncomeTaxConfiguration = () => {
                   <InputField
                     name={" Start Financial Year"}
                     label={"Start Financial Year"}
+                    value={formData[" Start Financial Year"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" End Financial Year"}
                     label={"End Financial Year"}
+                    value={formData[" End Financial Year"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name="Surcharge(%)"
                     label={"Surcharge(%)"}
-                    value={"10.00"}
+                    value={formData["Surcharge(%)"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Education Cess Charge(%)"}
                     label={"Education Cess Charge(%)"}
-                    value={"4.00"}
+                    value={formData[" Education Cess Charge(%)"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Surcharge Qualifying Amount"}
                     label={"Surcharge Qualifying Amount"}
-                    value={"500000000.00"}
+                    value={formData[" Surcharge Qualifying Amount"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" TDS-Consultant(%)"}
                     label={"TDS-Consultant(%)"}
-                    value={"2400.00"}
+                    value={formData[" TDS-Consultant(%)"]}
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={"  Deduct TDS in higher slab (if PAN is available)"}
                     label={" Deduct TDS in higher slab (if PAN is available)"}
                     info={"Deduct TDS in higher slab (if PAN is available)"}
+                    value={
+                      formData[
+                        "  Deduct TDS in higher slab (if PAN is available)"
+                      ]
+                    }
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={"  Deduct TDS Proportionate"}
                     label={" Deduct TDS Proportionate"}
                     info={"Deduct TDS proportionate "}
+                    value={formData["  Deduct TDS Proportionate"]}
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={"  Do Not Deduct Hold Employee TDS"}
                     label={" Do Not Deduct Hold Employee TDS"}
                     info={"Do Not Deduct Hold Employee TDS "}
+                    value={formData["  Do Not Deduct Hold Employee TDS"]}
+                    onChange={handleChange}
                   />
 
                   <ToggleField
                     name={"  Generate ETDS Company Wise (Unit Name)"}
                     label={" Generate ETDS Company Wise (Unit Name)"}
                     info={"Generate ETDS Company Wise (Unit Name) "}
+                    value={formData["  Generate ETDS Company Wise (Unit Name)"]}
+                    onChange={handleChange}
                   />
                   <SelectField
                     label="Default Tax Deduction Regime"
                     name="Default Tax Deduction Regime "
-                    options={[{ value: "", label: "New Tax Regime" }]}
+                    value={formData["Default Tax Deduction Regime "]}
+                    onChange={handleChange}
+                    options={[{ value: "New Tax Regime", label: "New Tax Regime" }]}
                   />
                   <ToggleField
                     name={" Add the tax deducted on Perq. with tax challan"}
                     label={"Add the tax deducted on Perq. with tax challan"}
                     info={"Add the tax deducted on Perq. with tax challan"}
+                    value={
+                      formData[" Add the tax deducted on Perq. with tax challan"]
+                    }
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={" Deduct Tax in case of Negative Net Salary Also "}
                     label={"Deduct Tax in case of Negative Net Salary Also "}
                     info={"Deduct Tax in case of Negative Net Salary Also "}
+                    value={
+                      formData[
+                        " Deduct Tax in case of Negative Net Salary Also "
+                      ]
+                    }
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={"Project Car Prequisite"}
                     label={"Project Car Prequisite"}
                     info={"Project Car Prequisite"}
+                    value={formData["Project Car Prequisite"]}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -473,6 +570,8 @@ const IncomeTaxConfiguration = () => {
                     name={" Default Status for Chapter VI-A"}
                     label={"Default Status for Chapter VI-A"}
                     info={"Default Status for Chapter VI-A"}
+                    value={formData[" Default Status for Chapter VI-A"]}
+                    onChange={handleChange}
                     options={[
                       {
                         value: "let the user choose ",
@@ -484,16 +583,24 @@ const IncomeTaxConfiguration = () => {
                     name={" Tax Based on confirm Docs "}
                     label={"Tax Based on confirm Docs "}
                     info={"Tax Based on confirm Docs "}
+                    value={formData[" Tax Based on confirm Docs "]}
+                    onChange={handleChange}
                     options={[{ value: "Dec 2025 ", label: "Dec 2025 " }]}
                   />
                   <ToggleField
                     name={" PAN mandatory on investment declarations "}
                     label={"PAN mandatory on investment declarations "}
                     info={["PAN mandatory on investment declarations "]}
+                    value={
+                      formData[" PAN mandatory on investment declarations "]
+                    }
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Max investment Declaration Request "}
                     label={"Max investment Declaration Request "}
+                    value={formData[" Max investment Declaration Request "]}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -507,40 +614,50 @@ const IncomeTaxConfiguration = () => {
                   <InputField
                     name={" Max Credit Limit (old Regime)"}
                     label={"Max Credit Limit (old Regime)"}
-                    value={"1200000.00"}
+                    value={formData[" Max Credit Limit (old Regime)"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Max Tax Credit Limit (New Regime)"}
                     label={"Max Tax Credit Limit (New Regime)"}
-                    value={"600000.00"}
+                    value={formData[" Max Tax Credit Limit (New Regime)"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name="  Tax Credit Amount Old Regime"
                     label={"Tax Credit Amount Old Regime"}
+                    value={formData["  Tax Credit Amount Old Regime"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name="  Tax Credit Amount New Regime"
                     label={"Tax Credit Amount New Regime"}
+                    value={formData["  Tax Credit Amount New Regime"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Old Regime Standard Deduction"}
                     label={"Old Regime Standard Deduction"}
-                    value={"50000.00"}
+                    value={formData[" Old Regime Standard Deduction"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" New Regime Standard Deduction"}
                     label={"New Regime Standard Deduction"}
-                    value={"750000.00"}
+                    value={formData[" New Regime Standard Deduction"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Super Senior Citizen Age"}
                     label={"Super Senior Citizen Age"}
-                    value={"2400.00"}
+                    value={formData[" Super Senior Citizen Age"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={"  Senior Citizen Age"}
                     label={" Senior Citizen Age"}
-                    value={"2400.00"}
+                    value={formData["  Senior Citizen Age"]}
+                    onChange={handleChange}
                   />
                   <div>
                     <label
@@ -567,7 +684,9 @@ const IncomeTaxConfiguration = () => {
                     name={" Arrear TDS in Pay Month"}
                     label={"Arrear TDS in Pay Month"}
                     info={" Arrear TDS in Pay Month"}
-                    options={[{ name: "Both", value: "Both" }]}
+                    value={formData[" Arrear TDS in Pay Month"]}
+                    onChange={handleChange}
+                    options={[{ label: "Both", value: "Both" }]}
                   />
                 </div>
               </div>
@@ -580,52 +699,65 @@ const IncomeTaxConfiguration = () => {
                   <InputField
                     name={" Max Children for Education Allowance"}
                     label={"Max Children for Education Allowance"}
-                    value={"2"}
+                    value={formData[" Max Children for Education Allowance"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" LandLord PAN Rent Limit"}
                     label={"LandLord PAN Rent Limit"}
-                    value={"10000.00"}
+                    value={formData[" LandLord PAN Rent Limit"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Max Children for School Allowance"}
                     label={"Max Children for School Allowance"}
-                    value={"2400.00"}
+                    value={formData[" Max Children for School Allowance"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Max Children for Hostel Allowance"}
                     label={"Max Children for Hostel Allowance"}
-                    value={"7200.00"}
+                    value={formData[" Max Children for Hostel Allowance"]}
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={" Do Not Deduct Hold Employee on TDS"}
                     label={"Do Not Deduct Hold Employee on TDS"}
                     info={"Do Not Deduct Hold Employee on TDS"}
+                    value={formData[" Do Not Deduct Hold Employee on TDS"]}
+                    onChange={handleChange}
                   />
                   <ToggleField
                     name={" Generate ETDS Company Wise (Unit Name)"}
                     label={"Generate ETDS Company Wise (Unit Name)"}
                     info={"Generate ETDS Company Wise (Unit Name)"}
+                    value={formData[" Generate ETDS Company Wise (Unit Name)"]}
+                    onChange={handleChange}
                   />
                   <SelectField
                     name={" Chapter VI-A Approval"}
                     label={"Chapter VI-A Approval"}
                     info={"Chapter VI-A Approval"}
-                    options={[{ name: "Admin", value: "Admin" }]}
+                    value={formData[" Chapter VI-A Approval"]}
+                    onChange={handleChange}
+                    options={[{ label: "Admin", value: "Admin" }]}
                   />
                   <InputField
                     name={" Housing Loan Intrest Exemption Limit"}
                     label={"Housing Loan Intrest Exemption Limit"}
-                    value={"20000.00"}
+                    value={formData[" Housing Loan Intrest Exemption Limit"]}
+                    onChange={handleChange}
                   />
 
                   <SelectField
                     name={" CLA Exemption Calculation"}
                     label={"CLA Exemption Calculation"}
                     info={"CLA Exemption Calculation"}
+                    value={formData[" CLA Exemption Calculation"]}
+                    onChange={handleChange}
                     options={[
                       {
-                        name: "Prorate with Paid Days",
+                        label: "Prorate with Paid Days",
                         value: "Prorate with Paid Days",
                       },
                     ]}
@@ -634,9 +766,11 @@ const IncomeTaxConfiguration = () => {
                     name={" HRA Exemption Calculation"}
                     label={"HRA Exemption Calculation"}
                     info={"HRA Exemption Calculation"}
+                    value={formData[" HRA Exemption Calculation"]}
+                    onChange={handleChange}
                     options={[
                       {
-                        name: "Actual rent Paid Amount",
+                        label: "Actual rent Paid Amount",
                         value: "Actual rent Paid Amount",
                       },
                     ]}
@@ -644,13 +778,15 @@ const IncomeTaxConfiguration = () => {
                   <InputField
                     name={" Gratuity Exemption Limit"}
                     label={"Gratuity Exemption Limit"}
-                    value={"200000.00"}
+                    value={formData[" Gratuity Exemption Limit"]}
+                    onChange={handleChange}
                   />
                   <InputField
                     name={" Consultant Tax  Exemption Limit"}
                     label={"Consultant Tax  Exemption Limit"}
                     info={"Consultant Tax  Exemption Limit"}
-                    value={"200000.00"}
+                    value={formData[" Consultant Tax  Exemption Limit"]}
+                    onChange={handleChange}
                   />
                 </div>
               </div>
@@ -684,13 +820,30 @@ const IncomeTaxConfiguration = () => {
                     { label: "Select Slab Type", value: "Select Slab Type" },
                   ]}
                 />{" "}
-                <InputField name={" Lower Limit"} label={"Lower Limit"} />
-                <InputField name={" Upper Limit"} label={"Upper Limit"} />
-                <InputField name={" Tax Percent"} label={"Tax Percent"} />
+                <InputField
+                  name={" Lower Limit"}
+                  label={"Lower Limit"}
+                  value={formData[" Lower Limit"]}
+                  onChange={handleChange}
+                />
+                <InputField
+                  name={" Upper Limit"}
+                  label={"Upper Limit"}
+                  value={formData[" Upper Limit"]}
+                  onChange={handleChange}
+                />
+                <InputField
+                  name={" Tax Percent"}
+                  label={"Tax Percent"}
+                  value={formData[" Tax Percent"]}
+                  onChange={handleChange}
+                />
                 <ToggleField
                   name={" Higher Tax Slab"}
                   label={" Higher Tax Slab"}
                   info={" Higher Tax Slab"}
+                  value={formData[" Higher Tax Slab"]}
+                  onChange={handleChange}
                 />
               </div>
             </div>

@@ -873,7 +873,7 @@ const Level0MenuItem = ({ item, active, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className={`flex items-center gap-2 p-2 text-Secondary font-semibold rounded cursor-pointer transition
+      className={`flex items-center gap-2 p-2 text-Secondary font-semibold rounded cursor-pointer transition whitespace-nowrap
       ${active
           ? "bg-[#8629DF] text-white"
           : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
@@ -893,7 +893,7 @@ const Level1MenuItem = ({ item, active, onClick }) => {
     <div className="ml-6 relative">
       <div
         onClick={onClick}
-        className={`flex items-center text-Primary font-medium px-2 py-1 cursor-pointer rounded transition
+        className={`flex items-center text-Primary font-medium px-2 py-1 cursor-pointer rounded transition whitespace-nowrap
         ${active
             ? "bg-[#F3E9FF] text-[#8629DF] dark:bg-[#2a1b44]"
             : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"

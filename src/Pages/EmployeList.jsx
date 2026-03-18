@@ -525,8 +525,8 @@ const EmployeList = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute mt-1 border border-gray-200  dark:border-gray-400 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
-            <div className="p-3 no-scrollbar">
+          <div className="absolute mt-1 border border-gray-200  dark:border-gray-400 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-[100] w-48 max-h-80 overflow-y-auto top-full no-scrollbar">
+            <div className="p-3">
               {/* Select All / Clear All */}
               <div className="flex justify-between items-center mb-3">
                 <button
@@ -640,9 +640,9 @@ const EmployeList = () => {
           {open && (
             <div
               ref={dropdownRef}
-              className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
+              className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
                 <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3  border-b-2 pb-2">
                   Filter
                 </h2>

@@ -360,7 +360,7 @@ const MonthlyAttendanceImport = () => {
         </button>
 
         {isOpen && (
-          <div className="absolute mt-1 border border-gray-200 dark:border-gray-500 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-50 w-48 max-h-80 overflow-y-auto top-full">
+          <div className="absolute mt-1 border border-gray-200 dark:border-gray-500 rounded-lg bg-white dark:bg-gray-800 drop-shadow-xl shadow-lg z-[100] w-48 max-h-80 overflow-y-auto top-full no-scrollbar">
             <div className="p-3">
               <div className="flex justify-between items-center mb-3">
                 <button
@@ -425,17 +425,17 @@ const MonthlyAttendanceImport = () => {
   return (
     <div className="p-2 sm:p-4">
       {/* Top Actions */}
-      <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-8 w-full">
-        <div>
-          <h1 className="text-md sm:text-xl font-semibold text-[#252C58] dark:text-gray-50">
-            Import Monthly Attendance
-          </h1>
+        <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-6 sm:mb-8 w-full">
+            <div>
+                <h1 className="text-lg sm:text-xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
+                    Import Monthly Attendance
+                </h1>
+            </div>
         </div>
-      </div>
-      {/* Buttons */}
-      <div className="flex justify-between gap-2  p-3">
+      {/* Search and Filter Bar */}
+      <div className="grid grid-cols-2 md:flex gap-2 w-full">
         <div
-          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[65%] xl:h-[36px] 
+          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[90%] xl:h-[44px] 
        focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
         >
           <input
@@ -451,9 +451,9 @@ const MonthlyAttendanceImport = () => {
         <div className="relative">
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[1.2rem] px-4 py-2 md:py-1.5 min-w-[80px] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-[36px] md:h-[44px] w-full sm:w-auto"
           >
-            <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
+            <HiAdjustmentsHorizontal className="md:w-6 md:h-6" />
             Filter{" "}
             {open ? (
               <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
@@ -466,9 +466,9 @@ const MonthlyAttendanceImport = () => {
           {open && (
             <div
               ref={dropdownRef}
-              className="absolute right-0 top-full mt-1 z-50 shadow-lg h-fit"
+              className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-600">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
                 <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-3  border-b-2 pb-2">
                   Filter
                 </h2>
