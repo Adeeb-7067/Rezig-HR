@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import {
   ChevronLeft,
   ChevronRight,
@@ -23,6 +17,9 @@ import {
   Bell,
   X,
   CheckCircle,
+  ArrowUp,
+  ArrowDown,
+  BellDot,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import AttendanceCalendar from "@/Pages/AttendanceRegularisation/components/AttendanceCalendar";
@@ -90,38 +87,69 @@ const salaryMonths = [
 ];
 
 /* Single month salary card (one of the 3 cards) – click opens salary details modal */
-const SalaryMonthCard = ({ month, netPay, grossEarnings, totalDeductions, showAvatars, onClick }) => (
+const SalaryMonthCard = ({
+  month,
+  netPay,
+  grossEarnings,
+  totalDeductions,
+  showAvatars,
+  onClick,
+}) => (
   <div
     role="button"
     tabIndex={0}
     onClick={onClick}
-    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick?.(); } }}
-    className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 transition-all hover:shadow-lg"
+    onKeyDown={(e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onClick?.();
+      }
+    }}
+    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 transition-all hover:shadow-lg"
   >
-    <div className="absolute top-3 right-3 flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-      <button type="button" className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500" aria-label="View">
-        <Eye className="w-4 h-4" />
+    <div
+      className="absolute top-3 right-3 flex items-center gap-1"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <button
+        type="button"
+        className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
+        aria-label="View"
+      >
+        <Eye className="w-4 h-4 text-gray-700" />
       </button>
-      <button type="button" className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400" aria-label="Download">
-        <Download className="w-4 h-4" />
+      <button
+        type="button"
+        className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400"
+        aria-label="Download"
+      >
+        <Download className="w-4 h-4 text-gray-700" />
       </button>
     </div>
-    <p className="text-[0.65rem] font-medium text-gray-400 dark:text-gray-500 mb-2">{month}</p>
-    
+    <p className="text-[0.65rem] font-light text-gray-400 dark:text-gray-500 mb-2">
+      {month}
+    </p>
+
     <div className="flex flex-col items-center justify-center mb-2 bg-[#FAF6FE]  rounded-lg py-3 px-4">
-      <p className="text-2xl font-medium text-[#8629DF] dark:text-purple-400 text-lg">
+      <p className="text-[0.8rem] md:text-[1rem] font-medium text-[#8629DF] dark:text-purple-400">
         {netPay}
       </p>
-      <p className="text-[0.7rem] font-medium text-gray-500 dark:text-gray-400">Net Pay</p>
+      <p className="text-[0.7rem] font-medium text-gray-500 dark:text-gray-400">
+        Net Pay
+      </p>
     </div>
 
     <div className="flex items-center justify-between pt-2">
-      <div className="flex items-center gap-1 text-[0.8rem] font-semibold text-green-500">
-        <span>↑</span>
+      <div className="flex items-center  text-[0.7rem] font-semibold text-green-500">
+        <span>
+          <ArrowUp className="w-3 h-3 text-green-500" />
+        </span>
         <span>{grossEarnings}</span>
       </div>
-      <div className="flex items-center gap-1 text-[0.8rem] font-semibold text-red-500">
-        <span>↓</span>
+      <div className="flex items-center text-[0.7rem] font-semibold text-red-500">
+        <span>
+          <ArrowDown className="w-3 h-3 text-red-500" />
+        </span>
         <span>{totalDeductions}</span>
       </div>
     </div>
@@ -133,13 +161,26 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
   if (!salary) return null;
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 w-[100%]">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden />
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+        aria-hidden
+      />
       <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-auto border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-[1.1rem] font-bold text-[#333333] dark:text-gray-100">Salary Details</h3>
+          <h3 className="text-[1.1rem] font-bold text-[#333333] dark:text-gray-100">
+            Salary Details
+          </h3>
           <div className="flex items-center gap-3">
-            <span className="text-[0.9rem] font-medium text-gray-600 dark:text-gray-400">{salary.month}</span>
-            <button type="button" onClick={onClose} className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400" aria-label="Close">
+            <span className="text-[0.9rem] font-medium text-gray-600 dark:text-gray-400">
+              {salary.month}
+            </span>
+            <button
+              type="button"
+              onClick={onClose}
+              className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400"
+              aria-label="Close"
+            >
               <X className="w-5 h-5" />
             </button>
           </div>
@@ -152,7 +193,10 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
             </p>
             <ul className="space-y-2 mb-3">
               {(salary.earnings || []).map((e, i) => (
-                <li key={i} className="flex justify-between text-[0.8rem] text-[#333333] dark:text-gray-300">
+                <li
+                  key={i}
+                  className="flex justify-between text-[0.8rem] text-[#333333] dark:text-gray-300"
+                >
                   <span>{e.label}</span>
                   <span className="font-medium">{e.amount}</span>
                 </li>
@@ -170,7 +214,10 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
             </p>
             <ul className="space-y-2 mb-3">
               {(salary.deductions || []).map((d, i) => (
-                <li key={i} className="flex justify-between text-[0.8rem] text-[#333333] dark:text-gray-300">
+                <li
+                  key={i}
+                  className="flex justify-between text-[0.8rem] text-[#333333] dark:text-gray-300"
+                >
                   <span>{d.label}</span>
                   <span className="font-medium">{d.amount}</span>
                 </li>
@@ -185,7 +232,10 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
         <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end">
           <button
             type="button"
-            onClick={() => { onDownload?.(salary); onClose?.(); }}
+            onClick={() => {
+              onDownload?.(salary);
+              onClose?.();
+            }}
             className="px-5 py-2.5 rounded-md bg-[#8629DF] text-white text-[0.85rem] font-medium hover:opacity-90"
           >
             Download
@@ -210,20 +260,32 @@ const SalaryDetailsCard = () => {
       {/* Purple header with title + nav arrows + icons */}
       <div className="flex items-center justify-between bg-[#8629DF] dark:bg-purple-800 rounded-t-xl px-4 py-2 w-[100%]">
         <div className="flex items-center gap-2">
-          <img src="/user.png" alt="Salary" className="w-6 h-6 invert brightness-0" />
-          <h2 className="text-[1rem] font-bold text-white">Salary Details</h2>
+          <img
+            src="/user.png"
+            alt="Salary"
+            className="w-6 h-6 invert brightness-0"
+          />
+          <h2 className="text-[0.7rem] font-bold text-white">Salary Details</h2>
         </div>
         <div className="flex items-center gap-2">
-          <button type="button" className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30" aria-label="Previous">
+          <button
+            type="button"
+            className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30"
+            aria-label="Previous"
+          >
             <ChevronLeft size={16} />
           </button>
-          <button type="button" className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30" aria-label="Next">
+          <button
+            type="button"
+            className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30"
+            aria-label="Next"
+          >
             <ChevronRight size={16} />
           </button>
         </div>
       </div>
       {/* 3 cards in a row – click opens modal */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-b-xl border border-t-0 border-gray-200 dark:border-gray-700">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4  dark:bg-gray-900/50  ">
         {salaryMonths.map((s, i) => (
           <SalaryMonthCard
             key={s.month}
@@ -250,41 +312,107 @@ const announcementTabs = [
 
 const announcements = [
   { title: "Office Closed", meta: "26 Jan - Republic Day", tag: "important" },
-  { title: "System Maintenance", meta: "15 Feb, 2:00 AM - 6:00 AM", tag: "important" },
-  { title: "Security Policy Update", meta: "Effective from 1 Mar 2026", tag: "important" },
-  { title: "HR Policy Uploaded", meta: "Documents", hasDownload: true, tag: "general" },
-  { title: "New Cafeteria Menu", meta: "Available from next week", tag: "general" },
+  {
+    title: "System Maintenance",
+    meta: "15 Feb, 2:00 AM - 6:00 AM",
+    tag: "important",
+  },
+  {
+    title: "Security Policy Update",
+    meta: "Effective from 1 Mar 2026",
+    tag: "important",
+  },
+  {
+    title: "HR Policy Uploaded",
+    meta: "Documents",
+    hasDownload: true,
+    tag: "general",
+  },
+  {
+    title: "New Cafeteria Menu",
+    meta: "Available from next week",
+    tag: "general",
+  },
   { title: "Team Outing - Save the Date", meta: "20 Mar 2026", tag: "general" },
   { title: "Insurance Nomination", meta: "Submit by 28 Feb", tag: "general" },
   { title: "Q1 Targets", meta: "Action Required", tag: "action" },
-  { title: "Leave Balance Declaration", meta: "Confirm by 5 Feb", tag: "action" },
-  { title: "Tax Declaration Documents", meta: "Upload by 15 Mar", tag: "action" },
+  {
+    title: "Leave Balance Declaration",
+    meta: "Confirm by 5 Feb",
+    tag: "action",
+  },
+  {
+    title: "Tax Declaration Documents",
+    meta: "Upload by 15 Mar",
+    tag: "action",
+  },
   { title: "Bonus Payout", meta: "Scheduled in March", tag: "reminder" },
   { title: "PF Nomination Review", meta: "Due by 10 Feb", tag: "reminder" },
-  { title: "Annual Health Check-up", meta: "Book slot before 28 Feb", tag: "reminder" },
+  {
+    title: "Annual Health Check-up",
+    meta: "Book slot before 28 Feb",
+    tag: "reminder",
+  },
 ];
 
 /* First announcement per category for the 2x2 cards (matches Figma) */
 const announcementCardByCategory = [
-  { tag: "important", label: "Important", dot: "bg-orange-500", textColor: "text-orange-600 dark:text-orange-400", title: "Office Closed", meta: "26 Jan • Republic Day", bg: "bg-orange-50/50 dark:bg-orange-950/20" },
-  { tag: "general", label: "General", dot: "bg-sky-400", textColor: "text-sky-600 dark:text-sky-400", title: "HR Policy Uploaded", meta: "Documents", hasDownload: true, bg: "bg-blue-50/50 dark:bg-blue-950/20" },
-  { tag: "action", label: "Action Required", dot: "bg-green-500", textColor: "text-green-600 dark:text-green-400", title: "Q1 Targets", meta: "Action Required", bg: "bg-green-50/50 dark:bg-green-950/20" },
-  { tag: "reminder", label: "Reminder", dot: "bg-amber-500", textColor: "text-amber-600 dark:text-amber-400", title: "Bonus Payout", meta: "Scheduled In March", bg: "bg-orange-50/50 dark:bg-orange-950/20" },
+  {
+    tag: "important",
+    label: "Important",
+    dot: "bg-orange-500",
+    glow: "rgba(249,115,22,0.6)",
+    textColor: "text-orange-600 dark:text-orange-400",
+    title: "Office Closed",
+    meta: "26 Jan • Republic Day",
+    bg: "bg-orange-50/50 dark:bg-orange-950/20",
+  },
+  {
+    tag: "general",
+    label: "General",
+    dot: "bg-sky-400",
+    glow: "rgba(56,189,248,0.6)",
+    textColor: "text-sky-600 dark:text-sky-400",
+    title: "HR Policy Uploaded",
+    meta: "Documents",
+    hasDownload: true,
+    bg: "bg-blue-50/50 dark:bg-blue-950/20",
+  },
+  {
+    tag: "action",
+    label: "Action Required",
+    dot: "bg-green-500",
+    glow: "rgba(34,197,94,0.6)",
+    textColor: "text-green-600 dark:text-green-400",
+    title: "Q1 Targets",
+    meta: "Action Required",
+    bg: "bg-green-50/50 dark:bg-green-950/20",
+  },
+  {
+    tag: "reminder",
+    label: "Reminder",
+    dot: "bg-amber-500",
+    glow: "rgba(245,158,11,0.6)",
+    textColor: "text-amber-600 dark:text-amber-400",
+    title: "Bonus Payout",
+    meta: "Scheduled In March",
+    bg: "bg-orange-50/50 dark:bg-orange-950/20",
+  },
 ];
 
 const AnnouncementsCard = () => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-xl  overflow-hidden">
       {/* Header: purple bar with megaphone icon and title */}
       <div className="flex items-center gap-2 bg-[#8629DF] px-4 py-2">
         <Megaphone className="w-5 h-5 text-white shrink-0 fill-white" />
-        <h2 className="text-[1rem] font-bold text-white">
+        <h2 className="text-[0.7rem] font-bold text-white">
           Announcements & Tasks
         </h2>
       </div>
 
       {/* 2x2 grid of category cards (Figma) */}
-      <div className="p-4">
+      <div className="pt-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {announcementCardByCategory.map((card, i) => (
             <div
@@ -295,16 +423,23 @@ const AnnouncementsCard = () => {
               )}
             >
               <div className="flex items-center gap-2 mb-2">
-                <span className={cn("w-2.5 h-2.5 rounded-full shrink-0", card.dot)} />
+                <span
+                  className={cn("w-2.5 h-2.5 rounded-full shrink-0", card.dot)}
+                  style={{
+                    boxShadow: `0 0 8px 2px ${card.glow}`,
+                  }}
+                />
                 <span className={cn("text-[0.8rem] font-bold", card.textColor)}>
                   {card.label}
                 </span>
               </div>
-              <p className="text-[0.9rem] font-bold text-[#333333] dark:text-gray-100 mb-0.5 whitespace-nowrap">
+              <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-100 mb-0.5 whitespace-nowrap">
                 {card.title}
               </p>
-              <div className="flex items-center justify-between gap-2">
-                <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 font-medium">
+              <div className="flex items-center gap-2">
+                <p
+                  className={`text-[0.7rem] ${card.hasDownload ? "text-[#8629DF] dark:text-gray-400" : "text-gray-500 dark:text-gray-400"} font-medium`}
+                >
                   {card.meta}
                 </p>
                 {card.hasDownload && (
@@ -324,7 +459,6 @@ const AnnouncementsCard = () => {
     </div>
   );
 };
-
 
 /* ========== MONTHLY ATTENDANCE PIE CHART ========== */
 const attendancePieData = [
@@ -346,7 +480,7 @@ const GRAY_RING = "#E5E7EB";
 
 const AttendancePieCard = () => (
   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-6">
-    <h2 className="text-[1.2rem] font-bold text-[#8629DF] dark:text-purple-400 mb-8">
+    <h2 className="text-[1rem] font-bold text-[#8629DF] dark:text-purple-400 mb-8">
       Monthly Attendance Piechart
     </h2>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -378,12 +512,12 @@ const AttendancePieCard = () => (
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <span className="text-[1.1rem] font-extrabold text-[#333333] dark:text-gray-100">
+                <span className="text-[1rem] font-bold text-[#333333] dark:text-gray-100">
                   {String(entry.value).padStart(2, "0")}%
                 </span>
               </div>
             </div>
-            <span className="text-[0.85rem] font-bold text-gray-700 dark:text-gray-300 mt-4">
+            <span className="text-[0.8rem] font-bold text-gray-600 dark:text-gray-300 mt-4">
               {entry.name}
             </span>
           </div>
@@ -396,26 +530,65 @@ const AttendancePieCard = () => (
 /* ========== WISHES ========== */
 const wishesByTab = {
   birthday: [
-    { name: "Rohit Verma", date: "1/21/2025", img: "https://i.pravatar.cc/101" },
-    { name: "Priya Sharma", date: "1/22/2025", img: "https://i.pravatar.cc/102" },
+    {
+      name: "Rohit Verma",
+      date: "1/21/2025",
+      img: "https://i.pravatar.cc/101",
+    },
+    {
+      name: "Priya Sharma",
+      date: "1/22/2025",
+      img: "https://i.pravatar.cc/102",
+    },
     { name: "Amit Kumar", date: "1/23/2025", img: "https://i.pravatar.cc/103" },
-    { name: "Sneha Singh", date: "1/24/2025", img: "https://i.pravatar.cc/104" },
+    {
+      name: "Sneha Singh",
+      date: "1/24/2025",
+      img: "https://i.pravatar.cc/104",
+    },
   ],
   anniversary: [
     { name: "Neha Verma", date: "1/21/2025", img: "https://i.pravatar.cc/201" },
-    { name: "Rajesh Mehta", date: "1/18/2025", img: "https://i.pravatar.cc/202" },
-    { name: "Anita Desai", date: "1/25/2025", img: "https://i.pravatar.cc/203" },
+    {
+      name: "Rajesh Mehta",
+      date: "1/18/2025",
+      img: "https://i.pravatar.cc/202",
+    },
+    {
+      name: "Anita Desai",
+      date: "1/25/2025",
+      img: "https://i.pravatar.cc/203",
+    },
   ],
   joining: [
-    { name: "Ankit Jain", date: "1/21/2025", meta: "Joined Today", img: "https://i.pravatar.cc/301" },
-    { name: "Anil Pawar", date: "1/21/2025", meta: "Joined Yesterday", img: "https://i.pravatar.cc/302" },
-    { name: "Vikram Reddy", date: "1/21/2025", meta: "Joined 1 Feb 2026", img: "https://i.pravatar.cc/303" },
+    {
+      name: "Ankit Jain",
+      date: "1/21/2025",
+      meta: "Joined Today",
+      img: "https://i.pravatar.cc/301",
+    },
+    {
+      name: "Anil Pawar",
+      date: "1/21/2025",
+      meta: "Joined Yesterday",
+      img: "https://i.pravatar.cc/302",
+    },
+    {
+      name: "Vikram Reddy",
+      date: "1/21/2025",
+      meta: "Joined 1 Feb 2026",
+      img: "https://i.pravatar.cc/303",
+    },
   ],
 };
 
 const wishTabConfig = {
   birthday: { label: "Birthday", buttonText: "Send Wish", count: 4 },
-  anniversary: { label: "Work Anniversary", buttonText: "Congratulate", count: 3 },
+  anniversary: {
+    label: "Work Anniversary",
+    buttonText: "Congratulate",
+    count: 3,
+  },
   joining: { label: "New Joining", buttonText: "Welcome strip", count: 3 },
 };
 
@@ -428,9 +601,7 @@ const WishesCard = () => {
       {/* Purple header with chat bubble icon (Figma) – no arrows */}
       <div className="flex items-center gap-2 bg-[#8629DF] px-4 py-2">
         <MessageCircle className="w-5 h-5 text-white shrink-0 fill-white" />
-        <h2 className="text-[1rem] font-bold text-white">
-          Wishes
-        </h2>
+        <h2 className="text-[0.7rem] font-bold text-white">Wishes</h2>
       </div>
       <div className="p-4">
         {/* Tabs with count – active tab has purple underline */}
@@ -441,7 +612,7 @@ const WishesCard = () => {
               type="button"
               onClick={() => setActiveTab(tab)}
               className={cn(
-                "px-2 py-3 text-[0.75rem] font-bold transition-colors relative",
+                "px-2 py-3 text-[0.8rem] font-medium transition-colors relative",
                 activeTab === tab
                   ? "text-[#8629DF] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#8629DF]"
                   : "text-gray-500 hover:text-gray-700"
@@ -454,8 +625,8 @@ const WishesCard = () => {
           ))}
         </div>
         {/* Scrollable list of cards – each with label, avatar, name, date, button (Figma) */}
-        <ul className="space-y-[14px] max-h-[320px] overflow-y-auto table-scroll">
-          {wishesList.map((p, i) => (
+        <ul className="space-y-[14px] max-h-[320px] overflow-y-auto table-scroll py-4">
+          {/* {wishesList.map((p, i) => (
             <li
               key={i}
               className="rounded-lg border border-gray-200 dark:border-gray-600 p-3 bg-gray-50/80 dark:bg-gray-700/30 flex items-center justify-between gap-3"
@@ -473,7 +644,10 @@ const WishesCard = () => {
                   <p className="text-[0.8rem] font-semibold text-[#333333] dark:text-gray-200 truncate">
                     {p.name}
                     {p.meta && (
-                      <span className="font-normal text-gray-500 dark:text-gray-400"> – {p.meta}</span>
+                      <span className="font-normal text-gray-500 dark:text-gray-400">
+                        {" "}
+                        – {p.meta}
+                      </span>
                     )}
                   </p>
                   <p className="text-[0.7rem] text-gray-500 dark:text-gray-400">
@@ -483,9 +657,55 @@ const WishesCard = () => {
               </div>
               <button
                 type="button"
-                className="px-3 py-1.5 rounded-md bg-[#8629DF] text-white text-[0.65rem] font-bold hover:shadow-md transition-shadow shrink-0"
+                className="px-3 py-1.5 rounded-md bg-[#8629DF] text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
               >
                 Send Wish
+              </button>
+            </li>
+          ))} */}
+          {wishesList.map((p, i) => (
+            <li
+              key={i}
+              className="relative rounded-lg border border-gray-200 dark:border-gray-600 p-3 pt-4 bg-gray-50/80 dark:bg-gray-700/30 flex items-center justify-between gap-3"
+            >
+              {/* Top Chip */}
+              <span
+                className={`absolute -top-2 left-5 ${activeTab === "anniversary" ? "bg-blue-100 text-blue-600" : activeTab === "joining" ? "bg-green-100 text-green-600" : "bg-purple-100 text-purple-600"} text-[0.65rem] px-2 py-0.5 rounded-full font-medium`}
+              >
+                {config.label}
+              </span>
+
+              <div className="flex items-center gap-3 min-w-0 flex-1 pt-1">
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                />
+                <div className="min-w-0">
+                  <p className="text-[0.8rem] font-semibold text-[#333333] dark:text-gray-200 truncate">
+                    {p.name}
+                    {p.meta && (
+                      <span className="font-normal text-gray-500 dark:text-gray-400">
+                        {" "}
+                        – {p.meta}
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                    Date: {p.date}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="px-3 py-1.5 rounded-md bg-[#8629DF] text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
+              >
+                {activeTab === "birthday"
+                  ? "Send Wish"
+                  : activeTab === "anniversary"
+                    ? "Congratulate"
+                    : "Welcome Strip"}
               </button>
             </li>
           ))}
@@ -514,43 +734,180 @@ const summaryBoxes = [
 
 /* Day status for May 2015 (day of month -> status codes) – supports full tooltip when passed as full data */
 const may2015DayData = {
-  1: { status: ["M", "P"], in: "9:25", out: "18:25", shift: "Gurugram Office", icon: "sun" },
-  2: { status: "P", in: "9:02", out: "18:05", shift: "Gurugram Office", icon: "sun" },
-  3: { status: "P", in: "8:58", out: "18:01", shift: "Gurugram Office", icon: "sun" },
+  1: {
+    status: ["M", "P"],
+    in: "9:25",
+    out: "18:25",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  2: {
+    status: "P",
+    in: "9:02",
+    out: "18:05",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  3: {
+    status: "P",
+    in: "8:58",
+    out: "18:01",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   4: { status: "W" },
-  5: { status: "P", in: "9:10", out: "18:15", shift: "Gurugram Office", icon: "sun" },
-  6: { status: "P", in: "8:55", out: "18:00", shift: "Gurugram Office", icon: "sun" },
+  5: {
+    status: "P",
+    in: "9:10",
+    out: "18:15",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  6: {
+    status: "P",
+    in: "8:55",
+    out: "18:00",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   7: { status: "W" },
-  8: { status: "P", in: "9:25", out: "18:25", shift: "Gurugram Office", icon: "sun" },
+  8: {
+    status: "P",
+    in: "9:25",
+    out: "18:25",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   9: { status: "H" },
-  10: { status: "P", in: "9:00", out: "18:10", shift: "Gurugram Office", icon: "sun" },
-  11: { status: "P", in: "8:58", out: "18:01", shift: "Gurugram Office", icon: "sun" },
-  12: { status: "M", in: "9:25", out: "18:25", shift: "Gurugram Office", icon: "sun" },
-  13: { status: "P", in: "9:03", out: "18:05", shift: "Gurugram Office", icon: "sun" },
+  10: {
+    status: "P",
+    in: "9:00",
+    out: "18:10",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  11: {
+    status: "P",
+    in: "8:58",
+    out: "18:01",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  12: {
+    status: "M",
+    in: "9:25",
+    out: "18:25",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  13: {
+    status: "P",
+    in: "9:03",
+    out: "18:05",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   14: { status: "W" },
-  15: { status: "P", in: "8:58", out: "18:01", shift: "Gurugram Office", icon: "sun" },
-  16: { status: "P", in: "9:15", out: "18:20", shift: "Gurugram Office", icon: "sun" },
-  17: { status: "P", in: "9:00", out: "18:00", shift: "Gurugram Office", icon: "sun" },
+  15: {
+    status: "P",
+    in: "8:58",
+    out: "18:01",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  16: {
+    status: "P",
+    in: "9:15",
+    out: "18:20",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  17: {
+    status: "P",
+    in: "9:00",
+    out: "18:00",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   18: { status: "W" },
-  19: { status: "P", in: "8:58", out: "18:01", shift: "Gurugram Office", icon: "sun" },
-  20: { status: "P", in: "9:10", out: "18:10", shift: "Gurugram Office", icon: "sun" },
+  19: {
+    status: "P",
+    in: "8:58",
+    out: "18:01",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  20: {
+    status: "P",
+    in: "9:10",
+    out: "18:10",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   21: { status: "A" },
   22: { status: "S" },
-  23: { status: "P", in: "9:25", out: "18:25", shift: "Gurugram Office", icon: "sun" },
-  24: { status: "P", in: "9:00", out: "18:00", shift: "Gurugram Office", icon: "sun" },
+  23: {
+    status: "P",
+    in: "9:25",
+    out: "18:25",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  24: {
+    status: "P",
+    in: "9:00",
+    out: "18:00",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   25: { status: "W" },
-  26: { status: "P", in: "8:58", out: "18:01", shift: "Gurugram Office", icon: "sun" },
-  27: { status: "P", in: "9:05", out: "18:05", shift: "Gurugram Office", icon: "sun" },
-  28: { status: "P", in: "9:12", out: "18:15", shift: "Gurugram Office", icon: "sun" },
-  29: { status: "P", in: "9:00", out: "18:00", shift: "Gurugram Office", icon: "sun" },
+  26: {
+    status: "P",
+    in: "8:58",
+    out: "18:01",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  27: {
+    status: "P",
+    in: "9:05",
+    out: "18:05",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  28: {
+    status: "P",
+    in: "9:12",
+    out: "18:15",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
+  29: {
+    status: "P",
+    in: "9:00",
+    out: "18:00",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
   30: { status: "W" },
-  31: { status: "P", in: "9:25", out: "18:25", shift: "Gurugram Office", icon: "sun" },
+  31: {
+    status: "P",
+    in: "9:25",
+    out: "18:25",
+    shift: "Gurugram Office",
+    icon: "sun",
+  },
 };
 
 const CalendarCard = () => {
   const [multipleCorrection, setMultipleCorrection] = useState(false);
   const [selectedDays, setSelectedDays] = useState([]);
-  const [regularizeModal, setRegularizeModal] = useState({ open: false, day: null, month: 4, year: 2015 });
+  const [regularizeModal, setRegularizeModal] = useState({
+    open: false,
+    day: null,
+    month: 4,
+    year: 2015,
+  });
   const openSingleModalNoOp = () => {};
   const openSingleModal = (day) => {
     setRegularizeModal({ open: true, day, month: 4, year: 2015 });
@@ -578,7 +935,9 @@ const CalendarCard = () => {
             key={i}
             className="px-2.5 py-1.5 rounded-md border border-gray-200 dark:border-gray-600 text-[0.7rem] font-medium flex items-center gap-1.5 bg-white dark:bg-gray-700 text-[#333333] dark:text-gray-200"
           >
-            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", b.color)} />
+            <span
+              className={cn("w-1.5 h-1.5 rounded-full shrink-0", b.color)}
+            />
             {b.count} - {b.label}
           </span>
         ))}
@@ -588,7 +947,9 @@ const CalendarCard = () => {
       <div className="flex flex-wrap gap-x-4 gap-y-1 mb-3 text-[0.7rem] text-gray-600 dark:text-gray-400">
         {legendItems.map((l, i) => (
           <span key={i} className="flex items-center gap-1">
-            <span className={cn("w-1.5 h-1.5 rounded-full shrink-0", l.color)} />
+            <span
+              className={cn("w-1.5 h-1.5 rounded-full shrink-0", l.color)}
+            />
             {l.code} - {l.label}
           </span>
         ))}
@@ -644,11 +1005,47 @@ const CalendarCard = () => {
 
 /* ========== HOLIDAYS (colored month headings only; dates on white background) ========== */
 const holidaysByMonth = [
-  { month: "January 2026", headingBg: "bg-sky-100 dark:bg-sky-900/30", list: ["01 Jan - Wed New Year", "26 Jan - Republic Day", "14 Jan - Tue Makar Sankranti"] },
-  { month: "February 2026", headingBg: "bg-gray-100 dark:bg-gray-700/50", list: ["14 Feb - Sat Valentine's Day", "26 Feb - Thu Maha Shivaratri"] },
-  { month: "March 2026", headingBg: "bg-green-100 dark:bg-green-900/30", list: ["08 Mar - Sun Mahashivratri", "10 Mar - Tue Holi", "29 Mar - Sun Ram Navami"] },
-  { month: "April 2026", headingBg: "bg-gray-100 dark:bg-gray-700/50", list: ["02 Apr - Thu Mahavir Jayanti", "10 Apr - Fri Good Friday", "14 Apr - Tue Ambedkar Jayanti"] },
-  { month: "May 2026", headingBg: "bg-amber-100 dark:bg-amber-900/30", list: ["01 May - Fri Labour Day", "20 May - Wed Buddha Purnima", "31 May - Sun Id-ul-Fitr"] },
+  {
+    month: "January 2026",
+    headingBg: "bg-sky-100 dark:bg-sky-900/30",
+    list: [
+      "01 Jan - Wed New Year",
+      "26 Jan - Republic Day",
+      "14 Jan - Tue Makar Sankranti",
+    ],
+  },
+  {
+    month: "February 2026",
+    headingBg: "bg-gray-100 dark:bg-gray-700/50",
+    list: ["14 Feb - Sat Valentine's Day", "26 Feb - Thu Maha Shivaratri"],
+  },
+  {
+    month: "March 2026",
+    headingBg: "bg-green-100 dark:bg-green-900/30",
+    list: [
+      "08 Mar - Sun Mahashivratri",
+      "10 Mar - Tue Holi",
+      "29 Mar - Sun Ram Navami",
+    ],
+  },
+  {
+    month: "April 2026",
+    headingBg: "bg-gray-100 dark:bg-gray-700/50",
+    list: [
+      "02 Apr - Thu Mahavir Jayanti",
+      "10 Apr - Fri Good Friday",
+      "14 Apr - Tue Ambedkar Jayanti",
+    ],
+  },
+  {
+    month: "May 2026",
+    headingBg: "bg-amber-100 dark:bg-amber-900/30",
+    list: [
+      "01 May - Fri Labour Day",
+      "20 May - Wed Buddha Purnima",
+      "31 May - Sun Id-ul-Fitr",
+    ],
+  },
 ];
 
 const HolidaysCard = () => {
@@ -659,7 +1056,7 @@ const HolidaysCard = () => {
       <div className="flex items-center justify-between gap-3 bg-[#8629DF] px-4 py-2.5">
         <div className="flex items-center gap-2">
           <CalendarIcon className="w-5 h-5 text-white shrink-0" />
-          <h2 className="text-[1rem] font-bold text-white">
+          <h2 className="text-[0.7rem] font-bold text-white">
             Holidays (Jan - May)
           </h2>
         </div>
@@ -668,30 +1065,47 @@ const HolidaysCard = () => {
           onChange={(e) => setYear(e.target.value)}
           className="text-[0.8rem] font-medium rounded-md pl-2.5 pr-8 py-1.5 bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 cursor-pointer appearance-none bg-no-repeat bg-[length:14px] bg-[right_10px_center]"
           style={{
-            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
           }}
           aria-label="Select year"
         >
-          <option value="2025" className="bg-gray-800 text-gray-200">2025</option>
-          <option value="2026" className="bg-gray-800 text-gray-200">2026</option>
-          <option value="2027" className="bg-gray-800 text-gray-200">2027</option>
+          <option value="2025" className="bg-gray-800 text-gray-200">
+            2025
+          </option>
+          <option value="2026" className="bg-gray-800 text-gray-200">
+            2026
+          </option>
+          <option value="2027" className="bg-gray-800 text-gray-200">
+            2027
+          </option>
         </select>
       </div>
       {/* Month heading = colored bar; holiday list = white background */}
-      <ul className="p-0 list-none bg-white dark:bg-gray-800">
+      <ul className="list-none bg-white dark:bg-gray-800 p-4">
         {holidaysByMonth.map((m) => (
-          <li key={m.month} className="border-t border-gray-100 dark:border-gray-700 first:border-t-0">
-            <p className={cn("text-[0.85rem] font-bold text-[#333333] dark:text-gray-200 px-4 py-2", m.headingBg)}>
+          <li
+            key={m.month}
+            className="border-t  first:border-t-0 shadow-md border border-gray-100 dark:border-gray-700 mb-4 rounded-md overflow-hidden"
+          >
+            <p
+              className={cn(
+                "text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 px-4 py-2",
+                m.headingBg
+              )}
+            >
               {m.month}
             </p>
             <ul className="space-y-1.5 list-none p-0 m-0 px-4 py-3 bg-white dark:bg-gray-800">
               {m.list.map((h, i) => (
                 <li
                   key={i}
-                  className="text-[0.75rem] text-[#333333] dark:text-gray-300 flex items-center gap-2 flex-wrap"
+                  className="text-[0.7rem] text-[#333333] dark:text-gray-300 flex items-center gap-2 flex-wrap"
                 >
                   {h}
-                  {(h.includes("Republic Day") || h.includes("New Year") || h.includes("Labour Day")) && (
+                  {(h.includes("Republic Day") ||
+                    h.includes("New Year") ||
+                    h.includes("Labour Day")) && (
                     <span className="px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 border border-purple-100 dark:border-purple-800/50">
                       National Holiday
                     </span>
@@ -757,20 +1171,104 @@ const CTCReimbursementCard = () => (
 
 /* ========== TASKS MODAL (opened from notification icon) ========== */
 const TASK_STATUSES = [
-  { value: "not_started", label: "Mark as Not Started", bg: "bg-[#8629DF] text-white" },
-  { value: "in_progress", label: "Mark as In Progress", bg: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300" },
-  { value: "awaiting_feedback", label: "Mark as Awaiting Feedback", bg: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300" },
-  { value: "testing", label: "Mark as Testing", bg: "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300" },
-  { value: "completed", label: "Mark as Completed", bg: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300" },
+  {
+    value: "not_started",
+    label: "Mark as Not Started",
+    bg: "bg-[#8629DF] text-white",
+  },
+  {
+    value: "in_progress",
+    label: "Mark as In Progress",
+    bg: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300",
+  },
+  {
+    value: "awaiting_feedback",
+    label: "Mark as Awaiting Feedback",
+    bg: "bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300",
+  },
+  {
+    value: "testing",
+    label: "Mark as Testing",
+    bg: "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300",
+  },
+  {
+    value: "completed",
+    label: "Mark as Completed",
+    bg: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300",
+  },
 ];
 
 const tasksData = [
-  { id: 1, taskId: "0245", title: "Monthly Payroll Review", assignedBy: "HR Manager", due: "10/02/2026", startedDate: "04/02/2026", completed: false, highPriority: true, description: "This task is related to monthly payroll verification and approval.", status: "not_started" },
-  { id: 2, taskId: "0246", title: "Leave Balance Update", assignedBy: "HR Manager", due: "15 Feb 2026", startedDate: "05/02/2026", completed: false, highPriority: false, description: "Update and verify leave balances for the current cycle.", status: "not_started" },
-  { id: 3, taskId: "0247", title: "Tax Declaration Review", assignedBy: "Finance Team", due: "18 Feb 2026", startedDate: "06/02/2026", completed: false, highPriority: false, description: "Review employee tax declaration submissions.", status: "not_started" },
-  { id: 4, taskId: "0248", title: "Attendance Regularisation", assignedBy: "HR Manager", due: "20 Feb 2026", startedDate: "07/02/2026", completed: false, highPriority: false, description: "Process attendance regularisation requests.", status: "not_started" },
-  { id: 5, taskId: "0249", title: "Insurance Nomination", assignedBy: "Admin", due: "22 Feb 2026", startedDate: "08/02/2026", completed: false, highPriority: false, description: "Verify and update insurance nomination details.", status: "not_started" },
-  { id: 6, taskId: "0250", title: "Monthly Payroll Review", completedOn: "12 Feb 2026", completed: true, assignedBy: "HR Manager", status: "completed" },
+  {
+    id: 1,
+    taskId: "0245",
+    title: "Monthly Payroll Review",
+    assignedBy: "HR Manager",
+    due: "10/02/2026",
+    startedDate: "04/02/2026",
+    completed: false,
+    highPriority: true,
+    description:
+      "This task is related to monthly payroll verification and approval.",
+    status: "not_started",
+  },
+  {
+    id: 2,
+    taskId: "0246",
+    title: "Leave Balance Update",
+    assignedBy: "HR Manager",
+    due: "15 Feb 2026",
+    startedDate: "05/02/2026",
+    completed: false,
+    highPriority: false,
+    description: "Update and verify leave balances for the current cycle.",
+    status: "not_started",
+  },
+  {
+    id: 3,
+    taskId: "0247",
+    title: "Tax Declaration Review",
+    assignedBy: "Finance Team",
+    due: "18 Feb 2026",
+    startedDate: "06/02/2026",
+    completed: false,
+    highPriority: false,
+    description: "Review employee tax declaration submissions.",
+    status: "not_started",
+  },
+  {
+    id: 4,
+    taskId: "0248",
+    title: "Attendance Regularisation",
+    assignedBy: "HR Manager",
+    due: "20 Feb 2026",
+    startedDate: "07/02/2026",
+    completed: false,
+    highPriority: false,
+    description: "Process attendance regularisation requests.",
+    status: "not_started",
+  },
+  {
+    id: 5,
+    taskId: "0249",
+    title: "Insurance Nomination",
+    assignedBy: "Admin",
+    due: "22 Feb 2026",
+    startedDate: "08/02/2026",
+    completed: false,
+    highPriority: false,
+    description: "Verify and update insurance nomination details.",
+    status: "not_started",
+  },
+  {
+    id: 6,
+    taskId: "0250",
+    title: "Monthly Payroll Review",
+    completedOn: "12 Feb 2026",
+    completed: true,
+    assignedBy: "HR Manager",
+    status: "completed",
+  },
 ];
 
 const TASKS_COUNT = tasksData.length;
@@ -780,14 +1278,27 @@ const TaskDetailsModal = ({ task, onClose }) => {
   const [status, setStatus] = useState(task?.status || "not_started");
   const [comment, setComment] = useState("");
   if (!task) return null;
-  const statusLabel = (v) => TASK_STATUSES.find((s) => s.value === v)?.label?.replace("Mark as ", "") || v;
+  const statusLabel = (v) =>
+    TASK_STATUSES.find((s) => s.value === v)?.label?.replace("Mark as ", "") ||
+    v;
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/50" onClick={onClose} aria-hidden />
+      <div
+        className="absolute inset-0 bg-black/50"
+        onClick={onClose}
+        aria-hidden
+      />
       <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700 shrink-0">
-          <h3 className="text-[1.1rem] font-bold text-[#333333] dark:text-gray-100">TASK ID - {task.taskId || String(task.id).padStart(4, "0")}</h3>
-          <button type="button" onClick={onClose} className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500" aria-label="Close">
+          <h3 className="text-[1.1rem] font-bold text-[#333333] dark:text-gray-100">
+            TASK ID - {task.taskId || String(task.id).padStart(4, "0")}
+          </h3>
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1.5 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
+            aria-label="Close"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -813,13 +1324,17 @@ const TaskDetailsModal = ({ task, onClose }) => {
               ))}
             </div>
             <div>
-              <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-1">Description</p>
+              <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-1">
+                Description
+              </p>
               <p className="text-[0.8rem] text-gray-600 dark:text-gray-400">
                 {task.description || "No description provided."}
               </p>
             </div>
             <div>
-              <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-2">Comment</p>
+              <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-2">
+                Comment
+              </p>
               <textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
@@ -839,27 +1354,48 @@ const TaskDetailsModal = ({ task, onClose }) => {
           </div>
           {/* Right: Task Information */}
           <div>
-            <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-3">Task Information</p>
+            <p className="text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 mb-3">
+              Task Information
+            </p>
             <dl className="space-y-2 text-[0.8rem]">
               <div className="flex justify-between gap-4">
-                <dt className="text-gray-500 dark:text-gray-400">Assigned by</dt>
-                <dd className="text-[#333333] dark:text-gray-200 font-medium">{task.assignedBy || "—"}</dd>
+                <dt className="text-gray-500 dark:text-gray-400">
+                  Assigned by
+                </dt>
+                <dd className="text-[#333333] dark:text-gray-200 font-medium">
+                  {task.assignedBy || "—"}
+                </dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-gray-500 dark:text-gray-400">Status</dt>
-                <dd className="text-[#333333] dark:text-gray-200 font-medium">{statusLabel(status)}</dd>
+                <dd className="text-[#333333] dark:text-gray-200 font-medium">
+                  {statusLabel(status)}
+                </dd>
               </div>
               <div className="flex justify-between gap-4">
-                <dt className="text-gray-500 dark:text-gray-400">Started Date</dt>
-                <dd className="text-[#333333] dark:text-gray-200 font-medium">{task.startedDate || "—"}</dd>
+                <dt className="text-gray-500 dark:text-gray-400">
+                  Started Date
+                </dt>
+                <dd className="text-[#333333] dark:text-gray-200 font-medium">
+                  {task.startedDate || "—"}
+                </dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-gray-500 dark:text-gray-400">Due Date</dt>
-                <dd className="text-[#333333] dark:text-gray-200 font-medium">{task.due || task.completedOn || "—"}</dd>
+                <dd className="text-[#333333] dark:text-gray-200 font-medium">
+                  {task.due || task.completedOn || "—"}
+                </dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt className="text-gray-500 dark:text-gray-400">Priority</dt>
-                <dd className={cn("font-medium", task.highPriority ? "text-amber-600 dark:text-amber-400" : "text-[#333333] dark:text-gray-200")}>
+                <dd
+                  className={cn(
+                    "font-medium",
+                    task.highPriority
+                      ? "text-amber-600 dark:text-amber-400"
+                      : "text-[#333333] dark:text-gray-200"
+                  )}
+                >
                   {task.highPriority ? "High Priority" : "Normal"}
                 </dd>
               </div>
@@ -873,7 +1409,11 @@ const TaskDetailsModal = ({ task, onClose }) => {
 
 const TasksModal = ({ onClose, onTaskClick }) => (
   <div className="fixed inset-0 z-50 flex justify-end pt-[4.5rem] pr-4 pb-4 md:pr-6 md:pt-24">
-    <div className="absolute inset-0 bg-black/40" onClick={onClose} aria-hidden />
+    <div
+      className="absolute inset-0 bg-black/40"
+      onClick={onClose}
+      aria-hidden
+    />
     <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md max-h-[calc(100vh-6rem)] flex flex-col border border-gray-200 dark:border-gray-700">
       <div className="flex items-center justify-between px-5 py-4 bg-[#8629DF] rounded-t-xl shrink-0">
         <h3 className="text-[1.25rem] font-bold text-white">Tasks</h3>
@@ -888,7 +1428,12 @@ const TasksModal = ({ onClose, onTaskClick }) => (
             role="button"
             tabIndex={0}
             onClick={() => onTaskClick?.(t)}
-            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onTaskClick?.(t); } }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onTaskClick?.(t);
+              }
+            }}
             className="rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/40 p-3 flex gap-3 cursor-pointer hover:border-[#8629DF]/50 hover:bg-gray-100 dark:hover:bg-gray-700/60 transition-colors"
           >
             <div className="shrink-0 pt-0.5">
@@ -956,7 +1501,11 @@ const EmployeeDashboard = () => {
         />
       )}
       {selectedTask && (
-        <TaskDetailsModal key={selectedTask.id} task={selectedTask} onClose={() => setSelectedTask(null)} />
+        <TaskDetailsModal
+          key={selectedTask.id}
+          task={selectedTask}
+          onClose={() => setSelectedTask(null)}
+        />
       )}
       {/* Search bar + Notification - full width */}
       <div className="flex items-center gap-4 mb-8">
@@ -976,7 +1525,7 @@ const EmployeeDashboard = () => {
             className="p-3 bg-white dark:bg-gray-800 rounded-md shadow-[0_2px_10px_rgba(0,0,0,0.05)] border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-gray-200 transition"
             aria-label="Notifications"
           >
-            <Bell className="h-6 w-6" />
+            <BellDot className="h-6 w-6" />
           </button>
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
