@@ -849,7 +849,7 @@ const PayrollDashboard = () => {
             </div>
           </div>
 
-          <div className="mt-6 sm:mt-8 rounded-md flex flex-col lg:flex-row items-stretch">
+          <div className="mt-6 sm:mt-8 rounded-md flex flex-col-reverse lg:flex-row items-stretch">
             {/* ================= MAIN CONTENT ================= */}
             <div className="flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
               {/* ===== PAYROLL VARIANCE HEADER ===== */}
@@ -992,28 +992,36 @@ const PayrollDashboard = () => {
             </div>
 
             {/* ================= RIGHT DRAWER SYSTEM ================= */}
-            <div className="flex flex-col lg:flex-row flex-shrink-0 lg:h-full self-stretch order-1 lg:order-2">
+            <div className="flex flex-col lg:flex-row flex-shrink-0 lg:h-full self-stretch order-1 lg:order-2 relative">
+              {/* Mobile overlay when drawer is open */}
+              {showDrawer && (
+                <div
+                  className="fixed inset-0 bg-black/50 sm:hidden z-30"
+                  onClick={() => setShowDrawer(false)}
+                />
+              )}
+              
               {/* REPORT DRAWER — slides open, pushes main content; on mobile full width when open */}
               <div
                 style={{
-                  width: showDrawer ? "220px" : "0px",
+                  width: showDrawer ? (window.innerWidth < 1024 ? "100%" : "220px") : "0px",
                   transition: "width 0.3s ease",
                   overflow: "hidden",
                   flexShrink: 0,
                   maxWidth: "100%",
                 }}
-                className="bg-white dark:bg-gray-800 rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0"
+                className="bg-white dark:bg-gray-800 rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto"
               >
-                <div style={{ width: "220px" }}>
-                  <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3  h-9">
+                <div style={{ width: window.innerWidth < 1024 && showDrawer ? "100%" : "220px" }}>
+                  <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3 h-9 sm:h-auto">
                     <FaArrowRight
                       className="w-6 h-6 shadow-[#8629DF] rounded-full text-white bg-[#8629DF] p-1 cursor-pointer "
                       onClick={() => setShowDrawer((p) => !p)}
                     />
                   </div>
                   {/* Drawer Header */}
-                  <div className="flex justify-between items-center px-3 py-1.5 bg-[#8629DF] rounded-t-sm">
-                    <span className="text-white font-semibold text-sm">
+                  <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 bg-[#8629DF] rounded-t-sm">
+                    <span className="text-white font-semibold text-sm sm:text-sm">
                       Report
                     </span>
                     <button className="text-white/80 hover:text-white">
@@ -1025,7 +1033,7 @@ const PayrollDashboard = () => {
                   </div>
 
                   {/* Select All Row */}
-                  <div className="flex justify-between items-center px-3 py-1.5 my-3 border-b border-gray-100 ">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100">
                     <label className="flex items-center gap-1.5 cursor-pointer">
                       <input
                         type="checkbox"
@@ -1043,7 +1051,7 @@ const PayrollDashboard = () => {
                         Select All
                       </span>
                     </label>
-                    <button className="flex items-center gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1 rounded-sm hover:bg-purple-700 cursor-pointer">
+                    <button className="flex items-center justify-center sm:justify-start gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1.5 sm:py-1 rounded-sm hover:bg-purple-700 cursor-pointer w-full sm:w-auto">
                       <FiDownload size={10} />
                       Download
                     </button>
@@ -1052,24 +1060,24 @@ const PayrollDashboard = () => {
                   {/* Report Items */}
                   <div
                     className="overflow-y-auto"
-                    style={{ maxHeight: "calc(100vh - 130px)" }}
+                    style={{ maxHeight: window.innerWidth < 1024 && showDrawer ? "calc(100vh - 120px)" : "calc(100vh - 130px)" }}
                   >
                     {reportItems.map((r) => (
                       <div
                         key={r.id}
-                        className="flex items-center gap-2 px-1 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm  transition-colors"
+                        className="flex items-center gap-2 px-2 sm:px-1 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm transition-colors"
                       >
                         {/* Icon */}
-                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
-                          <span className="text-[15px]">{r.icon}</span>
+                        <div className="w-8 h-8 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
+                          <span className="text-[15px] sm:text-[15px]">{r.icon}</span>
                         </div>
 
                         {/* Text */}
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-semibold text-gray-800 leading-tight truncate">
+                          <p className="text-[11px] sm:text-[11px] font-semibold text-gray-800 leading-tight truncate">
                             {r.name}
                           </p>
-                          <p className="text-[9.5px] text-gray-400 mt-0.5 truncate">
+                          <p className="text-[9px] sm:text-[9.5px] text-gray-400 mt-0.5 truncate">
                             {r.lastGen
                               ? `Last Generated : ${r.lastGen}`
                               : "Not generated yet."}
@@ -1091,7 +1099,7 @@ const PayrollDashboard = () => {
                         />
 
                         {/* Download */}
-                        <button className="w-5.5 h-5.5 rounded-xs bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
+                        <button className="w-5.5 h-5.5 sm:w-5.5 sm:h-5.5 rounded-xs bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
                           <FiDownload size={10} className="text-white" />
                         </button>
                       </div>
@@ -1100,9 +1108,9 @@ const PayrollDashboard = () => {
                 </div>
               </div>
 
-              {/* ICON SIDEBAR */}
+              {/* ICON SIDEBAR — hidden on mobile, shown on desktop when drawer closed */}
               <div
-                className="flex flex-col items-center gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0"
+                className="hidden sm:flex flex-col items-center gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0"
                 style={{
                   width: showDrawer ? "0px" : "60px",
                   transition: "width 0.3s ease",
