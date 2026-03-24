@@ -4,9 +4,9 @@ import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 import { IoMdArrowDropdown, IoMdArrowDropup, IoMdSearch } from "react-icons/io";
 
 import Clock from "../../Assets/Clock.png";
-import Users from "../../Assets/user.png"
-import Wallet from "../../Assets/wallet.png"
-import HandCoins from "../../Assets/handcoins.png"
+import Users from "../../Assets/user.png";
+import Wallet from "../../Assets/wallet.png";
+import HandCoins from "../../Assets/handcoins.png";
 import {
   FaArrowDown,
   FaArrowLeft,
@@ -14,6 +14,7 @@ import {
   FaArrowUp,
   FaPlay,
 } from "react-icons/fa";
+import { SlReload } from "react-icons/sl";
 import { FiDownload } from "react-icons/fi";
 import {
   MdOutlineKeyboardArrowDown,
@@ -33,16 +34,17 @@ import DrawerIcon6 from "/DrawerIcons(5).png";
 import DrawerIcon7 from "/DrawerIcons(6).png";
 import DrawerIcon8 from "/DrawerIcons(7).png";
 
-const StatCard = ({ title, value, icon: Icon, borderColor, iconBg }) => {
+const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
   return (
     <div
       className="relative flex items-center justify-between gap-2 sm:gap-3
-      bg-white dark:bg-gray-800 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 w-full min-w-0
+      bg-white dark:bg-gray-800 border-l-3 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 w-full min-w-0
       p-3"
+      style={{ borderLeftColor: borderColor }}
     >
       <div
         className="absolute left-0 top-0 h-full w-[4px] rounded-l-lg flex-shrink-0"
-        style={{ backgroundColor: borderColor }}
+        style={{ backgroundColor: color }}
       />
 
       {/* Content */}
@@ -50,7 +52,7 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg }) => {
         <span className="text-lg sm:text-[1.2rem] md:text-[1.3rem] font-semibold text-[#7B2CBF] dark:text-purple-400 leading-none truncate">
           {value}
         </span>
-        <span className="text-[0.65rem] sm:text-[0.7rem] text-gray-500 dark:text-gray-400 mt-1 truncate">
+        <span className="text-[0.65rem] sm:text-[0.7rem] text-gray-500 dark:text-gray-400 mt-1 truncate font-bold">
           {title}
         </span>
       </div>
@@ -67,12 +69,12 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg }) => {
             <Icon size={16} className="sm:w-[18px] sm:h-[18px] text-white" />
           )}
         </div>
-        <div className="p-1 sm:p-1.5 rounded-sm bg-purple-100 dark:bg-purple-900/30">
+        {/* <div className="p-1 sm:p-1.5 rounded-sm bg-purple-100 dark:bg-purple-900/30">
           <FiDownload
-            size={14}
+            size={14}     
             className="sm:w-4 sm:h-4 text-[#7B2CBF] dark:text-purple-400 cursor-pointer hover:scale-110 transition"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -443,11 +445,11 @@ const PayrollDashboard = () => {
   useEffect(() => {
     function handleClickOutside(event) {
       const isClickInsideDropdown = Object.values(
-        filterDropdownRefs.current,
+        filterDropdownRefs.current
       ).some((ref) => ref.current && ref.current.contains(event.target));
 
       const isClickOnDropdownButton = event.target.closest(
-        "[data-filter-button]",
+        "[data-filter-button]"
       );
 
       if (!isClickInsideDropdown && !isClickOnDropdownButton) {
@@ -558,10 +560,11 @@ const PayrollDashboard = () => {
                     className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white cursor-pointer rounded"
                   >
                     <div
-                      className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item)
+                      className={`w-4 h-4 flex items-center justify-center border rounded ${
+                        currentValues.includes(item)
                           ? "bg-[#8629DF] border-[#8629DF]"
                           : "border-gray-300"
-                        }`}
+                      }`}
                     >
                       {currentValues.includes(item) && (
                         <svg
@@ -687,10 +690,11 @@ const PayrollDashboard = () => {
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-               ${isAnyFilterChecked
-                        ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
-                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-                      }
+               ${
+                 isAnyFilterChecked
+                   ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
+                   : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+               }
              `}
                   >
                     Apply
@@ -744,16 +748,16 @@ const PayrollDashboard = () => {
             title="Total Headcount"
             value="1,000"
             icon={Users}
-           
             iconBg="#E9F3FF"
+            borderColor="#0088FF"
           />
 
           <StatCard
             title="Attendance Process"
             value="900"
             icon={Clock}
-            
             iconBg="#EBF9EE"
+            borderColor="#34C759"
           />
 
           <StatCard
@@ -761,35 +765,35 @@ const PayrollDashboard = () => {
             value="1,000"
             icon={Wallet}
             iconBg="#FAEAFC"
+            borderColor="#CB30E0"
           />
 
           <StatCard
             title="Total Hold"
             value="1,000"
             icon={HandCoins}
-            
             iconBg="#FFF4EA"
+            borderColor="#FF8D28"
           />
 
           {/* Run Payroll Button */}
           <button
-            onClick={() => setShowVarianceUI(true)}
+            onClick={() => setShowVarianceUI(!showVarianceUI)}
             className="flex items-center justify-center gap-2 
                  bg-[#8629DF] dark:bg-[#8629DF] cursor-pointer
                  text-white font-bold w-full sm:min-w-fit h-fit p-3 sm:mt-3
                  px-4 rounded-sm shadow-md text-[0.7rem]
                  hover:opacity-90 transition col-span-1 sm:col-span-2 lg:col-span-1"
           >
-            <FaPlay size={18} />
+          {showVarianceUI ?  <SlReload size={18} /> : <FaPlay size={18} />}
             {showVarianceUI ? "Re-Run Payroll" : "Run Payroll"}
           </button>
         </div>
       </div>
       {showVarianceUI && (
-
         <div className="mt-6 sm:mt-8">
           {/* ===== TOP STATS ===== */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
             <div className="flex gap-3 p-4 items-start">
               <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <BsFillPeopleFill className="text-purple-600" size={16} />
@@ -804,15 +808,11 @@ const PayrollDashboard = () => {
                 </p>
               </div>
               <hr className="my-3" />
-
             </div>
 
             <div className="flex gap-3 p-4 items-start">
               <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <HiOutlineCurrencyRupee
-                  className="text-purple-600"
-                  size={16}
-                />
+                <HiOutlineCurrencyRupee className="text-purple-600" size={16} />
               </div>
               <div>
                 <p className="text-xs text-gray-500">Total Gross Pay</p>
@@ -849,7 +849,7 @@ const PayrollDashboard = () => {
             </div>
           </div>
 
-          <div className="mt-6 sm:mt-8 rounded-md flex flex-col lg:flex-row items-stretch">
+          <div className="mt-6 sm:mt-8 rounded-md flex flex-col-reverse lg:flex-row items-stretch">
             {/* ================= MAIN CONTENT ================= */}
             <div className="flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
               {/* ===== PAYROLL VARIANCE HEADER ===== */}
@@ -881,10 +881,11 @@ const PayrollDashboard = () => {
                       <button
                         key={tab.value}
                         onClick={() => setActiveTab(tab.value)}
-                        className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer ${activeTab === tab.value
+                        className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer ${
+                          activeTab === tab.value
                             ? "text-[#8629DF] border-b-2 border-[#8629DF] -mb-[2px]"
                             : "text-gray-500 hover:text-gray-700"
-                          }`}
+                        }`}
                       >
                         {tab.label}
                       </button>
@@ -896,18 +897,20 @@ const PayrollDashboard = () => {
                     {varianceCards.map((card, index) => (
                       <div
                         key={index}
-                        className={`rounded-md w-full p-3 border bg-white ${card.positive ? "border-green-400" : "border-red-400"
-                          }`}
+                        className={`rounded-md w-full p-3 border bg-white ${
+                          card.positive ? "border-green-400" : "border-red-400"
+                        }`}
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <span className="text-[0.8rem] font-semibold text-[#8629DF] leading-tight">
+                          <span className="text-[0.8rem] font-bold text-[#8629DF] leading-tight">
                             {card.title}
                           </span>
                           <span
-                            className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${card.positive
+                            className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${
+                              card.positive
                                 ? "bg-green-100 text-green-600"
                                 : "bg-red-100 text-red-600"
-                              }`}
+                            }`}
                           >
                             {card.positive ? "+2.0%" : "-2.0%"}
                           </span>
@@ -989,33 +992,39 @@ const PayrollDashboard = () => {
             </div>
 
             {/* ================= RIGHT DRAWER SYSTEM ================= */}
-            <div className="flex flex-col lg:flex-row flex-shrink-0 lg:h-full self-stretch order-1 lg:order-2">
+            <div className="flex flex-col lg:flex-row flex-shrink-0 lg:h-full self-stretch order-1 lg:order-2 relative">
+              {/* Mobile overlay when drawer is open */}
+              {showDrawer && (
+                <div
+                  className="fixed inset-0 bg-black/50 sm:hidden z-30"
+                  onClick={() => setShowDrawer(false)}
+                />
+              )}
+              
               {/* REPORT DRAWER — slides open, pushes main content; on mobile full width when open */}
               <div
                 style={{
-                  width: showDrawer ? "220px" : "0px",
+                  width: showDrawer ? (window.innerWidth < 1024 ? "100%" : "220px") : "0px",
                   transition: "width 0.3s ease",
                   overflow: "hidden",
                   flexShrink: 0,
                   maxWidth: "100%",
                 }}
-                className="bg-white dark:bg-gray-800 rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0"
+                className="bg-white dark:bg-gray-800 rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto"
               >
-                <div style={{ width: "220px" }}>
-                  <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3  h-9">
+                <div style={{ width: window.innerWidth < 1024 && showDrawer ? "100%" : "220px" }}>
+                  <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3 h-9 sm:h-auto">
                     <FaArrowRight
                       className="w-6 h-6 shadow-[#8629DF] rounded-full text-white bg-[#8629DF] p-1 cursor-pointer "
                       onClick={() => setShowDrawer((p) => !p)}
                     />
                   </div>
                   {/* Drawer Header */}
-                  <div className="flex justify-between items-center px-3 py-1.5 bg-[#8629DF] rounded-t-sm">
-                    <span className="text-white font-semibold text-sm">
+                  <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 bg-[#8629DF] rounded-t-sm">
+                    <span className="text-white font-semibold text-sm sm:text-sm">
                       Report
                     </span>
-                    <button
-                      className="text-white/80 hover:text-white"
-                    >
+                    <button className="text-white/80 hover:text-white">
                       <MdOutlineKeyboardArrowDown
                         size={18}
                         className="bg-white text-gray-400 rounded-xs"
@@ -1024,7 +1033,7 @@ const PayrollDashboard = () => {
                   </div>
 
                   {/* Select All Row */}
-                  <div className="flex justify-between items-center px-3 py-1.5 my-3 border-b border-gray-100 ">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100">
                     <label className="flex items-center gap-1.5 cursor-pointer">
                       <input
                         type="checkbox"
@@ -1034,7 +1043,7 @@ const PayrollDashboard = () => {
                           setReportSelected(
                             reportSelected.length === reportItems.length
                               ? []
-                              : reportItems.map((r) => r.id),
+                              : reportItems.map((r) => r.id)
                           )
                         }
                       />
@@ -1042,7 +1051,7 @@ const PayrollDashboard = () => {
                         Select All
                       </span>
                     </label>
-                    <button className="flex items-center gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1 rounded-sm hover:bg-purple-700 cursor-pointer">
+                    <button className="flex items-center justify-center sm:justify-start gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1.5 sm:py-1 rounded-sm hover:bg-purple-700 cursor-pointer w-full sm:w-auto">
                       <FiDownload size={10} />
                       Download
                     </button>
@@ -1051,24 +1060,24 @@ const PayrollDashboard = () => {
                   {/* Report Items */}
                   <div
                     className="overflow-y-auto"
-                    style={{ maxHeight: "calc(100vh - 130px)" }}
+                    style={{ maxHeight: window.innerWidth < 1024 && showDrawer ? "calc(100vh - 120px)" : "calc(100vh - 130px)" }}
                   >
                     {reportItems.map((r) => (
                       <div
                         key={r.id}
-                        className="flex items-center gap-2 px-1 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm  transition-colors"
+                        className="flex items-center gap-2 px-2 sm:px-1 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm transition-colors"
                       >
                         {/* Icon */}
-                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
-                          <span className="text-[15px]">{r.icon}</span>
+                        <div className="w-8 h-8 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
+                          <span className="text-[15px] sm:text-[15px]">{r.icon}</span>
                         </div>
 
                         {/* Text */}
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-semibold text-gray-800 leading-tight truncate">
+                          <p className="text-[11px] sm:text-[11px] font-semibold text-gray-800 leading-tight truncate">
                             {r.name}
                           </p>
-                          <p className="text-[9.5px] text-gray-400 mt-0.5 truncate">
+                          <p className="text-[9px] sm:text-[9.5px] text-gray-400 mt-0.5 truncate">
                             {r.lastGen
                               ? `Last Generated : ${r.lastGen}`
                               : "Not generated yet."}
@@ -1084,13 +1093,13 @@ const PayrollDashboard = () => {
                             setReportSelected((prev) =>
                               prev.includes(r.id)
                                 ? prev.filter((x) => x !== r.id)
-                                : [...prev, r.id],
+                                : [...prev, r.id]
                             )
                           }
                         />
 
                         {/* Download */}
-                        <button className="w-5.5 h-5.5 rounded-xs bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
+                        <button className="w-5.5 h-5.5 sm:w-5.5 sm:h-5.5 rounded-xs bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
                           <FiDownload size={10} className="text-white" />
                         </button>
                       </div>
@@ -1099,9 +1108,9 @@ const PayrollDashboard = () => {
                 </div>
               </div>
 
-              {/* ICON SIDEBAR */}
+              {/* ICON SIDEBAR — hidden on mobile, shown on desktop when drawer closed */}
               <div
-                className="flex flex-col items-center gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0"
+                className="hidden sm:flex flex-col items-center gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0"
                 style={{
                   width: showDrawer ? "0px" : "60px",
                   transition: "width 0.3s ease",
@@ -1129,7 +1138,11 @@ const PayrollDashboard = () => {
                   <img src={DrawerIcon3} alt="document" className="w-5 h-5" />,
                   <img src={DrawerIcon4} alt="settings" className="w-5 h-5" />,
                   <img src={DrawerIcon5} alt="help" className="w-5 h-5" />,
-                  <img src={DrawerIcon6} alt="notification" className="w-5 h-5" />,
+                  <img
+                    src={DrawerIcon6}
+                    alt="notification"
+                    className="w-5 h-5"
+                  />,
                   <img src={DrawerIcon7} alt="profile" className="w-5 h-5" />,
                 ].map((icon, i) => (
                   <button
@@ -1142,10 +1155,8 @@ const PayrollDashboard = () => {
                 ))}
               </div>
             </div>
-
           </div>
         </div>
-
       )}
     </div>
   );
