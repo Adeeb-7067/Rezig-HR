@@ -13,22 +13,21 @@ const ShiftConfiguration = () => {
     const [expandLate, setExpandLate] = useState(false);
 
     return (
-        <div className="max-w-[1400px] mx-auto px-6">
+        <div className="">
 
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                 {/* ================= LEFT COLUMN ================= */}
-                <div className="flex flex-col gap-6">
+                <div className="col-span-1 space-y-4">
                     <ShiftGeneralSection />
                     <EarlyGoerSection />
                     <OvertimeSection />
 
-                    {/* 👉 When toggle ON move Other here */}
                     {expandLate && <OtherConfigurationSection />}
                 </div>
 
                 {/* ================= RIGHT COLUMN ================= */}
-                <div className="flex flex-col gap-6">
+                <div className="col-span-1 space-y-4">
 
                     <LateArrivalSection />
 
@@ -52,13 +51,18 @@ const ShiftConfiguration = () => {
 
             {/* Footer */}
             <div className="flex justify-end gap-4 mt-8">
-                <button className="px-6 py-2 text-xs font-medium border border-purple-600 text-purple-600 rounded-md hover:bg-purple-50 transition">
-                    Reset
-                </button>
-
-                <button className="px-6 py-2 text-xs font-medium bg-purple-600 text-white rounded-md hover:bg-purple-700 transition">
-                    Update
-                </button>
+  <button
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Reset
+        </button>
+        <button
+          type="button"
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+        >
+          Update
+        </button>
             </div>
 
         </div>

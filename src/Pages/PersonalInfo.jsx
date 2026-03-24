@@ -6,7 +6,6 @@ import { BsFolder } from "react-icons/bs";
 import { FaCamera, FaTimes } from "react-icons/fa";
 import { FiSearch, FiPhone } from "react-icons/fi";
 import SelectField from "@/components/SelectFeild";
-import { Label } from "@/components/ui/label";
 
 const InputField = ({
   label,

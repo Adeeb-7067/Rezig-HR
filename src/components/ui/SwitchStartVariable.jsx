@@ -8,7 +8,7 @@ const SwitchStartVariable = ({
 }) => {
 
     return (
-        <div className="flex items-center gap-3 py-2">
+        <div className="flex items-center gap-3 py-1">
 
             {/* Toggle */}
             <Switch
@@ -22,7 +22,7 @@ const SwitchStartVariable = ({
             />
 
             {/* Label */}
-            <Label className="text-Secondary text-gray-700 dark:text-gray-200 font-[400]">
+            <Label className="text-[0.7rem] text-gray-600 dark:text-gray-200 ">
                 {label}
             </Label>
 

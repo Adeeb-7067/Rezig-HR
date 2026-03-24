@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BankReportTabs from "./BankReportTabs";
+import Tabs from "@/components/Tabs";
 import BankReportHeader from "./BankReportHeader";
 import ListOfBank from "./ListOfBank/ListOfBank";
 import BankConfiguration from "./BankReportConfiguration/BankConfiguration";
@@ -9,17 +9,23 @@ const BankBuilder = () => {
     const [activeTab, setActiveTab] = useState("config");
     const [showConfig, setShowConfig] = useState(false);
 
+    const tabs = [
+        { label: "Bank Report Configuration", value: "config" },
+        { label: "List Of Bank Advice", value: "list" },
+    ];
+
     const handleCreate = () => {
         setActiveTab("config");
         setShowConfig(true);
     };
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="p-2 sm:p-4 space-y-4">
 
-            <BankReportTabs
+            <Tabs
+                tabs={tabs}
                 activeTab={activeTab}
-                setActiveTab={setActiveTab}
+                onChange={setActiveTab}
             />
 
             {/* Button logic */}

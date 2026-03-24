@@ -91,9 +91,9 @@ const AttendanceCalendar = ({
     return (
         <div className={`border rounded-lg ${compact ? "max-w-full overflow-visible" : "overflow-hidden"}`}>
             {/* Week Header */}
-            <div className={`grid grid-cols-7 dark:bg-gray-800 dark:text-white bg-gray-100 font-medium text-gray-500 ${compact ? "text-[0.7rem] py-1.5" : "text-xs p-2"}`}>
+            <div className={`grid grid-cols-7 dark:bg-gray-800 dark:text-white bg-gray-100 font-medium text-gray-500 ${compact ? "text-[0.7rem] " : "text-xs "}`}>
                 {weekDays.map((day) => (
-                    <div key={day} className="border-r border-gray-200 dark:border-gray-600 text-center last:border-r-0">
+                    <div key={day} className="border-r-2 p-[7px]  border-gray-200 dark:border-gray-600  ">
                         {day}
                     </div>
                 ))}

@@ -10,6 +10,8 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
+import DragandUpload from "@/components/ui/DragandUpload";
+
 const ToggleField = ({
   label,
   name,
@@ -262,14 +264,14 @@ const EditInstallmentModal = ({ loan, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-2xl mx-4 overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden">
         {/* Tab bar + close */}
         <div className="flex items-center border-b border-gray-200 dark:border-gray-700 px-6 pt-4 relative">
           {tabs.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className={`text-[0.82rem] font-medium pb-3 mr-8 border-b-2 transition-colors whitespace-nowrap ${
+              className={`text-[0.75rem] font-medium pb-3 mr-8 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === tab.key
                   ? "border-[#8629DF] text-[#8629DF]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
@@ -287,7 +289,7 @@ const EditInstallmentModal = ({ loan, onClose }) => {
         </div>
 
         {/* Tab content */}
-        <div className="p-6">
+        <div className="p-4">
           {activeTab === "adjust" && (
             <AdjustInstallmentTab loan={loan} onClose={onClose} />
           )}
@@ -337,9 +339,9 @@ const FileUploadZone = () => (
 // ── Tab 1: Adjust Installment ─────────────────────────────────────────────────
 const AdjustInstallmentTab = ({ loan, onClose }) => (
   <>
-    <div className="flex gap-4">
+    <div className="flex gap-4 w-full">
       {/* Left: form fields */}
-      <div className="flex-1 space-y-4">
+      <div className="flex-1 space-y-2 w-[60%]">
         {/* Row 1 */}
         <div className="flex gap-3">
           <SelectField
@@ -375,7 +377,7 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
 
         {/* Reason */}
         <div>
-          <label className="block text-[0.7rem] text-gray-500 font-semibold dark:text-gray-400 mb-1">
+          <label className="block text-[0.7rem] text-gray-500 font-semibold dark:text-gray-400 ">
             Adjustment Reason
           </label>
           <textarea
@@ -387,125 +389,239 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
       </div>
 
       {/* Right: file upload */}
-      <div className="w-52 flex-shrink-0">
-        <FileUploadZone />          
+      <div className="  w-[40%]">
+        <DragandUpload />
       </div>
     </div>
-
-    <ModalActions onClose={onClose} />
+    <div className="flex justify-end gap-2 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+        Export
+      </button>
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+        Import & Save
+      </button>
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+        Reset
+      </button>
+      <button className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+        Submit
+      </button>
+    </div>{" "}
   </>
 );
 
 // ── Tab 2: Add Extra Amount ───────────────────────────────────────────────────
-const AddExtraAmountTab = ({ loan, onClose }) => (
-  <>
-    <div className="flex gap-4">
-      <div className="flex-1 space-y-4">
-        <div className="flex gap-3">
-          <div className="flex-1">
-            <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-              Month &amp; Year
-            </label>
-            <select className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] text-gray-400 dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]">
-              <option value="">Select Month &amp; Year</option>
-            </select>
+const AddExtraAmountTab = ({ loan, onClose }) => {
+  const [formData, setFormData] = React.useState({
+    addAmount: "",
+    installmentCount: "",
+    adjustmentMode: "",
+    effectiveDate: "",
+  });
+
+  // const handleChange = (field, value) => {
+  //   setFormData((prev) => ({ ...prev, [field]: value }));
+  // };
+
+  const handleReset = () => {
+    setFormData({
+      addAmount: "",
+      installmentCount: "",
+      adjustmentMode: "",
+      effectiveDate: "",
+    });
+  };
+
+  const stats = {
+    totalLoanAmount: loan?.totalAmountWithInterest ?? "995667.00",
+    paidAmount: loan?.paidAmount ?? "0.00",
+    totalInstallment: loan?.totalInstallment ?? 7,
+    paidInstallment: loan?.paidInstallment ?? 0,
+    remainingAmount: loan?.remainingAmount ?? "995667.00",
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Summary Stats */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 p-5">
+        <div className="grid grid-cols-4 gap-3 mb-5">
+          <div>
+            <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+              Total Loan/Advnc Amount(with Interest)
+            </p>
+            <p className="text-[0.95rem] font-semibold text-gray-800 dark:text-gray-100">
+              {stats.totalLoanAmount}
+            </p>
           </div>
-          <div className="flex-1">
-            <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-              Payment Method
-            </label>
-            <select className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] text-gray-400 dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]">
-              <option value="">Select Pay Method</option>
-            </select>
+          <div>
+            <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+              Paid Amount(Installments+Out of Payroll)
+            </p>
+            <p className="text-[0.95rem] font-semibold text-gray-800 dark:text-gray-100">
+              {stats.paidAmount}
+            </p>
+          </div>
+          <div>
+            <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+              Total Installment
+            </p>
+            <p className="text-[0.95rem] font-semibold text-gray-800 dark:text-gray-100">
+              {stats.totalInstallment}
+            </p>
+          </div>
+          <div>
+            <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+              Paid Installment
+            </p>
+            <p className="text-[0.95rem] font-semibold text-gray-800 dark:text-gray-100">
+              {stats.paidInstallment}
+            </p>
           </div>
         </div>
 
-        <div>
-          <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-            Extra Amount
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Amount"
-            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]"
+        <div className="mb-6">
+          <p className="text-[0.72rem] text-gray-500 dark:text-gray-400 mb-1">
+            Remaining Principal+Interest Amount
+          </p>
+          <p className="text-[0.95rem] font-semibold text-gray-800 dark:text-gray-100">
+            {stats.remainingAmount}
+          </p>
+        </div>
+
+        {/* Form Fields */}
+        <div className="grid grid-cols-4 gap-3">
+          <InputField
+            label={"Add Amount to Existing Loan/Advance"}
+            placeholder="Enter Loan Amount "
           />
-        </div>
-
-        <div>
-          <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-            Reason
-          </label>
-          <textarea
-            rows={3}
-            placeholder="Enter Reason"
-            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+          <InputField
+            label={"Number of Installments to be Increased"}
+            placeholder="Enter No. of Installments"
+          />
+          <InputField
+            label={"Adjustment Mode"}
+            placeholder="Enter Adjustment Mode"
+          />
+          <DatePickerField
+            label={"Effective Date"}
+            placeholder="Select Effective Date"
           />
         </div>
       </div>
 
-      <div className="w-52 flex-shrink-0">
-        <FileUploadZone />
+      {/* Action Buttons */}
+      <div className="flex justify-end gap-3">
+        <button
+          onClick={handleReset}
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Reset
+        </button>
+        <button
+          onClick={() => console.log("Add Amount", formData)}
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Add Amount
+        </button>
       </div>
     </div>
-
-    <ModalActions onClose={onClose} />
-  </>
-);
+  );
+};
 
 // ── Tab 3: Foreclosure ────────────────────────────────────────────────────────
 const ForeclosureTab = ({ loan, onClose }) => (
   <>
-    <div className="flex gap-4">
-      <div className="flex-1 space-y-4">
-        <div className="flex gap-3">
-          <div className="flex-1">
-            <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-              Foreclosure Month &amp; Year
-            </label>
-            <select className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] text-gray-400 dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]">
-              <option value="">Select Month &amp; Year</option>
-            </select>
-          </div>
-          <div className="flex-1">
-            <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-              Payment Method
-            </label>
-            <select className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] text-gray-400 dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]">
-              <option value="">Select Pay Method</option>
-            </select>
-          </div>
-        </div>
-
-        <div>
-          <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-            Foreclosure Amount
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Amount"
-            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF]"
-          />
-        </div>
-
-        <div>
-          <label className="block text-[0.72rem] text-gray-600 dark:text-gray-400 mb-1">
-            Foreclosure Reason
-          </label>
-          <textarea
-            rows={3}
-            placeholder="Enter Reason"
-            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
-          />
-        </div>
+    {/* Summary Stats */}
+    <div className="flex gap-8 mb-6">
+      <div>
+        <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+          Total Loan/Advnc Amount(with Interest)
+        </p>
+        <p className="text-[0.95rem] font-medium text-gray-800 dark:text-gray-100">
+          {loan?.totalAmountWithInterest ?? "995667.00"}
+        </p>
       </div>
-
-      <div className="w-52 flex-shrink-0">
-        <FileUploadZone />
+      <div>
+        <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+          Paid Amount(Installments+Out of Payroll)
+        </p>
+        <p className="text-[0.95rem] font-medium text-gray-800 dark:text-gray-100">
+          {loan?.paidAmount ?? "0.00"}
+        </p>
+      </div>
+      <div>
+        <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+          Total Installment
+        </p>
+        <p className="text-[0.95rem] font-medium text-gray-800 dark:text-gray-100">
+          {loan?.totalInstallment ?? "7"}
+        </p>
+      </div>
+      <div>
+        <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+          Paid Installment
+        </p>
+        <p className="text-[0.95rem] font-medium text-gray-800 dark:text-gray-100">
+          {loan?.paidInstallment ?? "0"}
+        </p>
       </div>
     </div>
 
-    <ModalActions onClose={onClose} />
-  </>
+    {/* Remaining Amount */}
+    <div className="mb-6">
+      <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
+        Remaining Principal+Interest Amount
+      </p>
+      <p className="text-[0.95rem] font-medium text-gray-800 dark:text-gray-100">
+        {loan?.remainingAmount ?? "995667.00"}
+      </p>
+    </div>
+
+    {/* Form Row 1 */}
+    <div className="grid grid-cols-4 gap-3 mb-4">
+      <InputField label="Paid Amount" placeholder="Enter Paid Amount" />
+      <InputField label="Cheque/Draft No" placeholder="Enter Cheque/Draft No" />
+      <InputField label="Adjustment Mode" placeholder="Select Mode" />
+      <DatePickerField label="Paid Date" placeholder="Select a Date" />
+    </div>
+
+    {/* Form Row 2 */}
+    <div className="grid grid-cols-2 gap-3 mb-4">
+      <div>
+        <label className="block text-[0.7rem] text-gray-600 dark:text-gray-400 mb-1">
+          Bank Details
+        </label>
+        <textarea
+          rows={4}
+          placeholder="Enter Bank Details"
+          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+        />
+      </div>
+      <div>
+        <label className="block text-[0.7rem] text-gray-600 dark:text-gray-400 mb-1">
+          Remarks
+        </label>
+        <textarea
+          rows={4}
+          placeholder="Enter Remarks"
+          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+        />
+      </div>
+    </div>
+
+   {/* Action Buttons */}
+      <div className="flex justify-end gap-3">
+        <button
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Reset
+        </button>
+        <button
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Add Amount
+        </button>
+      </div>  </>
 );
 
 // ── Main Component ────────────────────────────────────────────────────────────

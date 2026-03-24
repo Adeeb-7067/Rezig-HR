@@ -66,6 +66,7 @@ const ExcelUpload = () => {
             }
 ${previewUrl ? "p-0 min-h-[160px]  overflow-hidden" : "p-10  min-h-[160px]"}
           `}
+          
         >
           {/* Upload Content */}
           {!previewUrl && (

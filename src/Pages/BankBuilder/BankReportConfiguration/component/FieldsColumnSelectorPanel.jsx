@@ -18,7 +18,7 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
 
     return (
 
-        <div className="overflow-x-auto md:overflow-x-visible">
+        <div className="overflow-x-auto md:overflow-x-visible ">
 
             <div className="grid grid-cols-1 md:grid-cols-[35%_65%] lg:grid-cols-[30%_70%] gap-3 min-w-[650px] md:min-w-0">
 
@@ -40,10 +40,10 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
 
                         <button
                             className="
-    w-10 h-7 flex items-center justify-center
+    w-8 h-6 flex items-center justify-center
     bg-white dark:bg-gray-800
     border border-gray-200 dark:border-gray-700
-    rounded-md shadow-sm
+    rounded-sm shadow-sm
     hover:bg-gray-100 dark:hover:bg-gray-700
     transition
     "
@@ -69,7 +69,7 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
 
                     {/* LIST */}
 
-                    <div className="max-h-[220px] overflow-y-auto table-scroll">
+                    <div className="max-h-[200px] overflow-y-auto table-scroll">
 
                         {fields.map((field) => {
 
@@ -88,13 +88,13 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
                                     <button
                                         onClick={() => addField(field)}
                                         disabled={isSelected}
-                                        className={`w-7 h-7 flex items-center justify-center rounded transition
+                                        className={`w-10 h-7 flex items-center justify-center rounded transition
                     ${isSelected
                                                 ? "bg-primary text-white dark:bg-purple-600"
-                                                : "bg-purple-100 text-primary hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800"
+                                                : "bg-purple-100 text-[#8629DF] hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800"
                                             }`}
                                     >
-                                        <Plus size={14} />
+                                        <Plus size={18} />
                                     </button>
 
                                 </div>

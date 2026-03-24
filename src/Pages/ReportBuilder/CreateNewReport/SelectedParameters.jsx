@@ -1,6 +1,6 @@
 "use client";
 
-import { Trash, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 const SelectedParameters = () => {
 
@@ -24,26 +24,26 @@ const SelectedParameters = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-gray-900  ">
+        <div className="bg-white dark:bg-gray-800 min-h-screen">
 
             {/* Title */}
-            <div className="flex items-center justify-between px-1 py-3">
+            <div className="flex items-center justify-between px-1 py-2">
 
-                <h3 className="text-sm font-semibold text-[#252C58] dark:text-gray-200">
+                <h3 className="text-[0.8rem] font-bold text-gray-500 dark:text-gray-300">
                     Selected Parameters for the report
                 </h3>
 
-                <button className="text-[#8629df] text-xs font-medium bg-[#F7F2FD] dark:bg-[#2b1d3f] px-2 py-1 rounded">
+                <button className="text-[#8629df] text-[0.65rem] font-bold bg-[#F7F2FD] dark:bg-[#2b1d3f] px-2 py-0.5 rounded-sm border border-purple-100 dark:border-purple-800 hover:bg-[#8629DF] hover:text-white transition-all">
                     Sequence
                 </button>
 
             </div>
 
             {/* Table */}
-            <div className="border-t border-gray-200 dark:border-gray-700 border rounded-sm">
+            <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm">
 
                 {/* Header */}
-                <div className="grid grid-cols-3 bg-primary text-white text-xs px-4 py-3  rounded-t-sm ">
+                <div className="grid grid-cols-3 bg-[#8629DF] text-white text-[0.65rem] font-bold uppercase tracking-wider px-4 py-2">
 
                     <div>DESCRIPTION</div>
 
@@ -54,20 +54,20 @@ const SelectedParameters = () => {
                 </div>
 
                 {/* Scroll Body */}
-                <div className="max-h-[550px] overflow-y-auto table-scroll">
+                <div className="max-h-[350px] overflow-y-auto table-scroll no-scrollbar bg-white dark:bg-gray-800">
 
                     {data.map((item, i) => (
 
                         <div
                             key={i}
                             className="grid grid-cols-3 px-4 py-2 items-center border-b
-              border-gray-200 dark:border-gray-700
-              text-Primary
-              hover:bg-gray-50 dark:hover:bg-gray-800 transition"
+               border-gray-100 dark:border-gray-700
+               text-[0.7rem]
+               hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all"
                         >
 
                             {/* Description */}
-                            <div className="text-gray-700 dark:text-gray-200">
+                            <div className="text-gray-600 dark:text-gray-200 font-medium">
                                 {item.name}
                             </div>
 
@@ -78,13 +78,13 @@ const SelectedParameters = () => {
                                     type="number"
                                     defaultValue={item.order}
                                     className="
-                  w-16 text-center
-                  border border-gray-300 dark:border-gray-600
-                  bg-white dark:bg-gray-800
-                  text-gray-700 dark:text-gray-200
-                  rounded px-2 py-1 text-Primary
-                  focus:outline-none focus:ring-2 focus:ring-primary
-                  "
+                   w-12 h-6 text-center
+                   border border-gray-200 dark:border-gray-700
+                   bg-white dark:bg-gray-800
+                   text-gray-600 dark:text-gray-200
+                   rounded-sm px-1 text-[0.7rem]
+                   focus:outline-none focus:ring-1 focus:ring-[#8629DF]
+                   "
                                 />
 
                             </div>
@@ -94,7 +94,7 @@ const SelectedParameters = () => {
 
                                 <Trash2
                                     size={14}
-                                    className="text-red-500 cursor-pointer hover:text-red-600"
+                                    className="text-red-400 cursor-pointer hover:text-red-600 transition-colors"
                                 />
 
                             </div>

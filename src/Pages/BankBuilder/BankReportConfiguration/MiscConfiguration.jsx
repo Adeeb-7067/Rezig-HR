@@ -57,16 +57,16 @@ const MiscConfiguration = () => {
 
     return (
 
-        <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6 space-y-6">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-4 rounded-sm space-y-4">
 
-            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <h3 className="text-[0.8rem] font-bold text-gray-500 dark:text-gray-300">
                 Miscellaneous Configuration
             </h3>
 
 
             {/* TOP FILTERS */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
 
                 <MultiSelectDropdown
                     label="All Banks"
@@ -75,12 +75,13 @@ const MiscConfiguration = () => {
                     onChange={setSelectedBanks}
                 />
 
-                <div className="flex items-center justify-between mt-6">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50 h-7.5">
+                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Consider Other Bank(s)
                     </span>
 
                     <Switch
+                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                         checked={considerOtherBank}
                         onCheckedChange={setConsiderOtherBank}
                     />
@@ -92,6 +93,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Report visibility"
                     unSelectLabel="Select"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "Yes", value: "yes" },
                         { label: "No", value: "no" }
@@ -119,7 +121,7 @@ const MiscConfiguration = () => {
 
             {/* REPORT HEADER */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
 
                 <SelectField
                     name="reportTitle"
@@ -127,6 +129,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Report Title / Heading"
                     unSelectLabel="All Sheets"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "Right", value: "right" },
                         { label: "Center", value: "center" },
@@ -134,16 +137,17 @@ const MiscConfiguration = () => {
                     ]}
                 />
 
-                <InputField label="Report Name" />
+                <InputField label="Report Name" className="h-7.5 text-[0.7rem]" />
 
-                <InputField label="Report Sub Title / Heading" />
+                <InputField label="Report Sub Title / Heading" className="h-7.5 text-[0.7rem]" />
 
-                <div className="flex items-center justify-between mt-6">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50 h-7.5">
+                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Show Company Name & Address
                     </span>
 
                     <Switch
+                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                         checked={showCompanyAddress}
                         onCheckedChange={setShowCompanyAddress}
                     />
@@ -154,11 +158,11 @@ const MiscConfiguration = () => {
 
             {/* HEADER CONTENT */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                <InputField label="Upper Header 1 Content" />
+                <InputField label="Upper Header 1 Content" className="h-7.5 text-[0.7rem]" />
 
-                <InputField label="Upper Header 2 Content" />
+                <InputField label="Upper Header 2 Content" className="h-7.5 text-[0.7rem]" />
 
                 <SelectField
                     name="header1Align"
@@ -166,6 +170,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Upper Header 1 Alignment"
                     unSelectLabel="Select"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "Left", value: "left" },
                         { label: "Center", value: "center" },
@@ -179,6 +184,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Upper Header 2 Alignment"
                     unSelectLabel="Select"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "Right", value: "right" },
                         { label: "Center", value: "center" },
@@ -191,7 +197,7 @@ const MiscConfiguration = () => {
 
             {/* BREAK SHEET */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 <SelectField
                     name="breakSheet"
@@ -199,13 +205,14 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Break Sheet According (Customized)"
                     unSelectLabel="Select"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "Left", value: "left" },
                         { label: "Right", value: "right" }
                     ]}
                 />
 
-                <InputField label="Next sheet after value" />
+                <InputField label="Next sheet after value" className="h-7.5 text-[0.7rem]" />
 
             </div>
 

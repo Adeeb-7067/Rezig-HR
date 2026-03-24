@@ -11,12 +11,12 @@ const stats = [
 
 const AttendanceStats = () => {
     return (
-        <div className="grid grid-cols-3 gap-4 w-full">
+        <div className="grid grid-cols-3 gap-4 w-full space-y-2">
 
             {stats.map((item, i) => (
                 <div
                     key={i}
-                    className={`border-b-4 ${item.color} bg-white dark:bg-gray-800 shadow-sm rounded-lg h-[80px] flex flex-col justify-center items-center`}
+                    className={`border-b-4 ${item.color} bg-white dark:bg-gray-800 shadow-sm rounded-lg h-[70px] flex flex-col justify-center items-center`}
                 >
                     <p className={`text-lg font-semibold ${item.color}`}>
                         1,000

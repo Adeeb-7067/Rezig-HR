@@ -52,7 +52,7 @@ const ComponentFilter = ({ groups, selected, onApply }) => {
                         fixed sm:absolute
                         right-0 sm:mt-3
                         bottom-0 sm:bottom-auto
-                        w-full sm:w-80
+                        w-full sm:w-64
                         bg-white dark:bg-gray-900
                         rounded-t-3xl sm:rounded-2xl
                         shadow-2xl

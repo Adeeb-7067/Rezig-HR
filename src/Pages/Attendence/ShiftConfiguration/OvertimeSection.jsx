@@ -3,6 +3,8 @@
 import { Info } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
+import InputField from "@/components/inputfeild";
 
 const OvertimeSection = () => {
     const [form, setForm] = useState({
@@ -55,72 +57,77 @@ const OvertimeSection = () => {
     );
 
     return (
-        <div
-            className="
-        w-full
-        rounded-xl
-        p-5
-        space-y-5
-        bg-[#EFEFEF]/70
-        dark:bg-gray-800
-        border border-gray-200
-        dark:border-gray-700
-        transition-colors
-      "
-        >
-            <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+       <div
+      className="
+      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg"
+    >
+      <h1 className="text-base font-semibold mb-1 text-gray-500">
                 Overtime Configuration
-            </h4>
+            </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-                <Field
+                <VariableTypeRow
+                info={'Overtime will Start after time'}
                     label="Overtime will Start after time"
                     name="otStart"
                 />
 
-                <Field
+                <InputField
                     label="Min Work Hrs./Min. for OT"
+                    info="Min Work Hrs./Min. for OT"
                     name="minWork"
                 />
 
-                <Field
+                <InputField
                     label="First Break After Overtime Hours"
+
+                    info="First Break After Overtime Hours"
                     name="firstBreakAfter"
                 />
 
-                <Field
+                <InputField
                     label="OT Round-Off (Hours/Minutes)"
+
+                    info="OT Round-Off (Hours/Minutes)"
                     name="roundOff"
                 />
 
-                <Field
+                <InputField
                     label="Duration of First OT Break"
+
+                    info="Duration of First OT Break"
                     name="firstBreakDuration"
                 />
 
-                <Field
+                <InputField
                     label="Gap Before Second OT Break"
+                    info="Gap Before Second OT Break"
                     name="gapBeforeSecond"
                 />
 
-                <Field
+                <InputField
+
                     label="Duration of Second OT Break"
+                    info="Duration of Second OT Break"
                     name="secondBreakDuration"
                 />
 
-                <Field
+                <InputField
                     label="Define OT Cycle"
+                    info="Define OT Cycle"
                     name="otCycle"
                 />
 
-                <Field
+                <InputField
                     label="Maximum Allowed OT Hours"
+                    info="Maximum Allowed OT Hours"
                     name="maxOT"
                 />
 
-                <Field
+                <InputField
                     label="Add Minutes for OT Cycle"
+                    info="Add Minutes for OT Cycle"
                     name="addMinutes"
                 />
 

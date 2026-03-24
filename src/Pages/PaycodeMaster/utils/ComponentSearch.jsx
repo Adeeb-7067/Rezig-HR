@@ -1,37 +1,19 @@
-import { Search } from "lucide-react";
+import { IoMdSearch } from "react-icons/io";
 
 const ComponentSearch = ({ value, onChange }) => {
     return (
-        <div className="relative w-full">
+        <div
+            className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[35px] 
+  focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
+        >
             <input
                 type="text"
+                placeholder="Search here"
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                placeholder="Search here"
-                className="
-                    w-full
-                    pl-4 pr-10
-                    py-2.5
-                    rounded-lg
-                    border border-gray-200 dark:border-gray-700
-                    bg-gray-50 dark:bg-gray-800
-                    text-sm text-gray-800 dark:text-gray-200
-                    placeholder-gray-400 dark:placeholder-gray-500
-                    focus:outline-none
-                    focus:ring-2
-                    focus:ring-[#8629DF]/30
-                    focus:border-[#8629DF]
-                    transition
-                "
+                className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
             />
-
-            <Search
-                size={16}
-                className="
-                    absolute right-3 top-1/2 -translate-y-1/2
-                    text-gray-400 dark:text-gray-500
-                "
-            />
+            <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
     );
 };

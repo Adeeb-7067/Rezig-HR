@@ -25,21 +25,21 @@ const SummaryConfiguration = () => {
         "NEFT"
     ];
     return (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-6 space-y-6">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-4 rounded-sm space-y-4">
 
             {/* Title */}
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200 text-sm sm:text-base">
+            <h3 className="text-[0.8rem] font-bold text-gray-500 dark:text-gray-300">
                 Configure Summary / Reconciliation Sheet
             </h3>
 
             {/* Main Toggle */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
 
-                <span className="text-sm text-gray-600 dark:text-gray-300">
+                <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                     Do you want to configure summary / reconciliation sheet
                 </span>
 
-                <Switch />
+                <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
 
             </div>
 
@@ -51,6 +51,7 @@ const SummaryConfiguration = () => {
                     label="Summary Sheet Position"
                     name="summaryPosition"
                     unSelectLabel="Select"
+                    className="h-7.5 text-[0.7rem]"
                     options={[
                         { label: "First", value: "first" },
                         { label: "Last", value: "last" }
@@ -60,26 +61,29 @@ const SummaryConfiguration = () => {
                 {/* Switch */}
                 <div className="flex items-center justify-between sm:justify-start gap-3 mt-4 sm:mt-6">
 
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Show Live and FNF Count in Summary Sheet
                     </span>
 
-                    <Switch />
+                    <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
 
                 </div>
 
                 {/* Switch */}
                 <div className="flex items-center justify-between sm:justify-start gap-3 mt-4 sm:mt-6">
 
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Show Previous Month Summary
                     </span>
 
-                    <Switch />
+                    <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
 
                 </div>
 
             </div>
+
+
+        
 
             {/* Columns Selector */}
             <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />

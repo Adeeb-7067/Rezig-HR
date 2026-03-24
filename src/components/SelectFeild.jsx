@@ -99,7 +99,7 @@ const SelectField = ({
           {value || "Select an option"}
         </span> */}
         <span
-          className={`truncate ${value ? "text-gray-700 dark:text-gray-100" : "text-gray-400"
+          className={`truncate ${value ? "text-gray-600 dark:text-gray-100" : "text-gray-400"
             }`}
         >
           {options.find((opt) => opt.value === value)?.label || unSelectLabel}

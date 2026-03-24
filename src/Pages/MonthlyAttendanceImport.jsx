@@ -425,35 +425,34 @@ const MonthlyAttendanceImport = () => {
   return (
     <div className="p-2 sm:p-4">
       {/* Top Actions */}
-        <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-6 sm:mb-8 w-full">
-            <div>
-                <h1 className="text-lg sm:text-xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
-                    Import Monthly Attendance
-                </h1>
-            </div>
+      <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-6 sm:mb-8 w-full">
+        <div>
+          <h1 className="text-lg sm:text-xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
+            Import Monthly Attendance
+          </h1>
         </div>
+      </div>
       {/* Search and Filter Bar */}
       <div className="grid grid-cols-2 md:flex gap-2 w-full">
         <div
-          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[90%] xl:h-[44px] 
+          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[90%] xl:h-[35px] 
        focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
         >
           <input
             type="text"
             placeholder="Search here"
-            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
           />
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
 
-        <div className="relative">
+        <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1 ">
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[1.2rem] px-4 py-2 md:py-1.5 min-w-[80px] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-[36px] md:h-[44px] w-full sm:w-auto"
+            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
           >
-            <HiAdjustmentsHorizontal className="md:w-6 md:h-6" />
+            <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
             Filter{" "}
             {open ? (
               <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
@@ -469,7 +468,7 @@ const MonthlyAttendanceImport = () => {
               className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
             >
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
-                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-3  border-b-2 pb-2">
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3  border-b-2 pb-2">
                   Filter
                 </h2>
 
@@ -477,7 +476,7 @@ const MonthlyAttendanceImport = () => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
+                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                     >
                       <input
                         type="checkbox"
@@ -495,23 +494,23 @@ const MonthlyAttendanceImport = () => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 dark:text-gray-50 dark:border-gray-200 border px-3 py-2 rounded-md text-gray-700 hover:bg-gray-300 text-sm"
+                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
                   >
-                    {/* <LuRefreshCw className="w-3 h-3" /> */}
+                    {/* <LuRefreshCw className="w-3 h-3" />  */}
                     Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-               ${
-                 isAnyFilterChecked
-                   ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
-                   : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-               }
-             `}
+         ${
+           isAnyFilterChecked
+             ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+             : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+         }
+       `}
                   >
-                    {/* <img src={SearchIcon} className="w-4 h-4" /> */}
+                    {/*     <img src={SearchIcon} className="w-4 h-4" /> */}
                     Apply
                   </button>
                 </div>

@@ -1,5 +1,6 @@
+import React from "react";
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Triangle } from "lucide-react";
+import { ChevronDown, ChevronUp, Plus, Triangle } from "lucide-react";
 import { componentdummyData } from "./component/componentdummyData";
 
 const ComponentGroupTable = ({ search = "", groups }) => {
@@ -12,51 +13,51 @@ const ComponentGroupTable = ({ search = "", groups }) => {
 
     return (
 
-        <div className="border  border-gray-200 dark:border-gray-700 overflow-hidden">
+        <div className="border border-gray-200 dark:border-gray-700 overflow-hidden rounded-sm">
 
             {/* Scroll only body */}
-            <div className="max-h-[350px] overflow-y-auto table-scroll">
+            <div className="max-h-[350px] overflow-y-auto table-scroll no-scrollbar bg-white dark:bg-gray-800">
 
-                <table className="w-full text-sm">
+                <table className="w-full text-[0.7rem]">
 
                     <tbody>
 
                         {groups.map((group) => (
 
-                            <>
+                            <React.Fragment key={group}>
 
                                 {/* Group Header */}
-                                <tr key={group}>
+                                <tr>
                                     <td colSpan={3} className="p-0">
 
                                         <div
                                             onClick={() => toggleGroup(group)}
                                             className="
                                                 flex items-center justify-between 
-                                                px-6 py-3 
-                                                bg-gray-100 dark:bg-gray-800
+                                                px-4 py-2 
+                                                bg-gray-50 dark:bg-gray-700/50
                                                 cursor-pointer 
-                                                hover:bg-gray-200 dark:hover:bg-gray-700
-                                                transition
+                                                hover:bg-gray-100 dark:hover:bg-gray-700
+                                                transition-all
                                             "
                                         >
 
                                             <div className="flex items-center gap-2">
 
                                                 <Triangle
-                                                    size={8}
+                                                    size={6}
                                                     fill="currentColor"
                                                     stroke="none"
-                                                    className={`transition-transform ${openGroup === group
-                                                        ? "rotate-0 text-gray-800 dark:text-gray-200"
-                                                        : "rotate-180 text-primary"
+                                                    className={`transition-transform duration-200 ${openGroup === group
+                                                        ? "rotate-180 text-gray-500 dark:text-gray-400"
+                                                        : "rotate-90 text-[#8629DF]"
                                                         }`}
                                                 />
 
                                                 <span
-                                                    className={`font-medium ${openGroup === group
-                                                        ? "text-gray-800 dark:text-gray-200"
-                                                        : "text-primary dark:text-purple-400"
+                                                    className={`font-bold uppercase tracking-tight ${openGroup === group
+                                                        ? "text-gray-600 dark:text-gray-200"
+                                                        : "text-[#8629DF] dark:text-purple-400"
                                                         }`}
                                                 >
                                                     {group}
@@ -66,13 +67,13 @@ const ComponentGroupTable = ({ search = "", groups }) => {
 
                                             {openGroup === group ? (
                                                 <ChevronUp
-                                                    size={16}
-                                                    className="text-gray-700 dark:text-gray-300"
+                                                    size={14}
+                                                    className="text-gray-400 dark:text-gray-500"
                                                 />
                                             ) : (
                                                 <ChevronDown
-                                                    size={16}
-                                                    className="text-primary dark:text-purple-400"
+                                                    size={14}
+                                                    className="text-[#8629DF] dark:text-purple-400"
                                                 />
                                             )}
 
@@ -83,14 +84,14 @@ const ComponentGroupTable = ({ search = "", groups }) => {
 
                                 {/* Column Header */}
                                 {openGroup === group && (
-                                    <tr className="bg-gray-200 dark:bg-gray-700 text-xs sticky top-0">
-                                        <th className="px-6 py-2 text-left text-gray-700 dark:text-gray-200">
+                                    <tr className="bg-gray-100 dark:bg-gray-700/80 text-[0.65rem] font-bold uppercase tracking-wider sticky top-0 z-10">
+                                        <th className="px-6 py-1.5 text-left text-gray-500 dark:text-gray-300">
                                             Code
                                         </th>
-                                        <th className="px-6 py-2 text-left text-gray-700 dark:text-gray-200">
+                                        <th className="px-6 py-1.5 text-left text-gray-500 dark:text-gray-300">
                                             Description
                                         </th>
-                                        <th className="px-6 py-2 text-center text-gray-700 dark:text-gray-200">
+                                        <th className="px-6 py-1.5 text-center text-gray-500 dark:text-gray-300">
                                             Add
                                         </th>
                                     </tr>
@@ -115,36 +116,37 @@ const ComponentGroupTable = ({ search = "", groups }) => {
                                             <tr
                                                 key={i}
                                                 className="
-                                                    border-b border-gray-200 dark:border-gray-700
-                                                    hover:bg-gray-50 dark:hover:bg-gray-800
-                                                    transition
+                                                    border-b border-gray-100 dark:border-gray-700
+                                                    hover:bg-gray-50 dark:hover:bg-gray-700/30
+                                                    transition-all
                                                 "
                                             >
 
-                                                <td className="px-6 py-3 text-xs font-medium">
+                                                <td className="px-6 py-2 text-[0.65rem] font-bold">
 
-                                                    <span className="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 px-2 py-1 rounded-md">
+                                                    <span className="bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 px-2 py-0.5 rounded-sm border border-purple-100 dark:border-purple-800">
                                                         {item.code}
                                                     </span>
 
                                                 </td>
 
-                                                <td className="px-6 py-3 text-gray-700 dark:text-gray-300">
+                                                <td className="px-6 py-2 text-gray-600 dark:text-gray-200">
                                                     {item.desc}
                                                 </td>
 
-                                                <td className="px-6 py-3 text-center">
+                                                <td className="px-6 py-2 text-center">
 
                                                     <button
                                                         className="
-                                                            w-8 h-8 rounded-md
-                                                            bg-purple-100 dark:bg-purple-900
-                                                            text-purple-600 dark:text-purple-300
-                                                            hover:bg-primary hover:text-white
-                                                            transition
+                                                            w-full  px-3 py-1 flex justify-center items-center  rounded-sm
+                                                            bg-[#8629DF] dark:bg-gray-700
+                                                            text-[#FFFFFF] dark:text-purple-300
+                                                            hover:bg-[#8629DF]/60 hover:text-white
+                                                            transition-all font-bold text-sm cursor-pointer 
                                                         "
                                                     >
-                                                        +
+                                                        <Plus className='w-5 h-5'/>
+                                                        
                                                     </button>
 
                                                 </td>
@@ -153,7 +155,7 @@ const ComponentGroupTable = ({ search = "", groups }) => {
 
                                         ))}
 
-                            </>
+                            </React.Fragment>
 
                         ))}
 

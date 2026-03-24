@@ -21,7 +21,7 @@ const DateFilter = ({ fromDate, toDate, setFromDate, setToDate }) => {
                 onClick={() => openPicker(fromRef)}
                 className="relative w-full sm:w-40 cursor-pointer"
             >
-                <div className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-gray-100 dark:bg-gray-800 flex items-center justify-between">
+                <div className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5  dark:bg-gray-800 flex items-center justify-between">
 
                     <span
                         className={`text-sm ${fromDate
@@ -49,7 +49,7 @@ const DateFilter = ({ fromDate, toDate, setFromDate, setToDate }) => {
                 onClick={() => openPicker(toRef)}
                 className="relative w-full sm:w-40 cursor-pointer"
             >
-                <div className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 bg-gray-100 dark:bg-gray-800 flex items-center justify-between">
+                <div className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5  dark:bg-gray-800 flex items-center justify-between">
 
                     <span
                         className={`text-sm ${toDate

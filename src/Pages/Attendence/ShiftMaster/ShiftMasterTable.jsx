@@ -12,24 +12,24 @@ const ShiftMasterTable = () => {
     return (
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm">
 
-            <h3 className="text-base font-semibold text-gray-800 dark:text-gray-100 mb-4">
+            <h3 className="text-base font-semibold text-gray-600 dark:text-gray-100 mb-4">
                 List Of Shift Category
             </h3>
 
-            <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
 
                 {/* Horizontal Scroll Wrapper */}
                 <div className="overflow-x-auto no-scrollbar">
 
-                    <div className="min-w-[900px]">
+                    <div className="min-w-[650px]">
 
                         {/* Header */}
                         <div className="bg-primary text-white">
-                            <table className="w-full table-fixed text-Primary">
+                            <table className="w-full table-fixed text-[0.7rem]">
                                 <thead>
                                     <tr>
                                         <th className="px-2 py-3 text-left w-[15%]">Shift Code</th>
-                                        <th className="px-2 py-3 text-left w-[35%]">Description</th>
+                                        <th className="px-2 py-3 text-left w-[25%]">Description</th>
                                         <th className="px-2 py-3 text-left w-[15%]">Start Time</th>
                                         <th className="px-2 py-3 text-left w-[15%]">End Time</th>
                                         <th className="px-2 py-3 text-left w-[10%]">Shift Day</th>
@@ -42,7 +42,7 @@ const ShiftMasterTable = () => {
 
                         {/* Body */}
                         <div className="max-h-[190px] overflow-y-auto table-scroll bg-white dark:bg-gray-800">
-                            <table className="w-full table-fixed text-Primary">
+                            <table className="w-full table-fixed text-[0.7rem]">
 
                                 <tbody className="text-gray-700 dark:text-gray-200">
 
@@ -53,7 +53,7 @@ const ShiftMasterTable = () => {
                                         >
                                             <td className="px-4 py-2 w-[15%]">{item.code}</td>
 
-                                            <td className="px-4 py-2 w-[35%]">{item.desc}</td>
+                                            <td className="px-4 py-2 w-[25%]">{item.desc}</td>
 
                                             <td className="px-4 py-2 w-[15%]">{item.start}</td>
 

@@ -22,25 +22,26 @@ const ListOfBank = ({ onCreate }) => {
     };
 
     return (
-        <div>
+        <div className="space-y-3">
 
-            <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-3">
-                List Of Bank Advice(S)
+            <h2 className="text-[0.8rem] font-bold text-gray-500 dark:text-gray-300">
+                List Of Bank Advice(s)
             </h2>
 
-            <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="rounded-sm border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
 
                 {/* Horizontal Scroll */}
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto no-scrollbar">
 
                     <div className="min-w-[900px]">
 
                         {/* Header */}
                         <div
-                            className="text-[0.75rem] font-semibold text-white bg-primary py-3 px-4"
+                            className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 uppercase tracking-wider"
                             style={{
                                 display: "grid",
-                                gridTemplateColumns: "1.5fr 1.5fr 1.5fr 120px 120px 120px",
+                                gridTemplateColumns: "0.8fr 1.7fr 2fr 80px 80px 120px",
+                                gap: "10px",
                                 alignItems: "center"
                             }}
                         >
@@ -53,21 +54,22 @@ const ListOfBank = ({ onCreate }) => {
                         </div>
 
                         {/* Body Scroll */}
-                        <div className="max-h-[170px] overflow-y-auto table-scroll bg-white dark:bg-gray-900">
+                        <div className="max-h-[400px] overflow-y-auto table-scroll bg-white dark:bg-gray-800 no-scrollbar">
 
                             {rows.map((row, i) => (
 
                                 <div
                                     key={i}
-                                    className="text-Primary py-3 px-4 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                    className="text-gray-600 dark:text-gray-200 py-2 px-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all text-[0.7rem]"
                                     style={{
                                         display: "grid",
-                                        gridTemplateColumns: "1.5fr 1.5fr 1.5fr 120px 120px 120px",
+                                gridTemplateColumns: "0.8fr 1.7fr 2fr 80px 80px 120px",
+                                        gap: "10px",
                                         alignItems: "center"
                                     }}
                                 >
 
-                                    <div>{row.name}</div>
+                                    <div className="font-medium">{row.name}</div>
 
                                     <div>{row.summary}</div>
 
@@ -77,21 +79,21 @@ const ListOfBank = ({ onCreate }) => {
                                         <Switch
                                             checked={row.status}
                                             onCheckedChange={() => toggleStatus(i)}
-                                            className="data-[state=checked]:bg-[#8629df]"
+                                            className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                                         />
                                     </div>
 
                                     <div className="flex justify-center">
-                                        <Copy size={14} className="cursor-pointer text-gray-500 hover:text-purple-600" />
+                                        <Copy size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
                                     </div>
 
-                                    <div className="flex justify-center gap-3">
+                                    <div className="flex justify-center gap-4">
 
-                                        <Download size={14} className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-purple-600" />
+                                        <Download size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
 
-                                        <Pencil size={14} className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-purple-600" />
+                                        <Pencil size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
 
-                                        <Trash2 size={14} className="cursor-pointer text-red-500 hover:text-red-700" />
+                                        <Trash2 size={14} className="cursor-pointer text-red-400 hover:text-red-600 transition-colors" />
 
                                     </div>
 

@@ -11,17 +11,18 @@ const BankReportHeader = ({ onCreate, showConfig }) => {
                 onClick={onCreate}
                 className="
           flex items-center gap-2
-          bg-primary
+          bg-[#8629DF]
           text-white
-          px-4 py-2
-          rounded-md
-          text-sm
-          shadow
+          h-7.5 px-4
+          rounded-sm
+          text-[0.7rem] font-semibold
+          shadow-sm
           hover:opacity-90
-          transition
+          transition-all
+          cursor-pointer
         "
             >
-                <Plus size={16} />
+                <Plus size={14} />
                 Create New Report
             </button>
 

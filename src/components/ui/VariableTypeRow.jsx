@@ -46,7 +46,7 @@ const VariableTypeRow = ({
     return (
         <div
             className={cn(
-                "w-full flex items-center",
+                "w-full flex items-center mt-5",
                 gapClass,
                 containerClass
             )}
@@ -77,7 +77,7 @@ const VariableTypeRow = ({
 
                 <span
                     className={cn(
-                        "text-[0.7rem] text-gray-600 dark:text-gray-300",
+                        "text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200",
                         labelClass
                     )}
                 >

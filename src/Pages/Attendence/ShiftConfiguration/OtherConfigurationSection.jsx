@@ -70,7 +70,7 @@ const OtherConfigurationSection = () => {
         <SectionCard title="Other Configuration">
 
             {/* ================= TOP GRID ================= */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
                 {topFields.map((field, index) => (
                     <InputField
@@ -84,7 +84,7 @@ const OtherConfigurationSection = () => {
             </div>
 
             {/* ================= TOGGLE ================= */}
-            <div className="pt-3">
+            <div className="pt-3 w-[50%]">
                 <VariableTypeRow
                     label="Adjust Late Coming with OT"
                     checked={adjustLate}
@@ -95,7 +95,7 @@ const OtherConfigurationSection = () => {
 
             {/* ================= CONDITIONAL LATE CYCLE ================= */}
             {adjustLate && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mt-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
                     {lateCycleFields.map((field, index) => (
                         <InputField
                             key={index}
@@ -113,7 +113,7 @@ const OtherConfigurationSection = () => {
             </p>
 
             {/* ================= BOTTOM GRID ================= */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                 {bottomFields.map((field, index) => (
                     <InputField
                         key={index}

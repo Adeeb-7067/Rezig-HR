@@ -45,7 +45,7 @@ const SelectFieldScroll = ({
                 type="button"
                 onClick={() => setOpen((prev) => !prev)}
                 className={cn(
-                    "w-full h-8 px-3 rounded-md text-[0.75rem]",
+                    "w-full h-8 px-3 rounded-sm text-[0.7rem]",
                     "flex items-center justify-between",
                     "bg-white dark:bg-gray-800",
                     "border border-gray-300 dark:border-gray-700",

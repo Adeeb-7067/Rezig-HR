@@ -648,133 +648,129 @@ const LoanAssignment = () => {
               </div>
             </div>
           </div>
+{/* Search and Filter Bar */}
+<div className="grid grid-cols-2 md:flex md:justify-around gap-2 md:gap-2 w-full flex-wrap-reverse md:flex-nowrap">
 
-          {/* Search and Filter Bar */}
-          <div className="grid grid-cols-2 md:flex gap-2 w-full">
-            <div ref={searchRef} className="relative w-full md:w-[90%]">
-              <div
-                className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[44px] 
-    focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
+  {/* SEARCH */}
+  <div
+    ref={searchRef}
+    className="relative w-full md:w-[90%]"
+  >
+    <div
+      className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[35px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
+    >
+      <input
+        type="text"
+        placeholder="Search by employee name..."
+        value={searchQuery}
+        onChange={(e) => {
+          setSearchQuery(e.target.value);
+          setShowSearchDropdown(e.target.value.length > 0);
+        }}
+        onFocus={() => {
+          if (searchQuery.length > 0) setShowSearchDropdown(true);
+        }}
+        className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
+      />
+      <IoMdSearch className="w-5 h-5 text-gray-500" />
+    </div>
+
+    {/* SEARCH DROPDOWN */}
+    {showSearchDropdown && filteredData.length > 0 && (
+      <div className="absolute z-50 top-full left-0 mt-1 w-full bg-white dark:bg-gray-800 border rounded shadow-lg">
+        {filteredData.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => {
+              setSearchQuery(item.employeeName);
+              setShowSearchDropdown(false);
+              setSelectedEmployee(item);
+            }}
+            className="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            <span className="text-[0.9rem] text-gray-800 dark:text-gray-200">
+              {item.employeeName}
+            </span>
+            <span className="text-[0.7rem] text-gray-400 ml-2">
+              • {item.department} • {item.location}
+            </span>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* FILTER BUTTON */}
+  <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1">
+    <button
+      onClick={() => setOpen((prev) => !prev)}
+      className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+    >
+      <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
+      Filter
+      {open ? (
+        <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
+      ) : (
+        <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
+      )}
+    </button>
+
+    {/* FILTER DROPDOWN */}
+    {open && (
+      <div
+        ref={dropdownRef}
+        className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
+      >
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
+          <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3 border-b-2 pb-2">
+            Filter
+          </h2>
+
+          <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2 no-scrollbar">
+            {filterOptions.map((f) => (
+              <label
+                key={f.key}
+                className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
               >
                 <input
-                  type="text"
-                  placeholder="Search by employee name..."
-                  value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                    setShowSearchDropdown(e.target.value.length > 0);
-                  }}
-                  onFocus={() => {
-                    if (searchQuery.length > 0) setShowSearchDropdown(true);
-                  }}
-                  className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
+                  type="checkbox"
+                  className="w-4 h-4 accent-[#8629DF]"
+                  checked={tempVisibleFilters[f.key]}
+                  onChange={(e) =>
+                    handleTempCheckboxChange(f.key, e.target.checked)
+                  }
                 />
-                <IoMdSearch className="w-5 h-5 text-gray-500" />
-              </div>
-
-              {showSearchDropdown && filteredData.length > 0 && (
-                <div className="absolute z-50 top-full mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-sm shadow-lg">
-                  {filteredData.map((item) => (
-                    <div
-                      key={item.id}
-                      onClick={() => {
-                        setSearchQuery(item.employeeName);
-                        setShowSearchDropdown(false);
-                        setSelectedEmployee(item);
-                      }}
-                      className="px-4 py-2.5 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 border-b border-gray-100 dark:border-gray-700 last:border-0"
-                    >
-                      <span className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                        {item.employeeName}
-                      </span>
-                      <span className="text-xs text-gray-400 dark:text-gray-500">
-                        {" "}
-                        • {item.department} • {item.location}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <div className="relative">
-              <button
-                onClick={() => setOpen((prev) => !prev)}
-                className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[1.2rem] px-4 py-2 md:py-1.5 min-w-[80px] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-[36px] md:h-[44px] w-full sm:w-auto"
-              >
-                <HiAdjustmentsHorizontal className="md:w-6 md:h-6" />
-                Filter{" "}
-                {open ? (
-                  <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
-                ) : (
-                  <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
-                )}
-              </button>
-
-              {open && (
-                <div
-                  ref={dropdownRef}
-                  className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
-                >
-                  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
-                    <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3 border-b-2 pb-2">
-                      Filter
-                    </h2>
-
-                    <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2 no-scrollbar">
-                      {filterOptions.map((f) => (
-                        <label
-                          key={f.key}
-                          className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
-                        >
-                          <input
-                            type="checkbox"
-                            className="w-4 h-4 accent-[#8629DF]"
-                            checked={tempVisibleFilters[f.key]}
-                            onChange={(e) =>
-                              handleTempCheckboxChange(f.key, e.target.checked)
-                            }
-                          />
-                          {f.label}
-                        </label>
-                      ))}
-                    </div>
-
-                    <div className="mt-4 flex gap-2 pt-3 border-t">
-                      <button
-                        onClick={handleResetFilters}
-                        className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
-                      >
-                        Reset
-                      </button>
-                      <button
-                        onClick={handleApplyFilters}
-                        disabled={!isAnyFilterChecked}
-                        className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-    ${isAnyFilterChecked
-                            ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                            : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-                          }
-  `}
-                      >
-                        Apply
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* <button className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
-          <CiImport className="md:w-4 md:h-4" />
-          Bulk Export
-        </button>
-
-        <button className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
-          <CiExport className="md:w-4 md:h-4" />
-          Bulk Import
-        </button> */}
+                {f.label}
+              </label>
+            ))}
           </div>
+
+          <div className="mt-4 flex gap-2 pt-3 border-t">
+            <button
+              onClick={handleResetFilters}
+              className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
+            >
+              Reset
+            </button>
+            <button
+              onClick={handleApplyFilters}
+              disabled={!isAnyFilterChecked}
+              className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
+              ${
+                isAnyFilterChecked
+                  ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+                  : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+              }`}
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+
+</div>
 
           {/* Filter Dropdowns */}
           <div className="flex gap-2 sm:gap-3 flex-wrap my-4">
