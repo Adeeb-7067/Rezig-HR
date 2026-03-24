@@ -20,8 +20,10 @@ import {
   ArrowUp,
   ArrowDown,
   BellDot,
+  MessageSquareMore,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import DatePickerField from "@/components/ui/datePicker";
 import AttendanceCalendar from "@/Pages/AttendanceRegularisation/components/AttendanceCalendar";
 import AttendanceRegularizeModal from "@/Pages/AttendanceRegularisation/components/AttendanceRegularizeModal";
 
@@ -600,7 +602,7 @@ const WishesCard = () => {
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Purple header with chat bubble icon (Figma) – no arrows */}
       <div className="flex items-center gap-2 bg-[#8629DF] px-4 py-2">
-        <MessageCircle className="w-5 h-5 text-white shrink-0 fill-white" />
+        <MessageSquareMore className="w-4 h-4 text-white shrink-0 fill-white" />
         <h2 className="text-[0.7rem] font-bold text-white">Wishes</h2>
       </div>
       <div className="p-4">
@@ -726,10 +728,10 @@ const legendItems = [
 ];
 
 const summaryBoxes = [
-  { count: 18, label: "Present", color: "bg-green-500" },
-  { count: 0, label: "LOP", color: "bg-red-500" },
-  { count: 2, label: "Half Day", color: "bg-blue-500" },
-  { count: 1, label: "Leave", color: "bg-purple-500" },
+  { count: 18, label: "Present", color: "#22c55e" }, // green-500
+  { count: 0, label: "LOP", color: "#ef4444" }, // red-500
+  { count: 2, label: "Half Day", color: "#3b82f6" }, // blue-500
+  { count: 1, label: "Leave", color: "#a855f7" }, // purple-500
 ];
 
 /* Day status for May 2015 (day of month -> status codes) – supports full tooltip when passed as full data */
@@ -912,6 +914,19 @@ const CalendarCard = () => {
   const openSingleModal = (day) => {
     setRegularizeModal({ open: true, day, month: 4, year: 2015 });
   };
+
+  const [formData, setFormData] = useState({
+    currentDate: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-4 min-w-0">
       <div className="flex items-center gap-2 mb-3">
@@ -924,31 +939,40 @@ const CalendarCard = () => {
       </div>
 
       {/* Month + summary pills – matches design image */}
-      <div className="flex flex-wrap items-center gap-2 mb-3">
-        <div className="flex items-center border border-gray-200 dark:border-gray-600 rounded-md overflow-hidden bg-white dark:bg-gray-700">
+      <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
+        {/* <div className="flex items-center border border-gray-200 dark:border-gray-600 rounded-md overflow-hidden bg-white dark:bg-gray-700">
           <span className="px-3 py-2 text-[0.8rem] font-medium text-[#333333] dark:text-gray-200 min-w-[90px]">
             May 2015
           </span>
+        </div> */}
+        <div className="w-50">
+          <DatePickerField
+            type="date"
+            name="currentDate"
+            value={formData.currentDate}
+            onChange={handleChange}
+          />
         </div>
-        {summaryBoxes.map((b, i) => (
-          <span
-            key={i}
-            className="px-2.5 py-1.5 rounded-md border border-gray-200 dark:border-gray-600 text-[0.7rem] font-medium flex items-center gap-1.5 bg-white dark:bg-gray-700 text-[#333333] dark:text-gray-200"
-          >
+        <div className="flex flex-row flex-wrap items-center gap-2">
+          {summaryBoxes.map((b, i) => (
             <span
-              className={cn("w-1.5 h-1.5 rounded-full shrink-0", b.color)}
-            />
-            {b.count} - {b.label}
-          </span>
-        ))}
+              key={i}
+              className="px-2.5 py-1.5 rounded-md border min-w-[5rem] border-gray-200 dark:border-gray-600 border-t-2 text-[0.7rem] font-medium flex items-center gap-1.5 bg-white dark:bg-gray-700 text-[#333333] dark:text-gray-200"
+              style={{ borderTopColor: b.color }}
+            >
+              <span className="text-[#8629DF]">{b.count}</span> - {b.label}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap gap-x-4 gap-y-1 mb-3 text-[0.7rem] text-gray-600 dark:text-gray-400">
+      <div className="flex flex-wrap border-1
+      py-1 rounded-sm justify-evenly justify-content-evenly gap-x-4 gap-y-1 mb-3 text-[0.7rem] text-gray-600 dark:text-gray-400">
         {legendItems.map((l, i) => (
-          <span key={i} className="flex items-center gap-1">
+          <span key={i} className="flex items-center gap-1 font-bold">
             <span
-              className={cn("w-1.5 h-1.5 rounded-full shrink-0", l.color)}
+              className={cn("w-2.5 h-2.5 rounded-full shrink-0", l.color)}
             />
             {l.code} - {l.label}
           </span>
