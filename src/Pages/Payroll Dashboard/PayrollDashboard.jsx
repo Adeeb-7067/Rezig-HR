@@ -785,7 +785,7 @@ const PayrollDashboard = () => {
                  px-4 rounded-sm shadow-md text-[0.7rem]
                  hover:opacity-90 transition col-span-1 sm:col-span-2 lg:col-span-1"
           >
-          {showVarianceUI ?  <SlReload size={18} /> : <FaPlay size={18} />}
+            {showVarianceUI ? <SlReload size={18} /> : <FaPlay size={18} />}
             {showVarianceUI ? "Re-Run Payroll" : "Run Payroll"}
           </button>
         </div>
@@ -1000,19 +1000,28 @@ const PayrollDashboard = () => {
                   onClick={() => setShowDrawer(false)}
                 />
               )}
-              
+
               {/* REPORT DRAWER — slides open, pushes main content; on mobile full width when open */}
               <div
                 style={{
-                  width: showDrawer ? (window.innerWidth < 1024 ? "100%" : "220px") : "0px",
+                  width: showDrawer
+                    ? window.innerWidth < 1024
+                      ? "100%"
+                      : "220px"
+                    : "0px",
                   transition: "width 0.3s ease",
                   overflow: "hidden",
                   flexShrink: 0,
                   maxWidth: "100%",
                 }}
-                className="bg-white dark:bg-gray-800 rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto"
+                className={`bg-white dark:bg-gray-800 ${showDrawer ? "" : "hidden"} rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto`}
               >
-                <div style={{ width: window.innerWidth < 1024 && showDrawer ? "100%" : "220px" }}>
+                <div
+                  style={{
+                    width:
+                      window.innerWidth < 1024 && showDrawer ? "100%" : "220px",
+                  }}
+                >
                   <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3 h-9 sm:h-auto">
                     <FaArrowRight
                       className="w-6 h-6 shadow-[#8629DF] rounded-full text-white bg-[#8629DF] p-1 cursor-pointer "
@@ -1060,7 +1069,12 @@ const PayrollDashboard = () => {
                   {/* Report Items */}
                   <div
                     className="overflow-y-auto"
-                    style={{ maxHeight: window.innerWidth < 1024 && showDrawer ? "calc(100vh - 120px)" : "calc(100vh - 130px)" }}
+                    style={{
+                      maxHeight:
+                        window.innerWidth < 1024 && showDrawer
+                          ? "calc(100vh - 120px)"
+                          : "calc(100vh - 130px)",
+                    }}
                   >
                     {reportItems.map((r) => (
                       <div
@@ -1069,7 +1083,9 @@ const PayrollDashboard = () => {
                       >
                         {/* Icon */}
                         <div className="w-8 h-8 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
-                          <span className="text-[15px] sm:text-[15px]">{r.icon}</span>
+                          <span className="text-[15px] sm:text-[15px]">
+                            {r.icon}
+                          </span>
                         </div>
 
                         {/* Text */}
@@ -1110,7 +1126,7 @@ const PayrollDashboard = () => {
 
               {/* ICON SIDEBAR — hidden on mobile, shown on desktop when drawer closed */}
               <div
-                className="hidden sm:flex flex-col items-center gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0"
+                className={`flex flex-col items-center ${!showDrawer ? "" : "hidden"} gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0`}
                 style={{
                   width: showDrawer ? "0px" : "60px",
                   transition: "width 0.3s ease",
