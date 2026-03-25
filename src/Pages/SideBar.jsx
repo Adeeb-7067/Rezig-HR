@@ -933,7 +933,7 @@ const SideBar = ({ setSidebarOpen }) => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-900 flex flex-col gap-1 mt-3 mx-4 overflow-y-auto rounded-lg p-2">
+    <div className="bg-white dark:bg-gray-900 flex flex-col gap-1 mt-3 mx-4 overflow-y-auto rounded-lg p-2 no-scrollbar">
 
       {menuItems.map((item) => {
 
@@ -949,7 +949,7 @@ const SideBar = ({ setSidebarOpen }) => {
               />
 
               {isOpen && (
-                <div className="mt-1 space-y-1">
+                <div className="mt-1 space-y-1 no-scrollbar">
                   {item.children.map((child) => (
                     <Level1MenuItem
                       key={child.name}

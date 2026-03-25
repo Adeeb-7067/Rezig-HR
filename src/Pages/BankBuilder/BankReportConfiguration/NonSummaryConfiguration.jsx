@@ -47,7 +47,7 @@ const NonSummaryConfiguration = () => {
                     ]}
                 />
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm ">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Active Consolidate Sheet
@@ -58,7 +58,7 @@ const NonSummaryConfiguration = () => {
                 </div>
 
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Consider Hold Employee(s)
@@ -69,7 +69,7 @@ const NonSummaryConfiguration = () => {
                 </div>
 
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm ">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Consider (-ve Employee(s))
@@ -80,7 +80,7 @@ const NonSummaryConfiguration = () => {
                 </div>
 
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Consider Zero Salaried Employee(s)
@@ -91,7 +91,7 @@ const NonSummaryConfiguration = () => {
                 </div>
 
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Consider FNF Employee(s)
@@ -102,7 +102,7 @@ const NonSummaryConfiguration = () => {
                 </div>
 
 
-                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50">
+                <div className="flex items-center justify-between gap-2 border border-gray-100 dark:border-gray-800 p-2 rounded-sm">
 
                     <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
                         Consider Name in Bank

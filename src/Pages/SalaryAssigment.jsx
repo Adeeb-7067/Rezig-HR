@@ -547,7 +547,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
 
   function SalaryTable() {
     return (
-      <div className="w-full flex justify-center  overflow-auto">
+      <div className="w-full flex justify-center  overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full  dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
           <table className="min-w-[800px] w-full text-[0.7rem] text-left border-collapse ">
             {/* Table Head */}

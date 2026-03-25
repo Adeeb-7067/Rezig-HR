@@ -17,66 +17,66 @@ const LoanDetails = () => {
     ];
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-2 mt-4">
 
             {/* Title */}
-            <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-200">
+            <h2 className="text-base font-semibold text-gray-500 dark:text-gray-200">
                 Loan Details
             </h2>
 
-            {/* Card */}
-            <div className="border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 shadow-sm">
+            {/* Table Container */}
+            <div className="rounded-sm shadow drop-shadow-xs border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                <div className="overflow-x-auto no-scrollbar">
+                    
+                    {/* Header */}
+                    <div
+                        className="text-[0.7rem] min-w-[600px] lg:min-w-full sm:text-[0.8rem] font-semibold text-white dark:text-gray-50 rounded-t-md dark:border-gray-700 bg-[#8629DF] dark:bg-gray-900 py-1 px-4 min-h-[40px]"
+                        style={{
+                            display: "grid",
+                            gridTemplateColumns: "1.5fr 1.5fr 1.5fr 1fr",
+                            gap: "6px",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div>Pay Head</div>
+                        <div>Install Amount</div>
+                        <div>Pay Date</div>
+                        <div>Status</div>
+                    </div>
 
-                {/* Header */}
-                <div
-                    className="text-Secondary font-semibold text-white bg-[#8629DF] py-3 px-6 rounded-t-lg"
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "1.5fr 1.5fr 1.5fr 1fr",
-                        alignItems: "center",
-                    }}
-                >
-                    <div>Pay Head</div>
-                    <div>Install Amount</div>
-                    <div>Pay Date</div>
-                    <div>Status</div>
+                    {/* Body */}
+                    <div className="max-h-[260px] overflow-y-auto table-scroll rounded-b-sm">
+                        {data.map((item, index) => (
+                            <div
+                                key={index}
+                                className="min-w-[600px] lg:min-w-full text-[0.7rem] sm:text-[0.72rem] py-2 px-4 border-b border-gray-100 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-200/30 dark:hover:bg-gray-500/30 dark:bg-[#A1A1AA]/5 transition-colors"
+                                style={{
+                                    display: "grid",
+                                    gridTemplateColumns: "1.5fr 1.5fr 1.5fr 1fr",
+                                    gap: "6px",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <div className="font-semibold text-gray-800 dark:text-gray-200">
+                                    {item.head}
+                                </div>
+
+                                <div className="text-gray-700 dark:text-gray-300">
+                                    {item.amount}
+                                </div>
+
+                                <div className="text-gray-700 dark:text-gray-300">
+                                    {item.date}
+                                </div>
+
+                                <div className="text-gray-800 dark:text-gray-300 font-medium">
+                                    {item.status}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
                 </div>
-
-                {/* Body */}
-                <div className="max-h-[260px] overflow-y-auto table-scroll">
-
-                    {data.map((item, index) => (
-                        <div
-                            key={index}
-                            className="text-Primary py-3 px-6 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700"
-                            style={{
-                                display: "grid",
-                                gridTemplateColumns: "1.5fr 1.5fr 1.5fr 1fr",
-                                alignItems: "center",
-                            }}
-                        >
-
-                            <div className="text-gray-700 dark:text-gray-200">
-                                {item.head}
-                            </div>
-
-                            <div className="text-gray-600 dark:text-gray-300">
-                                {item.amount}
-                            </div>
-
-                            <div className="text-gray-600 dark:text-gray-300">
-                                {item.date}
-                            </div>
-
-                            <div className="text-gray-600 dark:text-gray-300 font-medium">
-                                {item.status}
-                            </div>
-
-                        </div>
-                    ))}
-
-                </div>
-
             </div>
 
         </div>
