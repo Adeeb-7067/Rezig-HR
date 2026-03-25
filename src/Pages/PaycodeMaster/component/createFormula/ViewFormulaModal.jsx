@@ -17,22 +17,22 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
             <div className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
 
                 {/* Header */}
-                <div className="flex justify-between items-center px-6 py-3 bg-gradient-to-r bg-primary text-white">
+                <div className="flex justify-between items-center px-6 py-3 m-6 rounded-sm bg-gradient-to-r bg-primary text-white">
                     <h2 className="text-sm font-semibold">View Formula</h2>
 
                     <button
                         onClick={onClose}
-                        className="w-8 h-8 flex items-center justify-center rounded-full bg-white/30 hover:bg-white/40 transition"
+                        className="w-8 h-8 flex items-center justify-center  rounded-full bg-white hover:bg-white/40 transition"
                     >
-                        <X size={16} />
+                        <X size={16} color="black" />
                     </button>
                 </div>
 
                 {/* Body */}
-                <div className="p-6 space-y-6 text-sm">
+                <div className="px-6 pb-6 space-y-6 text-sm">
 
                     {/* Status Section */}
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-5 bg-gray-50 dark:bg-gray-800">
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3 shadow-sm bg-white dark:bg-gray-800">
 
                         <p className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
                             Status
@@ -86,15 +86,15 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
                     </div>
 
                     {/* Formula Section */}
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-md p-5 bg-gray-50 dark:bg-gray-800">
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-md px-3 pt-3 bg-white shadow-sm dark:bg-gray-800">
 
-                        <p className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
+                        <p className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
                             Formula Expression
                         </p>
 
-                        <div className="border-t border-gray-200 dark:border-gray-700 mb-4" />
+                        <div className="border-t border-gray-200 dark:border-gray-700" />
 
-                        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-md p-3 text-gray-700 dark:text-gray-200 font-mono">
+                        <div className="bg-white dark:bg-gray-900  rounded-md py-3 text-gray-700 dark:text-gray-200 font-mono">
                             {data?.formula}
                         </div>
 

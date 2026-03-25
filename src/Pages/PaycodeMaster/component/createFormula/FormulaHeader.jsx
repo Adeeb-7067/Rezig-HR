@@ -7,7 +7,7 @@ const FormulaHeader = () => {
     return (
         <div
             className="
-        bg-gray-50 dark:bg-gray-900
+        bg-white dark:bg-gray-900
         border border-gray-200 dark:border-gray-700
         rounded-2xl
         p-5 sm:p-6

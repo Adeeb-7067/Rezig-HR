@@ -99,6 +99,7 @@ const ViewPaycodeModal = ({ open, onClose, data }) => {
         h-full
         sm:h-auto
         sm:max-w-5xl
+        md:max-w-2xl
         sm:rounded-2xl
         bg-gray-100 dark:bg-gray-900
         shadow-2xl

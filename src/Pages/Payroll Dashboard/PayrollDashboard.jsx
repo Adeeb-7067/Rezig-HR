@@ -1014,7 +1014,7 @@ const PayrollDashboard = () => {
                   flexShrink: 0,
                   maxWidth: "100%",
                 }}
-                className={`bg-white dark:bg-gray-800 ${showDrawer ? "" : "hidden"} rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto`}
+                className={`bg-white dark:bg-gray-800 ${showDrawer ? "" : "hidden"} rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto md:flex`}
               >
                 <div
                   style={{

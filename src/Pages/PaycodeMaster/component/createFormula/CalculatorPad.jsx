@@ -14,7 +14,7 @@ const CalculatorPad = ({ onKeyPress, onClear }) => {
         ["+", "−", "×", "÷", "%", ">", ">=", "<", "<=", "!=", "+/-"].includes(key);
 
     return (
-        <div className="bg-gray-100 dark:bg-gray-800 rounded-2xl p-3 sm:p-4 transition-colors">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl p-3 sm:p-4 transition-colors">
 
             <div className="grid grid-cols-4 sm:grid-cols-5 gap-3 sm:gap-4">
 
@@ -32,7 +32,7 @@ const CalculatorPad = ({ onKeyPress, onClear }) => {
                             }
                             className={`
                                 ${isZero ? "col-span-2 sm:col-span-2" : ""}
-                                h-12 sm:h-16
+                                h-10 sm:h-16
                                 rounded-2xl
                                 flex items-center justify-center
                                 text-base sm:text-xl
