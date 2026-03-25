@@ -60,7 +60,7 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
       {/* Right Icon Section */}
       <div className="flex items-center gap-1 flex-shrink-0">
         <div
-          className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center"
+          className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center mr-8"
           style={{ backgroundColor: iconBg }}
         >
           {typeof Icon === "string" ? (
@@ -69,12 +69,12 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
             <Icon size={16} className="sm:w-[18px] sm:h-[18px] text-white" />
           )}
         </div>
-        {/* <div className="p-1 sm:p-1.5 rounded-sm bg-purple-100 dark:bg-purple-900/30">
+        <div className="p-1 sm:p-1.5 rounded-bl-sm bg-purple-100 dark:bg-purple-900/30 absolute top-0 right-0">
           <FiDownload
             size={14}     
             className="sm:w-4 sm:h-4 text-[#7B2CBF] dark:text-purple-400 cursor-pointer hover:scale-110 transition"
           />
-        </div> */}
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import {
   ChevronLeft,
   ChevronRight,
+  ChevronUp,
+  ChevronDown,
   DollarSign,
   Megaphone,
   Download,
@@ -73,6 +75,63 @@ const salaryMonths = [
     paymentDate: "31 Dec 2026",
     netPay: "₹28,500",
     grossEarnings: "₹31,200",
+    totalDeductions: "₹3,300",
+    earnings: [
+      { label: "Basic Salary", amount: "₹18,000" },
+      { label: "HRA", amount: "₹7,200" },
+      { label: "Conveyance Allowance", amount: "₹1,800" },
+      { label: "Special Allowance", amount: "₹4,200" },
+    ],
+    deductions: [
+      { label: "Provident Fund (PF)", amount: "₹2,160" },
+      { label: "Professional Tax (PT)", amount: "₹200" },
+      { label: "Income Tax", amount: "₹940" },
+    ],
+  },
+  {
+    month: "Jan 2027",
+    payPeriod: "1 Jan - 31 Jan 2027",
+    paymentDate: "31 Jan 2027",
+    netPay: "₹31,500",
+    grossEarnings: "₹33,200",
+    totalDeductions: "₹3,300",
+    earnings: [
+      { label: "Basic Salary", amount: "₹18,000" },
+      { label: "HRA", amount: "₹7,200" },
+      { label: "Conveyance Allowance", amount: "₹1,800" },
+      { label: "Special Allowance", amount: "₹4,200" },
+    ],
+    deductions: [
+      { label: "Provident Fund (PF)", amount: "₹2,160" },
+      { label: "Professional Tax (PT)", amount: "₹200" },
+      { label: "Income Tax", amount: "₹940" },
+    ],
+  },
+  {
+    month: "Feb 2027",
+    payPeriod: "1 Feb - 28 Feb 2027",
+    paymentDate: "28 Feb 2027",
+    netPay: "₹32,500",
+    grossEarnings: "₹33,200",
+    totalDeductions: "₹3,300",
+    earnings: [
+      { label: "Basic Salary", amount: "₹18,000" },
+      { label: "HRA", amount: "₹7,200" },
+      { label: "Conveyance Allowance", amount: "₹1,800" },
+      { label: "Special Allowance", amount: "₹4,200" },
+    ],
+    deductions: [
+      { label: "Provident Fund (PF)", amount: "₹2,160" },
+      { label: "Professional Tax (PT)", amount: "₹200" },
+      { label: "Income Tax", amount: "₹940" },
+    ],
+  },
+  {
+    month: "Mar 2027",
+    payPeriod: "1 Mar - 31 Mar 2027",
+    paymentDate: "31 Mar 2027",
+    netPay: "₹33,500",
+    grossEarnings: "₹35,200",
     totalDeductions: "₹3,300",
     earnings: [
       { label: "Basic Salary", amount: "₹18,000" },
@@ -250,6 +309,31 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
 
 const SalaryDetailsCard = () => {
   const [modalSalary, setModalSalary] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const itemsPerPage = 3;
+
+  // Calculate total pages
+  const totalPages = Math.ceil(salaryMonths.length / itemsPerPage);
+
+  // Get current 3 months to display
+  const currentSalaryMonths = salaryMonths.slice(
+    currentPage * itemsPerPage,
+    currentPage * itemsPerPage + itemsPerPage
+  );
+
+  const handlePrevious = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <div className="w-full">
       {modalSalary && (
@@ -272,14 +356,28 @@ const SalaryDetailsCard = () => {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30"
+            // className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30 cursor-pointer"
+            onClick={handlePrevious}
+            disabled={currentPage === 0}
+            className={`p-0.5 rounded text-white transition-all ${
+              currentPage === 0
+                ? "bg-white/10 cursor-not-allowed opacity-50"
+                : "bg-white/20 hover:bg-white/30 cursor-pointer"
+            }`}
             aria-label="Previous"
           >
             <ChevronLeft size={16} />
           </button>
           <button
             type="button"
-            className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30"
+            // className="p-0.5 rounded bg-white/20 text-white hover:bg-white/30 cursor-pointer"
+            onClick={handleNext}
+            disabled={currentPage === totalPages - 1}
+            className={`p-0.5 rounded text-white transition-all ${
+              currentPage === totalPages - 1
+                ? "bg-white/10 cursor-not-allowed opacity-50"
+                : "bg-white/20 hover:bg-white/30 cursor-pointer"
+            }`}
             aria-label="Next"
           >
             <ChevronRight size={16} />
@@ -287,15 +385,15 @@ const SalaryDetailsCard = () => {
         </div>
       </div>
       {/* 3 cards in a row – click opens modal */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4  dark:bg-gray-900/50  ">
-        {salaryMonths.map((s, i) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 dark:bg-gray-900/50">
+        {currentSalaryMonths.map((s, i) => (
           <SalaryMonthCard
             key={s.month}
             month={s.month}
             netPay={s.netPay}
             grossEarnings={s.grossEarnings}
             totalDeductions={s.totalDeductions}
-            showAvatars={i === 1}
+            showAvatars={i === 1} // Optional: keep middle one with avatar
             onClick={() => setModalSalary(s)}
           />
         ))}
@@ -678,11 +776,24 @@ const WishesCard = () => {
               </span>
 
               <div className="flex items-center gap-3 min-w-0 flex-1 pt-1">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  className="w-10 h-10 rounded-full object-cover shrink-0"
-                />
+                <div className="relative w-10 h-10 shrink-0">
+                  {/* Profile Image */}
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+
+                  {/* 3Yr Badge - Exactly like your image */}
+                  {activeTab === "anniversary" && (
+                    <div
+                      className="absolute -top-1 -right-1 bg-[#3B82F6] text-white text-[0.5rem] 
+                  w-5 h-5 flex items-center justify-center rounded-full shadow-sm "
+                    >
+                      3Yr
+                    </div>
+                  )}
+                </div>
                 <div className="min-w-0">
                   <p className="text-[0.8rem] font-semibold text-[#333333] dark:text-gray-200 truncate">
                     {p.name}
@@ -910,7 +1021,7 @@ const CalendarCard = () => {
     month: 4,
     year: 2015,
   });
-  const openSingleModalNoOp = () => {};
+
   const openSingleModal = (day) => {
     setRegularizeModal({ open: true, day, month: 4, year: 2015 });
   };
@@ -929,14 +1040,14 @@ const CalendarCard = () => {
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-4 min-w-0">
-      <div className="flex items-center gap-2 mb-3">
+      {/* <div className="flex items-center gap-2 mb-3">
         <div className="w-8 h-8 rounded-lg bg-[#F3E9FF] dark:bg-purple-900/30 flex items-center justify-center">
           <CalendarIcon className="w-4 h-4 text-[#8629DF]" />
         </div>
         <h2 className="text-[1rem] font-bold text-[#333333] dark:text-gray-400">
           Attendance Calendar
         </h2>
-      </div>
+      </div> */}
 
       {/* Month + summary pills – matches design image */}
       <div className="flex flex-wrap justify-between items-center gap-2 mb-3">
@@ -967,8 +1078,10 @@ const CalendarCard = () => {
       </div>
 
       {/* Legend */}
-      <div className="flex flex-wrap border-1
-      py-1 rounded-sm justify-evenly justify-content-evenly gap-x-4 gap-y-1 mb-3 text-[0.7rem] text-gray-600 dark:text-gray-400">
+      <div
+        className="flex flex-wrap border-1
+      py-1 rounded-sm justify-evenly justify-content-evenly gap-x-4 gap-y-1 mb-3 text-[0.7rem] text-gray-600 dark:text-gray-400"
+      >
         {legendItems.map((l, i) => (
           <span key={i} className="flex items-center gap-1 font-bold">
             <span
@@ -1074,6 +1187,17 @@ const holidaysByMonth = [
 
 const HolidaysCard = () => {
   const [year, setYear] = useState("2026");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalMonths = holidaysByMonth?.length;
+
+  const goToNext = () => {
+    if (currentIndex < totalMonths - 1) setCurrentIndex((prev) => prev + 1);
+  };
+
+  const goToPrev = () => {
+    if (currentIndex > 0) setCurrentIndex((prev) => prev - 1);
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Purple header: calendar icon + title + year dropdown (white text on lighter purple, white chevron) */}
@@ -1106,40 +1230,67 @@ const HolidaysCard = () => {
         </select>
       </div>
       {/* Month heading = colored bar; holiday list = white background */}
-      <ul className="list-none bg-white dark:bg-gray-800 p-4">
-        {holidaysByMonth.map((m) => (
-          <li
-            key={m.month}
-            className="border-t  first:border-t-0 shadow-md border border-gray-100 dark:border-gray-700 mb-4 rounded-md overflow-hidden"
-          >
-            <p
-              className={cn(
-                "text-[0.8rem] font-bold text-[#333333] dark:text-gray-200 px-4 py-2",
-                m.headingBg
-              )}
+      <div className="relative h-[28rem] overflow-hidden bg-white dark:bg-gray-800">
+        {" "}
+        {/* Adjusted height for 3 items */}
+        {/* Sliding Container */}
+        <div
+          className="h-full transition-transform duration-500 ease-in-out flex flex-col"
+          style={{ transform: `translateY(-${currentIndex * 50}%)` }}
+        >
+          {holidaysByMonth.map((m, idx) => (
+            <div
+              key={idx}
+              className=" flex-shrink-0 px-4 py-3 flex flex-col"
             >
-              {m.month}
-            </p>
-            <ul className="space-y-1.5 list-none p-0 m-0 px-4 py-3 bg-white dark:bg-gray-800">
-              {m.list.map((h, i) => (
-                <li
-                  key={i}
-                  className="text-[0.7rem] text-[#333333] dark:text-gray-300 flex items-center gap-2 flex-wrap"
-                >
-                  {h}
-                  {(h.includes("Republic Day") ||
-                    h.includes("New Year") ||
-                    h.includes("Labour Day")) && (
-                    <span className="px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 border border-purple-100 dark:border-purple-800/50">
-                      National Holiday
-                    </span>
+              <div className="border border-gray-100 dark:border-gray-700 shadow-md rounded-md overflow-hidden flex-1 flex flex-col">
+                {/* Month Header */}
+                <p
+                  className={cn(
+                    "text-[0.8rem] font-bold px-4 py-2.5",
+                    m.headingBg
                   )}
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-      </ul>
+                >
+                  {m.month}
+                </p>
+
+                {/* Holiday List - Only 3 items visible */}
+                <ul className="flex-1 px-4 py-3 space-y-2 overflow-hidden text-[0.7rem] text-[#333333] dark:text-gray-300">
+                  {m.list.map((h, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      {h}
+                      {(h.includes("Republic Day") ||
+                        h.includes("New Year")) && (
+                        <span className="ml-auto px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 border border-purple-100 dark:border-purple-800/50">
+                          National Holiday
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* Up Arrow - appears only if not first month */}
+        {currentIndex > 0 && (
+          <button
+            onClick={goToPrev}
+            className="absolute top-4 right-1/2 translate-x-1/2 b cursor-pointer p-2 rounded-full  z-10 transition-all"
+          >
+            <ChevronUp className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+          </button>
+        )}
+        {/* Down Arrow - appears only if not last month */}
+        {currentIndex < totalMonths - 1 && (
+          <button
+            onClick={goToNext}
+            className="absolute bottom-4 right-1/2 translate-x-1/2  cursor-pointer  p-2 rounded-full z-10 transition-all"
+          >
+            <ChevronDown className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
