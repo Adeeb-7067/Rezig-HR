@@ -38,7 +38,7 @@ const PublishPaymode = () => {
                 <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm">
 
                     <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 py-1.5 font-semibold uppercase tracking-wider">
-                        All Fields
+                        All Fields 
                     </div>
 
                     <div className="max-h-[200px] overflow-y-auto no-scrollbar bg-white dark:bg-gray-800">
@@ -56,7 +56,7 @@ const PublishPaymode = () => {
                                     onClick={() => addField(mode)}
                                     className="w-5 h-5 flex items-center justify-center rounded-sm bg-purple-50 dark:bg-purple-900/30 text-[#8629DF] hover:bg-[#8629DF] hover:text-white transition-all cursor-pointer"
                                 >
-                                    <Plus size={12} />
+                                    <Plus size={14} />
                                 </button>
 
                             </div>

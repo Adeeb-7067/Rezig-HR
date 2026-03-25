@@ -6,9 +6,9 @@ const RowFieldsSelector = ({ fields, title, headerRow }) => {
 
     return (
 
-        <div className="space-y-3">
+        <div className="space-y-1">
 
-            <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+            <h4 className="text-[0.8rem] font-medium text-gray-500 dark:text-gray-400 px-1  tracking-tight">
                 {title}
             </h4>
 

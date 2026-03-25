@@ -75,7 +75,7 @@ const MiscConfiguration = () => {
                     onChange={setSelectedBanks}
                 />
 
-                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50 h-7.5">
+                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm h-7.5">
                     <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Consider Other Bank(s)
                     </span>
@@ -141,7 +141,7 @@ const MiscConfiguration = () => {
 
                 <InputField label="Report Sub Title / Heading" className="h-7.5 text-[0.7rem]" />
 
-                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm bg-white/50 dark:bg-gray-800/50 h-7.5">
+                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm h-7.5">
                     <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Show Company Name & Address
                     </span>

@@ -152,7 +152,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-1 w-full max-w-sm mx-auto cursor-pointer">
+    <div className="flex flex-col space-y-1 w-full cursor-pointer">
       {/* Label */}
       <label className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200">
         {label || ""}

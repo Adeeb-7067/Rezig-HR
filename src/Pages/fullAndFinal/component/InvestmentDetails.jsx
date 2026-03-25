@@ -1,48 +1,314 @@
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import DateInput from "@/components/ui/DateInput";
+import { ChevronDown, Trash2 } from "lucide-react";
+import InputField from "@/components/inputfeild";
+import SelectField from "@/components/SelectFeild";
+import DatePickerField from "@/components/ui/datePicker";
 
 const btnPrevReset =
-  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
+  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
 const btnSave =
-  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
-const labelClass = "text-xs text-gray-500 dark:text-gray-400 block mb-1";
-const inputClass =
-  "w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm bg-gray-50 dark:bg-gray-700/50 text-gray-800 dark:text-gray-200 min-w-0 focus:outline-none focus:ring-1 focus:ring-[#8629DF]";
+  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer";
 
-function InvestmentRow({ label, amount = "25,000.00" }) {
+/* ─── Section 80C / Other Section accordion ─── */
+function SectionAccordion({ label, rows, setRows }) {
   const [open, setOpen] = useState(false);
+
+  const addRow = () =>
+    setRows((prev) => [
+      ...prev,
+      { section: "", description: "", amount: "" },
+    ]);
+
+  const removeRow = (idx) =>
+    setRows((prev) => prev.filter((_, i) => i !== idx));
+
+  const updateRow = (idx, field, value) =>
+    setRows((prev) =>
+      prev.map((r, i) => (i === idx ? { ...r, [field]: value } : r))
+    );
+
   return (
-    <div className="flex flex-wrap items-end gap-3 py-3 border-b border-gray-200 dark:border-gray-600 last:border-b-0">
-      <div className="min-w-0 flex-1">
-        <label className={labelClass}>{label}</label>
-      </div>
-      <div className="flex items-end gap-2 flex-wrap">
-        <div className="text-right">
-          <p className="text-[#8629DF] font-semibold text-sm">{amount}</p>
-          <p className="text-xs text-gray-500 dark:text-gray-400">Amount</p>
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-hidden">
+      {/* Header bar */}
+      <div className="flex items-center justify-between px-3 py-3">
+        <div className="flex flex-row justify-between w-[50%]">
+
+        <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
+          {label}
+        </h3>
+
+        <div className="flex flex-col leading-tight">
+          <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+            50,000,00
+          </h1>
+          <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+             Amount
+          </span>
         </div>
-        <button
-          type="button"
-          className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-sm font-medium px-4 py-2 rounded shrink-0"
-        >
-          Add Fields
-        </button>
-        <button
-          type="button"
-          onClick={() => setOpen((o) => !o)}
-          className="flex items-center justify-center w-9 h-9 rounded-md border border-[#8629DF] text-[#8629DF] hover:bg-[#8629DF]/10 shrink-0"
-          aria-expanded={open}
-        >
-          <ChevronDown size={18} className={open ? "rotate-180" : ""} />
-        </button>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={addRow}
+            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-3 py-1.5 rounded-sm"
+          >
+            Add Fields
+          </button>
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            className="flex items-center justify-center w-7 h-7 rounded-sm bg-[#8629DF] text-white hover:bg-[#7620c7] shrink-0 transition-transform"
+            aria-expanded={open}
+          >
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${open ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
       </div>
+
+      {/* Expanded content */}
+      {open && rows.length > 0 && (
+        <div className="px-3 pb-3 space-y-3">
+          {rows.map((row, idx) => (
+            <div
+              key={idx}
+              className="grid grid-cols-1 sm:grid-cols-[0.5fr_0.5fr_1fr_auto] gap-3 items-end border-b border-gray-200 dark:border-gray-600 pb-3 last:border-b-0"
+            >
+              <div className="">
+
+                <SelectField
+                  label="Section/Sub-Section"
+                  name={`section-${idx}`}
+                  value={row.section}
+                  onChange={(e) => updateRow(idx, "section", e.target.value)}
+                  options={[
+                    { value: "", label: "Select Section/Sub Section" },
+                    { value: "80C", label: "80C" },
+                    { value: "80CCC", label: "80CCC" },
+                    { value: "80CCD", label: "80CCD(1)" },
+                    { value: "80CCD2", label: "80CCD(2)" },
+                  ]}
+                />
+              </div>
+
+              {/* <InputField
+                label="Description"
+                name={`desc-${idx}`}
+                value={row.description}
+                onChange={(e) => updateRow(idx, "description", e.target.value)}
+                placeholder="Description"
+              /> */}
+
+              <div className="flex flex-col mx-3">
+                <label htmlFor="label" className="text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">Description</label>
+                <span className='text-[0.7rem] text-gray-500 dark:text-gray-200'>Description </span>
+              </div>
+              <div className="w-fit mx-3">
+
+                <InputField
+                  label="Amount"
+                  name={`amount-${idx}`}
+                  value={row.amount}
+                  onChange={(e) => updateRow(idx, "amount", e.target.value)}
+                  placeholder=""
+                />
+              </div>
+
+              <button
+                type="button"
+                onClick={() => removeRow(idx)}
+                className="flex items-center justify-center w-8 h-8 bg-white/70 text-red-500 hover:text-red-700 mb-0.5"
+              >
+                <Trash2 size={16} />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
+/* ─── House Rent Details accordion ─── */
+function HouseRentAccordion({ rows, setRows }) {
+  const [open, setOpen] = useState(false);
+
+  const addRow = () =>
+    setRows((prev) => [
+      ...prev,
+      { fromDate: "", toDate: "", amount: "", city: "", landlordName: "", address: "" },
+    ]);
+
+  const removeRow = (idx) =>
+    setRows((prev) => prev.filter((_, i) => i !== idx));
+
+  const updateRow = (idx, field, value) =>
+    setRows((prev) =>
+      prev.map((r, i) => (i === idx ? { ...r, [field]: value } : r))
+    );
+
+  return (
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-hidden">
+      {/* Header bar */}
+      <div className="flex items-center justify-between px-3 py-3">
+        <div className="flex flex-row justify-between w-[50%]">
+
+        <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
+          House Rent Details
+        </h3>
+
+        <div className="flex flex-col leading-tight">
+          <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+            50,000,00
+          </h1>
+          <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+             Amount
+          </span>
+        </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={addRow}
+            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-3 py-1.5 rounded-sm"
+          >
+            Add Fields
+          </button>
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            className="flex items-center justify-center w-7 h-7 rounded-sm bg-[#8629DF] text-white hover:bg-[#7620c7] shrink-0 transition-transform"
+            aria-expanded={open}
+          >
+            <ChevronDown
+              size={14}
+              className={`transition-transform ${open ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Expanded content */}
+      {open && rows.length > 0 && (
+        <div className="px-3 pb-3 space-y-4">
+          {rows.map((row, idx) => (
+            <div
+              key={idx}
+              className="border-b border-gray-200 dark:border-gray-600 pb-3 last:border-b-0"
+            >
+              {/* Row 1: From Date, To Date, Amount, Delete */}
+              <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_0.5fr_auto] gap-5">
+                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
+
+                  <DatePickerField
+                    label="From Date"
+                    name={`fromDate-${idx}`}
+                    value={row.fromDate}
+                    onChange={(e) => updateRow(idx, "fromDate", e.target.value)}
+                  />
+                  <DatePickerField
+                    label="TO Date"
+                    name={`toDate-${idx}`}
+                    value={row.toDate}
+                    onChange={(e) => updateRow(idx, "toDate", e.target.value)}
+                  />
+                  <InputField
+                    label="Amount"
+                    name={`rentAmount-${idx}`}
+                    value={row.amount}
+                    className="w-full"
+                    onChange={(e) => updateRow(idx, "amount", e.target.value)}
+                  />
+                </div>
+                <div>
+
+                </div>
+                <button
+                  type="button"
+                  onClick={() => removeRow(idx)}
+                  className="flex items-center justify-center w-8 h-8 text-red-500 hover:text-red-700 mb-0.5"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
+
+              {/* Row 2: City, Landlord Name, Address */}
+              <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_0.5fr_auto] gap-5  mt-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="w-[97%]">
+
+
+                <SelectField
+                  label="City"
+                  name={`city-${idx}`}
+                  value={row.city}
+                  onChange={(e) => updateRow(idx, "city", e.target.value)}
+                  options={[
+                    { value: "", label: "Select Section/Sub Section" },
+                    { value: "mumbai", label: "Mumbai" },
+                    { value: "delhi", label: "Delhi" },
+                    { value: "bangalore", label: "Bangalore" },
+                    { value: "chennai", label: "Chennai" },
+                    { value: "kolkata", label: "Kolkata" },
+                    { value: "hyderabad", label: "Hyderabad" },
+                    { value: "pune", label: "Pune" },
+                  ]}
+                />
+                  </div>
+
+                  <div className="w-[95%]">
+
+                <InputField
+                  label="Landlord Name"
+                  name={`landlord-${idx}`}
+                  value={row.landlordName}
+                  onChange={(e) => updateRow(idx, "landlordName", e.target.value)}
+                />
+                  </div>
+
+                  <div className="w-[95%]">
+
+                <InputField
+                  label="Address"
+                  name={`address-${idx}`}
+                  value={row.address}
+                  onChange={(e) => updateRow(idx, "address", e.target.value)}
+                />
+                  </div>
+                                  </div>
+
+                <div className="w-8 h-8" />
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── Main Component ─── */
 export default function InvestmentDetails({ onNext, onPrev }) {
   const [section80CLimit, setSection80CLimit] = useState("");
+
+  // Accordion rows state
+  const [section80CRows, setSection80CRows] = useState([
+    { section: "", description: "", amount: "10,000.00" },
+    { section: "", description: "", amount: "75,000.00" },
+  ]);
+  const [otherSectionRows, setOtherSectionRows] = useState([
+    { section: "", description: "", amount: "10,000.00" },
+    { section: "", description: "", amount: "10,000.00" },
+  ]);
+  const [houseRentRows, setHouseRentRows] = useState([
+    { fromDate: "", toDate: "", amount: "10,000.00", city: "", landlordName: "", address: "" },
+    { fromDate: "", toDate: "", amount: "30,000.00", city: "", landlordName: "", address: "" },
+  ]);
+
+  // Other Income / Deduction
   const [otherIncome, setOtherIncome] = useState({
     dateOfPossession: "",
     nameOfLender: "",
@@ -51,70 +317,78 @@ export default function InvestmentDetails({ onNext, onPrev }) {
   });
 
   return (
-    <div className="space-y-6">
-      <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Investment Details</h2>
+    <div className="space-y-4">
+      <h2 className="text-base font-semibold text-gray-500">Investment Details</h2>
 
       {/* Under Section 80C Limit */}
-      <div>
-        <label className={labelClass}>Under Section 80C Limit</label>
-        <input
-          type="text"
-          value={section80CLimit}
-          onChange={(e) => setSection80CLimit(e.target.value)}
-          className={inputClass}
-          placeholder=""
-        />
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+        <div className="w-fit">
+          <InputField
+            label="Under Section 80C Limit"
+            value={section80CLimit}
+            onChange={(e) => setSection80CLimit(e.target.value)}
+          />
+        </div>
       </div>
 
-      {/* Section 80C, 80CCC & 80CCD / Other Section / House Rent Details */}
-      <div className="border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden divide-y divide-gray-200 dark:divide-gray-600">
-        <InvestmentRow label="Section 80C, 80CCC & 80CCD" amount="25,000.00" />
-        <InvestmentRow label="Other Section" amount="25,000.00" />
-        <InvestmentRow label="House Rent Details" amount="25,000.00" />
-      </div>
+      {/* Section 80C, 80CCC & 80CCD */}
+      <SectionAccordion
+        label="Section 80C, 80CCC & 80CCD"
+        rows={section80CRows}
+        setRows={setSection80CRows}
+      />
+
+      {/* Other Section */}
+      <SectionAccordion
+        label="Other Section"
+        rows={otherSectionRows}
+        setRows={setOtherSectionRows}
+      />
+
+      {/* House Rent Details */}
+      <HouseRentAccordion rows={houseRentRows} setRows={setHouseRentRows} />
 
       {/* Other Income / Deduction */}
-      <div>
-        <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-200 mb-4">Other Income / Deduction</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <DateInput
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+        <h3 className="text-base font-semibold mb-2 text-gray-500">Other Income / Deduction</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <DatePickerField
             label="Date of Possession"
+            name="dateOfPossession"
             value={otherIncome.dateOfPossession}
-            setValue={(v) => setOtherIncome((p) => ({ ...p, dateOfPossession: v }))}
-            placeholder="Select a date"
+            onChange={(e) =>
+              setOtherIncome((p) => ({ ...p, dateOfPossession: e.target.value }))
+            }
           />
-          <div>
-            <label className={labelClass}>Name of the Lender</label>
-            <input
-              type="text"
-              value={otherIncome.nameOfLender}
-              onChange={(e) => setOtherIncome((p) => ({ ...p, nameOfLender: e.target.value }))}
-              className={inputClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>PAN of the Lender</label>
-            <input
-              type="text"
-              value={otherIncome.panOfLender}
-              onChange={(e) => setOtherIncome((p) => ({ ...p, panOfLender: e.target.value }))}
-              className={inputClass}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>Address of the Lender</label>
-            <input
-              type="text"
-              value={otherIncome.addressOfLender}
-              onChange={(e) => setOtherIncome((p) => ({ ...p, addressOfLender: e.target.value }))}
-              className={inputClass}
-            />
-          </div>
+          <InputField
+            label="Name of the Lender"
+            name="nameOfLender"
+            value={otherIncome.nameOfLender}
+            onChange={(e) =>
+              setOtherIncome((p) => ({ ...p, nameOfLender: e.target.value }))
+            }
+          />
+          <InputField
+            label="PAN of the Lender"
+            name="panOfLender"
+            value={otherIncome.panOfLender}
+            onChange={(e) =>
+              setOtherIncome((p) => ({ ...p, panOfLender: e.target.value }))
+            }
+          />
+          <InputField
+            label="Address of the Lender"
+            name="addressOfLender"
+            value={otherIncome.addressOfLender}
+            onChange={(e) =>
+              setOtherIncome((p) => ({ ...p, addressOfLender: e.target.value }))
+            }
+          />
         </div>
       </div>
 
       {/* Footer buttons */}
-      <div className="flex flex-row flex-wrap justify-end w-full gap-2 mt-6">
+      <div className="flex flex-row flex-wrap justify-end w-full gap-2 mt-3">
         <button type="button" className={btnPrevReset} onClick={onPrev}>
           Previous
         </button>

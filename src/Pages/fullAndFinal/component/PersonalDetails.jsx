@@ -1,131 +1,137 @@
 import { useState } from "react";
-import DateInput from "@/components/ui/DateInput";
+import DatePickerField from "@/components/ui/datePicker";
+import SelectField from "@/components/SelectFeild";
+
+const InputField = ({
+    label,
+    type = "text",
+    name,
+    value,
+    onChange,
+    className = "",
+    ...props
+}) => (
+    <div>
+        <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem] mb-1">
+            {label}
+        </label>
+        <input
+            type={type}
+            name={name}
+            value={value}
+            onChange={onChange}
+            className={`w-full text-[0.7rem] h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+            {...props}
+        />
+    </div>
+);
 
 export default function PersonalDetails({ onSave }) {
+    const [formData, setFormData] = useState({
+        leavingReason: "",
+        resignDate: "",
+        leavingDate: "",
+        form10Date: "",
+        settlementDate: "",
+        pfReason: "",
+        lastSalary: ""
+    });
 
-    const [resignDate, setResignDate] = useState("");
-    const [leavingDate, setLeavingDate] = useState("");
-    const [form10Date, setForm10Date] = useState("");
-    const [settlementDate, setSettlementDate] = useState("");
-    const [lastSalary, setLastSalary] = useState("");
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     return (
-        <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg p-5 shadow-sm">
-
-            <h2 className="text-sm font-semibold mb-4 text-gray-700 dark:text-gray-200">
+        <div className="">
+            <h2 className="text-base font-semibold mb-1 text-gray-500">
                 Personal Details
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <InputField
+                    label="Leaving Reason"
+                    name="leavingReason"
+                    value={formData.leavingReason}
+                    onChange={handleChange}
+                    placeholder="Enter Reason"
+                />
 
-                {/* Leaving Reason */}
-                <div>
-                    <label className="text-xs text-gray-500 dark:text-gray-400">
-                        Leaving Reason
-                    </label>
-                    <input
-                        className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 mt-1
-                        bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-                        placeholder="Enter Name"
-                    />
-                </div>
-
-                <DateInput
+                <DatePickerField
                     label="Date of Resignation"
-                    value={resignDate}
-                    setValue={setResignDate}
+                    type="date"
+                    name="resignDate"
+                    value={formData.resignDate}
+                    onChange={handleChange}
                 />
 
-                <DateInput
+                <DatePickerField
                     label="Leaving Date"
-                    value={leavingDate}
-                    setValue={setLeavingDate}
+                    type="date"
+                    name="leavingDate"
+                    value={formData.leavingDate}
+                    onChange={handleChange}
                 />
-                <h1 />
-                <DateInput
+
+                <div />
+
+                <DatePickerField
                     label="Leaving Date Form 10"
-                    value={form10Date}
-                    setValue={setForm10Date}
+                    type="date"
+                    name="form10Date"
+                    value={formData.form10Date}
+                    onChange={handleChange}
                 />
 
-                <DateInput
+                <DatePickerField
                     label="Settlement Date"
-                    value={settlementDate}
-                    setValue={setSettlementDate}
+                    type="date"
+                    name="settlementDate"
+                    value={formData.settlementDate}
+                    onChange={handleChange}
                 />
 
-                {/* PF Reason */}
-                <div>
-                    <label className="text-xs text-gray-500 dark:text-gray-400">
-                        Leaving Reason (PF ECR File)
-                    </label>
+                <SelectField
+                    label="Leaving Reason (PF ECR File)"
+                    name="pfReason"
+                    value={formData.pfReason}
+                    onChange={handleChange}
+                    options={[
+                        { value: "", label: "Select Reason" },
+                        { value: "Cessation", label: "Cessation" },
+                        { value: "Retirement", label: "Retirement" }
+                    ]}
+                />
 
-                    <select className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 mt-1
-                    bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-                        <option>Cessation</option>
-                        <option>Retirement</option>
-                    </select>
-                </div>
-
-                <DateInput
+                <DatePickerField
                     label="Last Salary Processed"
-                    value={lastSalary}
-                    setValue={setLastSalary}
+                    type="date"
+                    name="lastSalary"
+                    value={formData.lastSalary}
+                    onChange={handleChange}
                 />
-
             </div>
 
             {/* Buttons */}
-            {/* <div className="flex justify-end gap-3 mt-6">
-
-                <button className="border border-purple-500 text-purple-600 px-5  rounded-md">
-                    Reset
-                </button>
-
+            <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-3">
                 <button
-                    onClick={onSave}
-                    className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-md"
-                >
-                    Save
-                </button>
-
-            </div> */}
-
-            <div
-                className="
-    flex flex-row sm:flex-row 
-    justify-end 
-    w-full 
-    gap-2 
-    mt-3
-  "
-            >
-                <button
-                    className="
-      bg-white dark:bg-[#E4E6EB]/10
-      border border-[#8629DF]
-      text-[#8629DF]
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+                    className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                    onClick={() => setFormData({
+                        leavingReason: "",
+                        resignDate: "",
+                        leavingDate: "",
+                        form10Date: "",
+                        settlementDate: "",
+                        pfReason: "",
+                        lastSalary: ""
+                    })}
                 >
                     Reset
                 </button>
 
                 <button
-                    className="
-      bg-[#8629DF]
-      text-white
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
-                    onClick={onSave}
+                    className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+                    onClick={() => onSave(formData)}
                 >
                     Save
                 </button>

@@ -37,9 +37,9 @@ export default function Layout({ children }) {
         <Navbar onMenuClick={toggleSideBar} />
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden no-scrollbar">
         <aside
-          className={`hidden md:block bg-white dark:border-r dark:bg-gray-900 shadow-xl overflow-y-auto transition-all duration-300 ease-in-out ${desktopOpen ? "w-64" : "w-0"
+          className={`hidden md:block no-scrollbar bg-white dark:border-r dark:bg-gray-900 shadow-xl overflow-y-auto transition-all duration-300 ease-in-out ${desktopOpen ? "w-64" : "w-0"
             }`}
           aria-hidden={!isDesktop}
         >

@@ -22,33 +22,33 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
 
                 {/* LEFT : ALL FIELDS */}
 
-                <div className="border rounded-lg overflow-hidden bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
+                <div className="border rounded-sm overflow-hidden bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
 
                     {/* Header */}
 
                     <div
-                        className="bg-primary dark:bg-purple-700 
-  text-white px-3 py-2 text-xs font-medium 
+                        className="bg-[#8629DF] dark:bg-purple-700 
+  text-white px-3 py-1.5 text-[0.7rem] font-medium 
   flex justify-between items-center"
                     >
 
-                        <span className="text-sm font-semibold">
+                        <span className="font-normal text-[0.7rem] uppercase tracking-wider">
                             All Fields
                         </span>
 
                         <button
                             className="
-    w-10 h-7 flex items-center justify-center
-    bg-white dark:bg-gray-800
-    border border-gray-200 dark:border-gray-700
-    rounded-md shadow-sm
-    hover:bg-gray-100 dark:hover:bg-gray-700
+    w-8 mx-3 h-5 flex items-center justify-center
+    bg-white dark:bg-gray-800/40
+    border border-white/30 dark:border-gray-700
+    rounded-xs shadow-sm
+    hover:bg-white/30 dark:hover:bg-gray-700
     transition
     "
                         >
                             <ChevronUp
                                 size={16}
-                                className="text-primary dark:text-purple-300"
+                                className="text-[#8629DF] dark:text-purple-300"
                             />
                         </button>
 
@@ -56,14 +56,14 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
 
                     {/* Sub Header */}
 
-                    <div className="flex justify-between px-5 py-2 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300">
-                        <span>{headerRow}</span>
-                        <span>Add</span>
+                    <div className="flex justify-between px-3 py-1  font-semibold uppercase tracking-tighter bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-400 border-b border-gray-100 dark:border-gray-800">
+                        <span className="text-gray-600 dark:text-gray-300 text-[0.8rem]">{headerRow}</span>
+                        <span className="text-gray-600 dark:text-gray-300 text-[0.8rem] mx-3">Add</span>
                     </div>
 
                     {/* Fields List */}
 
-                    <div className="max-h-[220px] overflow-y-auto table-scroll">
+                    <div className="max-h-[150px] overflow-y-auto table-scroll">
 
                         {fields.map((field) => {
                             const isSelected = selected.includes(field);
@@ -71,17 +71,17 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
                             return (
                                 <div
                                     key={field}
-                                    className="flex items-center justify-between px-3 py-2 border-b text-xs border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300"
+                                    className="flex items-center justify-between px-3 py-1 border-b text-[0.7rem] border-gray-50 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
                                 >
-                                    <span>{field}</span>
+                                    <span className="font-medium">{field}</span>
 
                                     <button
                                         onClick={() => addField(field)}
                                         disabled={isSelected}
-                                        className={`w-7 h-7 flex items-center justify-center rounded transition
+                                        className={`w-8 h-6 flex items-center justify-center rounded-sm transition cursor-pointer
                     ${isSelected
-                                                ? "bg-primary text-white cursor-not-allowed"
-                                                : "bg-purple-100 text-primary hover:bg-purple-200 dark:bg-purple-900 dark:text-purple-200 dark:hover:bg-purple-800"
+                                                ? "bg-[#8629DF] text-white opacity-50 cursor-not-allowed"
+                                                : "bg-purple-50 text-[#8629DF] hover:bg-[#8629DF] hover:text-white dark:bg-purple-900/30 dark:text-purple-200 dark:hover:bg-[#8629DF]"
                                             }`}
                                     >
                                         <Plus size={14} />

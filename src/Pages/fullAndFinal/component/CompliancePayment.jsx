@@ -1,25 +1,15 @@
-import { useState } from "react";
-import DateInput from "@/components/ui/DateInput";
+import React, { useState } from "react";
+import InputField from "@/components/inputfeild";
+import SelectField from "@/components/SelectFeild";
+import DatePickerField from "@/components/ui/datePicker";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const btnPrevReset =
-  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
+  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
 const btnSave =
-  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
-const cardClass = "bg-gray-100 dark:bg-gray-800 rounded-lg p-6";
-const sectionTitleClass = "text-sm font-semibold text-gray-700 dark:text-gray-200 mb-4";
-const labelClass = "text-xs text-gray-500 dark:text-gray-400 block mb-1";
-const inputClass =
-  "w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 min-w-0 focus:outline-none focus:ring-1 focus:ring-[#8629DF]";
-const selectClass = inputClass + " cursor-pointer appearance-none";
-
-function Field({ label, children, className = "" }) {
-  return (
-    <div className={className}>
-      <label className={labelClass}>{label}</label>
-      {children}
-    </div>
-  );
-}
+  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer";
+const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg";
+const sectionTitleClass = "text-base font-semibold mb-2 text-gray-500 dark:text-gray-200 mt-2";
 
 export default function CompliancePayment({ onNext, onPrev }) {
   const [leave, setLeave] = useState({
@@ -72,282 +62,225 @@ export default function CompliancePayment({ onNext, onPrev }) {
   const updateNotice = (key, value) => setNotice((p) => ({ ...p, [key]: value }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* 1. Leave Encashment & Payment Details */}
       <div className={cardClass}>
         <h3 className={sectionTitleClass}>Leave Encashment & Payment Details</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Field label="Leave Type">
-            <select
-              value={leave.leaveType}
-              onChange={(e) => updateLeave("leaveType", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Type</option>
-              <option value="el">Earned Leave</option>
-              <option value="cl">Casual Leave</option>
-            </select>
-          </Field>
-          <Field label="Leave Description">
-            <input
-              type="text"
-              value={leave.leaveDescription}
-              onChange={(e) => updateLeave("leaveDescription", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <DateInput
-            label="Total Balance"
-            value={leave.totalBalance}
-            setValue={(v) => updateLeave("totalBalance", v)}
-            placeholder="Select a date"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <SelectField
+            label="Leave Type"
+            name="leaveType"
+            value={leave.leaveType}
+            onChange={(e) => updateLeave("leaveType", e.target.value)}
+            options={[
+              { value: "", label: "Select Type" },
+              { value: "el", label: "Earned Leave" },
+              { value: "cl", label: "Casual Leave" },
+            ]}
           />
-          <Field label="Accrued Balance">
-            <input
-              type="text"
-              value={leave.accruedBalance}
-              onChange={(e) => updateLeave("accruedBalance", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Pay Code Template">
-            <select
-              value={leave.payCodeTemplate}
-              onChange={(e) => updateLeave("payCodeTemplate", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Template</option>
-            </select>
-          </Field>
-          <Field label="Payable Heads">
-            <select
-              value={leave.payableHeads}
-              onChange={(e) => updateLeave("payableHeads", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Payable Heads</option>
-            </select>
-          </Field>
-          <Field label="Encashment Amount">
-            <input
-              type="text"
-              value={leave.encashmentAmount}
-              onChange={(e) => updateLeave("encashmentAmount", e.target.value)}
-              placeholder="Select amount"
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Payable Amount">
-            <input
-              type="text"
-              value={leave.payableAmount}
-              onChange={(e) => updateLeave("payableAmount", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="To Be Encashed">
-            <input
-              type="text"
-              value={leave.toBeEncashed}
-              onChange={(e) => updateLeave("toBeEncashed", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Exemption-1">
-            <input
-              type="text"
-              value={leave.exemption1}
-              onChange={(e) => updateLeave("exemption1", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Exemption-2">
-            <input
-              type="text"
-              value={leave.exemption2}
-              onChange={(e) => updateLeave("exemption2", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Exemption-3">
-            <input
-              type="text"
-              value={leave.exemption3}
-              onChange={(e) => updateLeave("exemption3", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Exemption Actual">
-            <input
-              type="text"
-              value={leave.exemptionActual}
-              onChange={(e) => updateLeave("exemptionActual", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Exemption Payable">
-            <input
-              type="text"
-              value={leave.exemptionPayable}
-              onChange={(e) => updateLeave("exemptionPayable", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
+          <InputField
+            label="Leave Description"
+            name="leaveDescription"
+            value={leave.leaveDescription}
+            onChange={(e) => updateLeave("leaveDescription", e.target.value)}
+          />
+          <DatePickerField
+            label="Total Balance"
+            name="totalBalance"
+            value={leave.totalBalance}
+            onChange={(e) => updateLeave("totalBalance", e.target.value)}
+          />
+          <InputField
+            label="Accrued Balance"
+            name="accruedBalance"
+            value={leave.accruedBalance}
+            onChange={(e) => updateLeave("accruedBalance", e.target.value)}
+          />
+          <SelectField
+            label="Pay Code Template"
+            name="payCodeTemplate"
+            value={leave.payCodeTemplate}
+            onChange={(e) => updateLeave("payCodeTemplate", e.target.value)}
+            options={[{ value: "", label: "Select Template" }]}
+          />
+          <SelectField
+            label="Payable Heads"
+            name="payableHeads"
+            value={leave.payableHeads}
+            onChange={(e) => updateLeave("payableHeads", e.target.value)}
+            options={[{ value: "", label: "Select Payable Heads" }]}
+          />
+          <InputField
+            label="Encashment Amount"
+            name="encashmentAmount"
+            value={leave.encashmentAmount}
+            onChange={(e) => updateLeave("encashmentAmount", e.target.value)}
+            placeholder="Select amount"
+          />
+          <InputField
+            label="Payable Amount"
+            name="payableAmount"
+            value={leave.payableAmount}
+            onChange={(e) => updateLeave("payableAmount", e.target.value)}
+          />
+          <InputField
+            label="To Be Encashed"
+            name="toBeEncashed"
+            value={leave.toBeEncashed}
+            onChange={(e) => updateLeave("toBeEncashed", e.target.value)}
+          />
+          <InputField
+            label="Exemption-1"
+            name="exemption1"
+            value={leave.exemption1}
+            onChange={(e) => updateLeave("exemption1", e.target.value)}
+          />
+          <InputField
+            label="Exemption-2"
+            name="exemption2"
+            value={leave.exemption2}
+            onChange={(e) => updateLeave("exemption2", e.target.value)}
+          />
+          <InputField
+            label="Exemption-3"
+            name="exemption3"
+            value={leave.exemption3}
+            onChange={(e) => updateLeave("exemption3", e.target.value)}
+          />
+          <InputField
+            label="Exemption Actual"
+            name="exemptionActual"
+            value={leave.exemptionActual}
+            onChange={(e) => updateLeave("exemptionActual", e.target.value)}
+          />
+          <InputField
+            label="Exemption Payable"
+            name="exemptionPayable"
+            value={leave.exemptionPayable}
+            onChange={(e) => updateLeave("exemptionPayable", e.target.value)}
+          />
         </div>
       </div>
 
       {/* 2. Gratuity Payment */}
       <div className={cardClass}>
         <h3 className={sectionTitleClass}>Gratuity Payment</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-          <Field label="Employee Current DA">
-            <input
-              type="text"
-              value={gratuity.employeeCurrentDA}
-              onChange={(e) => updateGratuity("employeeCurrentDA", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Employee Current Basic">
-            <input
-              type="text"
-              value={gratuity.employeeCurrentBasic}
-              onChange={(e) => updateGratuity("employeeCurrentBasic", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <DateInput
-            label="Employee Gratuity/Joining"
-            value={gratuity.gratuityJoining}
-            setValue={(v) => updateGratuity("gratuityJoining", v)}
-            placeholder="Select a date"
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-2">
+          <InputField
+            label="Employee Current DA"
+            name="employeeCurrentDA"
+            value={gratuity.employeeCurrentDA}
+            onChange={(e) => updateGratuity("employeeCurrentDA", e.target.value)}
           />
-          <DateInput
+          <InputField
+            label="Employee Current Basic"
+            name="employeeCurrentBasic"
+            value={gratuity.employeeCurrentBasic}
+            onChange={(e) => updateGratuity("employeeCurrentBasic", e.target.value)}
+          />
+          <DatePickerField
+            label="Employee Gratuity/Joining"
+            name="gratuityJoining"
+            value={gratuity.gratuityJoining}
+            onChange={(e) => updateGratuity("gratuityJoining", e.target.value)}
+          />
+          <DatePickerField
             label="Employee Exact Work Duration"
+            name="exactWorkDuration"
             value={gratuity.exactWorkDuration}
-            setValue={(v) => updateGratuity("exactWorkDuration", v)}
-            placeholder="Select a date"
+            onChange={(e) => updateGratuity("exactWorkDuration", e.target.value)}
           />
         </div>
         <div className="flex justify-end mb-4">
           <button
             type="button"
-            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-sm font-medium px-4 py-2 rounded"
+            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-4 py-1.5 rounded-sm"
           >
             Calculate Gratuity
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="Calculate Gratuity Amount">
-            <input
-              type="text"
-              value={gratuity.calculatedGratuityAmount}
-              onChange={(e) => updateGratuity("calculatedGratuityAmount", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Gratuity Payable Amount">
-            <input
-              type="text"
-              value={gratuity.gratuityPayableAmount}
-              onChange={(e) => updateGratuity("gratuityPayableAmount", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <InputField
+            label="Calculate Gratuity Amount"
+            name="calculatedGratuityAmount"
+            value={gratuity.calculatedGratuityAmount}
+            onChange={(e) => updateGratuity("calculatedGratuityAmount", e.target.value)}
+          />
+          <InputField
+            label="Gratuity Payable Amount"
+            name="gratuityPayableAmount"
+            value={gratuity.gratuityPayableAmount}
+            onChange={(e) => updateGratuity("gratuityPayableAmount", e.target.value)}
+          />
         </div>
       </div>
 
       {/* 3. Bonus Payment Details */}
       <div className={cardClass}>
         <h3 className={sectionTitleClass}>Bonus Payment Details</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-          <DateInput
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-2">
+          <DatePickerField
             label="Bonus Period From"
+            name="bonusPeriodFrom"
             value={bonus.bonusPeriodFrom}
-            setValue={(v) => updateBonus("bonusPeriodFrom", v)}
-            placeholder="Select a date"
+            onChange={(e) => updateBonus("bonusPeriodFrom", e.target.value)}
           />
-          <DateInput
+          <DatePickerField
             label="Bonus Period To"
+            name="bonusPeriodTo"
             value={bonus.bonusPeriodTo}
-            setValue={(v) => updateBonus("bonusPeriodTo", v)}
-            placeholder="Select a date"
+            onChange={(e) => updateBonus("bonusPeriodTo", e.target.value)}
           />
-          <Field label="Basic Wage Limit">
-            <input
-              type="text"
-              value={bonus.basicWageLimit}
-              onChange={(e) => updateBonus("basicWageLimit", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Bonus Percent / Exgratia">
-            <input
-              type="text"
-              value={bonus.bonusPercent}
-              onChange={(e) => updateBonus("bonusPercent", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Pay-In Payhead">
-            <select
-              value={bonus.payInPayhead}
-              onChange={(e) => updateBonus("payInPayhead", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Paycode</option>
-            </select>
-          </Field>
-          <Field label="Minimum Attendance">
-            <input
-              type="text"
-              value={bonus.minimumAttendance}
-              onChange={(e) => updateBonus("minimumAttendance", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Bonus Upper Limit">
-            <input
-              type="text"
-              value={bonus.bonusUpperLimit}
-              onChange={(e) => updateBonus("bonusUpperLimit", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <div>
-            <span className={labelClass}>Basic Wage</span>
-            <label className="relative inline-flex items-center cursor-pointer mt-1 block">
-              <input
-                type="checkbox"
-                checked={bonus.basicWage}
-                onChange={(e) => updateBonus("basicWage", e.target.checked)}
-                className="sr-only peer"
-              />
-              <div className="w-10 h-5 bg-gray-300 dark:bg-gray-600 rounded-full peer peer-checked:bg-[#8629DF] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
-            </label>
-          </div>
-          <Field label="Calculated Bonus">
-            <input
-              type="text"
-              value={bonus.calculatedBonus}
-              onChange={(e) => updateBonus("calculatedBonus", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Bonus Paid">
-            <input
-              type="text"
-              value={bonus.bonusPaid}
-              onChange={(e) => updateBonus("bonusPaid", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
+          <InputField
+            label="Basic Wage Limit"
+            name="basicWageLimit"
+            value={bonus.basicWageLimit}
+            onChange={(e) => updateBonus("basicWageLimit", e.target.value)}
+          />
+          <InputField
+            label="Bonus Percent / Exgratia"
+            name="bonusPercent"
+            value={bonus.bonusPercent}
+            onChange={(e) => updateBonus("bonusPercent", e.target.value)}
+          />
+          <SelectField
+            label="Pay-In Payhead"
+            name="payInPayhead"
+            value={bonus.payInPayhead}
+            onChange={(e) => updateBonus("payInPayhead", e.target.value)}
+            options={[{ value: "", label: "Select Paycode" }]}
+          />
+          <InputField
+            label="Minimum Attendance"
+            name="minimumAttendance"
+            value={bonus.minimumAttendance}
+            onChange={(e) => updateBonus("minimumAttendance", e.target.value)}
+          />
+          <InputField
+            label="Bonus Upper Limit"
+            name="bonusUpperLimit"
+            value={bonus.bonusUpperLimit}
+            onChange={(e) => updateBonus("bonusUpperLimit", e.target.value)}
+          />
+         <VariableTypeRow name="basicWage" label='Basic Wage' value={bonus.basicWage} onChange={(e) => updateBonus("basicWage", e.target.value)}/>
+          <InputField
+            label="Calculated Bonus"
+            name="calculatedBonus"
+            value={bonus.calculatedBonus}
+            onChange={(e) => updateBonus("calculatedBonus", e.target.value)}
+          />
+          <InputField
+            label="Bonus Paid"
+            name="bonusPaid"
+            value={bonus.bonusPaid}
+            onChange={(e) => updateBonus("bonusPaid", e.target.value)}
+          />
         </div>
-        <div className="flex justify-end gap-2">
+        <div className="flex justify-end gap-2 mt-4">
           <button type="button" className={btnPrevReset}>
             Reset
           </button>
-          <button type="button" className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-sm font-medium px-4 py-2 rounded">
+          <button type="button" className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-4 py-1.5 rounded-sm">
             Calculate
           </button>
         </div>
@@ -356,54 +289,44 @@ export default function CompliancePayment({ onNext, onPrev }) {
       {/* 4. Notice Pay & Recover */}
       <div className={cardClass}>
         <h3 className={sectionTitleClass}>Notice Pay & Recover</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Field label="Show Notice Type">
-            <select
-              value={notice.noticeType}
-              onChange={(e) => updateNotice("noticeType", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Notice Type</option>
-            </select>
-          </Field>
-          <Field label="Select Payhead">
-            <select
-              value={notice.payhead}
-              onChange={(e) => updateNotice("payhead", e.target.value)}
-              className={selectClass}
-            >
-              <option value="">Select Payhead</option>
-            </select>
-          </Field>
-          <Field label="Enter Notice Days">
-            <input
-              type="text"
-              value={notice.noticeDays}
-              onChange={(e) => updateNotice("noticeDays", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Notice Amount Per Day">
-            <input
-              type="text"
-              value={notice.noticeAmountPerDay}
-              onChange={(e) => updateNotice("noticeAmountPerDay", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
-          <Field label="Total Notice Amount">
-            <input
-              type="text"
-              value={notice.totalNoticeAmount}
-              onChange={(e) => updateNotice("totalNoticeAmount", e.target.value)}
-              className={inputClass}
-            />
-          </Field>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <SelectField
+            label="Show Notice Type"
+            name="noticeType"
+            value={notice.noticeType}
+            onChange={(e) => updateNotice("noticeType", e.target.value)}
+            options={[{ value: "", label: "Select Notice Type" }]}
+          />
+          <SelectField
+            label="Select Payhead"
+            name="payhead"
+            value={notice.payhead}
+            onChange={(e) => updateNotice("payhead", e.target.value)}
+            options={[{ value: "", label: "Select Payhead" }]}
+          />
+          <InputField
+            label="Enter Notice Days"
+            name="noticeDays"
+            value={notice.noticeDays}
+            onChange={(e) => updateNotice("noticeDays", e.target.value)}
+          />
+          <InputField
+            label="Notice Amount Per Day"
+            name="noticeAmountPerDay"
+            value={notice.noticeAmountPerDay}
+            onChange={(e) => updateNotice("noticeAmountPerDay", e.target.value)}
+          />
+          <InputField
+            label="Total Notice Amount"
+            name="totalNoticeAmount"
+            value={notice.totalNoticeAmount}
+            onChange={(e) => updateNotice("totalNoticeAmount", e.target.value)}
+          />
         </div>
       </div>
 
-      {/* Footer buttons - same as VariablePayment / AttendanceAdjustment */}
-      <div className="flex flex-row flex-wrap justify-end w-full gap-2 mt-6">
+      {/* Footer buttons */}
+      <div className="flex flex-row flex-wrap justify-end w-full gap-2 mt-4">
         <button type="button" className={btnPrevReset} onClick={onPrev}>
           Previous
         </button>

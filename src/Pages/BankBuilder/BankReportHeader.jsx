@@ -13,9 +13,9 @@ const BankReportHeader = ({ onCreate, showConfig }) => {
           flex items-center gap-2
           bg-[#8629DF]
           text-white
-          h-7.5 px-4
+          h-8.5 px-4
           rounded-sm
-          text-[0.7rem] font-semibold
+          text-[0.8rem] font-semibold
           shadow-sm
           hover:opacity-90
           transition-all
