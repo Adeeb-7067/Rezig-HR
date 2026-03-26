@@ -605,7 +605,7 @@ const organizationDetails = () => {
 
                   <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
                     <h1 className="text-base font-semibold  mb-3 text-gray-500">
-                      Attendance Parameters
+                      Other Configuration 
                     </h1>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 space-y-2">
@@ -660,20 +660,25 @@ const organizationDetails = () => {
                         info="Maximum number of holidays allowed per employee per year"
                       />
 
-                      <InputField
+                      <SelectField
                         label="Gratuity Eligibility on Years"
                         name="gratuityEligibilityonYears"
                         value={formData.gratuityEligibilityonYears}
                         onChange={handleChange}
+                        options={[{
+                          label:'Years',value:'Years'
+                        }]}
                         type="text"
                         info="Maximum number of holidays allowed per employee per year"
                       />
-                      <InputField
+                      <SelectField
                         label="Gratuity Eligibility on Months"
                         name="gratuityEligibilityonMonths"
                         value={formData.gratuityEligibilityonMonths}
                         onChange={handleChange}
-                        type="text"
+                        options={[{
+                          label:'Months',value:'Months'
+                        }]}
                         info="Maximum number of holidays allowed per employee per year"
                       />
                     </div>

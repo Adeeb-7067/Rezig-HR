@@ -9,9 +9,9 @@ const FormulaList = ({ data }) => {
 
     return (
         <div>
-            <div className="px-1 py-3 border-b text-Header font-semibold text-gray-700 dark:text-gray-200">
+            <h1 className="text-lg text-[#58585A] font-semibold mb-3">
                 Formula List
-            </div>
+            </h1>
             <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
 
                 {/* Horizontal Scroll */}
@@ -29,7 +29,7 @@ const FormulaList = ({ data }) => {
                             }}
                         >
                             <div>Formula Code</div>
-                            <div>Description</div>
+                            <div>Formula Description</div>
                             <div>Formula</div>
                             <div>Sequence</div>
                             <div className="text-center">Action</div>

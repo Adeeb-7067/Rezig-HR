@@ -1,6 +1,5 @@
-;
 import React, { useState } from "react";
-import TabsHeader from "./utils/TabsHeader";
+import Tabs from "@/components/Tabs";
 import PaycodeList from "./component/PaycodeList";
 import FormulaList from "./component/FormulaList";
 
@@ -15,12 +14,16 @@ const PaycodeMaster = () => {
         { code: "A0001", desc: "Basic", formula: "MonthlyCTC * 4", type: "Deduction", status: true, variableType: "Fixed" },
         { code: "A0001", desc: "Basic", formula: "MonthlyCTC * 4", type: "Addition", status: true, variableType: "Fixed" },
         { code: "A0001", desc: "Basic", formula: "MonthlyCTC * 4", type: "Addition", status: false, variableType: "Variable" },
-
     ];
 
     const formulaData = [
         { code: "Basic", desc: "Basic formula", formula: "MonthlyCTC * 4", sequence: 1 },
         { code: "ESI", desc: "ESI formula", formula: "MonthlyCTC * .0475", sequence: 2 },
+    ];
+
+    const tabs = [
+        { label: "Paycode Master", value: "paycode" },
+        { label: "Formula", value: "formula" },
     ];
 
     const handleTabChange = (tab) => {
@@ -31,17 +34,28 @@ const PaycodeMaster = () => {
     return (
         <div className="space-y-6">
 
-            <TabsHeader
-                activeTab={activeTab}
-                setActiveTab={handleTabChange}
-                buttonText={
-                    activeTab === "paycode"
-                        ? "Create Paycode Master"
-                        : "Create Formula"
-                }
-                onButtonClick={() => setShowCreate(true)}
-                showCreate={showCreate}
-            />
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                <Tabs tabs={tabs} activeTab={activeTab} onChange={handleTabChange} />
+
+                {!showCreate && (
+                    <button
+                        onClick={() => setShowCreate(true)}
+                        className="
+                            w-full md:w-auto
+                            bg-primary
+                            text-white
+                            px-4 py-2
+                            rounded-md
+                            text-sm font-medium
+                            shadow-sm
+                            hover:opacity-90
+                            transition
+                        "
+                    >
+                        + {activeTab === "paycode" ? "Create Paycode Master" : "Create Formula"}
+                    </button>
+                )}
+            </div>
 
             {/* PAYCODE TAB */}
             {activeTab === "paycode" && (

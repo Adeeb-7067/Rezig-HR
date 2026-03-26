@@ -32,8 +32,8 @@ const CalculatorPad = ({ onKeyPress, onClear }) => {
                             }
                             className={`
                                 ${isZero ? "col-span-2 sm:col-span-2" : ""}
-                                h-10 sm:h-16
-                                rounded-2xl
+                                h-10 sm:h-12
+                                rounded-xl
                                 flex items-center justify-center
                                 text-base sm:text-xl
                                 font-medium

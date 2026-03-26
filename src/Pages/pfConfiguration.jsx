@@ -518,6 +518,7 @@ const pfConfiguration = () => {
 
                     <SelectField
                       label="ESI on Arrears"
+                      info="ESI on Arrears"
                       name="ESI on Arrears"
                       value={formData["ESI on Arrears"]}
                       onChange={handleChange}
@@ -527,6 +528,7 @@ const pfConfiguration = () => {
                     <SelectField
                       label="ESI Rounding"
                       name="ESI Rounding"
+
                       value={formData["ESI Rounding"]}
                       onChange={handleChange}
                       options={[{ value: "", label: "Higher Rupee" }]}
@@ -552,6 +554,7 @@ const pfConfiguration = () => {
 
                     <ToggleField
                       name={"Sepearte ESI rounding on Arrears"}
+                      info="Sepearte ESI rounding on Arrears"
                       label={"Sepearte ESI rounding on Arrears"}
                       value={formData["Sepearte ESI rounding on Arrears"]}
                       onChange={handleChange}
@@ -568,6 +571,7 @@ const pfConfiguration = () => {
 
                     <ToggleField
                       name={"Deduct ESI on ESI Limit"}
+                      info={'Deduct ESI on ESI Limit'}
                       label={"Deduct ESI on ESI Limit"}
                       value={formData["Deduct ESI on ESI Limit"]}
                       onChange={handleChange}
@@ -585,6 +589,7 @@ const pfConfiguration = () => {
 
                     <SelectField
                       label="Round ESI Employer Share"
+                      info={'Round ESI Eployer share'}
                       name="Round ESI Employer Share"
                       value={formData["Round ESI Employer Share"]}
                       onChange={handleChange}

@@ -67,7 +67,7 @@ const OvertimeSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-                <VariableTypeRow
+                <InputField
                 info={'Overtime will Start after time'}
                     label="Overtime will Start after time"
                     name="otStart"

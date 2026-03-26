@@ -16,22 +16,13 @@ const StatutoryTaxParameter = () => {
     const [lwf, setLwf] = useState(false);
 
     return (
-        <div
-            className="
-        bg-gray-50 dark:bg-gray-900
-        p-4 sm:p-6
-        rounded-xl
-        border border-gray-200 dark:border-gray-700
-        space-y-6
-        transition-colors
-      "
-        >
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200 text-sm">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg space-y-4">
+            <h1 className="text-base font-semibold mb-1 text-gray-500">
                 Statutory & Tax Parameter
-            </h3>
+            </h1>
 
             {/* Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <SelectField
                     label="Part of PF/VolPF Gross"
                     name="pfGross"

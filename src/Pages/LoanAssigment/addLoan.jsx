@@ -298,6 +298,22 @@ const AddLoan = () => {
             </div>
 
 
+              <div className="flex justify-end gap-4 mt-3">
+       <button
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Reset
+        </button>
+        <button
+          type="button"
+          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+        >
+          Save
+        </button>
+      </div>
+
+
 
 
     </div>
