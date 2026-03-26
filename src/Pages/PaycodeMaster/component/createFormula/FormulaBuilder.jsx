@@ -12,10 +12,10 @@ const FormulaBuilder = () => {
   const handleClear = () => setFormula("");
 
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm transition-colors">
-      <h3 className="text-base font-semibold text-gray-700 dark:text-gray-200 mb-6">
+    <div className="  border border-gray-200 gap-2 p-4 rounded-lg space-y-4 transition-colors">
+      <h1 className="text-lg font-semibold mb-1 text-gray-500">
         Formula Builder
-      </h3>
+      </h1>
 
       {/* Responsive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -26,7 +26,7 @@ const FormulaBuilder = () => {
                     bg-gray-100 dark:bg-gray-800
                     rounded-xl
                     p-6
-                    min-h-[360px]
+                    min-h-[300px]
                     text-sm
                     text-gray-600 dark:text-gray-300
                     transition

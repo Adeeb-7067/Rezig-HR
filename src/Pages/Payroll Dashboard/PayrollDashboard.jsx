@@ -38,7 +38,7 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
   return (
     <div
       className="relative flex items-center justify-between gap-2 sm:gap-3
-      bg-white dark:bg-gray-800 border-l-3 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 w-full min-w-0
+      bg-white dark:bg-gray-800 border-l-3 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 w-full min-w-0 hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer 
       p-3"
       style={{ borderLeftColor: borderColor }}
     >

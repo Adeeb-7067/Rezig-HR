@@ -87,7 +87,7 @@ const ViewPaycodeModal = ({ open, onClose, data }) => {
 
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                className="absolute inset-0 bg-black/5 backdrop-blur-xs"
                 onClick={onClose}
             />
 
@@ -108,7 +108,7 @@ const ViewPaycodeModal = ({ open, onClose, data }) => {
       "
             >
                 {/* Scroll Container */}
-                <div className="overflow-y-auto p-4 sm:p-8 space-y-6">
+                <div className="overflow-y-auto p-4 sm:p-7 space-y-3">
 
                     {/* Header */}
                     <div className="flex justify-between items-center">

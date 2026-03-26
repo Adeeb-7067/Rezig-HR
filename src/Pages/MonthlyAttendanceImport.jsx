@@ -569,16 +569,18 @@ const MonthlyAttendanceImport = () => {
               >
                 Leave Template ID
               </label>
+<div className="lg:w-[70%]">
 
               <SelectField
                 name={"Leave Template Id"}
                 value={"Select Id"}
-                className="lg:w-[70%]  "
                 options={[
                   { value: "", label: "Select Title" },
                   { value: "monthly", label: "Monthly." },
                 ]}
               />
+</div>
+
             </div>
 
             <div className="flex flex-col gap-2 justify-between w-full">
@@ -588,17 +590,19 @@ const MonthlyAttendanceImport = () => {
               >
                 Month - Year
               </label>
+<div className="lg:w-[70%]">
 
               <SelectField
                 name={"Month - Year "}
                 value={"Select Type"}
-                className="lg:w-[70%] "
                 options={[
                   { value: "", label: "Select Title" },
                   { value: "monthly", label: "Monthly" },
                   { value: "Year", label: "Year" },
                 ]}
               />
+</div>
+
             </div>
 
             {/* Action buttons */}

@@ -28,6 +28,7 @@ import { cn } from "@/lib/utils";
 import DatePickerField from "@/components/ui/datePicker";
 import AttendanceCalendar from "@/Pages/AttendanceRegularisation/components/AttendanceCalendar";
 import AttendanceRegularizeModal from "@/Pages/AttendanceRegularisation/components/AttendanceRegularizeModal";
+import AttendanceBulkRegularizeModal from "@/Pages/AttendanceRegularisation/components/AttendanceBulkRegularizeModal";
 
 /* ========== SALARY DETAILS ========== */
 const salaryMonths = [
@@ -1021,6 +1022,7 @@ const CalendarCard = () => {
     month: 4,
     year: 2015,
   });
+  const [bulkRegularizeOpen, setBulkRegularizeOpen] = useState(false);
 
   const openSingleModal = (day) => {
     setRegularizeModal({ open: true, day, month: 4, year: 2015 });
@@ -1135,6 +1137,23 @@ const CalendarCard = () => {
         day={regularizeModal.day}
         month={regularizeModal.month}
         year={regularizeModal.year}
+      />
+      {multipleCorrection && selectedDays.length > 0 && (
+        <div className="flex justify-end mt-4">
+          <button
+            onClick={() => setBulkRegularizeOpen(true)}
+            className="px-4 py-2 bg-[#8629DF] text-white text-[0.7rem] font-bold rounded-md hover:bg-[#7620c7] transition-all shadow-md"
+          >
+            Open Multiple Correction ({selectedDays.length})
+          </button>
+        </div>
+      )}
+      <AttendanceBulkRegularizeModal
+        open={bulkRegularizeOpen}
+        onClose={() => setBulkRegularizeOpen(false)}
+        selectedDays={selectedDays}
+        month={4}
+        year={2015}
       />
     </div>
   );
@@ -1585,18 +1604,18 @@ const TaskDetailsModal = ({ task, onClose }) => {
 const TasksModal = ({ onClose, onTaskClick }) => (
   <div className="fixed inset-0 z-50 flex justify-end pt-[4.5rem] pr-4 pb-4 md:pr-6 md:pt-24">
     <div
-      className="absolute inset-0 bg-black/40"
+      className="absolute inset-0 bg-black/20"
       onClick={onClose}
       aria-hidden
     />
-    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md max-h-[calc(100vh-6rem)] flex flex-col border border-gray-200 dark:border-gray-700">
+    <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-[350px] max-h-[calc(100vh-6rem)] flex flex-col border border-gray-200 dark:border-gray-700">
       <div className="flex items-center justify-between px-5 py-4 bg-[#8629DF] rounded-t-xl shrink-0">
         <h3 className="text-[1.25rem] font-bold text-white">Tasks</h3>
         <span className="w-8 h-8 rounded-full bg-[#8629DF] border-2 border-white/40 flex items-center justify-center text-white text-[0.9rem] font-bold">
           {String(tasksData.length).padStart(2, "0")}
         </span>
       </div>
-      <div className="overflow-y-auto p-4 space-y-3">
+      <div className="overflow-y-auto table-scroll p-4 space-y-2">
         {tasksData.map((t) => (
           <div
             key={t.id}
@@ -1647,7 +1666,7 @@ const TasksModal = ({ onClose, onTaskClick }) => (
           </div>
         ))}
       </div>
-      <div className="p-3 border-t border-gray-200 dark:border-gray-700 shrink-0 flex justify-end">
+      {/* <div className="p-3 border-t border-gray-200 dark:border-gray-700 shrink-0 flex justify-end">
         <button
           type="button"
           onClick={onClose}
@@ -1655,7 +1674,7 @@ const TasksModal = ({ onClose, onTaskClick }) => (
         >
           Close
         </button>
-      </div>
+      </div> */}
     </div>
   </div>
 );

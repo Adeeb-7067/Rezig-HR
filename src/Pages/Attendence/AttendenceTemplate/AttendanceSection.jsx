@@ -24,7 +24,10 @@ bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg      "
 
       {/* Row 1 */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-1.5">
-        <InputField label="Template ID" placeholder="Select ID" />
+        <SelectField label="Template ID" placeholder="Select ID"  unSelectLabel={'Select ID'} options={[{
+          label:'KSCKEW2',
+          value:'KDISD'
+        }]} />
         <InputField label="Template Name :" placeholder="Enter Name" />
       </div>
 
@@ -69,7 +72,9 @@ bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg      "
           checked={toggles.holiday}
           onCheckedChange={(val) => handleToggle("holiday", val)}
         />
-        <InputField label="Weekly Off and Holiday Priority" placeholder="0" />
+        <SelectField options={[{
+          label:'1',value:'1'
+        }]} label="Weekly Off and Holiday Priority" placeholder="0" />
       </div>
     </div>
   );

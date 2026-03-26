@@ -5,22 +5,12 @@ import { HelpCircle } from "lucide-react";
 
 const FormulaHeader = () => {
     return (
-        <div
-            className="
-        bg-white dark:bg-gray-900
-        border border-gray-200 dark:border-gray-700
-        rounded-2xl
-        p-5 sm:p-6
-        space-y-6
-        shadow-sm
-        transition-colors
-      "
-        >
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg space-y-4 transition-colors">
             {/* Top Header */}
             <div className="flex justify-between items-center">
-                <h2 className="text-sm font-semibold text-gray-800 dark:text-gray-200">
+                <h1 className="text-base font-semibold mb-1 text-gray-500">
                     Formula
-                </h2>
+                </h1>
 
                 <button
                     className="
@@ -41,7 +31,7 @@ const FormulaHeader = () => {
             </div>
 
             {/* Form Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <InputField label="*Formula Code" placeholder="Enter" />
                 <InputField label="*Description" placeholder="Enter" />
 

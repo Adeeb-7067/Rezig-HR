@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
 import { Eye, X, Pencil, Trash2 } from "lucide-react";
+import DateFilter from "./AttendanceRegularisation/components/DateFilter";
 const data = [
   {
     lowerLimit: "1.00",
@@ -139,9 +140,24 @@ const TransactionHistory = () => {
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const [openModal, setOpenModal] = useState(false);
+    const [fromDate, setFromDate] = useState("");
+    const [toDate, setToDate] = useState("");
 
   return (
     <div className="min-h-screen p-6">
+      <div className="flex justify-between items-center">
+        <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+          Transaction History Table
+        </h1>
+       <div>
+          <DateFilter
+              fromDate={fromDate}
+              toDate={toDate}
+              setFromDate={setFromDate}
+              setToDate={setToDate}
+            />
+       </div>
+      </div>
       {/* Main Table */}
       <div className="rounded-sm mt-5 shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
         <div className="overflow-x-auto no-scrollbar">
@@ -207,6 +223,12 @@ const TransactionHistory = () => {
           </div>
         </div>
       </div>
+<div className="flex justify-end w-full ">
+
+      <button className="bg-[#8629DF] text-white px-4 py-1 rounded-sm mt-3 text-[0.7rem] ">
+        Download
+      </button>
+</div>
 
       {openModal && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
@@ -309,6 +331,10 @@ const TransactionHistory = () => {
 
 const TaxConfigurationTable = ({ taxData }) => {
   return (
+    <div>
+      <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+        Tax Configutration List
+      </h1>
     <div className="rounded-sm mt-5 shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
       {/* SINGLE SCROLL CONTAINER */}
       <div className="overflow-auto no-scrollbar  table-scroll">
@@ -369,6 +395,7 @@ const TaxConfigurationTable = ({ taxData }) => {
           ))}
         </div>
       </div>
+    </div>
     </div>
   );
 };

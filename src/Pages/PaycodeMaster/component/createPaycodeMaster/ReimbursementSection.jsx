@@ -7,23 +7,14 @@ const ReimbursementSection = () => {
     const [type, setType] = useState("finyear");
 
     return (
-        <div
-            className="
-        bg-gray-50 dark:bg-gray-900
-        p-4 sm:p-6
-        rounded-xl
-        border border-gray-200 dark:border-gray-700
-        space-y-6
-        transition-colors
-      "
-        >
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg space-y-4">
             {/* Title */}
-            <h3 className="font-semibold text-gray-700 dark:text-gray-200 text-sm">
+            <h1 className="text-base font-semibold mb-1 text-gray-500">
                 Reimbursement
-            </h3>
+            </h1>
 
             {/* Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
 
                 {/* Left - Toggle */}
                 <VariableTypeRow

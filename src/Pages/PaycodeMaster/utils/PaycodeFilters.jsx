@@ -10,9 +10,9 @@ const PaycodeFilters = ({
     return (
         <div className="mb-6">
             {/* Title */}
-            <h2 className="text-Title  text-gray-700 mb-4 dark:text-white">
+            <h1 className="text-lg text-[#58585A] font-semibold mb-3">
                 List Of Pay Head
-            </h2>
+            </h1>
 
             {/* Filters Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl ">

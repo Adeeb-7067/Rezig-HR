@@ -95,7 +95,10 @@ const LeaveMaster = () => {
             info="Transfer Annual Balance Limit"
           />
 
-          <InputField
+          <SelectField
+          options={[{
+            label:'1',value:'1'
+          }]}
             label="Min Limit Per Request"
             info="Min Limit Per Request"
           />
@@ -285,7 +288,7 @@ const LeaveMaster = () => {
       </div>
 
       {/* ================= FOOTER ================= */}
-      <div className="flex justify-end gap-4">
+      <div className="flex justify-end gap-4 mt-3">
        <button
           type="button"
           className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"

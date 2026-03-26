@@ -3,6 +3,7 @@ import { ChevronDown, Trash2 } from "lucide-react";
 import InputField from "@/components/inputfeild";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const btnPrevReset =
   "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
@@ -347,6 +348,16 @@ export default function InvestmentDetails({ onNext, onPrev }) {
 
       {/* House Rent Details */}
       <HouseRentAccordion rows={houseRentRows} setRows={setHouseRentRows} />
+
+
+
+         <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+<InputField label={'Landlord PAN'}/>
+<VariableTypeRow label={'Landlord Declarations'}/>
+
+        </div>
+        </div>
 
       {/* Other Income / Deduction */}
       <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
