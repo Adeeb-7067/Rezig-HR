@@ -2,7 +2,7 @@ import React from "react";
 
 const EmployeeCardFull = ({ employee }) => {
     return (
-        <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-800 w-full transition-colors">
+        <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-800 w-fit transition-colors">
 
             <div className="flex gap-4">
 

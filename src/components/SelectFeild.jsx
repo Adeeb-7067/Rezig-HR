@@ -114,7 +114,7 @@ const SelectField = ({
       {open && (
         <ul
           className={cn(
-            "absolute z-10 mt-1 w-full rounded-sm shadow-lg border border-gray-200 dark:border-gray-700",
+            "absolute z-[999] mt-1 w-full rounded-sm shadow-lg border border-gray-200 dark:border-gray-700",
             "bg-white dark:bg-gray-800 text-[0.7rem]",
             "max-h-40 overflow-y-auto transition-all duration-150 ease-in-out no-scrollbar",
           )}

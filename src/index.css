@@ -52,6 +52,7 @@ body {
   display: none;
 }
 
+
 .date-input {
   color: transparent;
   text-shadow: 0 0 0 black;
@@ -61,6 +62,9 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
+
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {

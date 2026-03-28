@@ -5,7 +5,6 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Info } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Input } from "postcss";
 
 const ToggleField = ({
   label,
@@ -86,76 +85,78 @@ const ToggleField = ({
     </div>
   );
 };
-const pfConfiguration = () => {
+
+const initialFormData = {
+  // PF Configuration
+  "Organization Name": "Rezig Demo India Pvt Ltd",
+  "Responsible Person": "",
+  "Organization Address-1": "",
+  "Organization Address-2": "",
+  "Organization Address-3": "",
+  "Organization Phone No.": "",
+  "PF Share (%)": "12.00",
+  "Ac-10 Share (%)": "8.33",
+  "Ac-2 (%)": "0.50",
+  "Ac-21 (%)": "0.50",
+  "Admin Charges(AC-21)": "Pension Wages",
+  "Admin Charges(Account22)": "Pension Wages",
+  "PF Applicable": "Yes",
+  "PF Limit": "15000.00",
+  "PF Rounding": "Nearest Rupee",
+  "Porate PF Limmit": "No",
+  "PF on Overtime": "No",
+  "Organization PF Number": "",
+  "VPF Applicable": "No",
+  "Calculate VPF on Actual Basic Earning (No Limit)": "No",
+  "Deduct PF on Arrears": "No",
+  "Show Employees whose PF is zero on Reports": "No",
+  "Show hold employees on PF Reports": "No",
+  "Recover Negative PF on FNF": "PF Recovery",
+  "VPF Rounding": "50 Paise",
+  "Allow Negative PF": "No",
+  "Separate PF Rounding on Salary and Arrear": "No",
+  "Pension Limit": "15000.00",
+  "Pension Proportionately": "No",
+  "PF on Selected Payhead Only": "No",
+  "Deduct PF on Arrears Select": "All",
+  "Estabilishment": "Non-Exempted",
+
+  // ESI Configuration
+  "ESI Applicable": "Yes",
+  "ESI on Overtime": "No",
+  "ESI Limit": "21000.00",
+  "Deduct ESI on Salary + Arrear Gross": "No",
+  "Organization ESI Number": "20001105140001000",
+  "ESI on Arrears": "All",
+  "ESI Rounding": "Higher Rupee",
+  "Negative ESI recovery on FNF": "All",
+  "ESI Local Office": "20001105140001000",
+  "Sepearte ESI rounding on Arrears": "No",
+  "Employee ESI Share (%)": "0.75",
+  "Deduct ESI on ESI Limit": "No",
+  "Deposit Hold Employees ESI": "No",
+  "Round ESI Employer Share": "None",
+  "Employer ESI Share(%)": "3.25",
+  "Seprate ESI on OT": "No",
+
+  // PT Configuration
+  "PT Applicable": "Yes",
+  "PT Certificate Number": "",
+  "PT on Overtime": "No",
+  "Deposit Hold Employees PT": "No",
+  "Deduct PT on Arrear": "PT (Salary + Arrear) on Salary",
+  "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income": "No",
+
+  // LWF Configuration
+  "LWF deduction on the basis of": "Rate",
+  "Deduct LWF on Arrear": "Do no Deduct LWF on Arrear",
+  "Deduct LWF on FNF": "No",
+  "Deduct LWF on Zero Attendance": "No",
+};
+
+const PfConfiguration = () => {
   const [activeTab, setActiveTab] = useState("pf");
-  const [formData, setFormData] = useState({
-    // PF Configuration
-    "Organization Name": "Rezig Demo India Pvt Ltd",
-    "Responsible Person": "",
-    "Organization Address-1": "",
-    "Organization Address-2": "",
-    "Organization Address-3": "",
-    "Organization Phone No.": "",
-    "PF Share (%)": "12.00",
-    "Ac-10 Share (%)": "8.33",
-    "Ac-2  (%)": "0.50",
-    "Ac-21  (%)": "0.50",
-    "Admin Charges(AC-21)": "Pension Wages",
-    "Admin Charges(Account22)": "Pension Wages",
-    "PF Applicable": "Yes",
-    "PF Limit": "15000.00",
-    "PF Rounding ": "Nearest Rupee",
-    "Porate PF Limmit": "No",
-    "PF on Overtime": "No",
-    "Organization PF Number": "",
-    "VPF Applicable": "No",
-    "Calculate VPF on Actual Basic Earning (No Limit)": "No",
-    "Deduct PF on Arrears": "No",
-    "Show Employees whose PF is zero on Reports": "No",
-    "Show hold employees on PF Reports": "No",
-    "Recover Negative PF on FNF ": "PF Recovery",
-    "VPF Rounding ": "50 Paise",
-    "Allow Negative PF": "No",
-    "Separate PF Rounding on Salary and Arrear": "No",
-    "Pension Limit": "15000.00",
-    "Pension Proportionately": "No",
-    "PF on Selected Payhead Only": "No",
-    "Deduct PF on Arrears ": "All",
-    " Estabilishment ": "Non-Exempted",
-
-    // ESI Configuration
-    "ESI Applicable": "Yes",
-    "ESI on Overtime": "No",
-    "ESI Limit": "21000.00",
-    "Deduct ESI on Salary + Arrear Gross": "No",
-    "Organization ESI Number": "20001105140001000",
-    "ESI on Arrears": "All",
-    "ESI Rounding": "Higher Rupee",
-    "Negative ESI recovery on FNF": "All",
-    "ESI Local Office": "20001105140001000",
-    "Sepearte ESI rounding on Arrears": "No",
-    "Employee ESI Share (%)": "0.75",
-    "Deduct ESI on ESI Limit": "No",
-    "Deposit Hold Employees ESI": "No",
-    "Round ESI Employer Share": "None",
-    "Employer ESI Share(%)": "3.25",
-    "Seprate ESI on OT": "No",
-
-    // PT Configuration
-    "PT Applicable": "Yes",
-    "PT Certificate Number": "",
-    "PT on Overtime ": "No",
-    "Deposit Hold Employees PT": "No",
-    "Deduct PT on Arrear": "PT (Salary + Arrear) on Salary",
-    "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income :":
-      "No",
-
-    // LWF Configuration
-    "  LWF deduction on the basis of ": "Rate",
-    "  Deduct LWF on Arrear": "Do no Deduct LWF on Arrear",
-    "Deduct LWF on FNF": "No",
-    "Deduct LWF on Zero Attendance": "No",
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -166,8 +167,7 @@ const pfConfiguration = () => {
   };
 
   const handleReset = () => {
-    // Logic to reset to initial or fetched data
-    console.log("Resetting form...");
+    setFormData(initialFormData);
   };
 
   const handleUpdate = () => {
@@ -255,21 +255,21 @@ const pfConfiguration = () => {
                       onChange={handleChange}
                     />
                     <InputField
-                      name={"Ac-2  (%)"}
-                      label={"Ac-2  (%)"}
-                      value={formData["Ac-2  (%)"]}
+                      name={"Ac-2 (%)"}
+                      label={"Ac-2 (%)"}
+                      value={formData["Ac-2 (%)"]}
                       onChange={handleChange}
                     />
                     <InputField
-                      name={"Ac-21  (%)"}
-                      label={"Ac-21  (%)"}
-                      value={formData["Ac-21  (%)"]}
+                      name={"Ac-21 (%)"}
+                      label={"Ac-21 (%)"}
+                      value={formData["Ac-21 (%)"]}
                       onChange={handleChange}
                     />
                     <InputField
-                      name={"Ac-21  (%)"}
-                      label={"Ac-21  (%)"}
-                      value={formData["Ac-21  (%)"]}
+                      name={"Ac-21 (%)"}
+                      label={"Ac-21 (%)"}
+                      value={formData["Ac-21 (%)"]}
                       onChange={handleChange}
                     />
                     <SelectField
@@ -322,9 +322,9 @@ const pfConfiguration = () => {
                       onChange={handleChange}
                     />
                     <SelectField
-                      label="PF Rounding "
-                      name="PF Rounding "
-                      value={formData["PF Rounding "]}
+                      label="PF Rounding"
+                      name="PF Rounding"
+                      value={formData["PF Rounding"]}
                       onChange={handleChange}
                       options={[
                         { value: "", label: "Select PF Rounding" },
@@ -367,26 +367,26 @@ const pfConfiguration = () => {
                       label={"Calculate VPF on Actual Basic Earning (No Limit)"}
                       value={
                         formData[
-                          "Calculate VPF on Actual Basic Earning (No Limit)"
+                        "Calculate VPF on Actual Basic Earning (No Limit)"
                         ]
                       }
                       onChange={handleChange}
                     />
                     <SelectField
-                      label="Deduct PF on Arrears "
-                      name=" Deduct PF on Arrears "
-                      value={formData[" Deduct PF on Arrears "]}
+                      label="Deduct PF on Arrears"
+                      name="Deduct PF on Arrears Select"
+                      value={formData["Deduct PF on Arrears Select"]}
                       onChange={handleChange}
-                      info=" Deduct PF on Arrears "
-                      options={[{ value: "", label: "All" }]}
+                      info="Deduct PF on Arrears"
+                      options={[{ value: "All", label: "All" }]}
                     />
                     <SelectField
-                      label="Estabilishment "
-                      name=" Estabilishment "
-                      value={formData[" Estabilishment "]}
+                      label="Estabilishment"
+                      name="Estabilishment"
+                      value={formData["Estabilishment"]}
                       onChange={handleChange}
-                      info=" Estabilishment "
-                      options={[{ value: "", label: "Non-Exempted" }]}
+                      info="Estabilishment"
+                      options={[{ value: "Non-Exempted", label: "Non-Exempted" }]}
                     />
                     <ToggleField
                       name={"Deduct PF on Arrears"}
@@ -411,19 +411,19 @@ const pfConfiguration = () => {
                       onChange={handleChange}
                     />
                     <SelectField
-                      label="Recover Negative PF on FNF "
-                      name=" Recover Negative PF on FNF "
-                      value={formData[" Recover Negative PF on FNF "]}
+                      label="Recover Negative PF on FNF"
+                      name="Recover Negative PF on FNF"
+                      value={formData["Recover Negative PF on FNF"]}
                       onChange={handleChange}
-                      options={[{ value: "", label: "PF Recovery" }]}
+                      options={[{ value: "PF Recovery", label: "PF Recovery" }]}
                     />
                     <SelectField
-                      label="VPF Rounding "
-                      name=" VPF Rounding "
-                      value={formData[" VPF Rounding "]}
+                      label="VPF Rounding"
+                      name="VPF Rounding"
+                      value={formData["VPF Rounding"]}
                       onChange={handleChange}
-                      info=" VPF Rounding "
-                      options={[{ value: "", label: "50 Paise" }]}
+                      info="VPF Rounding"
+                      options={[{ value: "50 Paise", label: "50 Paise" }]}
                     />
                     <ToggleField
                       info={"Allow Negative PF"}
@@ -522,16 +522,15 @@ const pfConfiguration = () => {
                       name="ESI on Arrears"
                       value={formData["ESI on Arrears"]}
                       onChange={handleChange}
-                      options={[{ value: "", label: "All" }]}
+                      options={[{ value: "All", label: "All" }]}
                     />
 
                     <SelectField
                       label="ESI Rounding"
                       name="ESI Rounding"
-
                       value={formData["ESI Rounding"]}
                       onChange={handleChange}
-                      options={[{ value: "", label: "Higher Rupee" }]}
+                      options={[{ value: "Higher Rupee", label: "Higher Rupee" }]}
                     />
 
                     <SelectField
@@ -539,7 +538,7 @@ const pfConfiguration = () => {
                       name="Negative ESI recovery on FNF"
                       value={formData["Negative ESI recovery on FNF"]}
                       onChange={handleChange}
-                      options={[{ value: "", label: "All" }]}
+                      options={[{ value: "All", label: "All" }]}
                     />
                   </div>
 
@@ -593,7 +592,7 @@ const pfConfiguration = () => {
                       name="Round ESI Employer Share"
                       value={formData["Round ESI Employer Share"]}
                       onChange={handleChange}
-                      options={[{ value: "", label: "None" }]}
+                      options={[{ value: "None", label: "None" }]}
                     />
 
                     <InputField
@@ -637,9 +636,9 @@ const pfConfiguration = () => {
                     onChange={handleChange}
                   />
                   <ToggleField
-                    name={"PT on Overtime "}
+                    name={"PT on Overtime"}
                     label={"PT on Overtime"}
-                    value={formData["PT on Overtime "]}
+                    value={formData["PT on Overtime"]}
                     onChange={handleChange}
                   />
                   <ToggleField
@@ -656,21 +655,17 @@ const pfConfiguration = () => {
                     value={formData["Deduct PT on Arrear"]}
                     onChange={handleChange}
                     options={[
-                      { value: "", label: "PT (Salary + Arrear) on Salary" },
+                      { value: "PT (Salary + Arrear) on Salary", label: "PT (Salary + Arrear) on Salary" },
                     ]}
                   />
 
                   <div className="col-span-3 w-fit my-3">
                     <ToggleField
-                      name={
-                        "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income :"
-                      }
-                      label={
-                        "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income :"
-                      }
+                      name={"Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income"}
+                      label={"Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income :"}
                       value={
                         formData[
-                          "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income :"
+                        "Deduct PT Monthly on Half Yearly / Yearly slabs as per YTD Income"
                         ]
                       }
                       onChange={handleChange}
@@ -689,18 +684,18 @@ const pfConfiguration = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <SelectField
-                label=" LWF deduction on the basis of "
-                name="  LWF deduction on the basis of "
-                value={formData["  LWF deduction on the basis of "]}
+                label="LWF deduction on the basis of"
+                name="LWF deduction on the basis of"
+                value={formData["LWF deduction on the basis of"]}
                 onChange={handleChange}
-                options={[{ value: "", label: "Rate" }]}
+                options={[{ value: "Rate", label: "Rate" }]}
               />
               <SelectField
-                label=" Deduct LWF on Arrear"
-                name="  Deduct LWF on Arrear"
-                value={formData["  Deduct LWF on Arrear"]}
+                label="Deduct LWF on Arrear"
+                name="Deduct LWF on Arrear"
+                value={formData["Deduct LWF on Arrear"]}
                 onChange={handleChange}
-                options={[{ value: "", label: "Do no Deduct LWF on Arrear" }]}
+                options={[{ value: "Do no Deduct LWF on Arrear", label: "Do no Deduct LWF on Arrear" }]}
               />
               <ToggleField
                 name={"Deduct LWF on FNF"}
@@ -765,4 +760,4 @@ const pfConfiguration = () => {
   );
 };
 
-export default pfConfiguration;
+export default PfConfiguration;

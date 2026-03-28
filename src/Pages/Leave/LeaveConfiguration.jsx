@@ -58,7 +58,7 @@ const LeaveConfiguration = () => {
     <div className="space-y-6">
       <div className="flex flex-row sm:flex-row justify-between gap-3 mt-2 mb-8 w-full">
         {/* Title */}
-        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50">
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 ">
           Leave Configuration
         </h1>
 
@@ -107,7 +107,7 @@ const LeaveConfiguration = () => {
               {data.map((item, index) => (
                 <div
                   key={index}
-                  className="text-[0.7rem] py-3 px-6 border-b border-gray-200 hover:bg-gray-50"
+                  className="text-[0.7rem] py-3 px-6 border-b border-gray-200 hover:bg-gray-50  dark:hover:bg-gray-700"
                   style={{
                     display: "grid",
                     gridTemplateColumns:

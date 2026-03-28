@@ -4,6 +4,7 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import SelectField from "@/components/SelectFeild";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 // Reusable Input Component
 const InputField = ({
   label,
@@ -82,19 +83,7 @@ const TextareaField = ({ label, name, value, onChange, className = "", ...props 
   </div>
 );
 
-// Reusable Checkbox Component
-const CheckboxField = ({ label, name, checked, onChange, className = "" }) => (
-  <div className="flex gap-2">
-    <input
-      type="checkbox"
-      name={name}
-      checked={checked}
-      onChange={onChange}
-      className={`h-4 w-4 mt-1 dark:bg-gray-700 ${className}`}
-    />
-    <p className=" text-gray-500 dark:text-gray-50 text-sm">{label}</p>
-  </div>
-);
+
 const ToggleField = ({ label, name, value, onChange, className = "" }) => {
   return (
     <div className={`flex items-center justify-between  gap-3 mr-4 py-2 ${className}`}>
@@ -347,10 +336,10 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
             onChange={handleChange}
             className="h-[114px] mt-1"
           />
-          <CheckboxField
+          <ToggleField
             label="Suspended"
             name="suspended"
-            checked={formData.suspended}
+            value={formData.suspended}
             onChange={handleChange}
           />
         </div>
@@ -458,10 +447,10 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
               value={formData.currencyCode}
               onChange={handleChange}
             />
-            <CheckboxField
+            <ToggleField
               label="Handicapped"
               name="handicapped"
-              checked={formData.handicapped}
+              value={formData.handicapped}
               onChange={handleChange}
             />
           </div>

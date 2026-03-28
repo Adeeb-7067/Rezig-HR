@@ -109,18 +109,17 @@ const AddLoan = () => {
         </h1>
       </div>
 
-      {/* Employee Info Card */}
-      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-5 mb-5 bg-white dark:bg-gray-800 w-[50%]">
-        <div className="flex items-start gap-4 ">
-          {/* Avatar */}
+       {/* ── Employee Info Card ── */}
+      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-5 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[480px] lg:w-[50%]">
+        <div className="flex flex-row items-start gap-3 sm:gap-4">
           {employee.avatar ? (
             <img
               src={employee.avatar}
               alt={employee.name}
-              className="w-[120px] h-[120px] rounded-lg object-cover flex-shrink-0 bg-gray-100"
+              className="w-16 h-16 sm:w-[120px] sm:h-[120px] rounded-lg object-cover flex-shrink-0 bg-gray-100"
             />
           ) : (
-            <div className="w-[120px] h-[120px] rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-2xl font-bold flex-shrink-0">
+            <div className="w-16 h-16 sm:w-[120px] sm:h-[120px] rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-lg sm:text-2xl font-bold flex-shrink-0">
               {String(employee.name || "?")
                 .split(" ")
                 .map((n) => n[0])
@@ -129,63 +128,38 @@ const AddLoan = () => {
                 .toUpperCase()}
             </div>
           )}
-
-          {/* Right section */}
-          <div className="flex-1">
-            {/* Name + Status */}
-            <div className="flex justify-between items-center gap-2 mb-0.5">
-              <span className="text-[1.1rem] font-semibold text-gray-900 dark:text-gray-50">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap justify-between items-center gap-x-2 gap-y-1 mb-0.5">
+              <span className="text-[1rem] sm:text-[1.1rem] font-semibold text-gray-900 dark:text-gray-50 truncate">
                 {employee.name}
               </span>
-
-              <span className="text-[0.65rem] font-medium text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full">
+              <span className="text-[0.65rem] font-medium text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                 {employee.status}
               </span>
             </div>
-
-            {/* Emp Code */}
             <p className="text-[0.8rem] font-semibold text-gray-400 mb-2">
               {employee.empCode}
             </p>
-
-            {/* Existing Loan */}
-            <div className="mb-3 mx-1">
-              <p className="text-[0.7rem] font-medium text-gray-700 dark:text-gray-200 mb-0.5">
+            <div className="mb-3">
+              <p className="text-[0.7rem] font-medium text-gray-700 dark:text-gray-200 mb-1">
                 {employee.existingLoan.type}
               </p>
-
-              <div className="text-[0.7rem] text-gray-500 dark:text-gray-400 space-y-0.5">
-                <p>
-                  Current Loan –{" "}
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.currentLoan}
-                  </span>
-                </p>
-
-                <p>
-                  EMI –{" "}
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.emi}
-                  </span>
-                </p>
-
-                <p>
-                  Remaining Tenure –{" "}
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.remainingTenure}
-                  </span>
-                </p>
-              </div>
+              <dl className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[0.7rem] text-gray-500 dark:text-gray-400">
+                <dt>Current Loan</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.currentLoan}</dd>
+                <dt>EMI</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.emi}</dd>
+                <dt>Remaining Tenure</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.remainingTenure}</dd>
+              </dl>
             </div>
           </div>
         </div>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-1">
           {employee.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-[#8629DF] text-white text-[0.7rem] px-3 py-1.5 rounded-[4px]"
+              className="bg-[#8629DF] text-white text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
             >
               {tag}
             </span>

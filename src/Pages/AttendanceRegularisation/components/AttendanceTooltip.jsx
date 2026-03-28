@@ -40,7 +40,6 @@ function formatTime(t) {
   return `${h.padStart(2, "0")} : ${(m || "00").padStart(2, "0")}`;
 }
 
-// ✅ ONLY CHANGE: fixed + high z-index
 const TOOLTIP_WRAPPER =
   "fixed z-[999999] pointer-events-none w-[250px]";
 
@@ -88,7 +87,6 @@ const AttendanceTooltip = ({
         <div className={ARROW_LEFT} />
         <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden`}>
           
-          {/* ✅ ORIGINAL UI UNCHANGED */}
           <div className="bg-purple-100 dark:bg-purple-900/40 px-4 py-2.5 rounded-t-[16.26px] flex justify-between items-center gap-2">
             <p className="text-gray-800 dark:text-white font-semibold text-sm shrink-0">
               {dateStr}
@@ -138,9 +136,9 @@ const AttendanceTooltip = ({
 
       <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden drop-shadow-sm`}>
 
-        {/* ✅ ORIGINAL UI UNCHANGED */}
-        <div className=" px-4 py-2 rounded-t-[16.26px] flex justify-between items-center gap-2">
-          <p className="text-[#8629DF] font-semibold text-sm shrink-0">
+        {/* Header */}
+        <div className="px-4 py-2 rounded-t-[16.26px] flex justify-between items-center gap-2">
+          <p className="text-[#8629DF] dark:text-purple-400 font-semibold text-sm shrink-0">
             {dateStr || "Thu, 1st May 2025"}
           </p>
 
@@ -153,44 +151,45 @@ const AttendanceTooltip = ({
           )}
         </div>
 
-        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] text-[0.7rem] bg-[#FAF6FE]">
+        {/* Body */}
+        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] text-[0.7rem] bg-[#FAF6FE] dark:bg-gray-900/50">
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">Shift :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">Shift :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">
               Gurugram Office
             </span>
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">In Date :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">In Date :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">
               {shortDateStr}
             </span>
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">In Time :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">In Time :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">
               {inTime}
             </span>
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">Out Date :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">Out Date :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">
               {shortDateStr}
             </span>
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">Out Time :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">Out Time :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">
               {outTime}
             </span>
           </div>
 
           <div className="flex justify-between items-center gap-4">
-            <span className="text-gray-600 dark:text-gray-200 shrink-0">Status :-</span>
+            <span className="text-gray-600 dark:text-gray-400 shrink-0">Status :-</span>
             <span className="text-amber-600 dark:text-amber-400 text-right text-[0.8rem]">
               {statusDisplay}
             </span>

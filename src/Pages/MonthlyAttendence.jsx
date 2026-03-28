@@ -31,6 +31,7 @@ export default function AttendanceImport() {
     setShowCards(!showCards);
   };
 
+  
   return (
     <div className="p-0 md:p-6 min-h-screen text-sm text-gray-800">
       <div className="p-0 md:p-4 rounded-sm shadow drop-shadow-xs border border-gray-100 dark:border-gray-500 dark:bg-gray-900   ">
@@ -59,11 +60,10 @@ export default function AttendanceImport() {
         </div>
 
         <div
-          className={`grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-2 transition-all duration-500 ${
-            showCards
+          className={`grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 p-2 transition-all duration-500 ${showCards
               ? "opacity-100 h-auto md:max-h-[1000px]"
               : "opacity-0 max-h-0  overflow-hidden "
-          }`}
+            }`}
         >
           <div showCards={showCards}>
             <h1 className="text-[0.9rem] text-gray-400 mb-2 font-semibold">
@@ -226,6 +226,8 @@ export default function AttendanceImport() {
           </span>
         </button>
       </div>
+
+      
     </div>
   );
 }
@@ -233,14 +235,12 @@ export default function AttendanceImport() {
 function Section({ title, children, showCards }) {
   return (
     <div
-      className={`transition-opacity duration-500 ${
-        showCards ? "opacity-100" : "opacity-0"
-      }`}
+      className={`transition-opacity duration-500 ${showCards ? "opacity-100" : "opacity-0"
+        }`}
     >
       <h3
-        className={`text-xs font-semibold text-gray-500 mb-3 transition-opacity duration-300 ${
-          !showCards ? "opacity-0" : "opacity-100"
-        }`}
+        className={`text-xs font-semibold text-gray-500 mb-3 transition-opacity duration-300 ${!showCards ? "opacity-0" : "opacity-100"
+          }`}
       >
         {title}
       </h3>
@@ -258,10 +258,10 @@ function ActionCard({ icon, title, desc, color, showCards, delay = 0 }) {
         transition-all duration-300 ease-out
         ${showCards ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}
       `}
-      // style={{
-      //   transitionDelay: `${delay}ms`,
-      //   pointerEvents: showCards ? 'auto' : 'none'
-      // }}
+    // style={{
+    //   transitionDelay: `${delay}ms`,
+    //   pointerEvents: showCards ? 'auto' : 'none'
+    // }}
     >
       <div
         className={`h-10 w-10 flex items-center justify-center rounded-md text-white ${color} transition-transform duration-300 group-hover:scale-110`}

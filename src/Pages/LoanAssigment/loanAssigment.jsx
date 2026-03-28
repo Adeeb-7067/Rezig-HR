@@ -632,7 +632,7 @@ const LoanAssignment = () => {
       {!selectedEmployee && (
         <div className="p-3 min-h-screen sm:p-4 md:p-5 w-full min-w-0 max-w-full overflow-x-hidden">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
+          <div className="flex flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
             <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
               Loan Assigment
             </h1>
@@ -648,17 +648,11 @@ const LoanAssignment = () => {
               </div>
             </div>
           </div>
-{/* Search and Filter Bar */}
-<div className="grid grid-cols-2 md:flex md:justify-around gap-2 md:gap-2 w-full flex-wrap-reverse md:flex-nowrap">
-
-  {/* SEARCH */}
-  <div
-    ref={searchRef}
-    className="relative w-full md:w-[90%]"
-  >
-    <div
-      className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full xl:h-[35px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
-    >
+          {/* Search and Filter Bar */}
+          <div className="flex flex-row gap-2 w-full mb-6 sm:mb-8">
+            {/* SEARCH */}
+            <div ref={searchRef} className="flex-1 min-w-0 relative">
+              <div className="flex items-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-sm px-3 shadow-sm focus-within:border-[#8629DF] focus-within:ring-1 focus-within:ring-[#8629DF] transition-all h-9 sm:h-[35px]">
       <input
         type="text"
         placeholder="Search by employee name..."
@@ -670,10 +664,10 @@ const LoanAssignment = () => {
         onFocus={() => {
           if (searchQuery.length > 0) setShowSearchDropdown(true);
         }}
-        className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
-      />
-      <IoMdSearch className="w-5 h-5 text-gray-500" />
-    </div>
+                className="flex-1 bg-transparent border-none outline-none text-xs sm:text-sm text-gray-700 dark:text-gray-50 placeholder-gray-400 py-1"
+              />
+              <IoMdSearch className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 shrink-0" />
+            </div>
 
     {/* SEARCH DROPDOWN */}
     {showSearchDropdown && filteredData.length > 0 && (
@@ -700,20 +694,20 @@ const LoanAssignment = () => {
     )}
   </div>
 
-  {/* FILTER BUTTON */}
-  <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1">
-    <button
-      onClick={() => setOpen((prev) => !prev)}
-      className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
-    >
-      <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
-      Filter
-      {open ? (
-        <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
-      ) : (
-        <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
-      )}
-    </button>
+            {/* FILTER BUTTON */}
+            <div className="relative shrink-0">
+              <button
+                onClick={() => setOpen((prev) => !prev)}
+                className="flex items-center justify-center gap-1 sm:gap-2 bg-[#8629DF] hover:bg-[#8629DF]/90 text-white px-3 sm:px-4 rounded-sm transition-all h-9 sm:h-[35px] text-xs sm:text-sm font-medium whitespace-nowrap min-w-[80px] sm:min-w-[100px]"
+              >
+                <HiAdjustmentsHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>Filter</span>
+                {open ? (
+                  <IoMdArrowDropup className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                ) : (
+                  <IoMdArrowDropdown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                )}
+              </button>
 
     {/* FILTER DROPDOWN */}
     {open && (

@@ -71,7 +71,7 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
         </div>
         <div className="p-1 sm:p-1.5 rounded-bl-sm bg-purple-100 dark:bg-purple-900/30 absolute top-0 right-0">
           <FiDownload
-            size={14}     
+            size={14}
             className="sm:w-4 sm:h-4 text-[#7B2CBF] dark:text-purple-400 cursor-pointer hover:scale-110 transition"
           />
         </div>
@@ -94,19 +94,13 @@ const PayrollDashboard = () => {
   const [reportSelected, setReportSelected] = useState([]);
 
   const reportItems = [
-    { id: 1, name: "Monthly Register", lastGen: "12 Jan 4:22 PM", icon: "🗓️" },
-    { id: 2, name: "PF Report", lastGen: "12 Jan 4:22 PM", icon: "👤" },
-    { id: 3, name: "ESI Report", lastGen: "12 Jan 4:22 PM", icon: "🛡️" },
-    { id: 4, name: "Income Tax Report", lastGen: "12 Jan 4:22 PM", icon: "📄" },
-    { id: 5, name: "Bank File", lastGen: "12 Jan 4:22 PM", icon: "🏦" },
-    { id: 6, name: "LWP Report", lastGen: "12 Jan 4:22 PM", icon: "🕐" },
-    { id: 7, name: "PT Report", lastGen: null, icon: "🔍" },
-    {
-      id: 8,
-      name: "Salary Variance Report",
-      lastGen: "12 Jan 4:22 PM",
-      icon: "📊",
-    },
+    { id: 1, name: "Monthly Register", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon1 },
+    { id: 2, name: "PF Report", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon2 },
+    { id: 3, name: "ESI Report", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon3 },
+    { id: 4, name: "Income Tax Report", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon4 },
+    { id: 5, name: "Bank File", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon5 },
+    { id: 6, name: "LWP Report", lastGen: "12 Jan 4:22 PM", icon: DrawerIcon6 },
+    { id: 7, name: "PT Report", lastGen: null, icon: DrawerIcon7 },
   ];
 
   const toggleCards = () => {
@@ -118,7 +112,6 @@ const PayrollDashboard = () => {
     { label: "Statutory Summary", value: "statutory" },
   ];
 
-  // Active filters that are currently applied
   const [activeFilters, setActiveFilters] = useState({
     employeeName: [],
     department: [],
@@ -128,7 +121,6 @@ const PayrollDashboard = () => {
     employeeStatus: [],
   });
 
-  // Which filters are visible in the UI (checkboxes)
   const [activeVisibleFilters, setActiveVisibleFilters] = useState({
     employeeName: false,
     department: false,
@@ -138,7 +130,6 @@ const PayrollDashboard = () => {
     employeeStatus: false,
   });
 
-  // Temporary states for the dropdown (not applied yet)
   const [tempVisibleFilters, setTempVisibleFilters] = useState({
     employeeName: false,
     department: false,
@@ -157,7 +148,6 @@ const PayrollDashboard = () => {
     employeeStatus: [],
   });
 
-  // Track which dropdowns are open
   const [openDropdowns, setOpenDropdowns] = useState({
     employeeName: false,
     department: false,
@@ -208,153 +198,53 @@ const PayrollDashboard = () => {
   };
 
   const varianceCards = [
-    {
-      title: "Total Processed",
-      nov: "1,000",
-      dec: "1,200",
-      difference: "+200",
-      percentage: "+20.0%",
-      positive: true,
-    },
-    {
-      title: "New Joiners",
-      nov: "45",
-      dec: "60",
-      difference: "+15",
-      percentage: "+33.3%",
-      positive: true,
-    },
-    {
-      title: "Resignations",
-      nov: "30",
-      dec: "22",
-      difference: "-8",
-      percentage: "-26.6%",
-      positive: false,
-    },
-    {
-      title: "Attendance ",
-      nov: "120",
-      dec: "150",
-      difference: "+30",
-      percentage: "+25.0%",
-      positive: false,
-    },
-    {
-      title: "Total CTC ",
-      nov: "950",
-      dec: "1,020",
-      difference: "+70",
-      percentage: "+7.3%",
-      positive: true,
-    },
-    {
-      title: "Overtime Cost",
-      nov: "80",
-      dec: "65",
-      difference: "-15",
-      percentage: "-18.7%",
-      positive: true,
-    },
-    {
-      title: "Bonus Payout",
-      nov: "150",
-      dec: "200",
-      difference: "+50",
-      percentage: "+33.3%",
-      positive: true,
-    },
-    {
-      title: "PF Contribution",
-      nov: "90",
-      dec: "95",
-      difference: "+5",
-      percentage: "+5.5%",
-      positive: true,
-    },
-    {
-      title: "ESIContribution",
-      nov: "40",
-      dec: "38",
-      difference: "-2",
-      percentage: "-5.0%",
-      positive: false,
-    },
-    {
-      title: "Salary Hold",
-      nov: "12",
-      dec: "18",
-      difference: "+6",
-      percentage: "+50.0%",
-      positive: false,
-    },
-    {
-      title: "Net Pay ",
-      nov: "820",
-      dec: "890",
-      difference: "+70",
-      percentage: "+8.5%",
-      positive: true,
-    },
-    {
-      title: "Reimbursements",
-      nov: "25",
-      dec: "32",
-      difference: "+7",
-      percentage: "+28.0%",
-      positive: true,
-    },
+    { title: "Total Processed", nov: "1,000", dec: "1,200", difference: "+200", percentage: "+20.0%", positive: true },
+    { title: "New Joiners", nov: "45", dec: "60", difference: "+15", percentage: "+33.3%", positive: true },
+    { title: "Resignations", nov: "30", dec: "22", difference: "-8", percentage: "-26.6%", positive: false },
+    { title: "Attendance ", nov: "120", dec: "150", difference: "+30", percentage: "+25.0%", positive: false },
+    { title: "Total CTC ", nov: "950", dec: "1,020", difference: "+70", percentage: "+7.3%", positive: true },
+    { title: "Overtime Cost", nov: "80", dec: "65", difference: "-15", percentage: "-18.7%", positive: true },
+    { title: "Bonus Payout", nov: "150", dec: "200", difference: "+50", percentage: "+33.3%", positive: true },
+    { title: "PF Contribution", nov: "90", dec: "95", difference: "+5", percentage: "+5.5%", positive: true },
+    { title: "ESIContribution", nov: "40", dec: "38", difference: "-2", percentage: "-5.0%", positive: false },
+    { title: "Salary Hold", nov: "12", dec: "18", difference: "+6", percentage: "+50.0%", positive: false },
+    { title: "Net Pay ", nov: "820", dec: "890", difference: "+70", percentage: "+8.5%", positive: true },
+    { title: "Reimbursements", nov: "25", dec: "32", difference: "+7", percentage: "+28.0%", positive: true },
   ];
 
-  // Handle temporary checkbox changes (not applied yet)
   const handleTempCheckboxChange = (key, checked) => {
     setTempVisibleFilters((prev) => ({ ...prev, [key]: checked }));
-    // If unchecking, also clear the temporary filter value
     if (!checked) {
       setTempFilterValues((prev) => ({ ...prev, [key]: [] }));
     }
   };
 
-  // Apply filters - copy all temporary states to active states
   const handleApplyFilters = () => {
     setActiveVisibleFilters({ ...tempVisibleFilters });
     setActiveFilters({ ...tempFilterValues });
     setOpen(false);
   };
 
-  // Reset filters - clear everything
   const handleResetFilters = () => {
     const resetValues = {
-      employeeName: [],
-      department: [],
-      location: [],
-      designation: [],
-      payGroup: [],
-      employeeStatus: [],
+      employeeName: [], department: [], location: [],
+      designation: [], payGroup: [], employeeStatus: [],
     };
-
     const resetVisible = {
-      employeeName: false,
-      department: false,
-      location: false,
-      designation: false,
-      payGroup: false,
-      employeeStatus: false,
+      employeeName: false, department: false, location: false,
+      designation: false, payGroup: false, employeeStatus: false,
     };
-
     setTempFilterValues(resetValues);
     setTempVisibleFilters(resetVisible);
     setActiveFilters(resetValues);
     setActiveVisibleFilters(resetVisible);
   };
 
-  // Remove individual active filter
   const handleRemoveFilter = (key) => {
     setActiveFilters((prev) => ({ ...prev, [key]: [] }));
     setActiveVisibleFilters((prev) => ({ ...prev, [key]: false }));
   };
 
-  // Remove specific filter value
   const handleRemoveFilterValue = (filterKey, value) => {
     setActiveFilters((prev) => ({
       ...prev,
@@ -362,78 +252,50 @@ const PayrollDashboard = () => {
     }));
   };
 
-  // Toggle dropdown open/close
   const toggleDropdown = (key) => {
     setOpenDropdowns((prev) => {
       const newState = {
-        employeeName: false,
-        department: false,
-        location: false,
-        designation: false,
-        payGroup: false,
-        employeeStatus: false,
+        employeeName: false, department: false, location: false,
+        designation: false, payGroup: false, employeeStatus: false,
       };
       newState[key] = !prev[key];
       return newState;
     });
   };
 
-  // Handle dropdown item selection (multi-select)
   const handleDropdownItemClick = (filterKey, item) => {
     setActiveFilters((prev) => {
       const currentValues = prev[filterKey];
       if (currentValues.includes(item)) {
-        // Remove item if already selected
-        return {
-          ...prev,
-          [filterKey]: currentValues.filter((i) => i !== item),
-        };
+        return { ...prev, [filterKey]: currentValues.filter((i) => i !== item) };
       } else {
-        // Add item if not selected
-        return {
-          ...prev,
-          [filterKey]: [...currentValues, item],
-        };
+        return { ...prev, [filterKey]: [...currentValues, item] };
       }
     });
   };
 
-  // Handle select all for a filter
   const handleSelectAll = (filterKey) => {
-    setActiveFilters((prev) => ({
-      ...prev,
-      [filterKey]: [...dropdownData[filterKey]],
-    }));
+    setActiveFilters((prev) => ({ ...prev, [filterKey]: [...dropdownData[filterKey]] }));
   };
 
-  // Handle clear all for a filter
   const handleClearAll = (filterKey) => {
-    setActiveFilters((prev) => ({
-      ...prev,
-      [filterKey]: [],
-    }));
+    setActiveFilters((prev) => ({ ...prev, [filterKey]: [] }));
   };
 
-  // Effect for main filter dropdown click outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setOpen(false);
       }
     }
-
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => { document.removeEventListener("mousedown", handleClickOutside); };
   }, [open]);
 
-  // Initialize temp states when dropdown opens
   useEffect(() => {
     if (open) {
       setTempFilterValues({ ...activeFilters });
@@ -441,68 +303,41 @@ const PayrollDashboard = () => {
     }
   }, [open]);
 
-  // Close all dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
-      const isClickInsideDropdown = Object.values(
-        filterDropdownRefs.current
-      ).some((ref) => ref.current && ref.current.contains(event.target));
-
-      const isClickOnDropdownButton = event.target.closest(
-        "[data-filter-button]"
-      );
-
+      const isClickInsideDropdown = Object.values(filterDropdownRefs.current)
+        .some((ref) => ref.current && ref.current.contains(event.target));
+      const isClickOnDropdownButton = event.target.closest("[data-filter-button]");
       if (!isClickInsideDropdown && !isClickOnDropdownButton) {
         setOpenDropdowns({
-          employeeName: false,
-          department: false,
-          location: false,
-          designation: false,
-          payGroup: false,
-          employeeStatus: false,
+          employeeName: false, department: false, location: false,
+          designation: false, payGroup: false, employeeStatus: false,
         });
       }
     }
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => { document.removeEventListener("mousedown", handleClickOutside); };
   }, []);
 
   const generateLast12Months = () => {
     const months = [];
     const now = new Date();
-
     for (let i = 0; i < 24; i++) {
       const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
-
-      const label = date.toLocaleString("default", {
-        month: "short",
-        year: "numeric",
-      });
-
-      months.push({
-        label,
-        value: label,
-      });
+      const label = date.toLocaleString("default", { month: "short", year: "numeric" });
+      months.push({ label, value: label });
     }
-
     return months;
   };
 
   const monthOptions = generateLast12Months();
 
-  // Dropdown Component with click outside functionality
   const DropdownComponent = ({ filterKey, label }) => {
     const dropdownRef = useRef(null);
 
-    // Store ref in parent's ref object
     useEffect(() => {
       filterDropdownRefs.current[filterKey] = dropdownRef;
-      return () => {
-        delete filterDropdownRefs.current[filterKey];
-      };
+      return () => { delete filterDropdownRefs.current[filterKey]; };
     }, [filterKey]);
 
     if (!activeVisibleFilters[filterKey]) return null;
@@ -520,16 +355,10 @@ const PayrollDashboard = () => {
           className="border border-gray-300 dark:border-gray-500 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 hover:bg-gray-50 transition-colors cursor-pointer"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
-              {label}
-            </span>
+            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">{label}</span>
           </div>
           <span className="text-gray-500 mt-1">
-            {isOpen ? (
-              <IoMdArrowDropup className="w-4 h-4" />
-            ) : (
-              <IoMdArrowDropdown className="w-4 h-4" />
-            )}
+            {isOpen ? <IoMdArrowDropup className="w-4 h-4" /> : <IoMdArrowDropdown className="w-4 h-4" />}
           </span>
         </button>
 
@@ -538,20 +367,13 @@ const PayrollDashboard = () => {
             <div className="p-3">
               <div className="flex justify-between items-center mb-3">
                 <button
-                  onClick={() =>
-                    isAllSelected
-                      ? handleClearAll(filterKey)
-                      : handleSelectAll(filterKey)
-                  }
+                  onClick={() => isAllSelected ? handleClearAll(filterKey) : handleSelectAll(filterKey)}
                   className="text-sm text-[#8629DF] font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
               </div>
-
               <hr className="mb-3" />
-
-              {/* Filter Items */}
               <div className="space-y-1 max-h-58 overflow-y-auto pr-1 no-scrollbar">
                 {allValues.map((item) => (
                   <div
@@ -559,33 +381,14 @@ const PayrollDashboard = () => {
                     onClick={() => handleDropdownItemClick(filterKey, item)}
                     className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white cursor-pointer rounded"
                   >
-                    <div
-                      className={`w-4 h-4 flex items-center justify-center border rounded ${
-                        currentValues.includes(item)
-                          ? "bg-[#8629DF] border-[#8629DF]"
-                          : "border-gray-300"
-                      }`}
-                    >
+                    <div className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item) ? "bg-[#8629DF] border-[#8629DF]" : "border-gray-300"}`}>
                       {currentValues.includes(item) && (
-                        <svg
-                          className="w-2.5 h-2.5 text-white"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="3"
-                            d="M5 13l4 4L19 7"
-                          ></path>
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] dark:text-gray-50 font-semibold">
-                      {item}
-                    </span>
+                    <span className="text-[0.7rem] dark:text-gray-50 font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
@@ -612,19 +415,14 @@ const PayrollDashboard = () => {
           <SelectField
             className="w-full sm:w-fit min-w-0 border-2 border-[#8629DF]"
             options={monthOptions}
-            unSelectLabel={`${new Date().toLocaleString("default", {
-              month: "short",
-            })}-${new Date().getFullYear()}`}
+            unSelectLabel={`${new Date().toLocaleString("default", { month: "short" })}-${new Date().getFullYear()}`}
           />
         </div>
       </div>
 
       {/* Buttons */}
-      <div className="flex flex-col sm:flex-row justify-between gap-2 p-2 sm:p-3">
-        <div
-          className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full min-w-0 sm:max-w-[400px] md:flex-1 md:max-w-none xl:h-[36px] 
-               focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
-        >
+      <div className="flex flex-row justify-between gap-2 sm:p-3">
+        <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full min-w-0 sm:max-w-[400px] md:flex-1 md:max-w-none xl:h-[36px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all">
           <input
             type="text"
             placeholder="Search here"
@@ -642,43 +440,26 @@ const PayrollDashboard = () => {
           >
             <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
             Filter
-            {open ? (
-              <IoMdArrowDropup className="w-3 mt-0.5 h-3" />
-            ) : (
-              <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />
-            )}
+            {open ? <IoMdArrowDropup className="w-3 mt-0.5 h-3" /> : <IoMdArrowDropdown className="w-3 mt-0.5 h-3" />}
           </button>
 
-          {/* Filter Dropdown - Fixed positioning */}
           {open && (
-            <div
-              ref={dropdownRef}
-              className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
-            >
+            <div ref={dropdownRef} className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit">
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
-                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-3 border-b-2 pb-2">
-                  Filter
-                </h2>
-
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-400 mb-3 border-b-2 pb-2">Filter</h2>
                 <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2 no-scrollbar">
                   {filterOptions.map((f) => (
-                    <label
-                      key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
-                    >
+                    <label key={f.key} className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded">
                       <input
                         type="checkbox"
                         className="w-4 h-4 accent-[#8629DF]"
                         checked={tempVisibleFilters[f.key]}
-                        onChange={(e) =>
-                          handleTempCheckboxChange(f.key, e.target.checked)
-                        }
+                        onChange={(e) => handleTempCheckboxChange(f.key, e.target.checked)}
                       />
                       {f.label}
                     </label>
                   ))}
                 </div>
-
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
@@ -690,12 +471,7 @@ const PayrollDashboard = () => {
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-               ${
-                 isAnyFilterChecked
-                   ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer"
-                   : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-               }
-             `}
+               ${isAnyFilterChecked ? "bg-[#8629DF] hover:bg-[#8629DF]/20 text-white cursor-pointer" : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"}`}
                   >
                     Apply
                   </button>
@@ -709,11 +485,7 @@ const PayrollDashboard = () => {
       {/* Filter Chips Row */}
       <div className="flex gap-2 sm:gap-3 flex-wrap my-2">
         {filterOptions.map((filter) => (
-          <DropdownComponent
-            key={filter.key}
-            filterKey={filter.key}
-            label={filter.label}
-          />
+          <DropdownComponent key={filter.key} filterKey={filter.key} label={filter.label} />
         ))}
       </div>
 
@@ -727,9 +499,7 @@ const PayrollDashboard = () => {
                 key={`${key}-${value}-${index}`}
                 className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200 dark:border-gray-500"
               >
-                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
-                  {value}
-                </span>
+                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">{value}</span>
                 <button
                   onClick={() => handleRemoveFilterValue(key, value)}
                   className="text-gray-500 hover:text-red-500 text-lg cursor-pointer leading-none w-4 h-4 flex items-center justify-center"
@@ -744,39 +514,11 @@ const PayrollDashboard = () => {
 
       <div className="mt-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-          <StatCard
-            title="Total Headcount"
-            value="1,000"
-            icon={Users}
-            iconBg="#E9F3FF"
-            borderColor="#0088FF"
-          />
+          <StatCard title="Total Headcount" value="1,000" icon={Users} iconBg="#E9F3FF" borderColor="#0088FF" />
+          <StatCard title="Attendance Process" value="900" icon={Clock} iconBg="#EBF9EE" borderColor="#34C759" />
+          <StatCard title="Total CTC" value="1,000" icon={Wallet} iconBg="#FAEAFC" borderColor="#CB30E0" />
+          <StatCard title="Total Hold" value="1,000" icon={HandCoins} iconBg="#FFF4EA" borderColor="#FF8D28" />
 
-          <StatCard
-            title="Attendance Process"
-            value="900"
-            icon={Clock}
-            iconBg="#EBF9EE"
-            borderColor="#34C759"
-          />
-
-          <StatCard
-            title="Total CTC"
-            value="1,000"
-            icon={Wallet}
-            iconBg="#FAEAFC"
-            borderColor="#CB30E0"
-          />
-
-          <StatCard
-            title="Total Hold"
-            value="1,000"
-            icon={HandCoins}
-            iconBg="#FFF4EA"
-            borderColor="#FF8D28"
-          />
-
-          {/* Run Payroll Button */}
           <button
             onClick={() => setShowVarianceUI(!showVarianceUI)}
             className="flex items-center justify-center gap-2 
@@ -790,10 +532,13 @@ const PayrollDashboard = () => {
           </button>
         </div>
       </div>
+
       {showVarianceUI && (
         <div className="mt-6 sm:mt-8">
-          {/* ===== TOP STATS ===== */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
+          {/* ===== TOP STATS =====
+              FIX: divide-x breaks on stacked rows on mobile.
+              Use divide-y on mobile, divide-x on lg+. */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-y lg:divide-y-0 lg:divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
             <div className="flex gap-3 p-4 items-start">
               <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
                 <BsFillPeopleFill className="text-purple-600" size={16} />
@@ -802,12 +547,9 @@ const PayrollDashboard = () => {
                 <p className="text-xs text-gray-500">Total Processed</p>
                 <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">
                   128{" "}
-                  <span className="text-[0.65rem] font-normal text-gray-400">
-                    Employee
-                  </span>
+                  <span className="text-[0.65rem] font-normal text-gray-400">Employee</span>
                 </p>
               </div>
-              <hr className="my-3" />
             </div>
 
             <div className="flex gap-3 p-4 items-start">
@@ -816,11 +558,8 @@ const PayrollDashboard = () => {
               </div>
               <div>
                 <p className="text-xs text-gray-500">Total Gross Pay</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">
-                  ₹84,50,000
-                </p>
+                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹84,50,000</p>
               </div>
-              <hr className=" my-3" />
             </div>
 
             <div className="flex gap-3 p-4 items-start">
@@ -829,11 +568,8 @@ const PayrollDashboard = () => {
               </div>
               <div>
                 <p className="text-xs text-gray-500">Total Deduction</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">
-                  ₹18,75,000
-                </p>
+                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹18,75,000</p>
               </div>
-              <hr className=" my-3 " />
             </div>
 
             <div className="flex gap-3 p-4 items-start">
@@ -842,80 +578,56 @@ const PayrollDashboard = () => {
               </div>
               <div>
                 <p className="text-xs text-gray-500">Total Net Pay</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">
-                  ₹65,75,000
-                </p>
+                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹65,75,000</p>
               </div>
             </div>
           </div>
 
           <div className="mt-6 sm:mt-8 rounded-md flex flex-col-reverse lg:flex-row items-stretch">
             {/* ================= MAIN CONTENT ================= */}
-            <div className="flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
-              {/* ===== PAYROLL VARIANCE HEADER ===== */}
+            <div className="  flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
               <div
-                className="flex justify-between items-center cursor-pointer bg-[#8629DF] rounded-tl-sm lg:rounded-tr-none mt-5 lg:mt-0"
+                className="flex justify-between  items-center cursor-pointer bg-[#8629DF] rounded-tl-sm lg:rounded-tr-none mt-5 lg:mt-0"
                 onClick={toggleCards}
               >
-                <h1 className="text-white font-semibold text-base px-4 py-2.5">
-                  Payroll Variance
-                </h1>
+                <h1 className="text-white font-semibold text-base px-4 py-2.5">Payroll Variance</h1>
                 <button className="flex items-center justify-center m-1.5 px-1 py-0.5 bg-white/20 hover:bg-white/30 text-white rounded-sm cursor-pointer transition-all duration-300">
-                  <span
-                    className={`transition-transform duration-300 ${showCards ? "" : "rotate-180"}`}
-                  >
-                    <MdOutlineKeyboardArrowDown
-                      size={20}
-                      className="text-white"
-                    />
+                  <span className={`transition-transform duration-300 ${showCards ? "" : "rotate-180"}`}>
+                    <MdOutlineKeyboardArrowDown size={20} className="text-white" />
                   </span>
                 </button>
               </div>
 
-              {/* ===== VARIANCE CARDS ===== */}
               {showCards && (
-                <div className="bg-white rounded-b-md pb-4 pt-2">
-                  {/* Tabs — matching Figma: underline style, "Employee Variance" active with purple underline */}
-                  <div className="flex border-b border-gray-200">
+                <div className="bg-white dark:bg-gray-800 rounded-b-md pb-4 pt-2">
+                  {/* FIX: overflow-x-auto + whitespace-nowrap so tabs scroll on mobile instead of wrapping */}
+                  <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
                     {tabs.map((tab) => (
                       <button
                         key={tab.value}
                         onClick={() => setActiveTab(tab.value)}
-                        className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer ${
-                          activeTab === tab.value
+                        className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${activeTab === tab.value
                             ? "text-[#8629DF] border-b-2 border-[#8629DF] -mb-[2px]"
                             : "text-gray-500 hover:text-gray-700"
-                        }`}
+                          }`}
                       >
                         {tab.label}
                       </button>
                     ))}
                   </div>
 
-                  {/* Cards grid — 2 cols on mobile, 3 on md when drawer closed, adjusts when open */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 mt-4 px-1">
                     {varianceCards.map((card, index) => (
                       <div
                         key={index}
-                        className={`rounded-md w-full p-3 border bg-white ${
-                          card.positive ? "border-green-400" : "border-red-400"
-                        }`}
+                        className={`rounded-md w-full p-3 border bg-white dark:bg-gray-800 ${card.positive ? "border-green-400" : "border-red-400"}`}
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <span className="text-[0.8rem] font-bold text-[#8629DF] leading-tight">
-                            {card.title}
-                          </span>
-                          <span
-                            className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${
-                              card.positive
-                                ? "bg-green-100 text-green-600"
-                                : "bg-red-100 text-red-600"
-                            }`}
-                          >
+                          <span className="text-[0.8rem] font-bold text-[#8629DF] leading-tight">{card.title}</span>
+                          <span className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${card.positive ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
                             {card.positive ? "+2.0%" : "-2.0%"}
                           </span>
                         </div>
-
                         <div className="text-[0.72rem] text-gray-600 space-y-1.5">
                           <div className="flex justify-between">
                             <span>Nov 2025</span>
@@ -928,14 +640,8 @@ const PayrollDashboard = () => {
                           <hr className="border-gray-100" />
                           <div className="flex justify-between font-semibold pt-0.5">
                             <span className="text-gray-700">Difference :</span>
-                            <span
-                              className={`flex items-center gap-0.5 ${card.positive ? "text-green-600" : "text-red-500"}`}
-                            >
-                              {card.positive ? (
-                                <FaArrowUp size={9} />
-                              ) : (
-                                <FaArrowDown size={9} />
-                              )}
+                            <span className={`flex items-center gap-0.5 ${card.positive ? "text-green-600" : "text-red-500"}`}>
+                              {card.positive ? <FaArrowUp size={9} /> : <FaArrowDown size={9} />}
                               {card.difference}
                             </span>
                           </div>
@@ -944,7 +650,6 @@ const PayrollDashboard = () => {
                     ))}
                   </div>
 
-                  {/* Download button — right aligned */}
                   <div className="flex justify-end mt-5 px-1">
                     <button className="bg-[#8629DF] hover:bg-purple-700 text-white text-xs font-medium py-1.5 px-5 rounded-sm cursor-pointer transition-colors">
                       Download
@@ -954,14 +659,11 @@ const PayrollDashboard = () => {
               )}
 
               {/* ===== REMARKS ===== */}
-              <div className="mt-3 bg-white rounded-md">
+              <div className="mt-3 bg-white dark:bg-gray-800 rounded-md">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100">
                   <BiSolidMessageEdit className="text-[#8629DF] h-5 w-5" />
-                  <span className="text-sm font-semibold text-gray-800">
-                    Remarks
-                  </span>
+                  <span className="text-sm font-semibold text-gray-800 dark:text-gray-50">Remarks</span>
                 </div>
-
                 <div className="px-4 pt-1 pb-2">
                   <p className="text-[0.7rem] text-gray-400 py-2">
                     Add remarks for payroll processing or approval reference.
@@ -975,10 +677,10 @@ const PayrollDashboard = () => {
                       className="w-full h-24 resize-none border border-gray-200 rounded-md p-3 text-xs focus:outline-none focus:ring-1 focus:ring-[#8629DF] placeholder:text-gray-300"
                     />
                     <span className="absolute bottom-2 right-3 text-[10px] text-gray-300">
-                      {remarks.length}/30
+                      {remarks.length}/300
                     </span>
                   </div>
-
+                  {/* FIX: flex-wrap so buttons don't overflow on narrow screens */}
                   <div className="flex justify-end gap-2 mt-3">
                     <button className="px-4 py-1.5 text-xs border border-[#8629DF] text-[#8629DF] rounded-md hover:bg-purple-50 cursor-pointer transition-colors">
                       Mark as Completed
@@ -993,56 +695,63 @@ const PayrollDashboard = () => {
 
             {/* ================= RIGHT DRAWER SYSTEM ================= */}
             <div className="flex flex-col lg:flex-row flex-shrink-0 lg:h-full self-stretch order-1 lg:order-2 relative">
-              {/* Mobile overlay when drawer is open */}
+
+              {/* Mobile overlay */}
               {showDrawer && (
                 <div
-                  className="fixed inset-0 bg-black/50 sm:hidden z-30"
+                  className="fixed inset-0 bg-black/50 lg:hidden z-30"
                   onClick={() => setShowDrawer(false)}
                 />
               )}
 
-              {/* REPORT DRAWER — slides open, pushes main content; on mobile full width when open */}
+              {/* REPORT DRAWER
+                  Mobile  → fixed bottom sheet (slides up via max-h transition)
+                  Desktop → inline sidebar that pushes content (original width transition) */}
               <div
-                style={{
-                  width: showDrawer
-                    ? window.innerWidth < 1024
-                      ? "100%"
-                      : "220px"
-                    : "0px",
-                  transition: "width 0.3s ease",
-                  overflow: "hidden",
-                  flexShrink: 0,
-                  maxWidth: "100%",
-                }}
-                className={`bg-white dark:bg-gray-800 ${showDrawer ? "" : "hidden"} rounded-none sm:rounded-xs mx-0 lg:mx-2 border border-gray-200 dark:border-gray-700 lg:border-0 fixed sm:static bottom-0 sm:bottom-auto left-0 sm:left-auto right-0 sm:right-auto top-0 sm:top-auto z-40 sm:z-auto md:flex`}
+                className={[
+                  "bg-white dark:bg-gray-800 overflow-hidden flex-shrink-0 transition-all duration-300",
+                  // mobile: fixed bottom sheet
+                  "fixed bottom-0 left-0 right-0 z-40 rounded-t-2xl",
+                  showDrawer ? "max-h-[85vh]" : "max-h-0",
+                  // desktop: static inline panel — override mobile fixed with lg: prefixes
+                  "lg:static lg:rounded-none lg:max-h-none",
+                  "lg:border lg:border-gray-200 lg:dark:border-gray-700 lg:mx-2 lg:z-auto",
+                  showDrawer ? "lg:w-[220px]" : "lg:w-0 lg:border-0",
+                ].join(" ")}
               >
-                <div
-                  style={{
-                    width:
-                      window.innerWidth < 1024 && showDrawer ? "100%" : "220px",
-                  }}
-                >
-                  <div className="flex bg-[#F7F2FD] p-1.5 py-2 mb-3 h-9 sm:h-auto">
+                {/* Inner wrapper always 220 px wide so content isn't squished during animation */}
+                <div className="w-full lg:w-[220px]">
+
+                  {/* Top bar: drag handle on mobile, arrow-close on desktop */}
+                  <div className="flex items-center justify-between bg-[#F7F2FD] dark:bg-gray-700 px-3 py-2">
+                    {/* Mobile drag handle (centred) */}
+                    <div className="lg:hidden w-full flex justify-center">
+                      <div className="w-10 h-1 rounded-full bg-gray-300" />
+                    </div>
+                    {/* Desktop close arrow */}
                     <FaArrowRight
-                      className="w-6 h-6 shadow-[#8629DF] rounded-full text-white bg-[#8629DF] p-1 cursor-pointer "
-                      onClick={() => setShowDrawer((p) => !p)}
+                      className="hidden lg:block w-6 h-6 rounded-full text-white bg-[#8629DF] p-1 cursor-pointer"
+                      onClick={() => setShowDrawer(false)}
                     />
+                    {/* Mobile text close */}
+                    <button
+                      className="lg:hidden text-xs text-gray-500 underline cursor-pointer"
+                      onClick={() => setShowDrawer(false)}
+                    >
+                      Close
+                    </button>
                   </div>
+
                   {/* Drawer Header */}
                   <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 bg-[#8629DF] rounded-t-sm">
-                    <span className="text-white font-semibold text-sm sm:text-sm">
-                      Report
-                    </span>
+                    <span className="text-white font-semibold text-sm">Report</span>
                     <button className="text-white/80 hover:text-white">
-                      <MdOutlineKeyboardArrowDown
-                        size={18}
-                        className="bg-white text-gray-400 rounded-xs"
-                      />
+                      <MdOutlineKeyboardArrowDown size={18} className="bg-white text-gray-400 rounded-xs" />
                     </button>
                   </div>
 
                   {/* Select All Row */}
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100">
+                  <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100">
                     <label className="flex items-center gap-1.5 cursor-pointer">
                       <input
                         type="checkbox"
@@ -1056,51 +765,34 @@ const PayrollDashboard = () => {
                           )
                         }
                       />
-                      <span className="text-[12px] font-medium text-gray-700">
-                        Select All
-                      </span>
+                      <span className="text-[12px] font-medium text-gray-700">Select All</span>
                     </label>
-                    <button className="flex items-center justify-center sm:justify-start gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1.5 sm:py-1 rounded-sm hover:bg-purple-700 cursor-pointer w-full sm:w-auto">
+                    <button className="flex items-center gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1 rounded-sm hover:bg-purple-700 cursor-pointer">
                       <FiDownload size={10} />
                       Download
                     </button>
                   </div>
 
                   {/* Report Items */}
-                  <div
-                    className="overflow-y-auto"
-                    style={{
-                      maxHeight:
-                        window.innerWidth < 1024 && showDrawer
-                          ? "calc(100vh - 120px)"
-                          : "calc(100vh - 130px)",
-                    }}
-                  >
+                  <div className="overflow-y-auto max-h-[60vh] lg:max-h-[calc(100vh-180px)] no-scrollbar">
                     {reportItems.map((r) => (
                       <div
                         key={r.id}
-                        className="flex items-center gap-2 px-2 sm:px-1 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm transition-colors"
+                        className="flex items-center gap-2 px-2 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm transition-colors"
                       >
-                        {/* Icon */}
-                        <div className="w-8 h-8 sm:w-8 sm:h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
-                          <span className="text-[15px] sm:text-[15px]">
-                            {r.icon}
-                          </span>
+                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
+                          <img
+                            src={r.icon}
+                            alt={r.name}
+                            className="w-5 h-5 object-contain"
+                          />
                         </div>
-
-                        {/* Text */}
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] sm:text-[11px] font-semibold text-gray-800 leading-tight truncate">
-                            {r.name}
-                          </p>
-                          <p className="text-[9px] sm:text-[9.5px] text-gray-400 mt-0.5 truncate">
-                            {r.lastGen
-                              ? `Last Generated : ${r.lastGen}`
-                              : "Not generated yet."}
+                          <p className="text-[11px] font-semibold text-gray-800 leading-tight truncate">{r.name}</p>
+                          <p className="text-[9px] text-gray-400 mt-0.5 truncate">
+                            {r.lastGen ? `Last Generated : ${r.lastGen}` : "Not generated yet."}
                           </p>
                         </div>
-
-                        {/* Checkbox */}
                         <input
                           type="checkbox"
                           className="w-3.5 h-3.5 accent-[#8629DF] flex-shrink-0"
@@ -1113,9 +805,7 @@ const PayrollDashboard = () => {
                             )
                           }
                         />
-
-                        {/* Download */}
-                        <button className="w-5.5 h-5.5 sm:w-5.5 sm:h-5.5 rounded-xs bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
+                        <button className="w-5 h-5 rounded-sm bg-[#8629DF] flex items-center justify-center flex-shrink-0 hover:bg-purple-700 cursor-pointer">
                           <FiDownload size={10} className="text-white" />
                         </button>
                       </div>
@@ -1124,21 +814,27 @@ const PayrollDashboard = () => {
                 </div>
               </div>
 
-              {/* ICON SIDEBAR — hidden on mobile, shown on desktop when drawer closed */}
+              {/* ICON SIDEBAR
+                  Mobile  → fixed horizontal strip at bottom of screen
+                  Desktop → vertical sidebar (original behaviour) */}
               <div
-                className={`flex flex-col items-center ${!showDrawer ? "" : "hidden"} gap-4 py-4 space-y-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm rounded-r-sm lg:border-l-0`}
-                style={{
-                  width: showDrawer ? "0px" : "60px",
-                  transition: "width 0.3s ease",
-                  overflow: "hidden",
-                  flexShrink: 0,
-                  height: "100%",
-                }}
+                className={[
+                  "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm",
+                  // mobile: fixed bottom bar, horizontal layout
+                  "fixed bottom-0 left-0 right-0 z-20",
+                  "flex flex-row items-center gap-3 px-4 py-2 border-t",
+                  // hide on mobile when drawer is open (overlay covers it anyway, but this prevents double-render)
+                  showDrawer ? "hidden" : "flex",
+                  // desktop: static vertical sidebar
+                  "lg:static lg:z-auto lg:flex-col lg:items-center lg:gap-4 lg:py-4 lg:px-0 lg:space-y-2",
+                  "lg:rounded-r-sm lg:border-t-0 lg:border-l-0",
+                  showDrawer ? "lg:w-0 lg:overflow-hidden lg:border-0" : "lg:w-[60px]",
+                ].join(" ")}
               >
-                {/* Toggle arrow button — purple, top */}
+                {/* Toggle button */}
                 <button
                   onClick={() => setShowDrawer((p) => !p)}
-                  className="w-10 h-10 gap-4 rounded-full bg-[#8629DF] flex items-center justify-center text-white hover:bg-purple-700 mb-4 cursor-pointer transition-colors shadow-md"
+                  className="w-10 h-10 rounded-full bg-[#8629DF] flex items-center justify-center text-white hover:bg-purple-700 lg:mb-4 cursor-pointer transition-colors shadow-md flex-shrink-0"
                 >
                   {showDrawer ? (
                     <FaArrowRight className="w-3 h-3 text-white" />
@@ -1148,28 +844,26 @@ const PayrollDashboard = () => {
                 </button>
 
                 {[
-                  /* Calendar / Monthly Register */
-                  <img src={DrawerIcon1} alt="calander" className="w-5 h-5" />,
+                  <img src={DrawerIcon1} alt="calendar" className="w-5 h-5" />,
                   <img src={DrawerIcon2} alt="money" className="w-5 h-5" />,
                   <img src={DrawerIcon3} alt="document" className="w-5 h-5" />,
                   <img src={DrawerIcon4} alt="settings" className="w-5 h-5" />,
                   <img src={DrawerIcon5} alt="help" className="w-5 h-5" />,
-                  <img
-                    src={DrawerIcon6}
-                    alt="notification"
-                    className="w-5 h-5"
-                  />,
+                  <img src={DrawerIcon6} alt="notification" className="w-5 h-5" />,
                   <img src={DrawerIcon7} alt="profile" className="w-5 h-5" />,
                 ].map((icon, i) => (
                   <button
                     key={i}
                     onClick={() => setShowDrawer(true)}
-                    className="w-10 h-10 p-2 rounded-lg flex items-center justify-center border border-gray-100 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm hover:shadow-md hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all cursor-pointer"
+                    className="w-10 h-10 p-2 rounded-lg flex items-center justify-center border border-gray-100 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm hover:shadow-md hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all cursor-pointer flex-shrink-0"
                   >
                     {icon}
                   </button>
                 ))}
               </div>
+
+              {/* Spacer so the fixed mobile bottom bar doesn't overlap page content */}
+              <div className="h-16 lg:hidden" />
             </div>
           </div>
         </div>

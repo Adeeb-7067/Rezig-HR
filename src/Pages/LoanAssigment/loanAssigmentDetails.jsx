@@ -257,39 +257,42 @@ const EditInstallmentModal = ({ loan, onClose }) => {
   const [activeTab, setActiveTab] = useState("adjust");
 
   const tabs = [
-    { key: "adjust", label: "Adjust Installment" },
-    { key: "extra", label: "Add Extra Amount" },
-    { key: "foreclosure", label: "Foreclosure" },
+    { key: "adjust", label: "Adjust Installment", shortLabel: "Adjust" },
+    { key: "extra", label: "Add Extra Amount", shortLabel: "Extra" },
+    { key: "foreclosure", label: "Foreclosure", shortLabel: "Foreclose" },
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-5xl mx-4 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 p-2 md:p-0">
+      <div className="bg-white dark:bg-gray-900 rounded-t-2xl sm:rounded-xl shadow-2xl w-full sm:max-w-5xl sm:mx-4 overflow-hidden flex flex-col max-h-[92vh] sm:max-h-[90vh]">
         {/* Tab bar + close */}
-        <div className="flex items-center border-b border-gray-200 dark:border-gray-700 px-6 pt-4 relative">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
-              className={`text-[0.75rem] font-medium pb-3 mr-8 border-b-2 transition-colors cursor-pointer whitespace-nowrap ${
-                activeTab === tab.key
-                  ? "border-[#8629DF] text-[#8629DF]"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="flex items-center border-b border-gray-200 dark:border-gray-700 px-3 sm:px-6 pt-3 sm:pt-4 relative">
+          <div className="flex flex-1 overflow-x-auto no-scrollbar">
+            {tabs.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className={`text-[0.7rem] sm:text-[0.75rem] font-medium pb-3 mr-4 sm:mr-8 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                  activeTab === tab.key
+                    ? "border-[#8629DF] text-[#8629DF]"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                <span className="sm:hidden">{tab.shortLabel}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
+              </button>
+            ))}
+          </div>
           <button
             onClick={onClose}
-            className="absolute right-4 top-3 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-700 transition-colors"
+            className="ml-2 flex-shrink-0 p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-700 transition-colors"
           >
             <X size={18} />
           </button>
         </div>
 
         {/* Tab content */}
-        <div className="p-4">
+        <div className="p-3 sm:p-4 overflow-y-auto no-scrollbar flex-1">
           {activeTab === "adjust" && (
             <AdjustInstallmentTab loan={loan} onClose={onClose} />
           )}
@@ -305,45 +308,17 @@ const EditInstallmentModal = ({ loan, onClose }) => {
   );
 };
 
-// ── Shared bottom action bar ──────────────────────────────────────────────────
-const ModalActions = ({ onClose }) => (
-  <div className="flex justify-end gap-2 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-    <button className="px-4 py-1.5 text-[0.78rem] border border-gray-300 rounded text-gray-600 hover:bg-gray-50 transition-colors">
-      Export
-    </button>
-    <button className="px-4 py-1.5 text-[0.78rem] border border-gray-300 rounded text-gray-600 hover:bg-gray-50 transition-colors">
-      Import & Save
-    </button>
-    <button className="px-4 py-1.5 text-[0.78rem] border border-gray-300 rounded text-gray-600 hover:bg-gray-50 transition-colors">
-      Reset
-    </button>
-    <button className="px-5 py-1.5 text-[0.78rem] bg-[#8629DF] text-white rounded hover:bg-[#7020c5] transition-colors font-medium">
-      Submit
-    </button>
-  </div>
-);
 
-// ── Shared file upload zone ───────────────────────────────────────────────────
-const FileUploadZone = () => (
-  <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-600 rounded-lg h-full min-h-[140px] bg-gray-50 dark:bg-gray-800">
-    <p className="text-[0.78rem] text-gray-500 mb-3">
-      Drag & drop Excel file here or
-    </p>
-    <button className="flex items-center gap-2 px-4 py-2 bg-[#8629DF] text-white text-[0.78rem] rounded-full hover:bg-[#7020c5] transition-colors">
-      <Upload size={14} />
-      Upload File
-    </button>
-  </div>
-);
+
 
 // ── Tab 1: Adjust Installment ─────────────────────────────────────────────────
 const AdjustInstallmentTab = ({ loan, onClose }) => (
   <>
-    <div className="flex gap-4 w-full">
+    <div className="flex flex-col lg:flex-row gap-4 w-full">
       {/* Left: form fields */}
-      <div className="flex-1 space-y-2 w-[60%]">
+      <div className="flex-1 space-y-4 w-full lg:w-[60%]">
         {/* Row 1 */}
-        <div className="flex gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <SelectField
             name={"Adjustment Month & Year"}
             label={"Adjustment Month & Year"}
@@ -389,7 +364,7 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
       </div>
 
       {/* Right: file upload */}
-      <div className="  w-[40%]">
+      <div className="w-full lg:w-[40%]">
         <DragandUpload />
       </div>
     </div>
@@ -443,8 +418,8 @@ const AddExtraAmountTab = ({ loan, onClose }) => {
   return (
     <div className="space-y-6">
       {/* Summary Stats */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 p-5">
-        <div className="grid grid-cols-4 gap-3 mb-5">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700 p-4 sm:p-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
           <div>
             <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
               Total Loan/Advnc Amount(with Interest)
@@ -489,7 +464,7 @@ const AddExtraAmountTab = ({ loan, onClose }) => {
         </div>
 
         {/* Form Fields */}
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <InputField
             label={"Add Amount to Existing Loan/Advance"}
             placeholder="Enter Loan Amount "
@@ -532,7 +507,7 @@ const AddExtraAmountTab = ({ loan, onClose }) => {
 const ForeclosureTab = ({ loan, onClose }) => (
   <>
     {/* Summary Stats */}
-    <div className="flex gap-8 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <div>
         <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mb-1">
           Total Loan/Advnc Amount(with Interest)
@@ -578,7 +553,7 @@ const ForeclosureTab = ({ loan, onClose }) => (
     </div>
 
     {/* Form Row 1 */}
-    <div className="grid grid-cols-4 gap-3 mb-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
       <InputField label="Paid Amount" placeholder="Enter Paid Amount" />
       <InputField label="Cheque/Draft No" placeholder="Enter Cheque/Draft No" />
       <InputField label="Adjustment Mode" placeholder="Select Mode" />
@@ -586,7 +561,7 @@ const ForeclosureTab = ({ loan, onClose }) => (
     </div>
 
     {/* Form Row 2 */}
-    <div className="grid grid-cols-2 gap-3 mb-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
       <div>
         <label className="block text-[0.7rem] text-gray-600 dark:text-gray-400 mb-1">
           Bank Details
@@ -609,19 +584,19 @@ const ForeclosureTab = ({ loan, onClose }) => (
       </div>
     </div>
 
-   {/* Action Buttons */}
-      <div className="flex justify-end gap-3">
-        <button
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
-        >
-          Reset
-        </button>
-        <button
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
-        >
-          Add Amount
-        </button>
-      </div>  </>
+    {/* Action Buttons */}
+    <div className="flex justify-end gap-3">
+      <button
+        className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+      >
+        Reset
+      </button>
+      <button
+        className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+      >
+        Add Amount
+      </button>
+    </div>  </>
 );
 
 // ── Main Component ────────────────────────────────────────────────────────────
@@ -664,7 +639,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
       )}
 
       {/* ── Header ── */}
-      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
+      <div className="flex flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
         <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
           Loan Assigment
         </h1>
@@ -683,15 +658,15 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
 
       {/* ── Employee Info Card ── */}
       <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-5 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[480px] lg:w-[50%]">
-        <div className="flex flex-col sm:flex-row items-start gap-4">
+        <div className="flex flex-row items-start gap-3 sm:gap-4">
           {employee.avatar ? (
             <img
               src={employee.avatar}
               alt={employee.name}
-              className="w-[120px] h-[120px] rounded-lg object-cover flex-shrink-0 bg-gray-100"
+              className="w-16 h-16 sm:w-[120px] sm:h-[120px] rounded-lg object-cover flex-shrink-0 bg-gray-100"
             />
           ) : (
-            <div className="w-[120px] h-[120px] rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-2xl font-bold flex-shrink-0">
+            <div className="w-16 h-16 sm:w-[120px] sm:h-[120px] rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-lg sm:text-2xl font-bold flex-shrink-0">
               {String(employee.name || "?")
                 .split(" ")
                 .map((n) => n[0])
@@ -700,50 +675,38 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
                 .toUpperCase()}
             </div>
           )}
-          <div className="flex-1">
-            <div className="flex justify-between items-center gap-2 mb-0.5">
-              <span className="text-[1.1rem] font-semibold text-gray-900 dark:text-gray-50">
+          <div className="flex-1 min-w-0">
+            <div className="flex flex-wrap justify-between items-center gap-x-2 gap-y-1 mb-0.5">
+              <span className="text-[1rem] sm:text-[1.1rem] font-semibold text-gray-900 dark:text-gray-50 truncate">
                 {employee.name}
               </span>
-              <span className="text-[0.65rem] font-medium text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full">
+              <span className="text-[0.65rem] font-medium text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full whitespace-nowrap">
                 {employee.status}
               </span>
             </div>
             <p className="text-[0.8rem] font-semibold text-gray-400 mb-2">
               {employee.empCode}
             </p>
-            <div className="mb-3 mx-1">
-              <p className="text-[0.7rem] font-medium text-gray-700 dark:text-gray-200 mb-0.5">
+            <div className="mb-3">
+              <p className="text-[0.7rem] font-medium text-gray-700 dark:text-gray-200 mb-1">
                 {employee.existingLoan.type}
               </p>
-              <div className="text-[0.7rem] text-gray-500 dark:text-gray-400 space-y-0.5">
-                <p>
-                  Current Loan –&nbsp;&nbsp;&nbsp;
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.currentLoan}
-                  </span>
-                </p>
-                <p>
-                  EMI&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.emi}
-                  </span>
-                </p>
-                <p>
-                  Remaining Tenure –{" "}
-                  <span className="text-gray-700 dark:text-gray-300">
-                    {employee.existingLoan.remainingTenure}
-                  </span>
-                </p>
-              </div>
+              <dl className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[0.7rem] text-gray-500 dark:text-gray-400">
+                <dt>Current Loan</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.currentLoan}</dd>
+                <dt>EMI</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.emi}</dd>
+                <dt>Remaining Tenure</dt>
+                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.remainingTenure}</dd>
+              </dl>
             </div>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-1">
           {employee.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-[#8629DF] text-white text-[0.7rem] px-3 py-1.5 rounded-[4px]"
+              className="bg-[#8629DF] text-white text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
             >
               {tag}
             </span>
@@ -754,24 +717,24 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-3">
         {/* ── Stats row ── */}
         <div className="flex flex-wrap items-center gap-3 mb-5 px-2 sm:px-4 py-3">
-          <div className="flex items-center gap-2 py-1 px-2 border border-gray-200 dark:border-gray-600 rounded-sm">
+          <div className="flex items-center gap-2 py-1 px-2 border border-gray-200 dark:border-gray-600 rounded-sm w-full sm:w-auto">
             <SmallAvatar name={employee.name} />
             <span className="text-[0.7rem] font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap truncate max-w-[140px] sm:max-w-none">
               {employee.unitId} | {String(employee.name).slice(0, 9)} Shar
             </span>
           </div>
 
-          <div className="flex items-center gap-2 rounded-sm py-2.5 px-2 border border-gray-200 dark:border-gray-600 min-w-0">
+          <div className="flex items-center gap-2 rounded-sm py-2 px-2 border border-gray-200 dark:border-gray-600 min-w-0 w-full sm:w-auto">
             <HiOutlineOfficeBuilding className="w-4 h-4 text-[#8629DF] flex-shrink-0" />
             <span className="text-[0.7rem] text-gray-900 dark:text-gray-300 whitespace-nowrap font-semibold truncate max-w-[180px] sm:max-w-none">
               Department : {employee.department}
             </span>
           </div>
 
-          <div className="flex-1 min-w-[20px]" />
+          <div className="flex-1 hidden md:block" />
 
           {/* Balance Amount box */}
-          <div className="border-t-4 border-[#CB30E0] rounded-sm px-4 sm:px-8 py-1 text-center min-w-[120px] sm:min-w-[150px] shadow-sm flex-shrink-0">
+          <div className="border-t-4 border-[#CB30E0] rounded-sm px-4 sm:px-6 py-2 text-center flex-1 sm:flex-none min-w-[140px] shadow-sm flex-shrink-0 bg-gray-50 dark:bg-gray-700/30">
             <p className="text-[0.9rem] sm:text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.balanceAmount}
             </p>
@@ -781,7 +744,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
           </div>
 
           {/* Installment Paid box */}
-          <div className="border-t-4 border-green-400 rounded-sm px-4 sm:px-8 py-1 text-center min-w-[120px] sm:min-w-[150px] shadow-sm flex-shrink-0">
+          <div className="border-t-4 border-green-400 rounded-sm px-4 sm:px-6 py-2 text-center flex-1 sm:flex-none min-w-[140px] shadow-sm flex-shrink-0 bg-gray-50 dark:bg-gray-700/30">
             <p className="text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.installmentPaid}
             </p>
@@ -862,11 +825,10 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => toggleExpand(loan)}
-                            className={`p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${
-                              isExpanded
+                            className={`p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${isExpanded
                                 ? "text-[#8629DF]"
                                 : "text-gray-400 hover:text-[#8629DF]"
-                            } ${!hasEmis ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}`}
+                              } ${!hasEmis ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}`}
                             disabled={!hasEmis}
                             title="View EMI details"
                           >

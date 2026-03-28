@@ -1,12 +1,11 @@
 import { Info } from "lucide-react";
 import Tabs from "@/components/Tabs";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SelectField from "@/components/SelectFeild";
 import DragandUpload from "@/components/ui/DragandUpload";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import InputField from "@/components/inputfeild";
-import { useRef } from "react";
 
 const ToggleField = ({
   label,
@@ -20,7 +19,6 @@ const ToggleField = ({
   const iconRef = useRef(null);
   const tooltipRef = useRef(null);
 
-  // Position tooltip when shown
   useEffect(() => {
     if (showTooltip && iconRef.current && tooltipRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
@@ -88,109 +86,111 @@ const ToggleField = ({
   );
 };
 
-const organizationDetails = () => {
+const initialFormData = {
+  // Organization Details
+  organizationCode: "",
+  organizationName: "",
+  dependentsCount: "",
+  country: "",
+  addressline2: "",
+  state: "",
+  addressline3: "",
+  city: "",
+  zipCode: "",
+
+  // Communication Details
+  countryCode1: "",
+  countryCode2: "",
+  phone1: "",
+  phone2: "",
+  email: "",
+  Fax: "",
+  website: "",
+
+  // Database Configuration
+  dbServerName: "",
+  Database: "",
+
+  // Organization Configuration
+  defaultEmployeePasswordType: "First 4 Char of Your Name",
+  pensionAgeLimit: "",
+  forceEssPasswordChange: "",
+  maxNoOfEMILoan: "",
+  autoHoliday: "No",
+  displayHistoryMessage: "No",
+  automaticLWFApplicable: "No",
+  groupCompanyTransfer: "No",
+  automaticPTApplicable: "No",
+
+  // Attendance Parameters
+  attendanceProcessMethod: "Biometric Attendance int....",
+  maxNoOfHolidayForEmployee: "",
+  attPunchdataimportusingStaffID: "No",
+  allowNightAllowanceOnDayShift: "No",
+  foodingPartofGross: "No",
+  enableAuditMode: "No",
+  autoAssignHoliday: "No",
+  stateWiseHoliday: "No",
+
+  // Other Configuration
+  editReimbrusmentRequest: "50 paise without adjust",
+  authorizeToEditExpense: "none",
+  maximumFBPRequest: "",
+  maximumLeaveEncasementDays: "",
+  allowedImageExtensions: "",
+  allowedDocumentType: "",
+  gratuityEligibilityonYears: "",
+  gratuityEligibilityonMonths: "",
+  gratuityLimit: "",
+  gratuityRoundOffBy: "6 Month",
+  searchEmployeeBy: "Employee Code",
+  checkEmployeePendingTaskonFNF: "No",
+  recoveryLoanAdvanceOnFNF: "No",
+
+  // E-Mail Parameters
+  investmentDeclarationMailToAdmin: "No",
+  investmentDeclarationApprovalEmail: "No",
+  ticketEmailToEmployee: "No",
+  mailToHelpDesk: "No",
+  ticketEmailToNextLevel: "No",
+  ticketEmailtoAdmin: "No",
+  ticketReopenMailtoHelpDesk: "No",
+  reimbrusmentRequestEmail: "No",
+  reimbrusmentApprovalEmail: "No",
+
+  // Salary/Arrear/Reimbursement Parameters
+  netSalaryRoundOff: "50 paise without adjust",
+  overtimeRounding: "50 paise without adjust",
+  organizationAddressOnFNFSlips: "organization",
+  defaultNoticePeriod: "",
+  payArrearwithSalary: "No",
+  salaryProcessCutOffDay: "",
+  organizationAddressOnSalaryRegisterExcel: "No",
+  staffIdAsEmployeeCodeOnReports: "No",
+  showBalanceColumnImportReimb: "No",
+  variablePayheadOnManualArrear: "No",
+  estimateReimbursementAmount: "No",
+
+  // Password Configuration
+  applyConfiguration: "No",
+  minimumLength: "",
+  maximumLength: "",
+  minOfSpecialCharacters: "",
+  maxOfSpecialCharacters: "",
+  mustBeAlphaNumeric: "No",
+  mustHaveOneUpperCase: "No",
+
+  // Identical Check
+  firstField: "",
+  secondField: "",
+  thirdField: "",
+  fourthField: "",
+  fifthField: "",
+};
+
+const OrganizationDetails = () => {
   const [activeTab, setActiveTab] = useState("details");
-  const [formData, setFormData] = useState({
-    // Organization Details
-    organizationCode: "",
-    organizationName: "",
-    dependentsCount: "", // Address Line 1
-    country: "",
-    addressline2: "",
-    state: "",
-    addressline3: "", // Used for both Line 3 and Zip Code in original code, I'll keep names as is for minimal change but ideally they should be unique
-    city: "",
-    zipCode: "", // Added to distinguish from addressline3
-
-    // Communication Details
-    countryCode1: "",
-    countryCode2: "",
-    phone1: "",
-    phone2: "",
-    email: "",
-    Fax: "",
-    website: "",
-
-    // Database Configuration
-    dbServerName: "",
-    Database: "",
-
-    // Organization Configuration
-    defaultEmployeePasswordType: "First 4 Char of Your Name",
-    pensionAgeLimit: "",
-    forceEssPasswordChange: "",
-    maxNoOfEMILoan: "",
-    autoHoliday: "No",
-    displayHistoryMessage: "No",
-    automaticLWFApplicable: "No",
-    groupCompanyTransfer: "No",
-    automaticPTApplicable: "No",
-
-    // Attendance Parameters
-    attendanceProcessMethod: "Biometric Attendance int....",
-    maxNoOfHolidayForEmployee: "",
-    attPunchdataimportusingStaffID: "No",
-    allowNightAllowanceOnDayShift: "No",
-    foodingPartofGross: "No",
-    enableAuditMode: "No",
-    autoAssignHoliday: "No",
-    stateWiseHoliday: "No",
-
-    // More Attendance/Expense Parameters
-    editReimbrusmentRequest: "50 paise without adjust",
-    authorizeToEditExpense: "none",
-    maximumFBPRequest: "",
-    maximumLeaveEncasementDays: "",
-    allowedImageExtensions: "",
-    allowedDocumentType: "",
-    gratuityEligibilityonYears: "",
-    gratuityEligibilityonMonths: "",
-    gratuityLimit: "",
-    gratuityRoundOffBy: "6 Month",
-    searchEmployeeBy: "Employee Code",
-    checkEmployeePendingTaskonFNF: "No",
-    recoveryLoanAdvanceOnFNF: "No",
-
-    // E-Mail Parameters
-    investmentDeclarationMailToAdmin: "No",
-    investmentDeclarationApprovalEmail: "No",
-    ticketEmailToEmployee: "No",
-    mailToHelpDesk: "No",
-    ticketEmailToNextLevel: "No",
-    ticketEmailtoAdmin: "No",
-    ticketReopenMailtoHelpDesk: "No",
-    reimbrusmentRequestEmail: "No",
-    reimbrusmentApprovalEmail: "No",
-
-    // Salary/Arrear/Reimbursement Parameters
-    netSalaryRoundOff: "50 paise without adjust",
-    overtimeRounding: "50 paise without adjust",
-    organizationAddressOnFNFSlips: "organization",
-    defaultNoticePeriod: "",
-    payArrearwithSalary: "No",
-    salaryProcessCutOffDay: "",
-    organizationAddressOnSalaryRegisterExcel: "No",
-    staffIdAsEmployeeCodeOnReports: "No",
-    showBalanceColumnImportReimb: "No",
-    variablePayheadOnManualArrear: "No",
-    estimateReimbursementAmount: "No",
-
-    // Password Configuration
-    applyConfiguration: "No",
-    minimumLength: "",
-    maximumLength: "",
-    minOfSpecialCharacters: "",
-    maxOfSpecialCharacters: "",
-    mustBeAlphaNumeric: "No",
-    mustHaveOneUpperCase: "No",
-
-    // Identical Check
-    firstField: "",
-    secondField: "",
-    thirdField: "",
-    fourthField: "",
-    fifthField: "",
-  });
+  const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -201,7 +201,7 @@ const organizationDetails = () => {
   };
 
   const handleReset = () => {
-    console.log("Resetting organization form...");
+    setFormData(initialFormData);
   };
 
   const handleUpdate = () => {
@@ -668,7 +668,6 @@ const organizationDetails = () => {
                         options={[{
                           label:'Years',value:'Years'
                         }]}
-                        type="text"
                         info="Maximum number of holidays allowed per employee per year"
                       />
                       <SelectField
@@ -1058,4 +1057,4 @@ const organizationDetails = () => {
   );
 };
 
-export default organizationDetails;
+export default OrganizationDetails;

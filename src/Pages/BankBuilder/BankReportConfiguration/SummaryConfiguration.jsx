@@ -2,6 +2,7 @@ import { Switch } from "@/components/ui/switch";
 import SelectField from "@/components/SelectFeild";
 import ColumnFieldsSelector from "./component/ColumnFieldsSelector";
 import RowFieldsSelector from "./component/RowFieldsSelector";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const SummaryConfiguration = () => {
     const fields = [
@@ -33,15 +34,7 @@ const SummaryConfiguration = () => {
             </h3>
 
             {/* Main Toggle */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-
-                <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                    Do you want to configure summary / reconciliation sheet
-                </span>
-
-                <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
-
-            </div>
+            <VariableTypeRow name='Do you want to configure summary / reconciliation sheet' label={'Do you want to configure summary / reconciliation sheet'}/>
 
             {/* Settings Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
@@ -59,31 +52,11 @@ const SummaryConfiguration = () => {
                 />
 
                 {/* Switch */}
-                <div className="flex items-center justify-between sm:justify-start gap-3 mt-4 sm:mt-6">
+               <VariableTypeRow name='Show Live and FNF Count in Summary Sheet' label={'Show Live and FNF Count in Summary Sheet'}/>
 
-                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                        Show Live and FNF Count in Summary Sheet
-                    </span>
-
-                    <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
-
-                </div>
-
-                {/* Switch */}
-                <div className="flex items-center justify-between sm:justify-start gap-3 mt-4 sm:mt-6">
-
-                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                        Show Previous Month Summary
-                    </span>
-
-                    <Switch className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700" />
-
-                </div>
+             <VariableTypeRow name='Show Previous Month Summary' label={'Show Previous Month Summary'}/>
 
             </div>
-
-
-        
 
             {/* Columns Selector */}
             <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />

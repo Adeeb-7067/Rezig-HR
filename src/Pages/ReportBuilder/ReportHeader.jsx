@@ -2,9 +2,9 @@ import { Plus } from "lucide-react";
 
 const ReportHeader = ({ onCreate }) => {
     return (
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex  md:gap-3  flex-row sm:items-center sm:justify-between">
 
-            <h1 className="text-xl sm:text-2xl font-semibold text-gray-400 dark:text-gray-50 ">
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 ">
                 Report Builder
             </h1>
 

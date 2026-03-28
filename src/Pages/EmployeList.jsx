@@ -63,9 +63,8 @@ const InlineSelect = ({
 
         <ChevronDown
           size={14}
-          className={`transition-transform ${
-            open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
-          }`}
+          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+            }`}
         />
       </button>
 
@@ -90,10 +89,9 @@ const InlineSelect = ({
                 transition-all duration-150
                 hover:bg-[#9853F9]/15 hover:text-[#9853F9]
                 dark:text-gray-100
-                ${
-                  value === opt.value
-                    ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
-                    : ""
+                ${value === opt.value
+                  ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                  : ""
                 }
               `}
             >
@@ -552,11 +550,10 @@ const EmployeList = () => {
                     className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
-                      className={`w-4 h-4 flex items-center justify-center border rounded ${
-                        currentValues.includes(item)
+                      className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item)
                           ? "bg-[#8629DF] border-[#8629DF]"
                           : "border-gray-300"
-                      }`}
+                        }`}
                     >
                       {currentValues.includes(item) && (
                         <svg
@@ -596,12 +593,13 @@ const EmployeList = () => {
 
         {/* Buttons */}
         <div className="flex gap-0 sm:gap-3">
-          <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4  w-full rounded-sm flex justify-center items-center gap-1 py-1  ">
+          <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1 md:text-[0.8rem] cursor-pointer"
+          >
             <Link
               to="/info"
               className="flex items-center justify-center gap-1 text-[0.7rem]  md:text-[0.8rem]"
             >
-              <AiOutlinePlus className="md:w-4 md:h-4 font-semibold" />
+              <AiOutlinePlus className=" md:w-4 md:h-4 font-semibold" />
               Add Employee
             </Link>
           </div>
@@ -678,11 +676,10 @@ const EmployeList = () => {
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-    ${
-      isAnyFilterChecked
-        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-    }
+    ${isAnyFilterChecked
+                        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                      }
   `}
                   >
                     {/*     <img src={SearchIcon} className="w-4 h-4" /> */}
@@ -869,11 +866,10 @@ const EmployeList = () => {
               <button
                 key={num}
                 className={`px-2 sm:px-3 py-1 border rounded transition
-          ${
-            num === 1
-              ? "bg-[#8629DF] text-white border-[#8629DF]"
-              : "border-[#8629DF] dark:border-[#A970FF] text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
-          }`}
+          ${num === 1
+                    ? "bg-[#8629DF] text-white border-[#8629DF]"
+                    : "border-[#8629DF] dark:border-[#A970FF] text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
+                  }`}
               >
                 {num}
               </button>

@@ -160,7 +160,6 @@ const SalaryMonthCard = ({
   <div
     role="button"
     tabIndex={0}
-    onClick={onClick}
     onKeyDown={(e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -177,6 +176,8 @@ const SalaryMonthCard = ({
         type="button"
         className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
         aria-label="View"
+        onClick={onClick}
+
       >
         <Eye className="w-4 h-4 text-gray-700" />
       </button>
@@ -192,7 +193,7 @@ const SalaryMonthCard = ({
       {month}
     </p>
 
-    <div className="flex flex-col items-center justify-center mb-2 bg-[#FAF6FE]  rounded-lg py-3 px-4">
+    <div className="dark:bg-gray-700 flex flex-col items-center justify-center mb-2 bg-[#FAF6FE]  rounded-lg py-3 px-4">
       <p className="text-[0.8rem] md:text-[1rem] font-medium text-[#8629DF] dark:text-purple-400">
         {netPay}
       </p>
@@ -247,9 +248,12 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-0">
-          {/* EARNINGS – light green header + total */}
-          <div className="p-4 border-r border-gray-200 dark:border-gray-700">
+
+        {/* MOBILE FIX: grid-cols-2 → grid-cols-1 on mobile, 2 cols on sm+ */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
+          {/* EARNINGS */}
+          {/* MOBILE FIX: remove border-r on mobile (no right neighbour when stacked), add border-b instead */}
+          <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700">
             <p className="text-[0.75rem] font-bold text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-green-100 dark:bg-green-900/30 mb-3">
               Earnings
             </p>
@@ -269,7 +273,8 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
               <span>{salary.grossEarnings}</span>
             </div>
           </div>
-          {/* DEDUCTIONS – light pink/purple header + total */}
+
+          {/* DEDUCTIONS */}
           <div className="p-4">
             <p className="text-[0.75rem] font-bold text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-pink-100 dark:bg-purple-900/30 mb-3">
               Deductions
@@ -291,6 +296,7 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
             </div>
           </div>
         </div>
+
         <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end">
           <button
             type="button"

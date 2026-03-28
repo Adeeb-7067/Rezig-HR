@@ -20,8 +20,9 @@ export const attendanceData = {
 };
 
 const weekDays = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+const weekDaysShort = ["M", "T", "W", "T", "F", "S", "S"];
 
-/** Build a month grid with leading/trailing days (Monday-first). Returns flat array of { day, isCurrentMonth } */
+/** Build a month grid with leading/trailing days (Monday-first). */
 function getMonthGrid(year, month) {
     const firstDay = new Date(year, month, 1);
     const startDow = firstDay.getDay();
@@ -46,7 +47,6 @@ function getMonthGrid(year, month) {
     return grid;
 }
 
-/** Convert map of day -> string[] to day -> { status: string[] } for CalendarDay */
 function toAttendanceDataShape(dayStatusMap) {
     if (!dayStatusMap) return undefined;
     const out = {};
@@ -57,11 +57,14 @@ function toAttendanceDataShape(dayStatusMap) {
     return out;
 }
 
-/** If override values are full objects (status, in, out, shift, icon), use as-is; else convert with toAttendanceDataShape */
 function normalizeOverride(attendanceDataOverride) {
     if (!attendanceDataOverride) return undefined;
     const firstVal = Object.values(attendanceDataOverride)[0];
-    const isFullObject = firstVal != null && typeof firstVal === "object" && !Array.isArray(firstVal) && "status" in firstVal;
+    const isFullObject =
+        firstVal != null &&
+        typeof firstVal === "object" &&
+        !Array.isArray(firstVal) &&
+        "status" in firstVal;
     if (isFullObject) {
         const out = {};
         Object.entries(attendanceDataOverride).forEach(([day, obj]) => {
@@ -82,29 +85,44 @@ const AttendanceCalendar = ({
     attendanceDataOverride,
     compact = false,
 }) => {
-    const dataSource = attendanceDataOverride ? normalizeOverride(attendanceDataOverride) : attendanceData;
+    const dataSource = attendanceDataOverride
+        ? normalizeOverride(attendanceDataOverride)
+        : attendanceData;
     const useMonthGrid = month != null && year != null;
     const gridCells = useMonthGrid
         ? getMonthGrid(year, month)
         : Array.from({ length: 31 }, (_, i) => ({ day: i + 1, isCurrentMonth: true }));
 
     return (
-        <div className={`border rounded-lg ${compact ? "max-w-full overflow-visible" : "overflow-hidden"}`}>
+        <div className="border rounded-lg overflow-hidden w-full">
             {/* Week Header */}
-            <div className={`grid grid-cols-7 dark:bg-gray-800 dark:text-white bg-gray-100 font-medium text-gray-500 ${compact ? "text-[0.7rem] " : "text-xs "}`}>
-                {weekDays.map((day) => (
-                    <div key={day} className="border-r-2 p-[7px]  border-gray-200 dark:border-gray-600  ">
-                        {day}
+            <div
+                className={`grid grid-cols-7 dark:bg-gray-800 dark:text-white bg-gray-100 font-medium text-gray-500 ${
+                    compact ? "text-[0.7rem]" : "text-[0.6rem] sm:text-xs"
+                }`}
+            >
+                {weekDays.map((day, i) => (
+                    <div
+                        key={day}
+                        className="border-r-2 border-gray-200 dark:border-gray-600 p-1 sm:p-[7px] text-center"
+                    >
+                        {/* Full label on sm+, single letter on xs */}
+                        <span className="hidden sm:inline">{day}</span>
+                        <span className="inline sm:hidden">{weekDaysShort[i]}</span>
                     </div>
                 ))}
             </div>
 
-            {/* Calendar Days */}
-            <div className={compact ? "" : "overflow-x-auto"}>
-                <div className={`grid grid-cols-7 ${compact ? "min-w-0 w-full" : "min-w-[900px]"}`}>
+            {/* Calendar Days — fully fluid, no horizontal scroll */}
+            <div className="w-full">
+                <div className="grid grid-cols-7 w-full">
                     {gridCells.map((cell, idx) => (
                         <CalendarDay
-                            key={useMonthGrid ? `${cell.isCurrentMonth ? "c" : "o"}-${cell.day}-${idx}` : cell.day}
+                            key={
+                                useMonthGrid
+                                    ? `${cell.isCurrentMonth ? "c" : "o"}-${cell.day}-${idx}`
+                                    : cell.day
+                            }
                             day={cell.day}
                             data={cell.isCurrentMonth ? dataSource?.[cell.day] : undefined}
                             multipleCorrection={multipleCorrection}

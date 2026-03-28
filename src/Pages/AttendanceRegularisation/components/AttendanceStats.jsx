@@ -11,7 +11,7 @@ const stats = [
 
 const AttendanceStats = () => {
     return (
-        <div className="grid grid-cols-3 gap-4 w-full space-y-2">
+        <div className="grid grid-cols-2  md:grid-cols-3 gap-4 w-full space-y-2">
 
             {stats.map((item, i) => (
                 <div

@@ -1,5 +1,7 @@
-import { X, Calendar, Sun } from "lucide-react";
-import { useState, useRef } from "react";
+import { X, Sun } from "lucide-react";
+import { useState } from "react";
+import DatePickerField from "@/components/ui/datePicker";
+import SelectField from "@/components/SelectFeild";
 
 function getOrdinal(n) {
   const v = n % 100;
@@ -12,18 +14,8 @@ function getOrdinal(n) {
 }
 
 const MONTH_NAMES = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 
 const AttendanceBulkRegularizeModal = ({
@@ -44,16 +36,7 @@ const AttendanceBulkRegularizeModal = ({
   };
 
   const formatShortDate = (day) => {
-    const d = new Date(year, month, day);
     return `${day} ${MONTH_NAMES[month]} ${year}`;
-  };
-
-  const openPicker = (ref) => {
-    if (ref.current?.showPicker) {
-      ref.current.showPicker();
-    } else {
-      ref.current.focus();
-    }
   };
 
   const [dates, setDates] = useState(
@@ -65,8 +48,6 @@ const AttendanceBulkRegularizeModal = ({
       inMin: "",
       outHour: "",
       outMin: "",
-      inRef: useRef(null),
-      outRef: useRef(null)
     }))
   );
 
@@ -77,23 +58,25 @@ const AttendanceBulkRegularizeModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-3 sm:p-4">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-xl flex flex-col max-h-[95vh] overflow-hidden">
+    // Mobile: bottom sheet (items-end, no side padding)
+    // Desktop: centered dialog (items-center, p-4)
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 p-0 sm:p-4">
+      <div className="w-full sm:max-w-md bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-lg shadow-xl flex flex-col max-h-[92vh] sm:max-h-[95vh] overflow-hidden">
+
         {/* HEADER */}
         <div className="flex justify-between items-center px-4 py-3 border-b dark:border-gray-700 shrink-0">
-          <h2 className="text-[#8629DF] font-semibold text-sm truncate">
+          <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
             {selectedDays.length > 0 && formatSelectedDate(dates[0]?.day)}
           </h2>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-400 text-white text-xs font-medium">
               <Sun size={12} />
               Day
             </span>
-
             <button
               onClick={onClose}
-              className="p-1 rounded-full bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
+              className="p-1 rounded-full bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
             >
               <X size={18} />
             </button>
@@ -101,11 +84,12 @@ const AttendanceBulkRegularizeModal = ({
         </div>
 
         {/* SCROLLABLE CONTENT */}
-        <div className="overflow-y-auto no-scrollbar dropdown-scroll px-4 py-3 space-y-2">
+        <div className="overflow-y-auto no-scrollbar dropdown-scroll px-4 py-3 space-y-2 flex-1">
           {dates.map((item, index) => (
             <div key={item.day}>
+
               {/* SHIFT DETAILS */}
-              <div className="border dark:border-gray-700 rounded-md p-3">
+              <div className="border dark:border-gray-700 rounded-md p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <p className="font-medium text-[0.8rem]">Shift Details</p>
                   <span className="bg-purple-100 text-black text-[0.7rem] px-2 py-[2px] rounded">
@@ -135,9 +119,7 @@ const AttendanceBulkRegularizeModal = ({
 
               {/* CURRENT ATTENDANCE */}
               <div className="border dark:border-gray-700 rounded-md p-3">
-                <p className="font-medium mb-2 text-[0.8rem]">
-                  Current Attendance Details
-                </p>
+                <p className="font-medium mb-2 text-[0.8rem]">Current Attendance Details</p>
 
                 <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-300">
                   <div>
@@ -164,7 +146,8 @@ const AttendanceBulkRegularizeModal = ({
                 <p className="font-medium text-[0.8rem] mb-1">Status</p>
                 <div className="flex items-center gap-2 text-[0.8rem]">
                   <span>Current Status :</span>
-                  <span className="bg-amber-50 ml-12 text-amber-400 px-2 py-1 rounded-full text-[0.7rem]">
+                  {/* ml-12 only on sm+ to match desktop design; removed on mobile to prevent overflow */}
+                  <span className="bg-amber-50 sm:ml-12 text-amber-400 px-2 py-1 rounded-full text-[0.7rem]">
                     Missed Punch
                   </span>
                 </div>
@@ -174,43 +157,33 @@ const AttendanceBulkRegularizeModal = ({
               <div>
                 <p className="font-medium mb-3 text-[0.8rem]">Correct Timing</p>
 
-                <div className="grid grid-cols-2 gap-3 text-[0.7rem]">
+                {/* Desktop: grid-cols-2 (original). Mobile < 480px: single column */}
+                <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
+
                   {/* IN DATE */}
-                  <div>
-                    <p className="text-gray-500 font-medium mb-1">In Date</p>
-                    <div
-                      onClick={() => openPicker(item.inRef)}
-                      className="border rounded px-2 py-2 flex justify-between items-center cursor-pointer"
-                    >
-                      <span className={item.inDate ? "" : "text-gray-400"}>
-                        {item.inDate || "Select Date"}
-                      </span>
-                      <Calendar size={14} />
-                    </div>
-                    <input
-                      ref={item.inRef}
-                      type="date"
-                      value={item.inDate}
-                      onChange={(e) => updateField(index, "inDate", e.target.value)}
-                      className="hidden"
-                    />
-                  </div>
+                  <DatePickerField label={"In Date"} />
 
                   {/* IN TIME */}
                   <div>
                     <p className="text-gray-500 mb-1 font-medium">In Time</p>
                     <div className="flex gap-2">
-                      <input
+                      <SelectField
                         type="number"
                         placeholder="19"
+                        options={[{
+                          label: '1', value: '1'
+                        }]}
                         value={item.inHour}
                         onChange={(e) => updateField(index, "inHour", e.target.value)}
                         className="border rounded px-2 py-2 w-full"
                       />
                       <span className="w-fit text-gray-500 mt-2">:</span>
-                      <input
+                      <SelectField
                         type="number"
                         placeholder="25"
+                        options={[{
+                          label: '1', value: '1'
+                        }]}
                         value={item.inMin}
                         onChange={(e) => updateField(index, "inMin", e.target.value)}
                         className="border rounded px-2 py-2 w-full"
@@ -219,39 +192,27 @@ const AttendanceBulkRegularizeModal = ({
                   </div>
 
                   {/* OUT DATE */}
-                  <div>
-                    <p className="text-gray-500 mb-1 font-medium">Out Date</p>
-                    <div
-                      onClick={() => openPicker(item.outRef)}
-                      className="border rounded px-2 py-2 flex justify-between items-center cursor-pointer"
-                    >
-                      <span className={item.outDate ? "" : "text-gray-400"}>
-                        {item.outDate || "Select Date"}
-                      </span>
-                      <Calendar size={14} />
-                    </div>
-                    <input
-                      ref={item.outRef}
-                      type="date"
-                      value={item.outDate}
-                      onChange={(e) => updateField(index, "outDate", e.target.value)}
-                      className="hidden"
-                    />
-                  </div>
+                  <DatePickerField label={"Out Date"} />
 
                   {/* OUT TIME */}
                   <div>
                     <p className="text-gray-500 mb-1 font-medium">Out Time</p>
                     <div className="flex gap-2">
-                      <input
+                      <SelectField
                         type="number"
+                        options={[{
+                          label: '1', value: '1'
+                        }]}
                         placeholder="09"
                         value={item.outHour}
                         onChange={(e) => updateField(index, "outHour", e.target.value)}
                         className="border rounded px-2 py-2 w-full"
                       />
                       <span className="w-fit text-gray-500 mt-2">:</span>
-                      <input
+                      <SelectField
+                        options={[{
+                          label: '1', value: '1'
+                        }]}
                         type="number"
                         placeholder="25"
                         value={item.outMin}
@@ -267,10 +228,10 @@ const AttendanceBulkRegularizeModal = ({
               {dates[index + 1] && (
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4 pt-4">
                   <div className="flex justify-between items-center">
-                    <h2 className="text-[#8629DF] font-semibold text-sm">
+                    <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
                       {formatSelectedDate(dates[index + 1].day)}
                     </h2>
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-400 text-white text-xs font-medium">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-400 text-white text-xs font-medium shrink-0">
                       <Sun size={12} />
                       Day
                     </span>
@@ -283,7 +244,7 @@ const AttendanceBulkRegularizeModal = ({
 
         {/* FOOTER */}
         <div className="w-full flex justify-end px-4 py-3 border-t dark:border-gray-700 shrink-0">
-          <button className="w-fit py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium">
+          <button className="w-full min-[480px]:w-fit py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium">
             Regularize All
           </button>
         </div>

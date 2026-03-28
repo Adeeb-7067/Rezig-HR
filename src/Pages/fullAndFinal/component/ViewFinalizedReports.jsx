@@ -40,7 +40,7 @@ export default function ViewFinalizedReports() {
       {/* View Arrear Payment */}
       <div>
         <h3 className={sectionTitleClass}>View Arrear Payment</h3>
-        <div className="flex flex-col sm:flex-row w-full gap-2 mb-2">
+        <div className="flex flex-col lg:flex-row w-full gap-2 mb-2">
           {/* Addition Pay Heads */}
           <div className=" rounded-lg p-2 w-full min-w-[60%] ">
             <p className="text-[0.7rem] font-semibold text-[#252C58] dark:text-gray-200 mb-1">
@@ -51,7 +51,7 @@ export default function ViewFinalizedReports() {
                 <tr>
                   <th className={tableHeaderClass}>Pay Head</th>
                   <th className={tableHeaderRightClass}>Actual Amount</th>
-                  <th className={tableHeaderClass}>Payable Amount</th>
+                  <th className={tableHeaderClass} style={{ textAlign: "right" }}>Payable Amount</th>
                 </tr>
               </thead>
               <tbody>
@@ -81,7 +81,7 @@ export default function ViewFinalizedReports() {
               <thead>
                 <tr>
                   <th className={tableHeaderClass}>Pay Head</th>
-                  <th className={tableHeaderClass}>Amount</th>
+                  <th className={tableHeaderClass} style={{ textAlign: "right" }}>Amount</th>
                 </tr>
               </thead>
               <tbody>

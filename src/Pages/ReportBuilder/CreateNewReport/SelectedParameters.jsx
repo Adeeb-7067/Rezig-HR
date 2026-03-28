@@ -24,7 +24,7 @@ const SelectedParameters = () => {
     ];
 
     return (
-        <div className="bg-white dark:bg-gray-800 min-h-screen">
+        <div className="bg-white dark:bg-gray-800 h-full">
 
             {/* Title */}
             <div className="flex items-center justify-between px-1 py-2">

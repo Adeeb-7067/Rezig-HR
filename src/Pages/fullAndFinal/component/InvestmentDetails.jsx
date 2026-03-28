@@ -29,23 +29,23 @@ function SectionAccordion({ label, rows, setRows }) {
     );
 
   return (
-    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-hidden">
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-visible">
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
 
-        <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
-          {label}
-        </h3>
+          <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
+            {label}
+          </h3>
 
-        <div className="flex flex-col leading-tight">
-          <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
-            50,000,00
-          </h1>
-          <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
-             Amount
-          </span>
-        </div>
+          <div className="flex flex-col leading-tight">
+            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+              50,000,00
+            </h1>
+            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+              Amount
+            </span>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -151,23 +151,23 @@ function HouseRentAccordion({ rows, setRows }) {
     );
 
   return (
-    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-hidden">
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-visible">
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
 
-        <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
-          House Rent Details
-        </h3>
+          <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
+            House Rent Details
+          </h3>
 
-        <div className="flex flex-col leading-tight">
-          <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
-            50,000,00
-          </h1>
-          <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
-             Amount
-          </span>
-        </div>
+          <div className="flex flex-col leading-tight">
+            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+              50,000,00
+            </h1>
+            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+              Amount
+            </span>
+          </div>
         </div>
 
         <div className="flex items-center gap-2">
@@ -242,44 +242,44 @@ function HouseRentAccordion({ rows, setRows }) {
                   <div className="w-[97%]">
 
 
-                <SelectField
-                  label="City"
-                  name={`city-${idx}`}
-                  value={row.city}
-                  onChange={(e) => updateRow(idx, "city", e.target.value)}
-                  options={[
-                    { value: "", label: "Select Section/Sub Section" },
-                    { value: "mumbai", label: "Mumbai" },
-                    { value: "delhi", label: "Delhi" },
-                    { value: "bangalore", label: "Bangalore" },
-                    { value: "chennai", label: "Chennai" },
-                    { value: "kolkata", label: "Kolkata" },
-                    { value: "hyderabad", label: "Hyderabad" },
-                    { value: "pune", label: "Pune" },
-                  ]}
-                />
+                    <SelectField
+                      label="City"
+                      name={`city-${idx}`}
+                      value={row.city}
+                      onChange={(e) => updateRow(idx, "city", e.target.value)}
+                      options={[
+                        { value: "", label: "Select Section/Sub Section" },
+                        { value: "mumbai", label: "Mumbai" },
+                        { value: "delhi", label: "Delhi" },
+                        { value: "bangalore", label: "Bangalore" },
+                        { value: "chennai", label: "Chennai" },
+                        { value: "kolkata", label: "Kolkata" },
+                        { value: "hyderabad", label: "Hyderabad" },
+                        { value: "pune", label: "Pune" },
+                      ]}
+                    />
                   </div>
 
                   <div className="w-[95%]">
 
-                <InputField
-                  label="Landlord Name"
-                  name={`landlord-${idx}`}
-                  value={row.landlordName}
-                  onChange={(e) => updateRow(idx, "landlordName", e.target.value)}
-                />
+                    <InputField
+                      label="Landlord Name"
+                      name={`landlord-${idx}`}
+                      value={row.landlordName}
+                      onChange={(e) => updateRow(idx, "landlordName", e.target.value)}
+                    />
                   </div>
 
                   <div className="w-[95%]">
 
-                <InputField
-                  label="Address"
-                  name={`address-${idx}`}
-                  value={row.address}
-                  onChange={(e) => updateRow(idx, "address", e.target.value)}
-                />
+                    <InputField
+                      label="Address"
+                      name={`address-${idx}`}
+                      value={row.address}
+                      onChange={(e) => updateRow(idx, "address", e.target.value)}
+                    />
                   </div>
-                                  </div>
+                </div>
 
                 <div className="w-8 h-8" />
               </div>
@@ -351,13 +351,13 @@ export default function InvestmentDetails({ onNext, onPrev }) {
 
 
 
-         <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-<InputField label={'Landlord PAN'}/>
-<VariableTypeRow label={'Landlord Declarations'}/>
+          <InputField label={'Landlord PAN'} />
+          <VariableTypeRow label={'Landlord Declarations'} />
 
         </div>
-        </div>
+      </div>
 
       {/* Other Income / Deduction */}
       <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
@@ -399,7 +399,7 @@ export default function InvestmentDetails({ onNext, onPrev }) {
       </div>
 
       {/* Footer buttons */}
-      <div className="flex flex-row flex-wrap justify-end w-full gap-2 mt-3">
+      <div className="flex flex-row justify-end w-full gap-2 mt-3">
         <button type="button" className={btnPrevReset} onClick={onPrev}>
           Previous
         </button>
