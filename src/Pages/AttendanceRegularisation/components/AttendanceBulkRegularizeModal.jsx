@@ -51,6 +51,15 @@ const AttendanceBulkRegularizeModal = ({
     }))
   );
 
+  const hourOptions = Array.from({ length: 24 }, (_, i) => {
+    const v = String(i).padStart(2, "0");
+    return { label: v, value: v };
+  });
+  const minuteOptions = Array.from({ length: 60 }, (_, i) => {
+    const v = String(i).padStart(2, "0");
+    return { label: v, value: v };
+  });
+
   const updateField = (index, field, value) => {
     const updated = [...dates];
     updated[index][field] = value;
@@ -161,62 +170,58 @@ const AttendanceBulkRegularizeModal = ({
                 <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
 
                   {/* IN DATE */}
-                  <DatePickerField label={"In Date"} />
+                  <DatePickerField
+                    label={"In Date"}
+                    value={item.inDate}
+                    onChange={(e) => updateField(index, "inDate", e.target.value)}
+                  />
 
                   {/* IN TIME */}
                   <div>
                     <p className="text-gray-500 mb-1 font-medium">In Time</p>
                     <div className="flex gap-2">
                       <SelectField
-                        type="number"
-                        placeholder="19"
-                        options={[{
-                          label: '1', value: '1'
-                        }]}
+                        options={hourOptions}
                         value={item.inHour}
                         onChange={(e) => updateField(index, "inHour", e.target.value)}
+                        unSelectLabel="HH"
                         className="border rounded px-2 py-2 w-full"
                       />
                       <span className="w-fit text-gray-500 mt-2">:</span>
                       <SelectField
-                        type="number"
-                        placeholder="25"
-                        options={[{
-                          label: '1', value: '1'
-                        }]}
+                        options={minuteOptions}
                         value={item.inMin}
                         onChange={(e) => updateField(index, "inMin", e.target.value)}
+                        unSelectLabel="MM"
                         className="border rounded px-2 py-2 w-full"
                       />
                     </div>
                   </div>
 
                   {/* OUT DATE */}
-                  <DatePickerField label={"Out Date"} />
+                  <DatePickerField
+                    label={"Out Date"}
+                    value={item.outDate}
+                    onChange={(e) => updateField(index, "outDate", e.target.value)}
+                  />
 
                   {/* OUT TIME */}
                   <div>
                     <p className="text-gray-500 mb-1 font-medium">Out Time</p>
                     <div className="flex gap-2">
                       <SelectField
-                        type="number"
-                        options={[{
-                          label: '1', value: '1'
-                        }]}
-                        placeholder="09"
+                        options={hourOptions}
                         value={item.outHour}
                         onChange={(e) => updateField(index, "outHour", e.target.value)}
+                        unSelectLabel="HH"
                         className="border rounded px-2 py-2 w-full"
                       />
                       <span className="w-fit text-gray-500 mt-2">:</span>
                       <SelectField
-                        options={[{
-                          label: '1', value: '1'
-                        }]}
-                        type="number"
-                        placeholder="25"
+                        options={minuteOptions}
                         value={item.outMin}
                         onChange={(e) => updateField(index, "outMin", e.target.value)}
+                        unSelectLabel="MM"
                         className="border rounded px-2 py-2 w-full"
                       />
                     </div>
