@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployeeCard = () => {
+const EmployeeCard = ({ employee }) => {
   return (
     <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-3 sm:p-4 bg-white dark:bg-gray-800 w-full max-w-[560px]">
 
@@ -9,7 +9,7 @@ const EmployeeCard = () => {
         {/* IMAGE */}
         <img
           src="https://i.pravatar.cc/150"
-          alt="Amit Sharma"
+          alt={employee?.name}
           className="w-[80px] h-[80px] sm:w-[110px] sm:h-[110px] rounded-lg object-cover bg-gray-100 flex-shrink-0"
         />
 
@@ -20,10 +20,10 @@ const EmployeeCard = () => {
           <div className="flex justify-between items-start gap-2">
             <div className="min-w-0">
               <h2 className="text-[0.9rem] sm:text-[1rem] font-semibold text-gray-800 dark:text-gray-100 truncate">
-                Amit Sharma
+                {employee?.name}
               </h2>
               <p className="text-[0.75rem] sm:text-[0.8rem] text-gray-400 font-medium">
-                EMP1024
+                EMP{String(employee?.id ?? "").padStart(4, "0")}
               </p>
             </div>
 
@@ -54,7 +54,7 @@ const EmployeeCard = () => {
 
       {/* TAGS */}
       <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 sm:mt-3">
-        {["Marking Department", "Senior Executive", "Gurugram Office"].map((tag) => (
+        {[employee?.dept, employee?.location].filter(Boolean).map((tag) => (
           <span
             key={tag}
             className="bg-[#7B2CBF] text-white text-[0.6rem] sm:text-[0.65rem] px-2 sm:px-3 py-1 rounded-[4px]"
