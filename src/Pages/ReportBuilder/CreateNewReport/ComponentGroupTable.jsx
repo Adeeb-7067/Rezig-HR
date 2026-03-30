@@ -3,7 +3,7 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Plus, Triangle } from "lucide-react";
 import { componentdummyData } from "./component/componentdummyData";
 
-const ComponentGroupTable = ({ search = "", groups }) => {
+const ComponentGroupTable = ({ search = "", groups, onAddParameter = () => {} }) => {
 
     const [openGroup, setOpenGroup] = useState(null);
 
@@ -137,11 +137,14 @@ const ComponentGroupTable = ({ search = "", groups }) => {
                                                 <td className="px-6 py-2 text-center">
 
                                                     <button
+                                                        onClick={() => onAddParameter(item)}
                                                         className="
                                                             w-full  px-3 py-1 flex justify-center items-center  rounded-sm
                                                             bg-[#8629DF] dark:bg-gray-700
                                                             text-[#FFFFFF] dark:text-purple-300
                                                             hover:bg-[#8629DF]/60 hover:text-white
+                                                            dark:hover:bg-[#8629DF] dark:hover:text-white
+
                                                             transition-all font-bold text-sm cursor-pointer 
                                                         "
                                                     >

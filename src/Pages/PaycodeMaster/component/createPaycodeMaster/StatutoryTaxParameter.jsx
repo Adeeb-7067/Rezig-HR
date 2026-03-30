@@ -16,13 +16,12 @@ const StatutoryTaxParameter = () => {
     const [lwf, setLwf] = useState(false);
 
     return (
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg space-y-4">
-            <h1 className="text-base font-semibold mb-1 text-gray-500">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+            <h1 className="text-base font-semibold mb-1 text-gray-500 dark:text-gray-50">
                 Statutory & Tax Parameter
             </h1>
 
-            {/* Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <SelectField
                     label="Part of PF/VolPF Gross"
                     name="pfGross"
@@ -43,10 +42,7 @@ const StatutoryTaxParameter = () => {
                     showIcon
                     info="Part of Professional Tax"
                 />
-            </div>
 
-            {/* Row 2 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <VariableTypeRow
                     label="Part of ESI Gross"
                     checked={esiGross}
@@ -54,7 +50,6 @@ const StatutoryTaxParameter = () => {
                     gapClass="justify-between"
                     showIcon
                     info="Part of ESI Gross"
-
                 />
 
                 <VariableTypeRow
@@ -65,10 +60,7 @@ const StatutoryTaxParameter = () => {
                     showIcon
                     info="Part of ESI Rate Gross"
                 />
-            </div>
 
-            {/* Row 3 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <SelectField
                     label="Taxable"
                     name="taxable"
@@ -85,10 +77,7 @@ const StatutoryTaxParameter = () => {
                     label="Non Taxable Limit (PA)"
                     placeholder="Enter Amount"
                 />
-            </div>
 
-            {/* Row 4 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <SelectField
                     label="Tax to be deducted"
                     name="taxDeduct"
@@ -109,10 +98,7 @@ const StatutoryTaxParameter = () => {
                     showIcon
                     info="Part of LWF"
                 />
-            </div>
 
-            {/* Row 5 */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <SelectField
                     label="Sub Section For Form-16"
                     name="subSection"

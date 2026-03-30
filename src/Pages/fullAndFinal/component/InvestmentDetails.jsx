@@ -33,16 +33,15 @@ function SectionAccordion({ label, rows, setRows }) {
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
-
           <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
             {label}
           </h3>
 
           <div className="flex flex-col leading-tight">
-            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-purple-400">
               50,000,00
             </h1>
-            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-400">
               Amount
             </span>
           </div>
@@ -77,8 +76,7 @@ function SectionAccordion({ label, rows, setRows }) {
               key={idx}
               className="grid grid-cols-1 sm:grid-cols-[0.5fr_0.5fr_1fr_auto] gap-3 items-end border-b border-gray-200 dark:border-gray-600 pb-3 last:border-b-0"
             >
-              <div className="">
-
+              <div>
                 <SelectField
                   label="Section/Sub-Section"
                   name={`section-${idx}`}
@@ -94,20 +92,16 @@ function SectionAccordion({ label, rows, setRows }) {
                 />
               </div>
 
-              {/* <InputField
-                label="Description"
-                name={`desc-${idx}`}
-                value={row.description}
-                onChange={(e) => updateRow(idx, "description", e.target.value)}
-                placeholder="Description"
-              /> */}
-
               <div className="flex flex-col mx-3">
-                <label htmlFor="label" className="text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">Description</label>
-                <span className='text-[0.7rem] text-gray-500 dark:text-gray-200'>Description </span>
+                <label className="text-gray-500 dark:text-gray-400 font-semibold text-[0.7rem]">
+                  Description
+                </label>
+                <span className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                  Description
+                </span>
               </div>
-              <div className="w-fit mx-3">
 
+              <div className="w-fit mx-3">
                 <InputField
                   label="Amount"
                   name={`amount-${idx}`}
@@ -120,7 +114,7 @@ function SectionAccordion({ label, rows, setRows }) {
               <button
                 type="button"
                 onClick={() => removeRow(idx)}
-                className="flex items-center justify-center w-8 h-8 bg-white/70 text-red-500 hover:text-red-700 mb-0.5"
+                className="flex items-center justify-center w-8 h-8 bg-white/70 dark:bg-gray-700/50 text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5 rounded"
               >
                 <Trash2 size={16} />
               </button>
@@ -155,16 +149,15 @@ function HouseRentAccordion({ rows, setRows }) {
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
-
           <h3 className="text-[0.85rem] font-bold text-gray-800 dark:text-gray-100">
             House Rent Details
           </h3>
 
           <div className="flex flex-col leading-tight">
-            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-gray-100">
+            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-purple-400">
               50,000,00
             </h1>
-            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-200">
+            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-400">
               Amount
             </span>
           </div>
@@ -200,10 +193,8 @@ function HouseRentAccordion({ rows, setRows }) {
               key={idx}
               className="border-b border-gray-200 dark:border-gray-600 pb-3 last:border-b-0"
             >
-              {/* Row 1: From Date, To Date, Amount, Delete */}
-              <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_0.5fr_auto] gap-5">
-                <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
-
+              <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_0.5fr_auto] gap-5 items-end">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <DatePickerField
                     label="From Date"
                     name={`fromDate-${idx}`}
@@ -223,65 +214,43 @@ function HouseRentAccordion({ rows, setRows }) {
                     className="w-full"
                     onChange={(e) => updateRow(idx, "amount", e.target.value)}
                   />
+                  <SelectField
+                    label="City"
+                    name={`city-${idx}`}
+                    value={row.city}
+                    onChange={(e) => updateRow(idx, "city", e.target.value)}
+                    options={[
+                      { value: "", label: "Select Section/Sub Section" },
+                      { value: "mumbai", label: "Mumbai" },
+                      { value: "delhi", label: "Delhi" },
+                      { value: "bangalore", label: "Bangalore" },
+                      { value: "chennai", label: "Chennai" },
+                      { value: "kolkata", label: "Kolkata" },
+                      { value: "hyderabad", label: "Hyderabad" },
+                      { value: "pune", label: "Pune" },
+                    ]}
+                  />
+                  <InputField
+                    label="Landlord Name"
+                    name={`landlord-${idx}`}
+                    value={row.landlordName}
+                    onChange={(e) => updateRow(idx, "landlordName", e.target.value)}
+                  />
+                  <InputField
+                    label="Address"
+                    name={`address-${idx}`}
+                    value={row.address}
+                    onChange={(e) => updateRow(idx, "address", e.target.value)}
+                  />
                 </div>
-                <div>
-
-                </div>
+                <div></div>
                 <button
                   type="button"
                   onClick={() => removeRow(idx)}
-                  className="flex items-center justify-center w-8 h-8 text-red-500 hover:text-red-700 mb-0.5"
+                  className="flex items-center justify-center w-8 h-8 text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5 bg-white dark:bg-gray-700/50 rounded"
                 >
                   <Trash2 size={16} />
                 </button>
-              </div>
-
-              {/* Row 2: City, Landlord Name, Address */}
-              <div className="grid grid-cols-1 sm:grid-cols-[1.3fr_0.5fr_auto] gap-5  mt-2">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div className="w-[97%]">
-
-
-                    <SelectField
-                      label="City"
-                      name={`city-${idx}`}
-                      value={row.city}
-                      onChange={(e) => updateRow(idx, "city", e.target.value)}
-                      options={[
-                        { value: "", label: "Select Section/Sub Section" },
-                        { value: "mumbai", label: "Mumbai" },
-                        { value: "delhi", label: "Delhi" },
-                        { value: "bangalore", label: "Bangalore" },
-                        { value: "chennai", label: "Chennai" },
-                        { value: "kolkata", label: "Kolkata" },
-                        { value: "hyderabad", label: "Hyderabad" },
-                        { value: "pune", label: "Pune" },
-                      ]}
-                    />
-                  </div>
-
-                  <div className="w-[95%]">
-
-                    <InputField
-                      label="Landlord Name"
-                      name={`landlord-${idx}`}
-                      value={row.landlordName}
-                      onChange={(e) => updateRow(idx, "landlordName", e.target.value)}
-                    />
-                  </div>
-
-                  <div className="w-[95%]">
-
-                    <InputField
-                      label="Address"
-                      name={`address-${idx}`}
-                      value={row.address}
-                      onChange={(e) => updateRow(idx, "address", e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="w-8 h-8" />
               </div>
             </div>
           ))}
@@ -319,7 +288,9 @@ export default function InvestmentDetails({ onNext, onPrev }) {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-base font-semibold text-gray-500">Investment Details</h2>
+      <h2 className="text-base font-semibold text-gray-500 dark:text-gray-400">
+        Investment Details
+      </h2>
 
       {/* Under Section 80C Limit */}
       <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
@@ -349,19 +320,18 @@ export default function InvestmentDetails({ onNext, onPrev }) {
       {/* House Rent Details */}
       <HouseRentAccordion rows={houseRentRows} setRows={setHouseRentRows} />
 
-
-
       <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <InputField label={'Landlord PAN'} />
-          <VariableTypeRow label={'Landlord Declarations'} />
-
+          <InputField label={"Landlord PAN"} />
+          <VariableTypeRow label={"Landlord Declarations"} />
         </div>
       </div>
 
       {/* Other Income / Deduction */}
       <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
-        <h3 className="text-base font-semibold mb-2 text-gray-500">Other Income / Deduction</h3>
+        <h3 className="text-base font-semibold mb-2 text-gray-500 dark:text-gray-400">
+          Other Income / Deduction
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <DatePickerField
             label="Date of Possession"

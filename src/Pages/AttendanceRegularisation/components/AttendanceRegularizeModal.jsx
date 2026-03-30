@@ -18,6 +18,16 @@ const MONTH_NAMES = [
   "July", "August", "September", "October", "November", "December",
 ];
 
+const hourOptions = Array.from({ length: 24 }, (_, i) => ({
+  label: String(i).padStart(2, "0"),
+  value: String(i).padStart(2, "0"),
+}));
+
+const minuteOptions = Array.from({ length: 60 }, (_, i) => ({
+  label: String(i).padStart(2, "0"),
+  value: String(i).padStart(2, "0"),
+}));
+
 const AttendanceRegularizeModal = ({
   open,
   onClose,
@@ -39,15 +49,34 @@ const AttendanceRegularizeModal = ({
     return `${day} ${MONTH_NAMES[month]} ${year}`;
   }, [day, month, year]);
 
-  const [inDate, setInDate] = useState("");
-  const [outDate, setOutDate] = useState("");
+  const [formData, setFormData] = useState({
+    inDate: "",
+    inHour: "",
+    inMinute: "",
+    outDate: "",
+    outHour: "",
+    outMinute: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleDateChange = (name, date) => {
+    setFormData((prev) => ({ ...prev, [name]: date }));
+  };
+
+  const handleRegularize = () => {
+    console.log("Regularize submitted:", formData);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 p-0 sm:p-4">
       <div className="w-full sm:max-w-md bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-lg shadow-xl flex flex-col max-h-[92vh] sm:max-h-[95vh] overflow-hidden">
 
         {/* HEADER */}
-        <div className="flex justify-between items-center px-4 py-3 border-b dark:border-gray-700 shrink-0">
+        <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
           <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
             {selectedDate}
           </h2>
@@ -61,144 +90,159 @@ const AttendanceRegularizeModal = ({
               onClick={onClose}
               className="p-1 rounded-full bg-gray-100 dark:bg-gray-600 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer"
             >
-              <X size={18} />
+              <X size={18} className="text-gray-600 dark:text-gray-200" />
             </button>
           </div>
         </div>
 
         {/* SCROLLABLE CONTENT */}
-        <div className="overflow-y-auto no-scrollbar dropdown-scroll px-4 py-3 space-y-3 flex-1">
+        <div className="overflow-y-auto no-scrollbar table-scroll px-4 py-3 space-y-3 flex-1">
 
           {/* SHIFT DETAILS */}
-          <div className="border dark:border-gray-700 rounded-md p-3">
+          <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3">
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <p className="font-medium text-[0.8rem]">Shift Details</p>
-              <span className="bg-purple-100 text-black text-[0.7rem] px-2 py-[2px] rounded">
+              <p className="font-medium text-[0.8rem] text-gray-800 dark:text-gray-100">Shift Details</p>
+              <span className="bg-purple-100 dark:bg-purple-900/40 text-black dark:text-purple-200 text-[0.7rem] px-2 py-[2px] rounded">
                 Gurugram Office
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600">
+            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-400">
               <div>
                 <p>Shift In Date</p>
-                <p className="font-medium">{shortDateStr}</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
               </div>
               <div>
                 <p>Shift In</p>
-                <p className="font-medium">08:30</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">08:30</p>
               </div>
               <div>
                 <p>Shift Out Date</p>
-                <p className="font-medium">{shortDateStr}</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
               </div>
               <div>
                 <p>Shift Out</p>
-                <p className="font-medium">18:30</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">18:30</p>
               </div>
             </div>
           </div>
 
           {/* CURRENT ATTENDANCE */}
-          <div className="border dark:border-gray-700 rounded-md p-3">
-            <p className="font-medium mb-2 text-[0.8rem]">Current Attendance Details</p>
+          <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3">
+            <p className="font-medium mb-2 text-[0.8rem] text-gray-800 dark:text-gray-100">Current Attendance Details</p>
 
-            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600">
+            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-400">
               <div>
                 <p>In Date</p>
-                <p className="font-medium">{shortDateStr}</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
               </div>
               <div>
                 <p>In Time</p>
-                <p className="font-medium">09:30</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">09:30</p>
               </div>
               <div>
                 <p>Out Date</p>
-                <p className="font-medium">{shortDateStr}</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
               </div>
               <div>
                 <p>Out Time</p>
-                <p className="font-medium">18:00</p>
+                <p className="font-medium text-gray-800 dark:text-gray-100">18:00</p>
               </div>
             </div>
           </div>
+<div className="border border-1 rounded-sm p-2">
 
           {/* STATUS */}
-          <div className="px-2">
-            <p className="font-medium text-[0.8rem] mb-1">Status</p>
-            <div className="flex items-center gap-2 text-[0.8rem]">
+          <div className="">
+            <p className="font-medium text-[0.8rem] mb-1 text-gray-800 dark:text-gray-100">Status</p>
+            <div className="flex items-center gap-2 text-[0.8rem] text-gray-700 dark:text-gray-300">
               <span>Current Status :</span>
-              <span className="bg-amber-50 text-amber-400 px-2 py-1 rounded-full text-[0.7rem]">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
                 Missed Punch
               </span>
             </div>
           </div>
 
           {/* CORRECT TIMING */}
-          <div className="px-2">
-            <p className="font-medium mb-3 text-[0.8rem]">Correct Timing</p>
+          <div className="">
+            <p className="font-medium mb-3 text-[0.8rem] text-gray-800 dark:text-gray-100">Correct Timing</p>
 
-            {/* grid-cols-2 on sm+ (original), single col on xs */}
             <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
               {/* IN DATE */}
-              <DatePickerField label={"In Date"} />
+              <DatePickerField
+                label="In Date"
+                name="inDate"
+                value={formData.inDate}
+                onChange={(e) => handleDateChange("inDate", e)}
+              />
 
               {/* IN TIME */}
               <div>
-                <p className="text-gray-500 mb-1 font-medium">In Time</p>
+                <p className="text-gray-500 dark:text-gray-400 mb-1 font-medium">In Time</p>
                 <div className="flex gap-2">
                   <SelectField
-                    type="number"
-                     options={[{
-                      label: '1', value: '1'
-                    }]}
-                    placeholder="19"
+                    name="inHour"
+                    value={formData.inHour}
+                    onChange={handleChange}
+                    options={hourOptions}
+                    placeholder="HH"
                     className="border rounded px-2 py-2 w-full"
                   />
-                  <span className="w-fit text-gray-500 mt-2">:</span>
+                  <span className="w-fit text-gray-500 dark:text-gray-400 mt-2">:</span>
                   <SelectField
-                    type="number"
-                    placeholder="25"
-                     options={[{
-                      label: '1', value: '1'
-                    }]}
+                    name="inMinute"
+                    value={formData.inMinute}
+                    onChange={handleChange}
+                    options={minuteOptions}
+                    placeholder="MM"
                     className="border rounded px-2 py-2 w-full"
                   />
                 </div>
               </div>
 
               {/* OUT DATE */}
-              <DatePickerField label={"Out Date"} />
+              <DatePickerField
+                label="Out Date"
+                name="outDate"
+                value={formData.outDate}
+                onChange={(e) => handleDateChange("outDate", e)}
+              />
 
               {/* OUT TIME */}
               <div>
-                <p className="text-gray-500 mb-1 font-medium">Out Time</p>
+                <p className="text-gray-500 dark:text-gray-400 mb-1 font-medium">Out Time</p>
                 <div className="flex gap-2">
                   <SelectField
-                    type="number"
-                     options={[{
-                      label: '1', value: '1'
-                    }]}
-                    placeholder="09"
+                    name="outHour"
+                    value={formData.outHour}
+                    onChange={handleChange}
+                    options={hourOptions}
+                    placeholder="HH"
                     className="border rounded px-2 py-2 w-full"
                   />
-                  <span className="w-fit text-gray-500 mt-2">:</span>
+                  <span className="w-fit text-gray-500 dark:text-gray-400 mt-2">:</span>
                   <SelectField
-                    options={[{
-                      label: '1', value: '1'
-                    }]}
-                    type="number"
-                    placeholder="25"
+                    name="outMinute"
+                    value={formData.outMinute}
+                    onChange={handleChange}
+                    options={minuteOptions}
+                    placeholder="MM"
                     className="border rounded px-2 py-2 w-full"
                   />
                 </div>
               </div>
             </div>
           </div>
+</div>
+
         </div>
 
         {/* FOOTER */}
-        <div className="w-full flex justify-end px-4 py-3 border-t dark:border-gray-700 shrink-0">
-          <button className="w-full min-[480px]:w-auto py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium">
+        <div className="w-full flex justify-end px-4 py-3 border-t border-gray-200 dark:border-gray-700 shrink-0">
+          <button
+            onClick={handleRegularize}
+            className="w-full min-[480px]:w-auto py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium"
+          >
             Regularize
           </button>
         </div>

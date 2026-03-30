@@ -77,7 +77,7 @@ const TextareaField = ({ label, name, value, onChange, className = "", ...props 
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full bg-white text-[.7rem] dark:bg-gray-800 border border-gray-300  focus:border-2 focus:border-[#9853F9] dark:border-gray-700 rounded-sm px-4 py-2 ${className}`}
+      className={`w-full bg-white text-[.7rem] dark:bg-gray-800 border border-gray-300 dark:border-gray-700  focus:border-2 focus:border-[#9853F9] dark:border-gray-700 rounded-sm px-4 py-2 ${className}`}
       {...props}
     />
   </div>

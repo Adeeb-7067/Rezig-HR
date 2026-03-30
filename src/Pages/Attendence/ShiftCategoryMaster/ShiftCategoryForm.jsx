@@ -15,6 +15,9 @@ const ShiftCategoryForm = () => {
       <div>
         <InputField
           label=" Category Code"
+          name="code"
+          value={form.code}
+          onChange={handleChange}
           placeholder="Enter"
           className="h-8.5"
         />
@@ -23,6 +26,9 @@ const ShiftCategoryForm = () => {
       <div>
         <InputField
           label=" Category Name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
           placeholder="Enter"
           className="h-8.5"
         />

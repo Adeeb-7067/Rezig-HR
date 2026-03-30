@@ -8,37 +8,63 @@ import SectionCard from "@/components/cards/SectionCard";
 const OtherConfigurationSection = () => {
     const [adjustLate, setAdjustLate] = useState(false);
 
+    const [form, setForm] = useState({
+        otLunchStartTime: "",
+        otLunchEndTime: "",
+        minHoursHalfDay: "",
+        minHoursFullDay: "",
+        nextDayDeadline: "",
+        dailyHoursCustom: "",
+        dailyHoursCalc: "",
+        lateNotCountedIfHoursOk: "",
+        lateCycle: "",
+        addMinutesLateCycle: "",
+        postShiftMinutes: "",
+        dailyGraceMinutes: "",
+    });
+
+    const handleChange = (e) =>
+        setForm({ ...form, [e.target.name]: e.target.value });
+
     // 🔥 Field configuration array (clean & scalable)
     const topFields = [
         {
+            name: "otLunchStartTime",
             label: "OT Lunch Start Time (WO/Holiday)",
             info: "Define overtime lunch start time for working/holiday shifts.",
         },
         {
+            name: "otLunchEndTime",
             label: "OT Lunch End Time",
             info: "Define overtime lunch end time.",
         },
         {
+            name: "minHoursHalfDay",
             label: "Min Working Hours for Half-Day",
             info: "Minimum hours required to mark attendance as half-day.",
         },
         {
+            name: "minHoursFullDay",
             label: "Min Working Hours for Full-Day",
             info: "Minimum hours required to mark attendance as full-day.",
         },
         {
+            name: "nextDayDeadline",
             label: "Next Day Shift Deadline Time",
             info: "Last allowed time to assign attendance to next day shift.",
         },
         {
+            name: "dailyHoursCustom",
             label: "Total Hours in a Day (Custom Shift)",
             info: "Define total shift hours for custom shift type.",
         },
         {
+            name: "dailyHoursCalc",
             label: "Daily Hours (for calculation)",
             info: "Used for attendance and salary calculations.",
         },
         {
+            name: "lateNotCountedIfHoursOk",
             label: "Late not counted if hours ok",
             info: "Ignore late marking if total working hours are completed.",
         },
@@ -46,10 +72,12 @@ const OtherConfigurationSection = () => {
 
     const lateCycleFields = [
         {
+            name: "lateCycle",
             label: "Late Coming Cycle",
             info: "Define late-coming frequency cycle.",
         },
         {
+            name: "addMinutesLateCycle",
             label: "Add minutes to late-coming cycle",
             info: "Extra grace minutes added to late-coming cycle.",
         },
@@ -57,10 +85,12 @@ const OtherConfigurationSection = () => {
 
     const bottomFields = [
         {
+            name: "postShiftMinutes",
             label: "Post-shift minutes (Granted)",
             info: "Additional minutes granted after shift completion.",
         },
         {
+            name: "dailyGraceMinutes",
             label: "Daily grace minutes for lateness",
             info: "Daily allowed grace minutes before marking late.",
         },
@@ -75,7 +105,10 @@ const OtherConfigurationSection = () => {
                 {topFields.map((field, index) => (
                     <InputField
                         key={index}
+                        name={field.name}
                         label={field.label}
+                        value={form[field.name]}
+                        onChange={handleChange}
                         placeholder="Select Shift"
                         info={field.info}
                     />
@@ -99,7 +132,10 @@ const OtherConfigurationSection = () => {
                     {lateCycleFields.map((field, index) => (
                         <InputField
                             key={index}
+                            name={field.name}
                             label={field.label}
+                            value={form[field.name]}
+                            onChange={handleChange}
                             placeholder="Select Shift"
                             info={field.info}
                         />
@@ -117,7 +153,10 @@ const OtherConfigurationSection = () => {
                 {bottomFields.map((field, index) => (
                     <InputField
                         key={index}
+                        name={field.name}
                         label={field.label}
+                        value={form[field.name]}
+                        onChange={handleChange}
                         placeholder="Select Shift"
                         info={field.info}
                     />

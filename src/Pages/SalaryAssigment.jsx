@@ -530,7 +530,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       <div className="w-full flex justify-center  overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full  dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
           <table className="min-w-[800px] w-full text-[0.7rem] text-left border-collapse ">
-            <thead className="bg-[#8629DF] h-12 dark:bg-gray-500 text-white font-semibold divide-x divide-gray-200">
+            <thead className="bg-[#8629DF] h-12  text-white font-semibold divide-x divide-gray-200">
               <tr>
                 <th className="text-[0.8rem] px-2 py-1.5 min-w-[130px]">Pay Head Name</th>
                 <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">From Date</th>
@@ -676,10 +676,10 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       });
 
     return (
-      <div className="w-full mx-auto mt-6 bg-white dark:bg-[#E4E6EB]/10 border border-gray-300 rounded-sm overflow-auto sm:overflow-visible">
+      <div className="w-full mx-auto mt-6 bg-white dark:bg-[#E4E6EB]/10 border border-gray-300 dark:border-gray-600 rounded-sm overflow-auto sm:overflow-visible">
         <table className="w-full text-[0.8rem] border-separate border-spacing-0">
           <thead>
-            <tr className="bg-[#8629DF] dark:bg-gray-500 text-white text-[0.8rem]">
+            <tr className="bg-[#8629DF]  text-white text-[0.8rem]">
               <th className="px-6 py-3 text-left font-semibold rounded-tl-sm">
                 Pay Head Name
               </th>
@@ -797,7 +797,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#EFEFEF] dark:bg-[#E4E6EB]/10 dark:border-white dark:border gap-4 p-4 pt-4 rounded-sm">
+      <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#EFEFEF] dark:bg-[#E4E6EB]/10 dark:border-gray-600 dark:border gap-4 p-4 pt-4 rounded-sm">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Selectf
             label="Salary Template"

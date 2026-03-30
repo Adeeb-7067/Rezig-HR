@@ -3,10 +3,18 @@ import InputField from "@/components/inputfeild";
 import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const ShortLeaveSection = () => {
+  const [form, setForm] = useState({
+    shortLeaveCount: "",
+    shortLeaveHours: "",
+  });
+
   const [toggles, setToggles] = useState({
     allowShort: false,
     allowMultiple: false,
   });
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleToggle = (key, val) =>
     setToggles((prev) => ({ ...prev, [key]: val }));
@@ -34,11 +42,17 @@ const ShortLeaveSection = () => {
         />
            <InputField
           label="No. of Short Leave allow in 1 Month"
+          name="shortLeaveCount"
+          value={form.shortLeaveCount}
+          onChange={handleChange}
           placeholder="0"
         />
 
         <InputField
           label="No. of Hrs. in Short Leave one slot"
+          name="shortLeaveHours"
+          value={form.shortLeaveHours}
+          onChange={handleChange}
           placeholder="0"
         />
       </div>

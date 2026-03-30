@@ -738,7 +738,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
             <p className="text-[0.9rem] sm:text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.balanceAmount}
             </p>
-            <p className="text-[0.65rem] sm:text-[0.7rem] text-gray-900 tracking-wide">
+            <p className="text-[0.65rem] sm:text-[0.7rem] text-gray-900 dark:text-gray-300 tracking-wide">
               Balance Amount
             </p>
           </div>
@@ -748,7 +748,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
             <p className="text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
               {employee.installmentPaid}
             </p>
-            <p className="text-[0.7rem] text-gray-900 tracking-wide">
+            <p className="text-[0.7rem] text-gray-900 dark:text-gray-300 tracking-wide">
               Installment Paid
             </p>
           </div>

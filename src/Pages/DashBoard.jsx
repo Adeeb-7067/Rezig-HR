@@ -527,7 +527,7 @@ const StatsCard = ({
         </div>
         <div className=" col-span-2  overflow-x-auto bg-[#FFFFFF] dark:bg-gray-800 mt-12 border border-gray-200 dark:border-gray-700 drop-shadow-md rounded-lg  lg:overflow-hidden lg:w-full">
           <table className="min-w-xl [@media(min-width:1440px)]:min-w-[700px] over-x-auto  w-full  text-sm text-left">
-            <thead className="bg-[#8629DF] dark:bg-gray-500 text-[14px] text-white py-[6px] px-[10px]  rounded-t-2xl   ">
+            <thead className="bg-[#8629DF]  text-[14px] text-white py-[6px] px-[10px]  rounded-t-2xl   ">
               <tr>
                 <th className="px-6 py-2 text-[0.7rem] font-medium text-center ">
                   Employee Name
@@ -596,7 +596,7 @@ const StatsCard = ({
         </div>
         <div className="cols-span-1  overflow-x-auto bg-white dark:bg-gray-800 drop-shadow-sm rounded-sm h-fit">
           <div className="w-full text-[0.7rem] text-center rounded-sm     border border-gray-200 dark:border-gray-700   ">
-            <div className="grid grid-cols-3 bg-[#8629DF] dark:bg-gray-500 text-white font-medium rounded-t-sm">
+            <div className="grid grid-cols-3 bg-[#8629DF]  text-white font-medium rounded-t-sm">
               <div className="px-6 py-2">Month</div>
               <div className="px-6 py-2">Department</div>
               <div className="px-6 py-2">No. of Employee</div>

@@ -22,6 +22,28 @@ const MonthlyAttendanceImport = () => {
   const filterDropdownRefs = useRef({});
   const fileInputRef = useRef(null);
 
+  // ── Form State ──
+  const [leaveTemplateId, setLeaveTemplateId] = useState("");
+  const [monthYear, setMonthYear] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [fileName, setFileName] = useState("");
+  const [importing, setImporting] = useState(false);
+
+  // ── Handle Change ──
+  const handleSelectChange = (e) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case "leaveTemplateId":
+        setLeaveTemplateId(value);
+        break;
+      case "monthYear":
+        setMonthYear(value);
+        break;
+      default:
+        break;
+    }
+  };
+
   // Active filters that are currently applied
   const [activeFilters, setActiveFilters] = useState({
     unitName: [],
@@ -81,10 +103,6 @@ const MonthlyAttendanceImport = () => {
     employeeStatus: false,
   });
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [fileName, setFileName] = useState("");
-  const [importing, setImporting] = useState(false);
-  const [monthYear, setMonthYear] = useState("2025-04");
   const isAnyFilterChecked = Object.values(tempVisibleFilters).some(Boolean);
 
   const filterOptions = [
@@ -112,20 +130,19 @@ const MonthlyAttendanceImport = () => {
   // Handle temporary checkbox changes (not applied yet)
   const handleTempCheckboxChange = (key, checked) => {
     setTempVisibleFilters((prev) => ({ ...prev, [key]: checked }));
-    // If unchecking, also clear the temporary filter value
     if (!checked) {
       setTempFilterValues((prev) => ({ ...prev, [key]: [] }));
     }
   };
 
-  // Apply filters - copy all temporary states to active states
+  // Apply filters
   const handleApplyFilters = () => {
     setActiveVisibleFilters({ ...tempVisibleFilters });
     setActiveFilters({ ...tempFilterValues });
     setOpen(false);
   };
 
-  // Reset filters - clear everything
+  // Reset filters
   const handleResetFilters = () => {
     const resetValues = {
       unitName: [],
@@ -200,13 +217,11 @@ const MonthlyAttendanceImport = () => {
     setActiveFilters((prev) => {
       const currentValues = prev[filterKey];
       if (currentValues.includes(item)) {
-        // Remove item if already selected
         return {
           ...prev,
           [filterKey]: currentValues.filter((i) => i !== item),
         };
       } else {
-        // Add item if not selected
         return {
           ...prev,
           [filterKey]: [...currentValues, item],
@@ -245,7 +260,6 @@ const MonthlyAttendanceImport = () => {
     }
 
     setImporting(true);
-    // Simulate import process
     setTimeout(() => {
       alert(`File "${fileName}" imported successfully!`);
       setImporting(false);
@@ -318,7 +332,6 @@ const MonthlyAttendanceImport = () => {
   const DropdownComponent = ({ filterKey, label }) => {
     const dropdownRef = useRef(null);
 
-    // Store ref in parent's ref object
     useEffect(() => {
       filterDropdownRefs.current[filterKey] = dropdownRef;
       return () => {
@@ -344,11 +357,6 @@ const MonthlyAttendanceImport = () => {
             <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
               {label}
             </span>
-            {/* {currentValues.length > 0 && (
-              <span className="text-gray-500 text-xs mt-0.5">
-                {currentValues.length} selected
-              </span>
-            )} */}
           </div>
           <span className="text-gray-500 mt-1">
             {isOpen ? (
@@ -377,7 +385,6 @@ const MonthlyAttendanceImport = () => {
 
               <hr className="mb-3" />
 
-              {/* Filter Items */}
               <div className="space-y-1 max-h-58 overflow-y-auto pr-1">
                 {allValues.map((item) => (
                   <div
@@ -432,6 +439,7 @@ const MonthlyAttendanceImport = () => {
           </h1>
         </div>
       </div>
+
       {/* Search and Filter Bar */}
       <div className="grid grid-cols-2 md:flex gap-2 w-full">
         <div
@@ -441,13 +449,14 @@ const MonthlyAttendanceImport = () => {
           <input
             type="text"
             placeholder="Search here"
+            value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="px-3 py-2 w-full text-xs md:text-[0.8rem] outline-none bg-transparent placeholder:text-gray-500 dark:placeholder:text-gray-50"
           />
           <IoMdSearch className="w-5 h-5 text-gray-500" />
         </div>
 
-        <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1 ">
+        <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1">
           <button
             onClick={() => setOpen((prev) => !prev)}
             className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
@@ -461,18 +470,18 @@ const MonthlyAttendanceImport = () => {
             )}
           </button>
 
-          {/* Filter Dropdown - Fixed positioning */}
+          {/* Filter Dropdown */}
           {open && (
             <div
               ref={dropdownRef}
               className="absolute right-0 top-full mt-1 z-[100] shadow-lg h-fit"
             >
               <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-48 p-4 overflow-y-auto border border-gray-200 dark:border-gray-400 no-scrollbar">
-                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3  border-b-2 pb-2">
+                <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-50 mb-3 border-b-2 pb-2">
                   Filter
                 </h2>
 
-                <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2  no-scrollbar">
+                <div className="space-y-1 h-fit max-h-42 overflow-y-auto pr-2 no-scrollbar">
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
@@ -496,21 +505,19 @@ const MonthlyAttendanceImport = () => {
                     onClick={handleResetFilters}
                     className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
                   >
-                    {/* <LuRefreshCw className="w-3 h-3" />  */}
                     Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
                     className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-         ${
-           isAnyFilterChecked
-             ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-             : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-         }
-       `}
+                      ${
+                        isAnyFilterChecked
+                          ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+                          : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                      }
+                    `}
                   >
-                    {/*     <img src={SearchIcon} className="w-4 h-4" /> */}
                     Apply
                   </button>
                 </div>
@@ -558,85 +565,55 @@ const MonthlyAttendanceImport = () => {
 
       <hr className="text-gray-500" />
 
-      <div className="bg-white dark:bg-gray-900  border border-gray-200 dark:border-gray-400 rounded-sm px-6 py-5">
+      <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-400 rounded-sm px-6 py-5">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1px_1fr] gap-8 lg:gap-10">
           {/* LEFT SIDE */}
           <div className="space-y-4">
             <div className="flex flex-col gap-2 justify-between w-full">
               <label
-                htmlFor="Month -Year"
+                htmlFor="leaveTemplateId"
                 className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
               >
                 Leave Template ID
               </label>
-<div className="lg:w-[70%]">
-
-              <SelectField
-                name={"Leave Template Id"}
-                value={"Select Id"}
-                options={[
-                  { value: "", label: "Select Title" },
-                  { value: "monthly", label: "Monthly." },
-                ]}
-              />
-</div>
-
+              <div className="lg:w-[70%]">
+                <SelectField
+                  name="leaveTemplateId"
+                  value={leaveTemplateId}
+                  onChange={handleSelectChange}
+                  unSelectLabel="Select Id"
+                  options={[
+                    { value: "monthly", label: "Monthly" },
+                  ]}
+                />
+              </div>
             </div>
 
             <div className="flex flex-col gap-2 justify-between w-full">
               <label
-                htmlFor="Month -Year"
+                htmlFor="monthYear"
                 className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
               >
                 Month - Year
               </label>
-<div className="lg:w-[70%]">
-
-              <SelectField
-                name={"Month - Year "}
-                value={"Select Type"}
-                options={[
-                  { value: "", label: "Select Title" },
-                  { value: "monthly", label: "Monthly" },
-                  { value: "Year", label: "Year" },
-                ]}
-              />
-</div>
-
-            </div>
-
-            {/* Action buttons */}
-            {/* <div className="flex gap-2 pt-1">
-              <button className="flex items-center gap-1 bg-[#8629DF] text-white text-xs py-2 px-4 rounded-sm hover:bg-purple-700">
-                <Download className="h-4 w-4" /> Export
-              </button>
-
-              <button className="flex items-center gap-1 bg-gray-100 text-gray-700 text-xs py-2 px-4 border border-gray-300 rounded-sm hover:bg-gray-200">
-                <RefreshCcw className="h-4 w-4 " /> Reset
-              </button>
-            </div> */}
-          </div>
-          <div className="hidden lg:block bg-gray-200 dark:bg-gray-500 w-px"></div>
-          {/* RIGHT SIDE */}
-          {/* <div className="space-y-4 items-center flex flex-col">
-            <div>
-              <label className="block text-xs text-gray-500 mb-1">
-                Select Attendance Excel File
-              </label>
-
-              <div className="flex items-center gap-2">
-                <label className="border border-gray-300 px-3 py-2 text-xs cursor-pointer hover:bg-gray-50">
-                  Choose File
-                  <input type="file" className="hidden" />
-                </label>
-                <span className="text-xs text-gray-400">No file chosen</span>
+              <div className="lg:w-[70%]">
+                <SelectField
+                  name="monthYear"
+                  value={monthYear}
+                  onChange={handleSelectChange}
+                  unSelectLabel="Select Type"
+                  options={[
+                    { value: "monthly", label: "Monthly" },
+                    { value: "year", label: "Year" },
+                  ]}
+                />
               </div>
             </div>
+          </div>
 
-            <button className="flex items-center gap-1 bg-[#8629DF] text-white text-xs p-3 rounded-sm hover:bg-purple-700">
-              <Upload className="h-4 w-4" /> Import and Save.
-            </button>
-          </div> */}
+          <div className="hidden lg:block bg-gray-200 dark:bg-gray-500 w-px"></div>
+
+          {/* RIGHT SIDE */}
           <div>
             <DragandUpload />
           </div>

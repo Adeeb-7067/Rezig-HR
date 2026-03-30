@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import SelectField from "@/components/SelectFeild";
 import ColumnFieldsSelector from "./component/ColumnFieldsSelector";
@@ -5,6 +6,20 @@ import RowFieldsSelector from "./component/RowFieldsSelector";
 import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const SummaryConfiguration = () => {
+    const [summaryPosition, setSummaryPosition] = useState("");
+    const [toggles, setToggles] = useState({
+        configureSummary: false,
+        showLiveAndFNFCount: false,
+        showPreviousMonthSummary: false,
+    });
+
+    const handleChange = (e) => {
+        setSummaryPosition(e.target.value);
+    };
+
+    const handleToggle = (key, val) =>
+        setToggles((prev) => ({ ...prev, [key]: val }));
+
     const fields = [
         "S.No",
         "Reconciliation Details",
@@ -34,7 +49,12 @@ const SummaryConfiguration = () => {
             </h3>
 
             {/* Main Toggle */}
-            <VariableTypeRow name='Do you want to configure summary / reconciliation sheet' label={'Do you want to configure summary / reconciliation sheet'}/>
+            <VariableTypeRow 
+                name='configureSummary'
+                label={'Do you want to configure summary / reconciliation sheet'}
+                checked={toggles.configureSummary}
+                onCheckedChange={(val) => handleToggle("configureSummary", val)}
+            />
 
             {/* Settings Row */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
@@ -49,12 +69,24 @@ const SummaryConfiguration = () => {
                         { label: "First", value: "first" },
                         { label: "Last", value: "last" }
                     ]}
+                    value={summaryPosition}
+                    onChange={handleChange}
                 />
 
                 {/* Switch */}
-               <VariableTypeRow name='Show Live and FNF Count in Summary Sheet' label={'Show Live and FNF Count in Summary Sheet'}/>
+               <VariableTypeRow 
+                   name='showLiveAndFNFCount'
+                   label={'Show Live and FNF Count in Summary Sheet'}
+                   checked={toggles.showLiveAndFNFCount}
+                   onCheckedChange={(val) => handleToggle("showLiveAndFNFCount", val)}
+               />
 
-             <VariableTypeRow name='Show Previous Month Summary' label={'Show Previous Month Summary'}/>
+             <VariableTypeRow 
+                 name='showPreviousMonthSummary'
+                 label={'Show Previous Month Summary'}
+                 checked={toggles.showPreviousMonthSummary}
+                 onCheckedChange={(val) => handleToggle("showPreviousMonthSummary", val)}
+             />
 
             </div>
 

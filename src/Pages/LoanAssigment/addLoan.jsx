@@ -1,10 +1,11 @@
 import InputField from "@/components/inputfeild";
-import React, { useState,useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Info } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
+
 const ToggleField = ({
   label,
   name,
@@ -17,7 +18,6 @@ const ToggleField = ({
   const iconRef = useRef(null);
   const tooltipRef = useRef(null);
 
-  // Position tooltip when shown
   useEffect(() => {
     if (showTooltip && iconRef.current && tooltipRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
@@ -29,7 +29,10 @@ const ToggleField = ({
 
       const top = iconRect.top + scrollTop - tooltipRect.height - 8;
       const left =
-        iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
+        iconRect.left +
+        scrollLeft +
+        iconRect.width / 2 -
+        tooltipRect.width / 2;
 
       tooltipRef.current.style.top = `${Math.max(4, top)}px`;
       tooltipRef.current.style.left = `${Math.max(4, left)}px`;
@@ -84,6 +87,7 @@ const ToggleField = ({
     </div>
   );
 };
+
 const AddLoan = () => {
   // Static Employee Data
   const employee = {
@@ -100,6 +104,55 @@ const AddLoan = () => {
     tags: ["Full Time", "Engineering", "Payroll Eligible"],
   };
 
+  // ── Form State ──
+  const [formData, setFormData] = useState({
+    payCode: "",
+    loanAdvance: "",
+    calculationMethod: "",
+    principal: "",
+    intrest: "",
+    installmentDeducted: "",
+    noOfInstallments: "",
+    installmentAmount: "",
+    dueAmount: "",
+    balance: "",
+    startDeductingFrom: "",
+    transactionDate: "",
+    loanTypePerkMap: "",
+    loanAdvanceAcNo: "",
+  });
+
+  // ── Handle Change (works for InputField, SelectField, DatePickerField) ──
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // ── Reset Form ──
+  const handleReset = () => {
+    setFormData({
+      payCode: "",
+      loanAdvance: "",
+      calculationMethod: "",
+      principal: "",
+      intrest: "",
+      installmentDeducted: "",
+      noOfInstallments: "",
+      installmentAmount: "",
+      dueAmount: "",
+      balance: "",
+      startDeductingFrom: "",
+      transactionDate: "",
+      loanTypePerkMap: "",
+      loanAdvanceAcNo: "",
+    });
+  };
+
+  // ── Save Form ──
+  const handleSave = () => {
+    console.log("Form Data:", formData);
+  };
+
   return (
     <div>
       {/* Header */}
@@ -109,7 +162,7 @@ const AddLoan = () => {
         </h1>
       </div>
 
-       {/* ── Employee Info Card ── */}
+      {/* ── Employee Info Card ── */}
       <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-5 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[480px] lg:w-[50%]">
         <div className="flex flex-row items-start gap-3 sm:gap-4">
           {employee.avatar ? (
@@ -146,11 +199,17 @@ const AddLoan = () => {
               </p>
               <dl className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[0.7rem] text-gray-500 dark:text-gray-400">
                 <dt>Current Loan</dt>
-                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.currentLoan}</dd>
+                <dd className="text-gray-700 dark:text-gray-300">
+                  {employee.existingLoan.currentLoan}
+                </dd>
                 <dt>EMI</dt>
-                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.emi}</dd>
+                <dd className="text-gray-700 dark:text-gray-300">
+                  {employee.existingLoan.emi}
+                </dd>
                 <dt>Remaining Tenure</dt>
-                <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.remainingTenure}</dd>
+                <dd className="text-gray-700 dark:text-gray-300">
+                  {employee.existingLoan.remainingTenure}
+                </dd>
               </dl>
             </div>
           </div>
@@ -166,130 +225,142 @@ const AddLoan = () => {
           ))}
         </div>
       </div>
- <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-              <h1 className="text-base font-semibold  mb-1 text-gray-500">
-                Loan / Advance Detail
-              </h1>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-               <SelectField
-               label={'Pay Code'}
-               name={'Pay Code'}
-               unSelectLabel={'Select Payhead '}
-             options={[
-                {
-                    label:'payhead',value:'payhead'
-                }
-             ]}
-               />
-                 <SelectField
-               label={'Loan / Advance'}
-               name={'Loan / Advance'}
-               unSelectLabel={'Select Loan / Advance '}
-               options={[
-                {
-                    label:'loan/advance',value:'loan/advance'
-                }
-             ]}
-               />
-                  <SelectField
-               label={'Calculation Method'}
-               name={'Calculation Method'}
-               unSelectLabel={'Select Type '}
-               options={[
-                {
-                    label:'Addition',value:'Addition'
-                }
-             ]}
-               />
-               <span></span>
 
-               <InputField
-               name={'Principal'}
-               label={'Principal'}
-               />
-               
-               <InputField
-               name={'Intrest'}
-               label={'Intrest'}
-               />
-                   <SelectField
-               label={'Installment to be deducted'}
-               name={' Installment to be deducted'}
-               unSelectLabel={'Deduction Type '}
-               options={[
-                {
-                    label:'Addition',value:'Addition'
-                }
-             ]}
-               />
-               <InputField
-               name={'No of Installments'}
-               label={'No of Installments'}
-               />
-                <InputField
-                name={' Installment Amount '}
-                label={'Installment Amount '}
-                />
-                   <InputField
-                name={' Due Amount '}
-                label={'Due Amount '}
-                />
-               <InputField
-               name={' Balance'}
-               label={'Balance'}
-               />
-               <SelectField
-               label={'Start Deducting From'}
-               name={' Start Deducting From'}
-               unSelectLabel={'March 2026 '}
-               options={[
-                {
-                    label:'April 2026',value:'April 2026'
-                }
-             ]}
-               />
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
+        <h1 className="text-base font-semibold mb-1 text-gray-500">
+          Loan / Advance Detail
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <SelectField
+            label="Pay Code"
+            name="payCode"
+            value={formData.payCode}
+            onChange={handleChange}
+            unSelectLabel="Select Payhead"
+            options={[{ label: "payhead", value: "payhead" }]}
+          />
 
-               <DatePickerField 
-               name={' Transaction Date '}
-               label={'Transaction Date '}/>
+          <SelectField
+            label="Loan / Advance"
+            name="loanAdvance"
+            value={formData.loanAdvance}
+            onChange={handleChange}
+            unSelectLabel="Select Loan / Advance"
+            options={[{ label: "loan/advance", value: "loan/advance" }]}
+          />
 
-                <SelectField
-               label={'Loan Type(Perk Map)'}
-               name={' Loan Type(Perk Map)'}
-               unSelectLabel={'Select Type '}
-               options={[
-                {
-                    label:'Addition',value:'Addition'
-                }
-             ]}
-               />
-               <InputField
-               name={' Loan / Advance A/c No '}
-               label={'Loan / Advance A/c No '}
-               />
+          <SelectField
+            label="Calculation Method"
+            name="calculationMethod"
+            value={formData.calculationMethod}
+            onChange={handleChange}
+            unSelectLabel="Select Type"
+            options={[{ label: "Addition", value: "Addition" }]}
+          />
 
-              </div>
-            </div>
+          <span></span>
 
+          <InputField
+            name="principal"
+            label="Principal"
+            value={formData.principal}
+            onChange={handleChange}
+          />
 
-              <div className="flex justify-end gap-4 mt-3">
-       <button
+          <InputField
+            name="intrest"
+            label="Intrest"
+            value={formData.intrest}
+            onChange={handleChange}
+          />
+
+          <SelectField
+            label="Installment to be deducted"
+            name="installmentDeducted"
+            value={formData.installmentDeducted}
+            onChange={handleChange}
+            unSelectLabel="Deduction Type"
+            options={[{ label: "Addition", value: "Addition" }]}
+          />
+
+          <InputField
+            name="noOfInstallments"
+            label="No of Installments"
+            value={formData.noOfInstallments}
+            onChange={handleChange}
+          />
+
+          <InputField
+            name="installmentAmount"
+            label="Installment Amount"
+            value={formData.installmentAmount}
+            onChange={handleChange}
+          />
+
+          <InputField
+            name="dueAmount"
+            label="Due Amount"
+            value={formData.dueAmount}
+            onChange={handleChange}
+          />
+
+          <InputField
+            name="balance"
+            label="Balance"
+            value={formData.balance}
+            onChange={handleChange}
+          />
+
+          <SelectField
+            label="Start Deducting From"
+            name="startDeductingFrom"
+            value={formData.startDeductingFrom}
+            onChange={handleChange}
+            unSelectLabel="March 2026"
+            options={[{ label: "April 2026", value: "April 2026" }]}
+          />
+
+          <DatePickerField
+            name="transactionDate"
+            label="Transaction Date"
+            value={formData.transactionDate}
+            onChange={handleChange}
+          />
+
+          <SelectField
+            label="Loan Type(Perk Map)"
+            name="loanTypePerkMap"
+            value={formData.loanTypePerkMap}
+            onChange={handleChange}
+            unSelectLabel="Select Type"
+            options={[{ label: "Addition", value: "Addition" }]}
+          />
+
+          <InputField
+            name="loanAdvanceAcNo"
+            label="Loan / Advance A/c No"
+            value={formData.loanAdvanceAcNo}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-4 mt-3">
+        <button
           type="button"
+          onClick={handleReset}
           className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Reset
         </button>
         <button
           type="button"
+          onClick={handleSave}
           className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
         >
           Save
         </button>
       </div>
-
-
-
-
     </div>
   );
 };

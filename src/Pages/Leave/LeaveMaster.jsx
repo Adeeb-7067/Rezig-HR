@@ -96,9 +96,9 @@ const LeaveMaster = () => {
           />
 
           <SelectField
-          options={[{
-            label:'1',value:'1'
-          }]}
+            options={[{
+              label: '1', value: '1'
+            }]}
             label="Min Limit Per Request"
             info="Min Limit Per Request"
           />
@@ -189,8 +189,8 @@ const LeaveMaster = () => {
           />
 
           <VariableTypeRow label="On confirmation Adjust Probation Leave" info="On confirmation Adjust Probation Leave" />
-                    <VariableTypeRow label="Proportionate till DOC" info="Proportionate till DOC" />
-                    <span></span><span></span>
+          <VariableTypeRow label="Proportionate till DOC" info="Proportionate till DOC" />
+          <span></span><span></span>
           <VariableTypeRow
             label="Do not combine with other leaves"
             info="Do not combine with other leaves"
@@ -233,7 +233,7 @@ const LeaveMaster = () => {
         <SwitchStartVariable
           label="Do you want to Credit Leave"
           checked={form.credit}
-          
+
           onCheckedChange={(val) => handleToggle("credit", val)}
         />
         {form.credit && (
@@ -279,6 +279,8 @@ const LeaveMaster = () => {
                 { value: "=", label: "=" },
                 { value: ">", label: ">" },
                 { value: "<", label: "<" },
+                { value: "<=", label: "<=" },
+                { value: ">=", label: ">=" },
               ]}
             />
 
@@ -289,7 +291,7 @@ const LeaveMaster = () => {
 
       {/* ================= FOOTER ================= */}
       <div className="flex justify-end gap-4 mt-3">
-       <button
+        <button
           type="button"
           className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >

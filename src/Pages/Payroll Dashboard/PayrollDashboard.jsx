@@ -533,61 +533,59 @@ const PayrollDashboard = () => {
         </div>
       </div>
 
-      {showVarianceUI && (
+   {showVarianceUI && (
         <div className="mt-6 sm:mt-8">
-          {/* ===== TOP STATS =====
-              FIX: divide-x breaks on stacked rows on mobile.
-              Use divide-y on mobile, divide-x on lg+. */}
+          {/* ===== TOP STATS ===== */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-y lg:divide-y-0 lg:divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <BsFillPeopleFill className="text-purple-600" size={16} />
+              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <BsFillPeopleFill className="text-purple-600 dark:text-purple-400" size={16} />
               </div>
               <div>
-                <p className="text-xs text-gray-500">Total Processed</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">
+                <p className="text-xs text-gray-500 dark:text-gray-400">Total Processed</p>
+                <p className="text-[1.1rem] font-bold text-gray-800 dark:text-gray-100 leading-tight">
                   128{" "}
-                  <span className="text-[0.65rem] font-normal text-gray-400">Employee</span>
+                  <span className="text-[0.65rem] font-normal text-gray-400 dark:text-gray-500">Employee</span>
                 </p>
               </div>
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <HiOutlineCurrencyRupee className="text-purple-600" size={16} />
+              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <HiOutlineCurrencyRupee className="text-purple-600 dark:text-purple-400" size={16} />
               </div>
               <div>
-                <p className="text-xs text-gray-500">Total Gross Pay</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹84,50,000</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Total Gross Pay</p>
+                <p className="text-[1.1rem] font-bold text-gray-800 dark:text-gray-100 leading-tight">₹84,50,000</p>
               </div>
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <MdRemove className="text-purple-600" size={18} />
+              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <MdRemove className="text-purple-600 dark:text-purple-400" size={18} />
               </div>
               <div>
-                <p className="text-xs text-gray-500">Total Deduction</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹18,75,000</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Total Deduction</p>
+                <p className="text-[1.1rem] font-bold text-gray-800 dark:text-gray-100 leading-tight">₹18,75,000</p>
               </div>
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <IoCheckmark className="text-purple-600" size={18} />
+              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <IoCheckmark className="text-purple-600 dark:text-purple-400" size={18} />
               </div>
               <div>
-                <p className="text-xs text-gray-500">Total Net Pay</p>
-                <p className="text-[1.1rem] font-bold text-gray-800 leading-tight">₹65,75,000</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">Total Net Pay</p>
+                <p className="text-[1.1rem] font-bold text-gray-800 dark:text-gray-100 leading-tight">₹65,75,000</p>
               </div>
             </div>
           </div>
 
           <div className="mt-6 sm:mt-8 rounded-md flex flex-col-reverse lg:flex-row items-stretch">
             {/* ================= MAIN CONTENT ================= */}
-            <div className="  flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
+            <div className="flex-1 min-w-0 transition-all duration-300 order-2 lg:order-1">
               <div
-                className="flex justify-between  items-center cursor-pointer bg-[#8629DF] rounded-tl-sm lg:rounded-tr-none mt-5 lg:mt-0"
+                className="flex justify-between items-center cursor-pointer bg-[#8629DF] rounded-tl-sm lg:rounded-tr-none mt-5 lg:mt-0"
                 onClick={toggleCards}
               >
                 <h1 className="text-white font-semibold text-base px-4 py-2.5">Payroll Variance</h1>
@@ -600,15 +598,14 @@ const PayrollDashboard = () => {
 
               {showCards && (
                 <div className="bg-white dark:bg-gray-800 rounded-b-md pb-4 pt-2">
-                  {/* FIX: overflow-x-auto + whitespace-nowrap so tabs scroll on mobile instead of wrapping */}
-                  <div className="flex border-b border-gray-200 overflow-x-auto no-scrollbar">
+                  <div className="flex border-b border-gray-200 dark:border-gray-700 overflow-x-auto no-scrollbar">
                     {tabs.map((tab) => (
                       <button
                         key={tab.value}
                         onClick={() => setActiveTab(tab.value)}
                         className={`px-4 py-2.5 text-xs font-medium transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${activeTab === tab.value
                             ? "text-[#8629DF] border-b-2 border-[#8629DF] -mb-[2px]"
-                            : "text-gray-500 hover:text-gray-700"
+                            : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                           }`}
                       >
                         {tab.label}
@@ -620,27 +617,27 @@ const PayrollDashboard = () => {
                     {varianceCards.map((card, index) => (
                       <div
                         key={index}
-                        className={`rounded-md w-full p-3 border bg-white dark:bg-gray-800 ${card.positive ? "border-green-400" : "border-red-400"}`}
+                        className={`rounded-md w-full p-3 border bg-white dark:bg-gray-800 ${card.positive ? "border-green-400 dark:border-green-500/60" : "border-red-400 dark:border-red-500/60"}`}
                       >
                         <div className="flex justify-between items-start mb-2">
                           <span className="text-[0.8rem] font-bold text-[#8629DF] leading-tight">{card.title}</span>
-                          <span className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${card.positive ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
+                          <span className={`text-[0.65rem] font-bold px-1.5 py-0.5 rounded flex-shrink-0 ml-1 ${card.positive ? "bg-green-100 dark:bg-green-900/40 text-green-600 dark:text-green-400" : "bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400"}`}>
                             {card.positive ? "+2.0%" : "-2.0%"}
                           </span>
                         </div>
-                        <div className="text-[0.72rem] text-gray-600 space-y-1.5">
+                        <div className="text-[0.72rem] text-gray-600 dark:text-gray-400 space-y-1.5">
                           <div className="flex justify-between">
                             <span>Nov 2025</span>
-                            <span className="font-medium">{card.nov}</span>
+                            <span className="font-medium text-gray-700 dark:text-gray-300">{card.nov}</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Dec 2025</span>
-                            <span className="font-medium">{card.dec}</span>
+                            <span className="font-medium text-gray-700 dark:text-gray-300">{card.dec}</span>
                           </div>
-                          <hr className="border-gray-100" />
+                          <hr className="border-gray-100 dark:border-gray-700" />
                           <div className="flex justify-between font-semibold pt-0.5">
-                            <span className="text-gray-700">Difference :</span>
-                            <span className={`flex items-center gap-0.5 ${card.positive ? "text-green-600" : "text-red-500"}`}>
+                            <span className="text-gray-700 dark:text-gray-300">Difference :</span>
+                            <span className={`flex items-center gap-0.5 ${card.positive ? "text-green-600 dark:text-green-400" : "text-red-500 dark:text-red-400"}`}>
                               {card.positive ? <FaArrowUp size={9} /> : <FaArrowDown size={9} />}
                               {card.difference}
                             </span>
@@ -660,12 +657,12 @@ const PayrollDashboard = () => {
 
               {/* ===== REMARKS ===== */}
               <div className="mt-3 bg-white dark:bg-gray-800 rounded-md">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100">
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-100 dark:border-gray-700">
                   <BiSolidMessageEdit className="text-[#8629DF] h-5 w-5" />
                   <span className="text-sm font-semibold text-gray-800 dark:text-gray-50">Remarks</span>
                 </div>
                 <div className="px-4 pt-1 pb-2">
-                  <p className="text-[0.7rem] text-gray-400 py-2">
+                  <p className="text-[0.7rem] text-gray-400 dark:text-gray-500 py-2">
                     Add remarks for payroll processing or approval reference.
                   </p>
                   <div className="relative">
@@ -674,15 +671,14 @@ const PayrollDashboard = () => {
                       value={remarks}
                       onChange={(e) => setRemarks(e.target.value)}
                       placeholder="Example: Attendance finalized, PF updated, 3 employees on hold"
-                      className="w-full h-24 resize-none border border-gray-200 rounded-md p-3 text-xs focus:outline-none focus:ring-1 focus:ring-[#8629DF] placeholder:text-gray-300"
+                      className="w-full h-24 resize-none border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 rounded-md p-3 text-xs focus:outline-none focus:ring-1 focus:ring-[#8629DF] placeholder:text-gray-300 dark:placeholder:text-gray-600"
                     />
-                    <span className="absolute bottom-2 right-3 text-[10px] text-gray-300">
+                    <span className="absolute bottom-2 right-3 text-[10px] text-gray-300 dark:text-gray-600">
                       {remarks.length}/300
                     </span>
                   </div>
-                  {/* FIX: flex-wrap so buttons don't overflow on narrow screens */}
                   <div className="flex justify-end gap-2 mt-3">
-                    <button className="px-4 py-1.5 text-xs border border-[#8629DF] text-[#8629DF] rounded-md hover:bg-purple-50 cursor-pointer transition-colors">
+                    <button className="px-4 py-1.5 text-xs border border-[#8629DF] text-[#8629DF] rounded-md hover:bg-purple-50 dark:hover:bg-purple-900/20 cursor-pointer transition-colors">
                       Mark as Completed
                     </button>
                     <button className="px-4 py-1.5 text-xs bg-[#8629DF] text-white rounded-md hover:bg-purple-700 cursor-pointer transition-colors">
@@ -704,38 +700,29 @@ const PayrollDashboard = () => {
                 />
               )}
 
-              {/* REPORT DRAWER
-                  Mobile  → fixed bottom sheet (slides up via max-h transition)
-                  Desktop → inline sidebar that pushes content (original width transition) */}
+              {/* REPORT DRAWER */}
               <div
                 className={[
                   "bg-white dark:bg-gray-800 overflow-hidden flex-shrink-0 transition-all duration-300",
-                  // mobile: fixed bottom sheet
                   "fixed bottom-0 left-0 right-0 z-40 rounded-t-2xl",
                   showDrawer ? "max-h-[85vh]" : "max-h-0",
-                  // desktop: static inline panel — override mobile fixed with lg: prefixes
                   "lg:static lg:rounded-none lg:max-h-none",
                   "lg:border lg:border-gray-200 lg:dark:border-gray-700 lg:mx-2 lg:z-auto",
                   showDrawer ? "lg:w-[220px]" : "lg:w-0 lg:border-0",
                 ].join(" ")}
               >
-                {/* Inner wrapper always 220 px wide so content isn't squished during animation */}
                 <div className="w-full lg:w-[220px]">
 
-                  {/* Top bar: drag handle on mobile, arrow-close on desktop */}
                   <div className="flex items-center justify-between bg-[#F7F2FD] dark:bg-gray-700 px-3 py-2">
-                    {/* Mobile drag handle (centred) */}
                     <div className="lg:hidden w-full flex justify-center">
-                      <div className="w-10 h-1 rounded-full bg-gray-300" />
+                      <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-500" />
                     </div>
-                    {/* Desktop close arrow */}
                     <FaArrowRight
                       className="hidden lg:block w-6 h-6 rounded-full text-white bg-[#8629DF] p-1 cursor-pointer"
                       onClick={() => setShowDrawer(false)}
                     />
-                    {/* Mobile text close */}
                     <button
-                      className="lg:hidden text-xs text-gray-500 underline cursor-pointer"
+                      className="lg:hidden text-xs text-gray-500 dark:text-gray-400 underline cursor-pointer"
                       onClick={() => setShowDrawer(false)}
                     >
                       Close
@@ -746,12 +733,12 @@ const PayrollDashboard = () => {
                   <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 bg-[#8629DF] rounded-t-sm">
                     <span className="text-white font-semibold text-sm">Report</span>
                     <button className="text-white/80 hover:text-white">
-                      <MdOutlineKeyboardArrowDown size={18} className="bg-white text-gray-400 rounded-xs" />
+                      <MdOutlineKeyboardArrowDown size={18} className="bg-white dark:bg-gray-600 text-gray-400 dark:text-gray-300 rounded-xs" />
                     </button>
                   </div>
 
                   {/* Select All Row */}
-                  <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100">
+                  <div className="flex justify-between items-center px-3 py-2 sm:py-1.5 my-2 sm:my-3 border-b border-gray-100 dark:border-gray-700">
                     <label className="flex items-center gap-1.5 cursor-pointer">
                       <input
                         type="checkbox"
@@ -765,7 +752,7 @@ const PayrollDashboard = () => {
                           )
                         }
                       />
-                      <span className="text-[12px] font-medium text-gray-700">Select All</span>
+                      <span className="text-[12px] font-medium text-gray-700 dark:text-gray-300">Select All</span>
                     </label>
                     <button className="flex items-center gap-1 bg-[#8629DF] text-white text-[10px] px-2 py-1 rounded-sm hover:bg-purple-700 cursor-pointer">
                       <FiDownload size={10} />
@@ -778,9 +765,9 @@ const PayrollDashboard = () => {
                     {reportItems.map((r) => (
                       <div
                         key={r.id}
-                        className="flex items-center gap-2 px-2 py-2.5 border-2 border-gray-50 hover:bg-gray-50 drop-shadow-xs rounded-sm transition-colors"
+                        className="flex items-center gap-2 px-2 py-2.5 border-2 border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 drop-shadow-xs rounded-sm transition-colors"
                       >
-                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50">
+                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50 dark:bg-purple-900/30">
                           <img
                             src={r.icon}
                             alt={r.name}
@@ -788,8 +775,8 @@ const PayrollDashboard = () => {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-[11px] font-semibold text-gray-800 leading-tight truncate">{r.name}</p>
-                          <p className="text-[9px] text-gray-400 mt-0.5 truncate">
+                          <p className="text-[11px] font-semibold text-gray-800 dark:text-gray-100 leading-tight truncate">{r.name}</p>
+                          <p className="text-[9px] text-gray-400 dark:text-gray-500 mt-0.5 truncate">
                             {r.lastGen ? `Last Generated : ${r.lastGen}` : "Not generated yet."}
                           </p>
                         </div>
@@ -814,18 +801,13 @@ const PayrollDashboard = () => {
                 </div>
               </div>
 
-              {/* ICON SIDEBAR
-                  Mobile  → fixed horizontal strip at bottom of screen
-                  Desktop → vertical sidebar (original behaviour) */}
+              {/* ICON SIDEBAR */}
               <div
                 className={[
                   "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-sm",
-                  // mobile: fixed bottom bar, horizontal layout
                   "fixed bottom-0 left-0 right-0 z-20",
                   "flex flex-row items-center gap-3 px-4 py-2 border-t",
-                  // hide on mobile when drawer is open (overlay covers it anyway, but this prevents double-render)
                   showDrawer ? "hidden" : "flex",
-                  // desktop: static vertical sidebar
                   "lg:static lg:z-auto lg:flex-col lg:items-center lg:gap-4 lg:py-4 lg:px-0 lg:space-y-2",
                   "lg:rounded-r-sm lg:border-t-0 lg:border-l-0",
                   showDrawer ? "lg:w-0 lg:overflow-hidden lg:border-0" : "lg:w-[60px]",

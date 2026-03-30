@@ -134,7 +134,7 @@ const AttendanceTooltip = ({
     >
       <div className={ARROW_LEFT} />
 
-      <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden drop-shadow-sm`}>
+      <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden drop-shadow-sm rounded-sm`}>
 
         {/* Header */}
         <div className="px-4 py-2 rounded-t-[16.26px] flex justify-between items-center gap-2">

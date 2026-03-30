@@ -166,7 +166,7 @@ const SalaryMonthCard = ({
         onClick?.();
       }
     }}
-    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 transition-all hover:shadow-lg"
+    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 dark:hover:border-purple-700 transition-all hover:shadow-lg"
   >
     <div
       className="absolute top-3 right-3 flex items-center gap-1"
@@ -177,23 +177,22 @@ const SalaryMonthCard = ({
         className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500"
         aria-label="View"
         onClick={onClick}
-
       >
-        <Eye className="w-4 h-4 text-gray-700" />
+        <Eye className="w-4 h-4 text-gray-700 dark:text-gray-300" />
       </button>
       <button
         type="button"
         className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400"
         aria-label="Download"
       >
-        <Download className="w-4 h-4 text-gray-700" />
+        <Download className="w-4 h-4 text-gray-700 dark:text-gray-300" />
       </button>
     </div>
-    <p className="text-[0.65rem] font-light text-gray-400 dark:text-gray-500 mb-2">
+    <p className="text-[0.65rem] font-light text-gray-400 dark:text-gray-300 mb-2">
       {month}
     </p>
 
-    <div className="dark:bg-gray-700 flex flex-col items-center justify-center mb-2 bg-[#FAF6FE]  rounded-lg py-3 px-4">
+    <div className="bg-[#FAF6FE] dark:bg-gray-700 flex flex-col items-center justify-center mb-2 rounded-lg py-3 px-4">
       <p className="text-[0.8rem] md:text-[1rem] font-medium text-[#8629DF] dark:text-purple-400">
         {netPay}
       </p>
@@ -203,15 +202,15 @@ const SalaryMonthCard = ({
     </div>
 
     <div className="flex items-center justify-between pt-2">
-      <div className="flex items-center  text-[0.7rem] font-semibold text-green-500">
+      <div className="flex items-center text-[0.7rem] font-semibold text-green-500 dark:text-green-400">
         <span>
-          <ArrowUp className="w-3 h-3 text-green-500" />
+          <ArrowUp className="w-3 h-3 text-green-500 dark:text-green-400" />
         </span>
         <span>{grossEarnings}</span>
       </div>
-      <div className="flex items-center text-[0.7rem] font-semibold text-red-500">
+      <div className="flex items-center text-[0.7rem] font-semibold text-red-500 dark:text-red-400">
         <span>
-          <ArrowDown className="w-3 h-3 text-red-500" />
+          <ArrowDown className="w-3 h-3 text-red-500 dark:text-red-400" />
         </span>
         <span>{totalDeductions}</span>
       </div>
@@ -229,7 +228,7 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
         onClick={onClose}
         aria-hidden
       />
-      <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-auto border border-gray-200 dark:border-gray-700">
+      <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-xl w-full max-h-[70vh] overflow-auto border border-gray-200 dark:border-gray-700">
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-700">
           <h3 className="text-[1.1rem] font-bold text-[#333333] dark:text-gray-100">
             Salary Details
@@ -249,15 +248,13 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
           </div>
         </div>
 
-        {/* MOBILE FIX: grid-cols-2 → grid-cols-1 on mobile, 2 cols on sm+ */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
           {/* EARNINGS */}
-          {/* MOBILE FIX: remove border-r on mobile (no right neighbour when stacked), add border-b instead */}
-          <div className="p-4 border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700">
-            <p className="text-[0.75rem] font-bold text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-green-100 dark:bg-green-900/30 mb-3">
+          <div className="m-4 rounded-sm border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
+            <p className="text-[0.75rem] text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-green-50 dark:bg-green-900/30 mb-3">
               Earnings
             </p>
-            <ul className="space-y-2 mb-3">
+            <ul className="space-y-2 mb-3 mx-3">
               {(salary.earnings || []).map((e, i) => (
                 <li
                   key={i}
@@ -268,18 +265,19 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
                 </li>
               ))}
             </ul>
-            <div className="flex justify-between items-center px-3 py-2 rounded bg-green-100 dark:bg-green-900/30 text-[0.85rem] font-bold text-[#333333] dark:text-gray-200">
+            <div className="mx-3 border-t-2 border-green-200 dark:border-green-300" />
+            <div className="flex justify-between items-center px-3 py-2 rounded bg-green-50 dark:bg-green-900/30 text-[0.85rem] font-bold text-green-600 dark:text-green-400">
               <span>Total</span>
               <span>{salary.grossEarnings}</span>
             </div>
           </div>
 
           {/* DEDUCTIONS */}
-          <div className="p-4">
-            <p className="text-[0.75rem] font-bold text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-pink-100 dark:bg-purple-900/30 mb-3">
+          <div className="m-4 bg-pink-50 dark:bg-red-900/20 rounded-sm">
+            <p className="text-[0.75rem] font-bold text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded dark:bg-red-900/30 mb-3">
               Deductions
             </p>
-            <ul className="space-y-2 mb-3">
+            <ul className="space-y-2 mb-3 mx-3">
               {(salary.deductions || []).map((d, i) => (
                 <li
                   key={i}
@@ -290,7 +288,8 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
                 </li>
               ))}
             </ul>
-            <div className="flex justify-between items-center px-3 py-2 rounded bg-pink-100 dark:bg-purple-900/30 text-[0.85rem] font-bold text-[#333333] dark:text-gray-200">
+            <div className="mx-3 border-t-2 border-red-200 dark:border-red-300" />
+            <div className="flex justify-between items-center px-3 py-2 rounded dark:bg-red-900/30 text-[0.85rem] font-bold text-red-500 dark:text-red-400">
               <span>Total</span>
               <span>{salary.totalDeductions}</span>
             </div>
@@ -304,7 +303,7 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
               onDownload?.(salary);
               onClose?.();
             }}
-            className="px-5 py-2.5 rounded-md bg-[#8629DF] text-white text-[0.85rem] font-medium hover:opacity-90"
+            className="px-5 py-1 rounded-sm bg-[#8629DF] text-white text-[0.75rem] font-medium hover:opacity-90"
           >
             Download
           </button>
@@ -326,7 +325,7 @@ const SalaryDetailsCard = () => {
   // Get current 3 months to display
   const currentSalaryMonths = salaryMonths.slice(
     currentPage * itemsPerPage,
-    currentPage * itemsPerPage + itemsPerPage
+    currentPage * itemsPerPage + itemsPerPage,
   );
 
   const handlePrevious = () => {
@@ -526,7 +525,7 @@ const AnnouncementsCard = () => {
               key={card.tag}
               className={cn(
                 "rounded-lg border border-gray-100 dark:border-gray-700 p-3 hover:shadow-sm transition-all",
-                card.bg
+                card.bg,
               )}
             >
               <div className="flex items-center gap-2 mb-2">
@@ -722,7 +721,7 @@ const WishesCard = () => {
                 "px-2 py-3 text-[0.8rem] font-medium transition-colors relative",
                 activeTab === tab
                   ? "text-[#8629DF] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#8629DF]"
-                  : "text-gray-500 hover:text-gray-700"
+                  : "text-gray-500 hover:text-gray-700",
               )}
             >
               {tab === "birthday" && "Birthday(4)"}
@@ -1112,13 +1111,15 @@ const CalendarCard = () => {
           onClick={() => setMultipleCorrection((v) => !v)}
           className={cn(
             "w-9 h-5 rounded-full transition relative flex-shrink-0",
-            multipleCorrection ? "bg-[#8629DF]" : "bg-gray-300 dark:bg-gray-600"
+            multipleCorrection
+              ? "bg-[#8629DF]"
+              : "bg-gray-300 dark:bg-gray-600",
           )}
         >
           <span
             className={cn(
               "absolute top-0.5 left-0.5 block w-4 h-4 rounded-full bg-white shadow transition",
-              multipleCorrection ? "translate-x-4" : "translate-x-0"
+              multipleCorrection ? "translate-x-4" : "translate-x-0",
             )}
           />
         </button>
@@ -1264,16 +1265,13 @@ const HolidaysCard = () => {
           style={{ transform: `translateY(-${currentIndex * 50}%)` }}
         >
           {holidaysByMonth.map((m, idx) => (
-            <div
-              key={idx}
-              className=" flex-shrink-0 px-4 py-3 flex flex-col"
-            >
+            <div key={idx} className=" flex-shrink-0 px-4 py-3 flex flex-col">
               <div className="border border-gray-100 dark:border-gray-700 shadow-md rounded-md overflow-hidden flex-1 flex flex-col">
                 {/* Month Header */}
                 <p
                   className={cn(
                     "text-[0.8rem] font-bold px-4 py-2.5",
-                    m.headingBg
+                    m.headingBg,
                   )}
                 >
                   {m.month}
@@ -1336,7 +1334,7 @@ const CTCReimbursementCard = () => (
     <div className="min-w-[320px] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
       <table className="w-full text-left">
         <thead>
-          <tr className="bg-[#8629DF] dark:bg-gray-600">
+          <tr className="bg-[#8629DF] ">
             <th className="px-4 py-2 text-[0.7rem] font-medium text-white text-center">
               Type
             </th>
@@ -1516,7 +1514,7 @@ const TaskDetailsModal = ({ task, onClose }) => {
                   onClick={() => setStatus(s.value)}
                   className={cn(
                     "px-3 py-1.5 rounded text-[0.7rem] font-medium whitespace-nowrap transition-colors",
-                    status === s.value ? "bg-[#8629DF] text-white" : s.bg
+                    status === s.value ? "bg-[#8629DF] text-white" : s.bg,
                   )}
                 >
                   {s.label}
@@ -1593,7 +1591,7 @@ const TaskDetailsModal = ({ task, onClose }) => {
                     "font-medium",
                     task.highPriority
                       ? "text-amber-600 dark:text-amber-400"
-                      : "text-[#333333] dark:text-gray-200"
+                      : "text-[#333333] dark:text-gray-200",
                   )}
                 >
                   {task.highPriority ? "High Priority" : "Normal"}

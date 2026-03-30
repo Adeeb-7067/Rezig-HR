@@ -9,11 +9,51 @@ import DatePickerField from "@/components/ui/datePicker";
 import DateFilter from "./AttendanceRegularisation/components/DateFilter";
 
 const taxTableData = [
-  { lowerLimit: "1.00", upperLimit: "400000.00", percent: "0.00", regime: "Old", slabType: "Individual", startYear: "01 Apr 2025", endYear: "31 Mar 2026" },
-  { lowerLimit: "400001.00", upperLimit: "800000.00", percent: "5.00", regime: "Old", slabType: "Individual", startYear: "01 Apr 2025", endYear: "31 Mar 2026" },
-  { lowerLimit: "800001.00", upperLimit: "1200000.00", percent: "10.00", regime: "Old", slabType: "Individual", startYear: "01 Apr 2025", endYear: "31 Mar 2026" },
-  { lowerLimit: "1200001.00", upperLimit: "1600000.00", percent: "15.00", regime: "New", slabType: "Individual", startYear: "01 Apr 2025", endYear: "31 Mar 2026" },
-  { lowerLimit: "1600001.00", upperLimit: "2000000.00", percent: "20.00", regime: "New", slabType: "Senior Citizen", startYear: "01 Apr 2025", endYear: "31 Mar 2026" },
+  {
+    lowerLimit: "1.00",
+    upperLimit: "400000.00",
+    percent: "0.00",
+    regime: "Old",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
+  {
+    lowerLimit: "400001.00",
+    upperLimit: "800000.00",
+    percent: "5.00",
+    regime: "Old",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
+  {
+    lowerLimit: "800001.00",
+    upperLimit: "1200000.00",
+    percent: "10.00",
+    regime: "Old",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
+  {
+    lowerLimit: "1200001.00",
+    upperLimit: "1600000.00",
+    percent: "15.00",
+    regime: "New",
+    slabType: "Individual",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
+  {
+    lowerLimit: "1600001.00",
+    upperLimit: "2000000.00",
+    percent: "20.00",
+    regime: "New",
+    slabType: "Senior Citizen",
+    startYear: "01 Apr 2025",
+    endYear: "31 Mar 2026",
+  },
 ];
 
 const ToggleField = ({
@@ -32,17 +72,22 @@ const ToggleField = ({
     if (showTooltip && iconRef.current && tooltipRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
       const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft =
+        window.pageXOffset || document.documentElement.scrollLeft;
       const top = iconRect.top + scrollTop - tooltipRect.height - 8;
-      const left = iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
+      const left =
+        iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
       tooltipRef.current.style.top = `${Math.max(4, top)}px`;
       tooltipRef.current.style.left = `${Math.max(4, left)}px`;
     }
   }, [showTooltip]);
 
   return (
-    <div className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}>
+    <div
+      className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}
+    >
       <div className="flex items-center gap-1">
         {info && (
           <div className="relative">
@@ -65,7 +110,10 @@ const ToggleField = ({
             )}
           </div>
         )}
-        <Label htmlFor={name} className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold">
+        <Label
+          htmlFor={name}
+          className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold"
+        >
           {label}
         </Label>
       </div>
@@ -83,17 +131,71 @@ const ToggleField = ({
 
 const TransactionHistory = () => {
   const mockTransactions = [
-    { id: "TXN-102394", date: "12 Jan 2026, 10:42 AM", user: "Rahul Sharma", ip: "192.168.1.24", card: "Exemption Details" },
-    { id: "TXN-102395", date: "11 Jan 2026, 03:15 PM", user: "Priya Singh", ip: "192.168.1.30", card: "Tax Configuration" },
-    { id: "TXN-102396", date: "10 Jan 2026, 09:20 AM", user: "Amit Verma", ip: "192.168.1.45", card: "Investment Config" },
-    { id: "TXN-102397", date: "09 Jan 2026, 11:55 AM", user: "Neha Gupta", ip: "192.168.1.12", card: "Tax Rebate" },
-    { id: "TXN-102398", date: "08 Jan 2026, 02:30 PM", user: "Vikram Patel", ip: "192.168.1.58", card: "Exemption Details" },
+    {
+      id: "TXN-102394",
+      date: "12 Jan 2026, 10:42 AM",
+      user: "Rahul Sharma",
+      ip: "192.168.1.24",
+      card: "Exemption Details",
+    },
+    {
+      id: "TXN-102395",
+      date: "11 Jan 2026, 03:15 PM",
+      user: "Priya Singh",
+      ip: "192.168.1.30",
+      card: "Tax Configuration",
+    },
+    {
+      id: "TXN-102396",
+      date: "10 Jan 2026, 09:20 AM",
+      user: "Amit Verma",
+      ip: "192.168.1.45",
+      card: "Investment Config",
+    },
+    {
+      id: "TXN-102397",
+      date: "09 Jan 2026, 11:55 AM",
+      user: "Neha Gupta",
+      ip: "192.168.1.12",
+      card: "Tax Rebate",
+    },
+    {
+      id: "TXN-102398",
+      date: "08 Jan 2026, 02:30 PM",
+      user: "Vikram Patel",
+      ip: "192.168.1.58",
+      card: "Exemption Details",
+    },
   ];
 
   const mockModalData = [
-    { oldVal: "8%", newVal: "8.33%", field: "Bonus Percent", card: "Exemption Details", user: "Rahul Sharma", ip: "192.168.1.24", date: "12 Jan 2026, 10:42 AM" },
-    { oldVal: "50000", newVal: "75000", field: "Standard Deduction", card: "Tax Rebate", user: "Rahul Sharma", ip: "192.168.1.24", date: "12 Jan 2026, 10:42 AM" },
-    { oldVal: "Old", newVal: "New", field: "Tax Regime", card: "Tax Configuration", user: "Rahul Sharma", ip: "192.168.1.24", date: "12 Jan 2026, 10:41 AM" },
+    {
+      oldVal: "8%",
+      newVal: "8.33%",
+      field: "Bonus Percent",
+      card: "Exemption Details",
+      user: "Rahul Sharma",
+      ip: "192.168.1.24",
+      date: "12 Jan 2026, 10:42 AM",
+    },
+    {
+      oldVal: "50000",
+      newVal: "75000",
+      field: "Standard Deduction",
+      card: "Tax Rebate",
+      user: "Rahul Sharma",
+      ip: "192.168.1.24",
+      date: "12 Jan 2026, 10:42 AM",
+    },
+    {
+      oldVal: "Old",
+      newVal: "New",
+      field: "Tax Regime",
+      card: "Tax Configuration",
+      user: "Rahul Sharma",
+      ip: "192.168.1.24",
+      date: "12 Jan 2026, 10:41 AM",
+    },
   ];
 
   const [openModal, setOpenModal] = useState(false);
@@ -109,7 +211,7 @@ const TransactionHistory = () => {
   return (
     <div className="min-h-screen p-2 md:p-6">
       <div className="flex flex-wrap md:flex-nowrap justify-between items-center">
-        <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+        <h1 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-3">
           Transaction History Table
         </h1>
         <div className="w-full md:w-auto">
@@ -142,7 +244,10 @@ const TransactionHistory = () => {
               <div className="text-center">View</div>
             </div>
 
-            <div className="max-h-[200px] overflow-y-auto table-scroll" style={{ scrollbarGutter: "stable" }}>
+            <div
+              className="max-h-[200px] overflow-y-auto table-scroll"
+              style={{ scrollbarGutter: "stable" }}
+            >
               {mockTransactions.map((item, index) => (
                 <div
                   key={index}
@@ -181,7 +286,7 @@ const TransactionHistory = () => {
 
       {openModal && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
-          <div className="bg-white w-[80%] lg:w-[1000px] rounded-lg shadow-lg p-5 relative">
+          <div className="bg-white dark:bg-gray-800 w-[80%] lg:w-[1000px] rounded-lg shadow-lg p-5 relative">
             <button
               onClick={() => setOpenModal(false)}
               className="absolute right-4 top-4 cursor-pointer"
@@ -189,18 +294,19 @@ const TransactionHistory = () => {
               <X />
             </button>
 
-            <h2 className="text-lg text-[#58585A] font-semibold mb-4">
+            <h2 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-4">
               Transaction Details – {selectedTxn?.id || "TXN-102394"}
             </h2>
 
-            <div className="rounded-sm mt-3 border border-gray-200">
+            <div className="rounded-sm mt-3 border border-gray-200 dark:border-gray-600">
               <div className="overflow-x-auto no-scrollbar">
                 <div className="min-w-[1100px] lg:min-w-full">
                   <div
                     className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "120px 120px 1.5fr 1.5fr 1.5fr 1.5fr 160px",
+                      gridTemplateColumns:
+                        "120px 120px 1.5fr 1.5fr 1.5fr 1.5fr 160px",
                       gap: "6px",
                       alignItems: "center",
                     }}
@@ -214,14 +320,18 @@ const TransactionHistory = () => {
                     <div>Date & Time</div>
                   </div>
 
-                  <div className="max-h-[250px] overflow-y-auto table-scroll" style={{ scrollbarGutter: "stable" }}>
+                  <div
+                    className="max-h-[250px] overflow-y-auto table-scroll"
+                    style={{ scrollbarGutter: "stable" }}
+                  >
                     {mockModalData.map((item, index) => (
                       <div
                         key={index}
                         className="text-[0.7rem] py-2 px-4 border-b hover:bg-gray-200/30"
                         style={{
                           display: "grid",
-                          gridTemplateColumns: "120px 120px 1.5fr 1.5fr 1.5fr 1.5fr 160px",
+                          gridTemplateColumns:
+                            "120px 120px 1.5fr 1.5fr 1.5fr 1.5fr 160px",
                           gap: "6px",
                           alignItems: "center",
                         }}
@@ -255,7 +365,7 @@ const TransactionHistory = () => {
 const TaxConfigurationTable = ({ taxData }) => {
   return (
     <div>
-      <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+      <h1 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-3">
         Tax Configutration List
       </h1>
       <div className="rounded-sm mt-5 shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
@@ -265,7 +375,8 @@ const TaxConfigurationTable = ({ taxData }) => {
               className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
               style={{
                 display: "grid",
-                gridTemplateColumns: "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
+                gridTemplateColumns:
+                  "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
                 gap: "6px",
                 alignItems: "center",
               }}
@@ -285,10 +396,11 @@ const TaxConfigurationTable = ({ taxData }) => {
             {taxData.map((tax, index) => (
               <div
                 key={index}
-                className="text-[0.7rem] py-2 px-3 border-b hover:bg-gray-100"
+                className="text-[0.7rem] py-2 px-3 border-b hover:bg-gray-100 dark:hover:bg-gray-500"
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
+                  gridTemplateColumns:
+                    "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
                   gap: "6px",
                   alignItems: "center",
                 }}
@@ -382,6 +494,7 @@ const initialFormData = {
 const IncomeTaxConfiguration = () => {
   const [activeTab, setActiveTab] = useState("itc");
   const [formData, setFormData] = useState(initialFormData);
+  const [showTaxTable, setShowTaxTable] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -390,16 +503,19 @@ const IncomeTaxConfiguration = () => {
 
   const handleReset = () => {
     setFormData(initialFormData);
+    setShowTaxTable(false);
   };
 
   const handleUpdate = () => {
     console.log("Updating income tax configuration:", formData);
+    setShowTaxTable(true);
   };
 
   const tabs = [
     { label: "Income Tax Configuration", value: "itc" },
     { label: "Income Tax Slab ", value: "its" },
   ];
+  const isMobile = window.innerWidth < 768;
 
   return (
     <div>
@@ -523,7 +639,10 @@ const IncomeTaxConfiguration = () => {
                     value={formData.defaultStatusChapterVIA}
                     onChange={handleChange}
                     options={[
-                      { value: "let the user choose", label: "Let the user choose" },
+                      {
+                        value: "let the user choose",
+                        label: "Let the user choose",
+                      },
                       { value: "approved", label: "Approved" },
                       { value: "pending", label: "Pending" },
                     ]}
@@ -618,18 +737,19 @@ const IncomeTaxConfiguration = () => {
                     >
                       Current LTA Block Period(From-To)
                     </label>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                       <DatePickerField
                         name="ltaBlockPeriodFrom"
                         value={formData.ltaBlockPeriodFrom}
                         onChange={(e) => handleChange(e)}
-                        onStyleOpen={{ width: "200px" }}
+                        onStyleOpen={isMobile ? {} : { width: "200px" }}
                       />
                       <DatePickerField
                         name="ltaBlockPeriodTo"
                         value={formData.ltaBlockPeriodTo}
                         onChange={(e) => handleChange(e)}
-                        onStyleOpen={{ width: "200px" }}
+                        onStyleOpen={isMobile ? {} : { width: "200px" }}
                       />
                     </div>
                   </div>
@@ -716,7 +836,10 @@ const IncomeTaxConfiguration = () => {
                     value={formData.claExemptionCalculation}
                     onChange={handleChange}
                     options={[
-                      { label: "Prorate with Paid Days", value: "Prorate with Paid Days" },
+                      {
+                        label: "Prorate with Paid Days",
+                        value: "Prorate with Paid Days",
+                      },
                       { label: "Fixed Amount", value: "Fixed Amount" },
                     ]}
                   />
@@ -727,7 +850,10 @@ const IncomeTaxConfiguration = () => {
                     value={formData.hraExemptionCalculation}
                     onChange={handleChange}
                     options={[
-                      { label: "Actual rent Paid Amount", value: "Actual rent Paid Amount" },
+                      {
+                        label: "Actual rent Paid Amount",
+                        value: "Actual rent Paid Amount",
+                      },
                       { label: "50% of Basic", value: "50% of Basic" },
                       { label: "40% of Basic", value: "40% of Basic" },
                     ]}
@@ -789,7 +915,10 @@ const IncomeTaxConfiguration = () => {
                     { label: "Select Slab Type", value: "" },
                     { label: "Individual", value: "Individual" },
                     { label: "Senior Citizen", value: "Senior Citizen" },
-                    { label: "Super Senior Citizen", value: "Super Senior Citizen" },
+                    {
+                      label: "Super Senior Citizen",
+                      value: "Super Senior Citizen",
+                    },
                     { label: "HUF", value: "HUF" },
                   ]}
                 />
@@ -830,9 +959,7 @@ const IncomeTaxConfiguration = () => {
         >
           Reset
         </button>
-        <button
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
-        >
+        <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24">
           Log Report
         </button>
         <button
@@ -842,9 +969,12 @@ const IncomeTaxConfiguration = () => {
           Update
         </button>
       </div>
-      <div className="p-2 mt-1 md:p-6">
-        <TaxConfigurationTable taxData={taxTableData} />
-      </div>
+
+      {showTaxTable && (
+        <div className="p-2 mt-1 md:p-6">
+          <TaxConfigurationTable taxData={taxTableData} />
+        </div>
+      )}
 
       <TransactionHistory />
     </div>

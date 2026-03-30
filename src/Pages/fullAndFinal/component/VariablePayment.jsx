@@ -550,7 +550,7 @@ export default function VariablePayment({ onNext, onPrev }) {
       <div className="w-full flex justify-center overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
           <table className="min-w-[800px] w-full text-[0.7rem] text-left border-collapse">
-            <thead className="bg-[#8629DF] h-12 dark:bg-gray-500 text-white font-semibold divide-x divide-gray-200 border">
+            <thead className="bg-[#8629DF] h-12  text-white font-semibold divide-x divide-gray-200 border">
               <tr>
                 <th className="text-[0.8rem] px-2 py-1.5 min-w-[130px]">Pay Head Name</th>
                 <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">From Date</th>
@@ -689,7 +689,7 @@ export default function VariablePayment({ onNext, onPrev }) {
           <div className="overflow-auto table-scroll">
             <table className="min-w-[900px] w-full text-sm text-left border-collapse">
               <thead>
-                <tr className="bg-[#8629DF] dark:bg-gray-900 text-white font-semibold divide-x divide-purple-400 dark:divide-gray-700">
+                <tr className="bg-[#8629DF]  text-white font-semibold divide-x divide-purple-400 dark:divide-gray-700">
                   {[
                     "Pay Head Name",
                     "Accumulated",

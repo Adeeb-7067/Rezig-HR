@@ -28,9 +28,14 @@ const MiscConfiguration = () => {
     const [formData, setFormData] = useState({
         reportVisibility: "",
         reportTitle: "",
+        reportName: "",
+        reportSubtitle: "",
         header1Align: "",
         header2Align: "",
-        breakSheet: ""
+        header1Content: "",
+        header2Content: "",
+        breakSheet: "",
+        nextSheetValue: ""
     });
 
     const handleChange = (e) => {
@@ -75,7 +80,7 @@ const MiscConfiguration = () => {
                     onChange={setSelectedBanks}
                 />
 
-                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm h-7.5">
+                <div className="flex items-center justify-between  p-2 rounded-sm h-7.5">
                     <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
                         Consider Other Bank(s)
                     </span>
@@ -137,9 +142,21 @@ const MiscConfiguration = () => {
                     ]}
                 />
 
-                <InputField label="Report Name" className="h-7.5 text-[0.7rem]" />
+                <InputField 
+                    label="Report Name" 
+                    name="reportName"
+                    value={formData.reportName}
+                    onChange={handleChange}
+                    className="h-7.5 text-[0.7rem]" 
+                />
 
-                <InputField label="Report Sub Title / Heading" className="h-7.5 text-[0.7rem]" />
+                <InputField 
+                    label="Report Sub Title / Heading"
+                    name="reportSubtitle"
+                    value={formData.reportSubtitle}
+                    onChange={handleChange}
+                    className="h-7.5 text-[0.7rem]" 
+                />
 
                 <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm h-7.5">
                     <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
@@ -160,9 +177,21 @@ const MiscConfiguration = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
-                <InputField label="Upper Header 1 Content" className="h-7.5 text-[0.7rem]" />
+                <InputField 
+                    label="Upper Header 1 Content"
+                    name="header1Content"
+                    value={formData.header1Content}
+                    onChange={handleChange}
+                    className="h-7.5 text-[0.7rem]" 
+                />
 
-                <InputField label="Upper Header 2 Content" className="h-7.5 text-[0.7rem]" />
+                <InputField 
+                    label="Upper Header 2 Content"
+                    name="header2Content"
+                    value={formData.header2Content}
+                    onChange={handleChange}
+                    className="h-7.5 text-[0.7rem]" 
+                />
 
                 <SelectField
                     name="header1Align"
@@ -212,7 +241,13 @@ const MiscConfiguration = () => {
                     ]}
                 />
 
-                <InputField label="Next sheet after value" className="h-7.5 text-[0.7rem]" />
+                <InputField 
+                    label="Next sheet after value"
+                    name="nextSheetValue"
+                    value={formData.nextSheetValue}
+                    onChange={handleChange}
+                    className="h-7.5 text-[0.7rem]" 
+                />
 
             </div>
 

@@ -154,22 +154,22 @@ ${previewUrl ? "p-0 min-h-[160px]  overflow-hidden" : "p-10  min-h-[160px]"}
       {/* Image View Modal */}
       {openModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="relative w-[90%] max-w-xl rounded-xl bg-white p-4 shadow-lg">
+          <div className="relative w-[90%] max-w-xl rounded-xl bg-white dark:bg-gray-800 p-4 shadow-lg">
             <div className="mb-4 flex items-center justify-between ">
-              <h1 className="text-xl font-semibold text-gray-700">
+              <h1 className="text-xl font-semibold text-gray-700 dark:text-gray-50">
                 View Image
               </h1>
               <div className="flex items-center gap-4">
                 <a href={previewUrl} download>
-                  <Download className="h-4 w-4 cursor-pointer text-black hover:text-gray-700" />
+                  <Download className="h-4 w-4 cursor-pointer text-black dark:text-gray-50 hover:text-gray-700" />
                 </a>
 
                 <button onClick={() => setOpenModal(false)}>
-                  <X className="h-5 w-5 text-black cursor-pointer hover:scale-110 hover:text-gray-700" />
+                  <X className="h-5 w-5 text-black dark:text-gray-50 cursor-pointer hover:scale-110 hover:text-gray-700" />
                 </button>
               </div>
             </div>
-            <div className="w-full border-t border-gray-300 my-4"></div>
+            <div className="w-full border-t border-gray-300 dark:border-gray-600 my-4"></div>
 
             <div className="flex justify-center">
               <img

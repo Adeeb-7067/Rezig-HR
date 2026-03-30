@@ -5,7 +5,11 @@ import ComponentList from "./createFormula/ComponentList";
 
 
 const CreateFormula = () => {
+    const [formula, setFormula] = useState("");
 
+    const handleComponentSelect = (componentCode) => {
+        setFormula((prev) => prev + componentCode);
+    };
 
     return (
         <div className="
@@ -15,8 +19,8 @@ const CreateFormula = () => {
       mx-auto
     ">
             <FormulaHeader />
-            <FormulaBuilder />
-            <ComponentList />
+            <FormulaBuilder formula={formula} setFormula={setFormula} />
+            <ComponentList onComponentSelect={handleComponentSelect} />
         </div>
     );
 };

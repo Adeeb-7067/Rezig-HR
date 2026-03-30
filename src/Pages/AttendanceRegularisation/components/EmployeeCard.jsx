@@ -28,7 +28,7 @@ const EmployeeCard = () => {
             </div>
 
             {/* STATUS */}
-            <span className="text-[0.6rem] sm:text-[0.7rem] text-[#FFCC00] bg-[#FFF9E0] px-2 py-1 rounded-full mt-1 whitespace-nowrap flex-shrink-0">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
               Missed Punch
             </span>
           </div>

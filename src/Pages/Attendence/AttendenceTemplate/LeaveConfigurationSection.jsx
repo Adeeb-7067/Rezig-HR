@@ -66,7 +66,12 @@ const LeaveConfigurationSection = () => {
           ]}
         />
 
-        <DatePickerField name={"Leave Based on"} label={"Leave Based on "} />
+        <DatePickerField 
+          name="leaveBasedDate" 
+          label="Leave Based on "
+          value={form.leaveBasedDate}
+          onChange={(date) => setForm({ ...form, leaveBasedDate: date })}
+        />
 
         {/* <div className="flex flex-col">
           <label className="text-xs font-medium  text-gray-700 dark:text-gray-200 mb-1">
@@ -129,8 +134,10 @@ const LeaveConfigurationSection = () => {
         />
 
         <DatePickerField
-          name={"Last Working Day (LWD)"}
-          label={"Last Working Day (LWD)"}
+          name="lastWorkingDate"
+          label="Last Working Day (LWD)"
+          value={form.lastWorkingDate}
+          onChange={(date) => setForm({ ...form, lastWorkingDate: date })}
         />
         {/* <div className="flex flex-col">
           <label className="text-xs font-medium  text-gray-700 dark:text-gray-200 mb-1">

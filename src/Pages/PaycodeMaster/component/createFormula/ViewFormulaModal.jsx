@@ -92,9 +92,9 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
                             Formula Expression
                         </p>
 
-                        <div className="border-t border-gray-200 dark:border-gray-700" />
 
-                        <div className="bg-white dark:bg-gray-900  rounded-md py-3 text-gray-700 dark:text-gray-200 font-mono">
+
+                        <div className="bg-white dark:bg-gray-800  rounded-md py-3 text-gray-700 dark:text-gray-200 font-mono">
                             {data?.formula}
                         </div>
 

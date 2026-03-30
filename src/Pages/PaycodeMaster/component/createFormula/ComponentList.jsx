@@ -5,7 +5,7 @@ import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import ComponentSearch from "../../utils/ComponentSearch";
 import { componentData } from "./componentData";
 
-const ComponentList = () => {
+const ComponentList = ({ onComponentSelect = () => {} }) => {
     const allGroups = Object.keys(componentData);
 
     const [search, setSearch] = useState("");
@@ -169,7 +169,7 @@ const ComponentList = () => {
                                             <div key={i} className="text-[0.72rem] py-3 px-6 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-200/20 transition-colors" style={{ display: "grid", gridTemplateColumns: "120px 2fr 100px", alignItems: "center" }}>
                                                 <div> <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-2 py-1 rounded-md"> {item.code} </span> </div>
                                                 <div className="text-gray-700 dark:text-gray-300"> {item.desc} </div>
-                                                <div className="flex justify-center"> <button className="w-7 h-7 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 hover:bg-[#8629DF] hover:text-white transition shadow-sm">+</button> </div>
+                                                <div className="flex justify-end"> <button onClick={() => onComponentSelect(item.code)} className="w-7 h-7 rounded-md bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-300 hover:bg-[#8629DF] hover:text-white transition shadow-sm cursor-pointer active:scale-75">+</button> </div>
                                             </div>
                                         ))}
                             </React.Fragment>

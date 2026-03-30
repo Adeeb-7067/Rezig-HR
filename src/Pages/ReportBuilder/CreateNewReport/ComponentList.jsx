@@ -9,7 +9,7 @@ import ComponentSearch from "@/Pages/PaycodeMaster/utils/ComponentSearch";
 import ComponentGroupTable from "./ComponentGroupTable";
 import { componentdummyData } from "./component/componentdummyData";
 
-const ComponentList = () => {
+const ComponentList = ({ onAddParameter = () => {} }) => {
 
     const groups = Object.keys(componentdummyData);
 
@@ -203,6 +203,7 @@ const ComponentList = () => {
             <ComponentGroupTable
                 search={search}
                 groups={selectedGroups}
+                onAddParameter={onAddParameter}
             />
 
         </div>

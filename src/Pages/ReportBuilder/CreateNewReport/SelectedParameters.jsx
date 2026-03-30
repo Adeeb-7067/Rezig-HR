@@ -2,29 +2,29 @@
 
 import { Trash2 } from "lucide-react";
 
-const SelectedParameters = () => {
+const SelectedParameters = ({ selectedParameters = [], onRemove = () => {}, onUpdateOrder = () => {} }) => {
 
-    const data = [
-        { name: "Father Name", order: 1 },
-        { name: "Father Name", order: 1 },
-        { name: "Father Name", order: 1 },
-        { name: "Father Name", order: 1 },
-        { name: "Mother Name", order: 2 },
-        { name: "Mother Name", order: 2 },
-        { name: "Transport Allowance", order: 3 },
-        { name: "Transport Allowance", order: 4 },
-        { name: "HRA", order: 5 },
-        { name: "HRA", order: 6 },
-        { name: "Mother Name", order: 2 },
-        { name: "Mother Name", order: 2 },
-        { name: "Transport Allowance", order: 3 },
-        { name: "Transport Allowance", order: 4 },
-        { name: "HRA", order: 5 },
-        { name: "HRA", order: 6 },
+    const data = selectedParameters && selectedParameters.length > 0 ? selectedParameters : [
+        { id: 1, name: "Father Name", order: 1 },
+        { id: 2, name: "Father Name", order: 1 },
+        { id: 3, name: "Father Name", order: 1 },
+        { id: 4, name: "Father Name", order: 1 },
+        { id: 5, name: "Mother Name", order: 2 },
+        { id: 6, name: "Mother Name", order: 2 },
+        { id: 7, name: "Transport Allowance", order: 3 },
+        { id: 8, name: "Transport Allowance", order: 4 },
+        { id: 9, name: "HRA", order: 5 },
+        { id: 10, name: "HRA", order: 6 },
+        { id: 11, name: "Mother Name", order: 2 },
+        { id: 12, name: "Mother Name", order: 2 },
+        { id: 13, name: "Transport Allowance", order: 3 },
+        { id: 14, name: "Transport Allowance", order: 4 },
+        { id: 15, name: "HRA", order: 5 },
+        { id: 16, name: "HRA", order: 6 },
     ];
 
     return (
-        <div className="bg-white dark:bg-gray-800 h-full">
+        <div className="bg-white dark:bg-gray-800 h-full p-4">
 
             {/* Title */}
             <div className="flex items-center justify-between px-1 py-2">
@@ -59,7 +59,7 @@ const SelectedParameters = () => {
                     {data.map((item, i) => (
 
                         <div
-                            key={i}
+                            key={item.id || i}
                             className="grid grid-cols-3 px-4 py-2 items-center border-b
                border-gray-100 dark:border-gray-700
                text-[0.7rem]
@@ -76,7 +76,8 @@ const SelectedParameters = () => {
 
                                 <input
                                     type="number"
-                                    defaultValue={item.order}
+                                    value={item.order}
+                                    onChange={(e) => onUpdateOrder(item.id, parseInt(e.target.value))}
                                     className="
                    w-12 h-6 text-center
                    border border-gray-200 dark:border-gray-700
@@ -94,6 +95,7 @@ const SelectedParameters = () => {
 
                                 <Trash2
                                     size={14}
+                                    onClick={() => onRemove(item.id)}
                                     className="text-red-400 cursor-pointer hover:text-red-600 transition-colors"
                                 />
 

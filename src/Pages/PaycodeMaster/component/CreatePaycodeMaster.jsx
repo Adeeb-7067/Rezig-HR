@@ -7,19 +7,19 @@ import CardReportingConfig from "../component/createPaycodeMaster/CardReportingC
 
 const CreatePaycodeMaster = ({ onBack }) => {
     return (
-        <div className="space-y-6">
+        <div className="space-y-4">
 
             {/* Top Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <PayheadMasterDetails />
                 <PayheadSection />
             </div>
 
             {/* Bottom Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                 <StatutoryTaxParameter />
 
-                <div className="space-y-6">
+                <div className="space-y-3">
                     <ReimbursementSection />
                     <CardReportingConfig />
                 </div>

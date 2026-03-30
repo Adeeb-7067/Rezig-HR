@@ -77,7 +77,7 @@ const SelectFieldScroll = ({
                         "border border-gray-200 dark:border-gray-700",
                         "bg-white dark:bg-gray-800",
                         "text-[0.75rem]",
-                        "max-h-52 overflow-y-auto dropdown-scroll"
+                        "max-h-52 overflow-y-auto table-scroll"
                     )}
                 >
                     {options.map((opt) => {

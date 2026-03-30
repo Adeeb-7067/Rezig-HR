@@ -12,7 +12,7 @@ const ReportsTable = ({ data }) => {
             <div className="border border-gray-200 dark:border-gray-700 rounded-sm shadow-sm overflow-hidden">
 
                 {/* Horizontal Scroll */}
-                <div className="overflow-x-auto no-scrollbar">
+                <div className="overflow-x-auto no-scrollbar table-scroll">
 
                     <div className="min-w-[650px]">
 

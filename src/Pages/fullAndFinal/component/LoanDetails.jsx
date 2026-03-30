@@ -34,7 +34,7 @@ const LoanDetails = () => {
 
                         {/* Header — no min-w here, inherits from wrapper */}
                         <div
-                            className="text-[0.7rem] sm:text-[0.8rem] font-semibold text-white dark:text-gray-50 rounded-t-md dark:border-gray-700 bg-[#8629DF] dark:bg-gray-900 py-1 px-4 min-h-[40px]"
+                            className="text-[0.7rem] sm:text-[0.8rem] font-semibold text-white dark:text-gray-50 rounded-t-md dark:border-gray-700 bg-[#8629DF]  py-1 px-4 min-h-[40px]"
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "1.5fr 1.5fr 1.5fr 1fr",

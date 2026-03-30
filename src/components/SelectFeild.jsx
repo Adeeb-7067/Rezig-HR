@@ -18,7 +18,6 @@ const SelectField = ({
   const iconRef = useRef(null);
   const tooltipRef = useRef(null);
 
-  // Position tooltip when shown
   useEffect(() => {
     if (showTooltip && iconRef.current && tooltipRef.current) {
       const iconRect = iconRef.current.getBoundingClientRect();
@@ -75,12 +74,11 @@ const SelectField = ({
             )}
           </div>
         )}
-        <label className="block text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200">
+        <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">
           {label}
         </label>
       </div>
 
-      {/* Rest of the component remains the same */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
@@ -88,26 +86,20 @@ const SelectField = ({
           "w-full h-7.5 px-4 py-1.5 rounded-sm text-[0.7rem] font-normal flex items-center justify-between",
           "bg-white dark:bg-gray-800",
           "border border-gray-300 dark:border-gray-700",
-          "text-gray-600 dark:text-gray-100",
-          "shadow-sm focus:ring-2 focus:ring-[#9853F9] focus:ring-inset focus:outline-none",
-          "hover:border-gray-400 dark:hover:border-gray-500",
-          "transition-all duration-200 ease-in-out",
+          "text-gray-600 dark:text-white",
+          "focus:ring-2 focus:ring-[#9853F9] focus:ring-inset focus:outline-none",
+          "transition-all duration-200",
           className,
         )}
       >
-        {/* <span className={value ? "" : "text-gray-400 dark:text-gray-500"}>
-          {value || "Select an option"}
-        </span> */}
         <span
-          className={`truncate ${value ? "text-gray-600 dark:text-gray-100" : "text-gray-400"
-            }`}
+          className={`truncate ${value ? "text-gray-600 dark:text-gray-100" : "text-gray-400"}`}
         >
           {options.find((opt) => opt.value === value)?.label || unSelectLabel}
         </span>
         <ChevronDown
           size={14}
-          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
-            }`}
+          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"}`}
         />
       </button>
 

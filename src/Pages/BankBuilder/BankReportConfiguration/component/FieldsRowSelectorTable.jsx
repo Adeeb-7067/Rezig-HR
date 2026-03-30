@@ -163,7 +163,7 @@ const FieldsRowSelectorTable = ({
       </div>
 
       {/* BODY */}
-      <div className="max-h-[180px] overflow-y-auto dropdown-scroll">
+      <div className="max-h-[180px] overflow-y-auto table-scroll">
 
         <DndContext
           sensors={sensors}

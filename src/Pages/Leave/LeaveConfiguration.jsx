@@ -85,7 +85,7 @@ const LeaveConfiguration = () => {
           <div className="min-w-[750px]">
             {/* Header */}
             <div
-              className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-3 px-6 rounded-t-sm"
+              className="text-[0.7rem] text-center font-semibold text-white bg-[#8629DF] py-3 px-6 rounded-t-sm"
               style={{
                 display: "grid",
                 gridTemplateColumns:
@@ -107,7 +107,7 @@ const LeaveConfiguration = () => {
               {data.map((item, index) => (
                 <div
                   key={index}
-                  className="text-[0.7rem] py-3 px-6 border-b border-gray-200 hover:bg-gray-50  dark:hover:bg-gray-700"
+                  className="text-[0.7rem] text-center py-3 px-6 border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50  dark:hover:bg-gray-700"
                   style={{
                     display: "grid",
                     gridTemplateColumns:

@@ -302,7 +302,7 @@ const AttendanceRegularisation = () => {
 
   // Shared button styles
   const baseBtn =
-    "font-semibold text-xs py-2 px-4 rounded-sm flex-1 sm:flex-none sm:min-w-[6rem]";
+    "font-semibold text-xs py-1 px-4 rounded-sm flex-1 sm:flex-none sm:min-w-[6rem]";
 
   return (
     <div className="p-3 sm:p-4 md:p-5 space-y-4 sm:space-y-5">

@@ -741,7 +741,7 @@ const EmployeList = () => {
       <div className="rounded-sm mt-5 shadow drop-shadow-xs  border border-gray-200 dark:border-gray-600">
         <div className="overflow-x-auto no-scrollbar">
           <div
-            className="text-[0.7rem] min-w-[1050px] lg:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-[#8629DF] dark:bg-gray-900 py-1 px-4 min-h-[40px] "
+            className="text-[0.7rem] min-w-[1050px] lg:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-[#8629DF]  py-1 px-4 min-h-[40px] "
             style={{
               display: "grid",
               gridTemplateColumns:

@@ -7,6 +7,8 @@ import InputField from "@/components/inputfeild";
 
 const ShiftMasterForm = () => {
   const [form, setForm] = useState({
+    shiftCode: "",
+    shiftName: "",
     startHour: "",
     startMinute: "",
     endHour: "",
@@ -44,11 +46,15 @@ const ShiftMasterForm = () => {
           <InputField
             label="Shift Code"
             name="shiftCode"
+            value={form.shiftCode}
+            onChange={handleChange}
             placeholder="Enter Shift Code"
           />
           <InputField
             label="Shift Name"
             name="shiftName"
+            value={form.shiftName}
+            onChange={handleChange}
             placeholder="Enter Shift Name"
           />
 

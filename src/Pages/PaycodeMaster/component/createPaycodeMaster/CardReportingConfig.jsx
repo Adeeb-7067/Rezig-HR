@@ -3,20 +3,27 @@ import InputField from "../../../../components/inputfeild";
 import VariableTypeRow from "../../../../components/ui/VariableTypeRow";
 
 const CardReportingConfiguration = () => {
+    const [form, setForm] = useState({
+        payheadHelp: "",
+    });
+
     const [salarySheet, setSalarySheet] = useState(false);
     const [paySlip, setPaySlip] = useState(false);
     const [partOfCTC, setPartOfCTC] = useState(false);
     const [hideOnEss, setHideOnEss] = useState(false);
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setForm((prev) => ({ ...prev, [name]: value }));
+    };
+
     return (
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg space-y-4">
-            {/* Title */}
-            <h1 className="text-base font-semibold mb-1 text-gray-500">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+            <h1 className="text-base font-semibold mb-1 text-gray-500 dark:text-gray-50">
                 Card Reporting Configuration
             </h1>
 
-            {/* Toggle Rows */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <VariableTypeRow
                     label="Show on Salary Sheet"
                     checked={salarySheet}
@@ -33,9 +40,7 @@ const CardReportingConfiguration = () => {
                     gapClass="justify-between"
                     showIcon
                 />
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <VariableTypeRow
                     label="Part of CTC"
                     checked={partOfCTC}
@@ -53,16 +58,14 @@ const CardReportingConfiguration = () => {
                     showIcon
                     info="Do Not Display on ESS"
                 />
-            </div>
 
-            {/* Payhead Help Input */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <InputField
-                        label="Payhead Help"
-                        placeholder="Enter help text"
-                    />
-                </div>
+                <InputField
+                    label="Payhead Help"
+                    name="payheadHelp"
+                    value={form.payheadHelp}
+                    onChange={handleChange}
+                    placeholder="Enter help text"
+                />
             </div>
         </div>
     );

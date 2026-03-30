@@ -1,5 +1,5 @@
 import { Calendar as CalendarIcon } from "lucide-react";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 // Utility
 const cn = (...classes) => classes.filter(Boolean).join(" ");
@@ -9,7 +9,9 @@ const DatePicker = ({ placeholder, value, onChange }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isOpen, setIsOpen] = useState(false);
   const [isYearDropdownOpen, setIsYearDropdownOpen] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState("below");
   const calendarRef = useRef(null);
+  const inputRef = useRef(null);
 
   const months = [
     "January","February","March","April","May","June",
@@ -23,7 +25,6 @@ const DatePicker = ({ placeholder, value, onChange }) => {
   const getDaysInMonth = (y, m) => new Date(y, m + 1, 0).getDate();
   const getFirstDayOfMonth = (y, m) => new Date(y, m, 1).getDay();
 
-  // Parse value string "YYYY-MM-DD" → Date
   const selectedDate = value ? new Date(value + "T00:00:00") : null;
 
   const formatDisplay = (date) => {
@@ -39,11 +40,30 @@ const DatePicker = ({ placeholder, value, onChange }) => {
     return `${y}-${m}-${d}`;
   };
 
+  const handleOpen = () => {
+    if (inputRef.current) {
+      const rect = inputRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      setDropdownPosition(spaceBelow < 280 && spaceAbove > 280 ? "above" : "below");
+    }
+    setIsOpen((v) => !v);
+  };
+
   const handleDateSelect = (day) => {
     const newDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
     setIsOpen(false);
     setIsYearDropdownOpen(false);
     if (onChange) onChange(formatISO(newDate));
+  };
+
+  const prevMonth = () =>
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
+  const nextMonth = () =>
+    setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
+  const selectYear = (year) => {
+    setCurrentDate(new Date(year, currentDate.getMonth(), 1));
+    setIsYearDropdownOpen(false);
   };
 
   const renderDays = () => {
@@ -53,7 +73,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
     const cells = [];
 
     for (let i = 0; i < firstDay; i++) {
-      cells.push(<div key={`empty-${i}`} className="h-8" />);
+      cells.push(<div key={`empty-${i}`} className="aspect-square" />);
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
@@ -72,12 +92,12 @@ const DatePicker = ({ placeholder, value, onChange }) => {
           key={day}
           onClick={() => handleDateSelect(day)}
           className={cn(
-            "h-8 w-8 flex items-center justify-center rounded-full cursor-pointer text-[0.75rem] transition-colors",
+            "aspect-square flex items-center justify-center rounded-full cursor-pointer text-[0.7rem] transition-colors select-none",
             isSelected
               ? "bg-purple-600 text-white"
               : isToday
-              ? "font-bold text-purple-600 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900"
-              : "text-gray-900 dark:text-gray-100 hover:bg-purple-100 dark:hover:bg-purple-900"
+              ? "font-semibold text-purple-600 dark:text-purple-400 ring-1 ring-purple-400"
+              : "hover:bg-purple-100 dark:hover:bg-purple-900/40 text-gray-800 dark:text-gray-200"
           )}
         >
           {day}
@@ -87,23 +107,36 @@ const DatePicker = ({ placeholder, value, onChange }) => {
     return cells;
   };
 
-  // Close on outside click
-  useEffect(() => {
-    const handler = (e) => {
-      if (calendarRef.current && !calendarRef.current.contains(e.target)) {
-        setIsOpen(false);
-        setIsYearDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+  const handleClickOutside = useCallback((e) => {
+    if (
+      calendarRef.current && !calendarRef.current.contains(e.target) &&
+      inputRef.current && !inputRef.current.contains(e.target)
+    ) {
+      setIsOpen(false);
+      setIsYearDropdownOpen(false);
+    }
   }, []);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [handleClickOutside]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleResize = () => {
+      setIsOpen(false);
+      setIsYearDropdownOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen]);
+
   return (
-    <div ref={calendarRef} className="relative w-full sm:w-40">
-      {/* ── Closed trigger — matches DateFilter exactly ── */}
+    <div className="relative w-full sm:w-40" ref={inputRef}>
+      {/* ── Original closed trigger UI (unchanged) ── */}
       <div
-        onClick={() => setIsOpen((v) => !v)}
+        onClick={handleOpen}
         className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 dark:bg-gray-800 flex items-center justify-between cursor-pointer hover:border-purple-400 dark:hover:border-purple-500 transition-colors"
       >
         <span className={`text-sm ${selectedDate ? "text-gray-800 dark:text-gray-200" : "text-gray-500"}`}>
@@ -112,20 +145,34 @@ const DatePicker = ({ placeholder, value, onChange }) => {
         <CalendarIcon className="text-gray-600 dark:text-gray-400" size={16} />
       </div>
 
-      {/* ── Open state — custom calendar UI ── */}
+      {/* ── Calendar popover (styled like Calendar/DatePicker component) ── */}
       {isOpen && (
-        <div className="absolute z-[99999] mt-1 w-64 p-3 rounded-md shadow-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-3">
+        <div
+          ref={calendarRef}
+          className={cn(
+            "w-full min-w-[220px] max-w-[320px]",
+            "p-3 rounded-sm shadow-lg",
+            "border border-gray-200 dark:border-gray-700",
+            "bg-white dark:bg-gray-900",
+            "absolute z-[99999]",
+            dropdownPosition === "above"
+              ? "bottom-full mb-1"
+              : "top-full mt-1",
+            "left-0"
+          )}
+        >
+          {/* Month/Year header */}
+          <div className="flex items-center justify-between mb-3 gap-1">
             <button
-              onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))}
-              className="text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base leading-none"
+              onClick={prevMonth}
+              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              aria-label="Previous month"
             >
               &#8592;
             </button>
 
-            <div className="flex items-center gap-1.5">
-              <span className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100">
+            <div className="flex items-center gap-1.5 min-w-0">
+              <span className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 truncate">
                 {months[currentDate.getMonth()]}
               </span>
 
@@ -133,20 +180,32 @@ const DatePicker = ({ placeholder, value, onChange }) => {
               <div className="relative">
                 <button
                   onClick={() => setIsYearDropdownOpen((v) => !v)}
-                  className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
+                  className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  aria-label="Select year"
+                  aria-expanded={isYearDropdownOpen}
                 >
                   {currentDate.getFullYear()}
                 </button>
                 {isYearDropdownOpen && (
-                  <div className="absolute z-20 mt-1 w-24 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg max-h-48 overflow-y-auto">
+                  <div
+                    className={cn(
+                      "absolute z-20 w-20 bg-white dark:bg-gray-900",
+                      "border border-gray-200 dark:border-gray-700",
+                      "rounded shadow-lg max-h-40 overflow-y-auto",
+                      "bottom-full mb-1"
+                    )}
+                  >
                     {years.map((year) => (
                       <div
                         key={year}
-                        onClick={() => {
-                          setCurrentDate(new Date(year, currentDate.getMonth(), 1));
-                          setIsYearDropdownOpen(false);
-                        }}
-                        className="px-3 py-1.5 text-[0.75rem] hover:bg-purple-100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-gray-900 dark:text-gray-100"
+                        onClick={() => selectYear(year)}
+                        className={cn(
+                          "px-3 py-1 text-[0.72rem] cursor-pointer transition-colors",
+                          "text-gray-800 dark:text-gray-100",
+                          "hover:bg-purple-100 dark:hover:bg-purple-900/40",
+                          year === currentDate.getFullYear() &&
+                            "bg-purple-50 dark:bg-purple-900/20 font-semibold"
+                        )}
                       >
                         {year}
                       </div>
@@ -157,20 +216,23 @@ const DatePicker = ({ placeholder, value, onChange }) => {
             </div>
 
             <button
-              onClick={() => setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))}
-              className="text-gray-600 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400 transition-colors text-base leading-none"
+              onClick={nextMonth}
+              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              aria-label="Next month"
             >
               &#8594;
             </button>
           </div>
 
-          {/* Day labels */}
-          <div className="grid grid-cols-7 gap-1 text-center text-gray-500 dark:text-gray-400 font-medium mb-2 text-[0.7rem]">
-            {days.map((d, i) => <div key={i}>{d}</div>)}
+          {/* Day-of-week labels */}
+          <div className="grid grid-cols-7 gap-0.5 text-center text-gray-400 dark:text-gray-500 text-[0.65rem] font-medium mb-1">
+            {days.map((d) => (
+              <div key={d} className="py-0.5">{d}</div>
+            ))}
           </div>
 
           {/* Day grid */}
-          <div className="grid grid-cols-7 gap-1 text-center">
+          <div className="grid grid-cols-7 gap-0.5">
             {renderDays()}
           </div>
         </div>

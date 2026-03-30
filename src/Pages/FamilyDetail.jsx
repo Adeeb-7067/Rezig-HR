@@ -108,6 +108,32 @@ const FamilyDetail = ({ onNext, onPrev }) => {
     });
   };
 
+  const relationOptions = [
+    { label: "Spouse", value: "Spouse" },
+    { label: "Child", value: "Child" },
+    { label: "Parent", value: "Parent" },
+    { label: "Sibling", value: "Sibling" },
+  ];
+
+  const emergencyRelationOptions = [
+    { label: "Select Your Relationship", value: "Select Your Relationship" },
+    { label: "Spouse", value: "Spouse" },
+    { label: "Child", value: "Child" },
+    { label: "Parent", value: "Parent" },
+    { label: "Sibling", value: "Sibling" },
+  ];
+
+  const bloodGroupOptions = [
+    { label: "A+", value: "A+" },
+    { label: "A-", value: "A-" },
+    { label: "B+", value: "B+" },
+    { label: "B-", value: "B-" },
+    { label: "AB+", value: "AB+" },
+    { label: "AB-", value: "AB-" },
+    { label: "O+", value: "O+" },
+    { label: "O-", value: "O-" },
+  ];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
       <div className="col-span-1">
@@ -171,12 +197,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             name="firstNomineeRelation"
             value={formData.firstNomineeRelation}
             onChange={handleChange}
-          >
-            <option>Spouse</option>
-            <option>Child</option>
-            <option>Parent</option>
-            <option>Sibling</option>
-          </SelectField>
+            options={relationOptions}
+          />
         </div>
         <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm font-semibold text-gray-500 mb-1">
@@ -194,12 +216,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
               name="emergency1Relation"
               value={formData.emergency1Relation}
               onChange={handleChange}
-            >
-              <option>Select Your Relationship</option>
-              <option>Child</option>
-              <option>Parent</option>
-              <option>Sibling</option>
-            </SelectField>
+              options={emergencyRelationOptions}
+            />
             <InputField
               label="Mobile Number"
               name="emergency1Mobile"
@@ -277,16 +295,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             name="bloodGroup"
             value={formData.bloodGroup}
             onChange={handleChange}
-          >
-            <option>A+</option>
-            <option>A-</option>
-            <option>B+</option>
-            <option>B-</option>
-            <option>AB+</option>
-            <option>AB-</option>
-            <option>O+</option>
-            <option>O-</option>
-          </SelectField>
+            options={bloodGroupOptions}
+          />
         </div>
         <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 grid grid-cols-1 md:grid-cols-2 gap-2 rounded-lg mt-3">
           <InputField
@@ -300,12 +310,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             name="secondNomineeRelation"
             value={formData.secondNomineeRelation}
             onChange={handleChange}
-          >
-            <option>Spouse</option>
-            <option>Child</option>
-            <option>Parent</option>
-            <option>Sibling</option>
-          </SelectField>
+            options={relationOptions}
+          />
         </div>
         <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm font-semibold mb-1 text-gray-500">
@@ -323,12 +329,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
               name="emergency2Relation"
               value={formData.emergency2Relation}
               onChange={handleChange}
-            >
-              <option>Spouse</option>
-              <option>Child</option>
-              <option>Parent</option>
-              <option>Sibling</option>
-            </SelectField>
+              options={emergencyRelationOptions}
+            />
             <InputField
               label="Mobile Number"
               name="emergency2Mobile"

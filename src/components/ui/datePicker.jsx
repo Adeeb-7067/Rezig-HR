@@ -40,13 +40,11 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
     return `${y}-${m}-${d}`;
   };
 
-  // Determine whether dropdown should open above or below
   const handleOpen = () => {
     if (inputRef.current) {
       const rect = inputRef.current.getBoundingClientRect();
       const spaceBelow = window.innerHeight - rect.bottom;
       const spaceAbove = rect.top;
-      // Calendar height is roughly 260px
       setDropdownPosition(spaceBelow < 280 && spaceAbove > 280 ? "above" : "below");
     }
     setIsCalendarOpen(true);
@@ -129,7 +127,6 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [handleClickOutside]);
 
-  // Close on resize if open (avoids broken positioning)
   useEffect(() => {
     if (!isCalendarOpen) return;
     const handleResize = () => {
@@ -141,14 +138,15 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
   }, [isCalendarOpen]);
 
   return (
-    <div className="flex flex-col space-y-1 w-full">
+    <div>
       {label && (
-        <label className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-          {label}
-        </label>
+        <div className="flex items-center gap-1 mb-1">
+          <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">
+            {label}
+          </label>
+        </div>
       )}
 
-      {/* Input trigger */}
       <div className="relative w-full" ref={inputRef}>
         <div
           style={style}
@@ -159,14 +157,14 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
           aria-haspopup="true"
           aria-expanded={isCalendarOpen}
           className={cn(
-            "w-full flex items-center text-left font-normal py-1.5 h-[1.9rem]",
+            "w-full flex items-center text-left font-normal h-7.5",
             "rounded-sm border border-gray-300 dark:border-gray-700",
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-700/60",
-            "px-2 text-[0.7rem] cursor-pointer transition-all duration-200",
-            "focus:outline-none focus:border-2 focus:border-[#9853F9]",
+            "px-4 py-1.5 text-[0.7rem] cursor-pointer transition-all duration-200",
+            "focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset",
             selectedDate
-              ? "text-gray-900 dark:text-gray-100"
+              ? "text-gray-600 dark:text-gray-100"
               : "text-gray-400 dark:text-gray-500"
           )}
         >
@@ -174,27 +172,22 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
           <span className="truncate">{formatDate(selectedDate) || "Select date"}</span>
         </div>
 
-        {/* Calendar popover */}
         {isCalendarOpen && (
           <div
             ref={calendarRef}
             style={onStyleOpen}
             className={cn(
-              // Responsive width: full on small screens, min 220px otherwise
               "w-full min-w-[220px] max-w-[320px]",
               "p-3 rounded-sm shadow-lg",
               "border border-gray-200 dark:border-gray-700",
               "bg-white dark:bg-gray-900",
               "absolute z-[99999]",
-              // Position above or below based on viewport space
               dropdownPosition === "above"
                 ? "bottom-full mb-1"
                 : "top-full mt-1",
-              // Prevent overflow off right edge
               "left-0"
             )}
           >
-            {/* Month/Year header */}
             <div className="flex items-center justify-between mb-3 gap-1">
               <button
                 onClick={prevMonth}
@@ -209,7 +202,6 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
                   {months[currentDate.getMonth()]}
                 </span>
 
-                {/* Year dropdown */}
                 <div className="relative">
                   <button
                     onClick={() => setIsYearDropdownOpen((v) => !v)}
@@ -225,7 +217,6 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
                         "absolute z-20 w-20 bg-white dark:bg-gray-900",
                         "border border-gray-200 dark:border-gray-700",
                         "rounded shadow-lg max-h-40 overflow-y-auto",
-                        // Flip year list up if near bottom of calendar
                         "bottom-full mb-1"
                       )}
                     >
@@ -258,14 +249,12 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
               </button>
             </div>
 
-            {/* Day-of-week labels */}
             <div className="grid grid-cols-7 gap-0.5 text-center text-gray-400 dark:text-gray-500 text-[0.65rem] font-medium mb-1">
               {days.map((d) => (
                 <div key={d} className="py-0.5">{d}</div>
               ))}
             </div>
 
-            {/* Day grid — uses aspect-square so cells are always proportional */}
             <div className="grid grid-cols-7 gap-0.5">
               {renderDays()}
             </div>

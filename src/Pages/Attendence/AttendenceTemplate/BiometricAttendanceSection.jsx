@@ -10,9 +10,12 @@ const BiometricAttendanceSection = () => {
     combination: "",
     noOfLeave: "",
     leaveType: "",
+    minWorkingDaysWeekly: "",
+    minWorkingDaysHoliday: "",
   });
 
   const [toggles, setToggles] = useState({
+    deductLateEarly: false,
     clubWeekly: false,
     clubHoliday: false,
     noClubWeekly: false,
@@ -65,7 +68,7 @@ const BiometricAttendanceSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
         <SelectField
           label="Late Coming / Early Out — Batch Completion Leave Deduction"
-          name="Late Coming / Early Out — Batch Completion Leave Deduction"
+          name="leaveSequence"
           value={form.leaveSequence}
           onChange={handleChange}
           options={[
@@ -76,7 +79,7 @@ const BiometricAttendanceSection = () => {
 
         <SelectField
           label="Deduct Leave on Direct Late Coming / Early Out"
-          name="Deduct Leave on Direct Late Coming / Early Out"
+          name="combination"
           value={form.combination}
           onChange={handleChange}
           unSelectLabel="LWP"
@@ -109,7 +112,12 @@ const BiometricAttendanceSection = () => {
           onCheckedChange={(val) => handleToggle("clubWeekly", val)}
         />
 
-        <InputField label="Minimum Working Days Required for Weekly Eligibility" />
+        <InputField 
+          label="Minimum Working Days Required for Weekly Eligibility"
+          name="minWorkingDaysWeekly"
+          value={form.minWorkingDaysWeekly}
+          onChange={handleChange}
+        />
 
         <VariableTypeRow
           label="Club Holiday with absent"
@@ -117,7 +125,12 @@ const BiometricAttendanceSection = () => {
           onCheckedChange={(val) => handleToggle("clubHoliday", val)}
         />
 
-        <InputField label="Minimum Working Days Required for Holiday Eligibility" />
+        <InputField 
+          label="Minimum Working Days Required for Holiday Eligibility"
+          name="minWorkingDaysHoliday"
+          value={form.minWorkingDaysHoliday}
+          onChange={handleChange}
+        />
       </div>
 
       {/* Remaining Toggles */}

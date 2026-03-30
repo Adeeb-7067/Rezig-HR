@@ -84,7 +84,7 @@ const AttendanceBulkRegularizeModal = ({
         </div>
 
         {/* SCROLLABLE CONTENT */}
-        <div className="overflow-y-auto no-scrollbar dropdown-scroll px-4 py-3 space-y-2 flex-1">
+        <div className="overflow-y-auto no-scrollbar table-scroll px-4 py-3 space-y-2 flex-1">
           {dates.map((item, index) => (
             <div key={item.day}>
 
@@ -92,7 +92,7 @@ const AttendanceBulkRegularizeModal = ({
               <div className="border dark:border-gray-700 rounded-md p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <p className="font-medium text-[0.8rem]">Shift Details</p>
-                  <span className="bg-purple-100 text-black text-[0.7rem] px-2 py-[2px] rounded">
+                  <span className="bg-purple-100 dark:bg-purple-900/30 text-black dark:text-purple-300 text-[0.7rem] px-2 py-[2px] rounded">
                     Gurugram Office
                   </span>
                 </div>
@@ -140,6 +140,7 @@ const AttendanceBulkRegularizeModal = ({
                   </div>
                 </div>
               </div>
+<div className="border border-1 p-2 mt-2 rounded-sm">
 
               {/* STATUS */}
               <div>
@@ -147,7 +148,7 @@ const AttendanceBulkRegularizeModal = ({
                 <div className="flex items-center gap-2 text-[0.8rem]">
                   <span>Current Status :</span>
                   {/* ml-12 only on sm+ to match desktop design; removed on mobile to prevent overflow */}
-                  <span className="bg-amber-50 sm:ml-12 text-amber-400 px-2 py-1 rounded-full text-[0.7rem]">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
                     Missed Punch
                   </span>
                 </div>
@@ -161,7 +162,12 @@ const AttendanceBulkRegularizeModal = ({
                 <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
 
                   {/* IN DATE */}
-                  <DatePickerField label={"In Date"} />
+                  <DatePickerField 
+                    label="In Date"
+                    name="inDate"
+                    value={item.inDate}
+                    onChange={(date) => updateField(index, "inDate", date)}
+                  />
 
                   {/* IN TIME */}
                   <div>
@@ -192,7 +198,12 @@ const AttendanceBulkRegularizeModal = ({
                   </div>
 
                   {/* OUT DATE */}
-                  <DatePickerField label={"Out Date"} />
+                  <DatePickerField 
+                    label="Out Date"
+                    name="outDate"
+                    value={item.outDate}
+                    onChange={(date) => updateField(index, "outDate", date)}
+                  />
 
                   {/* OUT TIME */}
                   <div>
@@ -223,6 +234,7 @@ const AttendanceBulkRegularizeModal = ({
                   </div>
                 </div>
               </div>
+</div>
 
               {/* NEXT DATE SEPARATOR */}
               {dates[index + 1] && (

@@ -71,12 +71,16 @@ const OvertimeSection = () => {
                 info={'Overtime will Start after time'}
                     label="Overtime will Start after time"
                     name="otStart"
+                    value={form.otStart}
+                    onChange={handleChange}
                 />
 
                 <InputField
                     label="Min Work Hrs./Min. for OT"
                     info="Min Work Hrs./Min. for OT"
                     name="minWork"
+                    value={form.minWork}
+                    onChange={handleChange}
                 />
 
                 <InputField
@@ -84,6 +88,8 @@ const OvertimeSection = () => {
 
                     info="First Break After Overtime Hours"
                     name="firstBreakAfter"
+                    value={form.firstBreakAfter}
+                    onChange={handleChange}
                 />
 
                 <InputField
@@ -91,6 +97,8 @@ const OvertimeSection = () => {
 
                     info="OT Round-Off (Hours/Minutes)"
                     name="roundOff"
+                    value={form.roundOff}
+                    onChange={handleChange}
                 />
 
                 <InputField
@@ -98,12 +106,16 @@ const OvertimeSection = () => {
 
                     info="Duration of First OT Break"
                     name="firstBreakDuration"
+                    value={form.firstBreakDuration}
+                    onChange={handleChange}
                 />
 
                 <InputField
                     label="Gap Before Second OT Break"
                     info="Gap Before Second OT Break"
                     name="gapBeforeSecond"
+                    value={form.gapBeforeSecond}
+                    onChange={handleChange}
                 />
 
                 <InputField
@@ -111,24 +123,32 @@ const OvertimeSection = () => {
                     label="Duration of Second OT Break"
                     info="Duration of Second OT Break"
                     name="secondBreakDuration"
+                    value={form.secondBreakDuration}
+                    onChange={handleChange}
                 />
 
                 <InputField
                     label="Define OT Cycle"
                     info="Define OT Cycle"
                     name="otCycle"
+                    value={form.otCycle}
+                    onChange={handleChange}
                 />
 
                 <InputField
                     label="Maximum Allowed OT Hours"
                     info="Maximum Allowed OT Hours"
                     name="maxOT"
+                    value={form.maxOT}
+                    onChange={handleChange}
                 />
 
                 <InputField
                     label="Add Minutes for OT Cycle"
                     info="Add Minutes for OT Cycle"
                     name="addMinutes"
+                    value={form.addMinutes}
+                    onChange={handleChange}
                 />
 
             </div>

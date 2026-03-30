@@ -28,6 +28,8 @@ const LeaveYearSection = () => {
         {/* From Date */}
         <DatePickerField
           label="From Date"
+          name="fromDate"
+          value={form.fromDate}
           onChange={(date) => setForm((prev) => ({ ...prev, fromDate: date }))}
           placeholder="Select a date"
         />
@@ -35,6 +37,8 @@ const LeaveYearSection = () => {
         {/* To Date */}
         <DatePickerField
           label="To Date"
+          name="toDate"
+          value={form.toDate}
           onChange={(date) => setForm((prev) => ({ ...prev, toDate: date }))}
           placeholder="Select a date"
         />
