@@ -150,7 +150,7 @@ const AttendanceRegularizeModal = ({
               </div>
             </div>
           </div>
-<div className="border border-1 rounded-sm p-2">
+<div className="border  rounded-sm p-2">
 
           {/* STATUS */}
           <div className="">
