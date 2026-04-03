@@ -86,7 +86,7 @@ export default function MultiStepForm() {
 
             {/*
              * Step content area
-             * • overflow-y-auto   → vertical scroll inside the panel if content
+             * • overflow-y-auto   → vertical scroll inside the bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg if content
              *                       is taller than the viewport (e.g. long forms)
              * • overflow-x-hidden → no accidental horizontal bleed from children
              */}

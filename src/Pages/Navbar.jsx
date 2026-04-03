@@ -24,10 +24,10 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar";
 import { Sun, Moon } from "lucide-react"; 
-import toast from "react-hot-toast";
+import { useToast } from "@/toastMessages/toastContext";
 
 const Navbar = ({ onMenuClick }) => {
-
+const {showToast} = useToast();
 
 const ModeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -126,7 +126,7 @@ if(theme ==='light'){
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuSeparator />
                  <Link to="/">
-              <DropdownMenuItem className="text-red-600 flex items-center gap-2 " onClick={()=>toast.success  ('LogOut succesfull')}>
+              <DropdownMenuItem className="text-red-600 flex items-center gap-2 " onClick={()=>showToast("Logged Out Successfully", "success")}>
                 <LogOut size={16} /> Logout
               </DropdownMenuItem>
                  </Link>

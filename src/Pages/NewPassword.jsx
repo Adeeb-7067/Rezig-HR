@@ -85,7 +85,7 @@ const ForgotPassword = () => {
             </div>
 
             <Link to="/Dashboard">
-              <button className="w-full text-[0.8rem] py-2 px-8 mb-6 mt-4 cursor-pointer rounded-sm bg-[#8629DF] text-white  hover:bg-[#7e61b9] transition-all">
+              <button className="w-full text-[0.8rem] py-2 px-8 mb-6 mt-4 cursor-pointer rounded-sm ds-bg-primary text-white ds-hover-bg-primary-90 transition-all">
                 Set Password
               </button>
             </Link>

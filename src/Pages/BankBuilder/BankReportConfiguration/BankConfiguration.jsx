@@ -11,7 +11,7 @@ import SummaryConfiguration from "./SummaryConfiguration";
 // import MiscConfiguration from "./MiscConfiguration";
 // import ConfigurationActions from "./ConfigurationActions";
 
-const BankConfiguration = () => {
+const BankConfiguration = ({ onBack }) => {
 
     return (
         <div className="space-y-6">
@@ -22,7 +22,7 @@ const BankConfiguration = () => {
 
             <MiscConfiguration />
 
-            <ConfigurationActions />
+            <ConfigurationActions onBack={onBack} />
 
         </div>
     );

@@ -11,7 +11,7 @@ const BankReportHeader = ({ onCreate, showConfig }) => {
                 onClick={onCreate}
                 className="
           flex items-center gap-2
-          bg-[#8629DF]
+          ds-bg-primary
           text-white
           h-8.5 px-4
           rounded-sm

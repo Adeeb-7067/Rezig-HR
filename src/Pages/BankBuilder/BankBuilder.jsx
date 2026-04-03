@@ -6,12 +6,12 @@ import BankConfiguration from "./BankReportConfiguration/BankConfiguration";
 
 const BankBuilder = () => {
 
-    const [activeTab, setActiveTab] = useState("config");
+    const [activeTab, setActiveTab] = useState("list");
     const [showConfig, setShowConfig] = useState(false);
 
     const tabs = [
-        { label: "Bank Report Configuration", value: "config" },
         { label: "List Of Bank Advice", value: "list" },
+        { label: "Bank Report Configuration", value: "config" },
     ];
 
     const handleCreate = () => {
@@ -40,7 +40,7 @@ const BankBuilder = () => {
 
             {/* Config Tab */}
             {activeTab === "config" && showConfig && (
-                <BankConfiguration />
+                <BankConfiguration onBack={() => setActiveTab('list')} />
             )}
 
         </div>

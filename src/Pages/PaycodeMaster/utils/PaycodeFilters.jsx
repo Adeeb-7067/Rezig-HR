@@ -10,7 +10,7 @@ const PaycodeFilters = ({
     return (
         <div className="mb-6">
             {/* Title */}
-            <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 mb-4 ">
                 List Of Pay Head
             </h1>
 
