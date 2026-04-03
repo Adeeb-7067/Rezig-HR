@@ -10,7 +10,7 @@ const ReportHeader = ({ onCreate }) => {
 
             <button
                 onClick={onCreate}
-                className="flex items-center justify-center gap-2 
+                className="flex items-center justify-center gap-1
         w-full sm:w-auto
         h-7.5 px-4 py-1.5 text-[0.8rem] text-white rounded-sm 
         bg-ds-primary hover:opacity-90 shadow transition-all cursor-pointer"

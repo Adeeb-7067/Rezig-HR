@@ -155,8 +155,8 @@ const ComponentGroupTable = ({ search = "", groups, onAddParameter = () => {} })
                                                             w-full px-3 py-1 flex justify-center items-center rounded-sm
                                                             bg-ds-primary dark:bg-gray-700
                                                             text-white dark:text-ds-primary
-                                                            hover:bg-ds-primary/60 hover:text-white
-                                                            dark:hover:bg-ds-primary dark:hover:text-white
+                                                            hover:bg-ds-primary hover:text-white
+                                                            dark:hover:bg-ds-primary dark:text-white
                                                             transition-all font-bold text-sm cursor-pointer
                                                         "
                                                     >

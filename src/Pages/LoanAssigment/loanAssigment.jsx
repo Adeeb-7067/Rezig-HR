@@ -635,7 +635,7 @@ const LoanAssignment = () => {
           <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 ">
           Loan Assigment
             </h1>
-            <div className="flex gap-2 sm:gap-3 shrink-0">
+            <div className="flex gap-2 sm:gap-2 shrink-0">
               <div className="ds-bg-primary text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px] sm:min-w-0">
                 <Link
                   to="/addLoan"
