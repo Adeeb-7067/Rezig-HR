@@ -168,10 +168,10 @@ const Calendar = ({
           className={`h-8 w-8 flex items-center justify-center rounded-full cursor-pointer text-[0.75rem] transition-colors
                      ${
                        isSelected
-                         ? "bg-purple-600 text-white"
+                         ? "bg-ds-primary text-white"
                          : isToday
                            ? "text-black"
-                           : "hover:bg-purple-500 dark:hover:bg-purple-500 text-gray-900 dark:text-gray-100"
+                           : "hover:bg-ds-primary/100 dark:hover:bg-ds-primary/90 text-gray-900 dark:text-gray-100"
                      }`}
         >
           {day}
@@ -280,7 +280,7 @@ const Calendar = ({
                         e.stopPropagation();
                         selectYear(year);
                       }}
-                      className="px-3 py-1.5 text-[0.75rem] hover:bg-purple-500 dark:hover:bg-gray-700 cursor-pointer transition-colors text-gray-900 dark:text-gray-100"
+                      className="px-3 py-1.5 text-[0.75rem] hover:bg-ds-primary/100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-gray-900 dark:text-gray-100"
                     >
                       {year}
                     </div>
@@ -329,7 +329,7 @@ const Calendar = ({
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-800",
             "px-2 ds-text-xs cursor-pointer",
-            "focus:border-2 focus:border-[#9853F9]",
+            "focus:border-2 focus:border-ds-primary",
             selectedDate
               ? "text-gray-700 dark:text-gray-100"
               : "text-gray-400 dark:text-gray-500",
@@ -375,7 +375,7 @@ const SelectField = ({
 
 const btnPrevReset = "btn-outline-half";
 const btnSave =
-  "btn-primary-half bg-[#8629DF] text-white hover:bg-[#8629DF]/80";
+  "btn-primary-half ds-bg-primary text-white hover:bg-ds-primary/80";
 
 const initialPayHeads = [
   {
@@ -580,7 +580,7 @@ export default function VariablePayment({ onNext, onPrev }) {
       <div className="w-full flex justify-center overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
           <table className="min-w-[800px] w-full ds-text-xs text-left border-collapse">
-            <thead className="bg-[#8629DF]  text-white font-semibold divide-x divide-gray-200 border">
+            <thead className="ds-bg-primary  text-white font-semibold divide-x divide-gray-200 border">
               <tr>
                 <th className="ds-text-xs px-2 py-2.5 min-w-[130px]">
                   Pay Head Name
@@ -617,7 +617,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                       onChange={(e) =>
                         handlePayHeadChange(idx, "checked", e.target.checked)
                       }
-                      className="h-3 w-3 accent-[#8629DF]"
+                      className="h-3 w-3 accent-ds-primary"
                     />
                     <span className="text-[13px]">{item.name}</span>
                   </td>
@@ -731,7 +731,7 @@ export default function VariablePayment({ onNext, onPrev }) {
           <div className="overflow-auto table-scroll">
             <table className="min-w-[900px] w-full ds-text-xs text-left border-collapse">
               <thead>
-                <tr className="bg-[#8629DF]  text-white font-semibold divide-x divide-purple-400 dark:divide-gray-700">
+                <tr className="ds-bg-primary  text-white font-semibold divide-x divide-purple-400 dark:divide-gray-700">
                   {[
                     "Pay Head Name",
                     "Accumulated",
@@ -756,7 +756,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                 {reimbursementRows.map((row, idx) => (
                   <tr
                     key={idx}
-                    className="divide-x divide-gray-200 dark:divide-gray-700 hover:bg-purple-50 dark:hover:bg-gray-700/50 transition-colors duration-150"
+                    className="divide-x divide-gray-200 dark:divide-gray-700 hover:bg-ds-primary/10 dark:hover:bg-gray-700/50 transition-colors duration-150"
                   >
                     <td className="px-3 py-3 min-w-[180px]">
                       <div className="flex items-center gap-2">
@@ -770,7 +770,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                               e.target.checked,
                             )
                           }
-                          className="h-3.5 w-3.5 accent-[#8629DF] cursor-pointer"
+                          className="h-3.5 w-3.5 accent-ds-primary cursor-pointer"
                         />
                         <span className="text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 leading-tight">
                           {row.name}
@@ -811,7 +811,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                               e.target.value,
                             )
                           }
-                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
+                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-ds-primary/30 dark:focus:ring-ds-primary/60 bg-white dark:bg-gray-700"
                         />
                       )}
                     </td>
@@ -833,7 +833,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                               e.target.value,
                             )
                           }
-                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
+                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-ds-primary/30 dark:focus:ring-ds-primary/60 bg-white dark:bg-gray-700"
                         />
                       )}
                     </td>
@@ -868,7 +868,7 @@ export default function VariablePayment({ onNext, onPrev }) {
         </h2>
         <button
           type="button"
-          className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-xs sm:text-[0.7rem] font-semibold px-3 sm:px-3 py-2 sm:py-2 rounded-sm w-full sm:w-auto"
+          className="ds-bg-primary hover:bg-ds-primary/90 text-white text-xs sm:text-[0.7rem] font-semibold px-3 sm:px-3 py-2 sm:py-2 rounded-sm w-full sm:w-auto"
         >
           Calculated Reimbursement Balance
         </button>

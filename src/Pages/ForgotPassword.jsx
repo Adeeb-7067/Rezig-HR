@@ -41,11 +41,11 @@ const ForgotPassword = () => {
               value={email}
               onChange={handleEmailChange}
               placeholder="Enter E-Mail / User Id"
-              className="bg-[#FAFAFA] text-[0.8rem] border border-[#8628DF] h-9 rounded-sm px-4 py-2  mb-6 w-full text-gray-600 font-semibold focus:border-[#8628DF] focus:border-2 "
+              className="bg-[#FAFAFA] text-[0.8rem] border ds-border-primary h-9 rounded-sm px-4 py-2  mb-6 w-full text-gray-600 font-semibold focus:border-ds-primary focus:border-2 "
             />
 
             <Link to="/OTP-verification">
-              <button className="w-full px-5 py-2 cursor-pointer rounded-sm ds-bg-primary text-[0.8rem] text-white font-semibold ds-hover-bg-primary-90 transition-all">
+              <button className="w-full px-5 py-2 cursor-pointer rounded-sm ds-bg-primary text-[0.8rem] text-white font-semibold hover:bg-ds-primary/90 transition-all">
                 SUBMIT
               </button>
             </Link>

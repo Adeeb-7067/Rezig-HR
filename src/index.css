@@ -40,7 +40,7 @@ body {
   font-size: 1.3rem;
 }
 
-.bg-primary {
+.bg-ds-primary {
   background-color: var(--color-ds-primary);
 }
 
@@ -154,7 +154,7 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
   /* custom css  */
   --color-purple-700: var(--color-ds-primary);
-  --color-text-purple-600: var(--color-ds-primary);
+  --color-text-ds-primary: var(--color-ds-primary);
   --text-xs: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
   --text-sm: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
   --text-base: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);

@@ -133,7 +133,7 @@ const FormulaList = ({ data, onView, onEdit, onDelete }) => {
 
             {/* Header */}
             <div
-              className="ds-text-xs font-semibold text-white bg-primary py-3 px-6"
+              className="ds-text-xs font-semibold text-white bg-ds-primary py-3 px-6"
               style={gridStyle}
             >
               <div>Formula Code</div>

@@ -24,7 +24,7 @@ const ShiftMasterTable = () => {
                     <div className="min-w-[650px]">
 
                         {/* Header */}
-                        <div className="bg-primary text-white">
+                        <div className="bg-ds-primary text-white">
                             <table className="w-full table-fixed ds-text-xs">
                                 <thead>
                                     <tr>

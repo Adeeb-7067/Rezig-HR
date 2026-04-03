@@ -133,7 +133,7 @@ const ComponentGroupTable = ({ search = "", groups, onAddParameter = () => {} })
                                                 {hasCode ? (
                                                     <>
                                                         <td className="px-4 py-2 text-[0.65rem] font-bold">
-                                                            <span className="bg-purple-50 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary px-2 py-0.5 rounded-sm border border-purple-100 dark:border-ds-primary/50">
+                                                            <span className="bg-ds-primary/10 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary px-2 py-0.5 rounded-sm border border-ds-primary/20 dark:border-ds-primary/50">
                                                                 {item.code}
                                                             </span>
                                                         </td>

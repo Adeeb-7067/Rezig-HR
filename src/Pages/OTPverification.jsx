@@ -62,7 +62,7 @@ Enter the code we sent to you email
       key={i}
       type="text"
       maxLength={1}
-      className="w-7 h-7 sm:w-8 sm:h-8 md:w-[45px] md:h-[45px] text-[24px] sm:text-[0.8rem] border ds-border-primary focus:border-2 text-center text-gray-600 rounded-lg bg-[#FAFAFA] ds-focus-ring-primary transition-all duration-200"
+      className="w-7 h-7 sm:w-8 sm:h-8 md:w-[45px] md:h-[45px] text-[24px] sm:text-[0.8rem] border ds-border-primary focus:border-2 text-center text-gray-600 rounded-lg bg-[#FAFAFA] focus:ring-ds-primary transition-all duration-200"
       onChange={(e) => handleChange(e, i)}
       onKeyDown={(e) => handleKeyDown(e, i)}
       ref={(el) => (inputRefs.current[i] = el)}
@@ -71,7 +71,7 @@ Enter the code we sent to you email
 </div>
 
                <Link to="/new-password">
-            <button className="w-full py-2 px-8 cursor-pointer rounded-lg ds-bg-primary text-white font-semibold ds-hover-bg-primary-90 transition-all">
+            <button className="w-full py-2 px-8 cursor-pointer rounded-lg ds-bg-primary text-white font-semibold hover:bg-ds-primary/90 transition-all">
               Verify
 
                

@@ -183,10 +183,10 @@ const FieldsColumnSelectorTable = ({
 
       {/* HEADER */}
       <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] bg-ds-primary text-white text-[11px] font-medium">
-        <div className="px-3 py-2 border-r border-purple-400/50">
+        <div className="px-3 py-2 border-r border-ds-primary/50/50">
           Selected Fields
         </div>
-        <div className="px-3 py-2 border-r border-purple-400/50">
+        <div className="px-3 py-2 border-r border-ds-primary/50/50">
           Changed Captions
         </div>
         <div className="px-3 py-2">

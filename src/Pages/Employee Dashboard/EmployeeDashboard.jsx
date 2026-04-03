@@ -166,7 +166,7 @@ const SalaryMonthCard = ({
         onClick?.();
       }
     }}
-    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 dark:hover:border-ds-primary transition-all hover:shadow-lg"
+    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-ds-primary/30 dark:hover:border-ds-primary transition-all hover:shadow-lg"
   >
     <div
       className="absolute top-3 right-3 flex items-center gap-1"
@@ -192,7 +192,7 @@ const SalaryMonthCard = ({
       {month}
     </p>
 
-    <div className="bg-[#FAF6FE] dark:bg-gray-700 flex flex-col items-center justify-center mb-2 rounded-lg py-3 px-4">
+    <div className="bg-ds-primary/10 dark:bg-gray-700 flex flex-col items-center justify-center mb-2 rounded-lg py-3 px-4">
       <p className="text-[0.8rem] md:text-[1rem] font-medium ds-text-primary ">
         {netPay}
       </p>
@@ -579,7 +579,7 @@ const attendanceSummary = [
   { count: 18, label: "Present", color: "bg-green-500" },
   { count: 0, label: "LOP", color: "bg-red-500" },
   { count: 2, label: "Half Day", color: "bg-amber-500" },
-  { count: 1, label: "Leave", color: "bg-purple-500" },
+  { count: 1, label: "Leave", color: "bg-ds-primary/100" },
 ];
 
 const GRAY_RING = "#E5E7EB";
@@ -776,7 +776,7 @@ const WishesCard = () => {
             >
               {/* Top Chip */}
               <span
-                className={`absolute -top-2 left-5 ${activeTab === "anniversary" ? "bg-blue-100 text-blue-600" : activeTab === "joining" ? "bg-green-100 text-green-600" : "bg-purple-100 text-purple-600"} text-[0.65rem] px-2 py-0.5 rounded-full font-medium`}
+                className={`absolute -top-2 left-5 ${activeTab === "anniversary" ? "bg-blue-100 text-blue-600" : activeTab === "joining" ? "bg-green-100 text-green-600" : "bg-ds-primary/10 text-ds-primary"} text-[0.65rem] px-2 py-0.5 rounded-full font-medium`}
               >
                 {config.label}
               </span>
@@ -841,7 +841,7 @@ const legendItems = [
   { code: "W", label: "Week Off", color: "bg-gray-400" },
   { code: "H", label: "Holiday", color: "bg-blue-500" },
   { code: "M", label: "Half Day", color: "bg-amber-500" },
-  { code: "S", label: "Leave", color: "bg-purple-500" },
+  { code: "S", label: "Leave", color: "bg-ds-primary/100" },
 ];
 
 const summaryBoxes = [
@@ -1048,7 +1048,7 @@ const CalendarCard = () => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-4 min-w-0">
       {/* <div className="flex items-center gap-2 mb-3">
-        <div className="w-8 h-8 rounded-lg bg-[#F3E9FF] dark:bg-ds-primary/30 flex items-center justify-center">
+        <div className="w-8 h-8 rounded-lg bg-ds-primary/10 dark:bg-ds-primary/30 flex items-center justify-center">
           <CalendarIcon className="w-4 h-4 ds-text-primary" />
         </div>
         <h2 className="text-[1rem] font-bold text-[#333333] dark:text-gray-400">
@@ -1284,7 +1284,7 @@ const HolidaysCard = () => {
                       {h}
                       {(h.includes("Republic Day") ||
                         h.includes("New Year")) && (
-                        <span className="ml-auto px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary border border-purple-100 dark:border-ds-primary/50">
+                        <span className="ml-auto px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-ds-primary/10 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary border border-ds-primary/20 dark:border-ds-primary/50">
                           National Holiday
                         </span>
                       )}

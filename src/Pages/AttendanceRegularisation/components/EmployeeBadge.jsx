@@ -4,7 +4,7 @@ const EmployeeBadge = ({ employee }) => {
     if (!employee) return null;
 
     return (
-        <div className=" flex items-center gap-2 border border-purple-200 dark:border-ds-primary rounded-sm px-3 py-1.5 bg-white dark:bg-gray-800 shadow-sm">
+        <div className=" flex items-center gap-2 border border-ds-primary/30 dark:border-ds-primary rounded-sm px-3 py-1.5 bg-white dark:bg-gray-800 shadow-sm">
 
             <img
                 src="https://i.pravatar.cc/40"

@@ -144,10 +144,10 @@ const Calendar = ({
           className={`h-8 w-8 flex items-center justify-center rounded-full cursor-pointer text-[0.75rem] transition-colors
                      ${
                        isSelected
-                         ? "bg-purple-600 text-white"
+                         ? "bg-ds-primary text-white"
                          : isToday
                            ? "text-black"
-                           : "hover:bg-purple-500 dark:hover:bg-purple-500 text-gray-900 dark:text-gray-100"
+                           : "hover:bg-ds-primary/100 dark:hover:bg-ds-primary/90 text-gray-900 dark:text-gray-100"
                      }`}
         >
           {day}
@@ -256,7 +256,7 @@ const Calendar = ({
                         e.stopPropagation();
                         selectYear(year);
                       }}
-                      className="px-3 py-1.5 text-[0.75rem] hover:bg-purple-500 dark:hover:bg-gray-700 cursor-pointer transition-colors text-gray-900 dark:text-gray-100"
+                      className="px-3 py-1.5 text-[0.75rem] hover:bg-ds-primary/100 dark:hover:bg-gray-700 cursor-pointer transition-colors text-gray-900 dark:text-gray-100"
                     >
                       {year}
                     </div>
@@ -305,7 +305,7 @@ const Calendar = ({
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-800",
             "px-2 ds-text-xs cursor-pointer",
-            "focus:border-2 focus:border-[#9853F9]",
+            "focus:border-2 focus:border-ds-primary",
             selectedDate
               ? "text-gray-700 dark:text-gray-100"
               : "text-gray-400 dark:text-gray-500",
@@ -540,7 +540,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       <div className="w-full flex justify-center  overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full  dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
           <table className="min-w-[800px] w-full ds-text-xs text-left border-collapse rounded-sm shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
-            <thead className="bg-[#8629DF] text-white font-semibold rounded-t-md">
+            <thead className="ds-bg-primary text-white font-semibold rounded-t-md">
               <tr className="divide-x divide-gray-200">
                 <th className="ds-text-xs px-2 py-3 min-w-[130px]">
                   Pay Head Name
@@ -577,7 +577,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       onChange={(e) =>
                         handlePayHeadChange(idx, "checked", e.target.checked)
                       }
-                      className="h-3 w-3 accent-[#8629DF]"
+                      className="h-3 w-3 accent-ds-primary"
                     />
                     <span className="text-[13px]">{item.name}</span>
                   </td>
@@ -701,7 +701,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       <div className="w-full mx-auto mt-6 bg-white dark:bg-[#E4E6EB]/10 border border-gray-300 dark:border-gray-600 rounded-sm overflow-auto sm:overflow-visible">
         <table className="w-full text-[0.8rem] border-separate border-spacing-0 ">
           <thead>
-            <tr className="bg-[#8629DF]  text-white ds-text-xs">
+            <tr className="ds-bg-primary  text-white ds-text-xs">
               <th className="px-6 py-3 text-left font-semibold rounded-tl-sm">
                 Pay Head Name
               </th>
@@ -727,7 +727,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       {!row.isSplit && (
                         <input
                           type="checkbox"
-                          className="w-3 h-3 accent-[#8629DF]"
+                          className="w-3 h-3 accent-ds-primary"
                           checked={!!row.checked}
                           onChange={(e) =>
                             handleOneTimePaymentChange(
@@ -775,11 +775,11 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                             handleFrequencyChange(row.id, row.frequency - 1)
                           }
                           disabled={row.frequency <= 1}
-                          className="px-2 py-1 text-xs bg-purple-100 text-purple-600 rounded hover:bg-purple-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                          className="px-2 py-1 text-xs bg-ds-primary/10 text-ds-primary rounded hover:bg-ds-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           −
                         </button>
-                        <span className="border border-purple-400 rounded-md px-3 py-1 text-purple-600 font-medium min-w-[40px] text-center">
+                        <span className="border border-ds-primary/50 rounded-md px-3 py-1 text-ds-primary font-medium min-w-[40px] text-center">
                           {row.frequency}
                         </span>
                         <button
@@ -787,7 +787,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                           onClick={() =>
                             handleFrequencyChange(row.id, row.frequency + 1)
                           }
-                          className="px-2 py-1 text-xs bg-purple-100 text-purple-600 rounded hover:bg-purple-200"
+                          className="px-2 py-1 text-xs bg-ds-primary/10 text-ds-primary rounded hover:bg-ds-primary/20"
                         >
                           +
                         </button>
@@ -876,7 +876,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
           </h1>
           <div>
             <textarea
-              className="w-full h-[120px] p-3 ds-text-xs border border-gray-300 dark:border-gray-700 dark:bg-[#E4E6EB]/10 text-black dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent resize-none"
+              className="w-full h-[120px] p-3 ds-text-xs border border-gray-300 dark:border-gray-700 dark:bg-[#E4E6EB]/10 text-black dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-ds-primary/50 focus:border-transparent resize-none"
               placeholder="Write Here ..."
               value={formData.notes}
               onChange={handleNotesChange}
@@ -885,32 +885,25 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
         </div>
       </div>
 
-      <div
-        className="
-    flex flex-row sm:flex-row 
-    justify-end 
-    w-full 
-    gap-2 
-    mt-2
-  "
-      >
-        <button
+          {/* Buttons */}
+          <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-4">
+          <button
           onClick={onPrev}
-          className="btn-outline"
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Previous
         </button>
-
         <button
-          onClick={handleReset}
-          className="btn-outline"
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Reset
         </button>
-
         <button
+          type="button"
           onClick={onNext}
-          className="btn-primary"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white"
         >
           Next
         </button>

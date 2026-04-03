@@ -101,7 +101,7 @@ const AttendanceBulkRegularizeModal = ({
               <div className="border dark:border-gray-700 rounded-md p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <p className="font-medium text-[0.8rem]">Shift Details</p>
-                  <span className="bg-purple-100 dark:bg-ds-primary/30 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
+                  <span className="bg-ds-primary/10 dark:bg-ds-primary/30 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
                     Gurugram Office
                   </span>
                 </div>

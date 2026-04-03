@@ -154,7 +154,7 @@ const FieldsRowSelectorTable = ({
 
       {/* HEADER */}
       <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] bg-ds-primary text-white text-[0.8rem] font-normal">
-        <div className="px-3 py-1.5 border-r border-purple-400/50">
+        <div className="px-3 py-1.5 border-r border-ds-primary/50/50">
           Selected Fields
         </div>
         <div className="px-3 py-1.5">

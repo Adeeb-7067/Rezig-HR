@@ -84,7 +84,7 @@ const LeaveConfigurationSection = () => {
       bg-white dark:bg-gray-700
       text-xs text-left
       text-gray-700 dark:text-gray-200
-      hover:border-purple-500
+      hover:border-ds-primary/60
       transition-colors
     "
               >
@@ -150,7 +150,7 @@ const LeaveConfigurationSection = () => {
       bg-white dark:bg-gray-700
       text-xs text-left
       text-gray-700 dark:text-gray-200
-      hover:border-purple-500
+      hover:border-ds-primary/60
       transition-colors
     "
               >

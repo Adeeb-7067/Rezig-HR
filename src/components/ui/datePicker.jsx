@@ -229,7 +229,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
                             "text-gray-800 dark:text-gray-100",
                             "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40",
                             year === currentDate.getFullYear() &&
-                              "bg-purple-50 dark:bg-ds-primary/20 font-semibold"
+                              "bg-ds-primary/10 dark:bg-ds-primary/20 font-semibold"
                           )}
                         >
                           {year}

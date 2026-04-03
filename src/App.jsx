@@ -153,7 +153,7 @@ const AddLoan = lazy(() => import("./Pages/LoanAssigment/addLoan"));
 
 const PageLoader = () => (
   <div className="flex items-center justify-center h-screen">
-    <div className="animate-spin rounded-full h-10 w-10 border-4 border-purple-500 border-t-transparent"></div>
+    <div className="animate-spin rounded-full h-10 w-10 border-4 border-ds-primary/60 border-t-transparent"></div>
   </div>
 );
 

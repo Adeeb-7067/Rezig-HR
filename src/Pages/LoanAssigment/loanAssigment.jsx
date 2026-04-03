@@ -48,7 +48,7 @@ const InlineSelect = ({
           text-gray-600 dark:text-gray-100
           shadow-sm
           hover:border-gray-400 dark:hover:border-gray-500
-          focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset
+          focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset
           transition-all duration-200
           ${className}
         `}
@@ -59,7 +59,7 @@ const InlineSelect = ({
 
         <ChevronDown
           size={14}
-          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+          className={`transition-transform ${open ? "rotate-180 text-ds-primary" : "text-gray-400"
             }`}
         />
       </button>
@@ -82,10 +82,10 @@ const InlineSelect = ({
               className={`
                 px-3 py-1.5 cursor-pointer
                 transition-all duration-150
-                hover:bg-[#9853F9]/15 hover:text-[#9853F9]
+                hover:bg-ds-primary/15 hover:text-ds-primary
                 dark:text-gray-100
                 ${value === opt.value
-                  ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                  ? "bg-ds-primary/20 text-ds-primary font-medium"
                   : ""
                 }
               `}
@@ -568,7 +568,7 @@ const LoanAssignment = () => {
                       ? handleClearAll(filterKey)
                       : handleSelectAll(filterKey)
                   }
-                  className="text-sm ds-text-primary dark:text-[#8629DF] font-medium"
+                  className="text-sm ds-text-primary dark:text-ds-primary font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
@@ -581,11 +581,11 @@ const LoanAssignment = () => {
                   <div
                     key={item}
                     onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-ds-primary/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
                       className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item)
-                        ? "bg-[#8629DF] border-[#8629DF]"
+                        ? "ds-bg-primary ds-border-primary"
                         : "border-gray-300"
                         }`}
                     >
@@ -632,11 +632,11 @@ const LoanAssignment = () => {
         <div className="p-3 min-h-screen sm:p-4 md:p-5 w-full min-w-0 max-w-full overflow-x-hidden">
           {/* Header */}
           <div className="flex flex-row justify-between items-stretch sm:items-center gap-3 mt-2 mb-6 sm:mb-8 w-full">
-            <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50 truncate">
-              Loan Assigment
+          <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 ">
+          Loan Assigment
             </h1>
             <div className="flex gap-2 sm:gap-3 shrink-0">
-              <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px] sm:min-w-0">
+              <div className="ds-bg-primary text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px] sm:min-w-0">
                 <Link
                   to="/addLoan"
                   className="flex items-center justify-center gap-1 text-[0.7rem] sm:text-[0.8rem]"
@@ -651,7 +651,7 @@ const LoanAssignment = () => {
           <div className="flex flex-row gap-2 w-full mb-6 sm:mb-8">
             {/* SEARCH */}
             <div ref={searchRef} className="flex-1 min-w-0 relative">
-              <div className="flex items-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-sm px-3 shadow-sm focus-within:border-[#8629DF] focus-within:ring-1 focus-within:ring-[#8629DF] transition-all h-9 sm:h-[35px]">
+              <div className="flex items-center bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-sm px-3 shadow-sm focus-within:border-ds-primary focus-within:ring-1 focus-within:ring-ds-primary transition-all h-9 sm:h-[35px]">
                 <input
                   type="text"
                   placeholder="Search here"
@@ -685,7 +685,7 @@ const LoanAssignment = () => {
                                         {item.employeeName}
                                     </span>
                                     <span className="text-[0.7rem] text-gray-400 sm:ml-2 block sm:inline">
-                                        • {item.dept} • {item.location}
+                                        • {item.location}
                                     </span>
                     </div>
                   ))}
@@ -697,7 +697,7 @@ const LoanAssignment = () => {
             <div className="relative shrink-0">
               <button
                                      onClick={() => setOpen((prev) => !prev)}
-                                     className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
+                                     className="ds-bg-primary dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
                                  >
                                      <HiAdjustmentsHorizontal className="w-4 h-4" />
                                      <span>Filter</span>
@@ -727,7 +727,7 @@ const LoanAssignment = () => {
                         >
                           <input
                             type="checkbox"
-                            className="w-4 h-4 accent-[#8629DF]"
+                            className="w-4 h-4 accent-ds-primary"
                             checked={tempVisibleFilters[f.key]}
                             onChange={(e) =>
                               handleTempCheckboxChange(f.key, e.target.checked)
@@ -750,8 +750,8 @@ const LoanAssignment = () => {
                         disabled={!isAnyFilterChecked}
                         className={`btn-primary-half
     ${isAnyFilterChecked
-                        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                        ? "ds-bg-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+                        : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
                       }
   `}
                       >

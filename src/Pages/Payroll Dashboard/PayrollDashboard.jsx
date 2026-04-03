@@ -69,10 +69,10 @@ const StatCard = ({ title, value, icon: Icon, borderColor, iconBg, color }) => {
             <Icon size={16} className="sm:w-[18px] sm:h-[18px] text-white" />
           )}
         </div>
-        <div className="p-1 sm:p-1.5 rounded-bl-sm bg-purple-100 dark:bg-ds-primary/30 absolute top-0 right-0">
+        <div className="p-1 sm:p-1.5 rounded-bl-sm bg-ds-primary/10 dark:bg-ds-primary/30 absolute top-0 right-0">
           <FiDownload
             size={14}
-            className="sm:w-4 sm:h-4 text-[#7B2CBF] dark:text-ds-primary cursor-pointer hover:scale-110 transition"
+            className="sm:w-4 sm:h-4 text-ds-primary dark:text-ds-primary cursor-pointer hover:scale-110 transition"
           />
         </div>
       </div>
@@ -465,7 +465,7 @@ const PayrollDashboard = () => {
 
       {/* Buttons */}
       <div className="flex flex-row justify-between gap-2 sm:p-3">
-        <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full min-w-0 sm:max-w-[400px] md:flex-1 md:max-w-none xl:h-[36px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all">
+        <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full min-w-0 sm:max-w-[400px] md:flex-1 md:max-w-none xl:h-[36px] focus-within:border-ds-primary focus-within:border-2 focus-within:shadow-md transition-all">
           <input
             type="text"
             placeholder="Search here"
@@ -560,7 +560,7 @@ const PayrollDashboard = () => {
         </div>
       </div>
 
-      <div className="mt-6">
+      <div className="mt-6 px-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-3">
           <StatCard title="Total Headcount" value="1,000" icon={Users} iconBg="#E9F3FF" borderColor="#0088FF" />
           <StatCard title="Attendance Process" value="900" icon={Clock} iconBg="#EBF9EE" borderColor="#34C759" />
@@ -586,8 +586,8 @@ const PayrollDashboard = () => {
           {/* ===== TOP STATS ===== */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border rounded-lg bg-white dark:bg-gray-800 dark:border-gray-700 divide-y lg:divide-y-0 lg:divide-x divide-gray-100 dark:divide-gray-700 overflow-hidden">
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <BsFillPeopleFill className="text-purple-600 dark:text-ds-primary" size={16} />
+              <div className="w-8 h-8 rounded-full bg-ds-primary/10 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <BsFillPeopleFill className="text-ds-primary dark:text-ds-primary" size={16} />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Total Processed</p>
@@ -599,8 +599,8 @@ const PayrollDashboard = () => {
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <HiOutlineCurrencyRupee className="text-purple-600 dark:text-ds-primary" size={16} />
+              <div className="w-8 h-8 rounded-full bg-ds-primary/10 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <HiOutlineCurrencyRupee className="text-ds-primary dark:text-ds-primary" size={16} />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Total Gross Pay</p>
@@ -609,8 +609,8 @@ const PayrollDashboard = () => {
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <MdRemove className="text-purple-600 dark:text-ds-primary" size={18} />
+              <div className="w-8 h-8 rounded-full bg-ds-primary/10 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <MdRemove className="text-ds-primary dark:text-ds-primary" size={18} />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Total Deduction</p>
@@ -619,8 +619,8 @@ const PayrollDashboard = () => {
             </div>
 
             <div className="flex gap-3 p-4 items-start">
-              <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <IoCheckmark className="text-purple-600 dark:text-ds-primary" size={18} />
+              <div className="w-8 h-8 rounded-full bg-ds-primary/10 dark:bg-ds-primary/40 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <IoCheckmark className="text-ds-primary dark:text-ds-primary" size={18} />
               </div>
               <div>
                 <p className="text-xs text-gray-500 dark:text-gray-400">Total Net Pay</p>
@@ -733,7 +733,7 @@ const PayrollDashboard = () => {
                     </span>
                   </div>
                   <div className="flex justify-end gap-2 mt-3">
-                    <button className="px-4 py-1.5 text-xs border ds-border-primary ds-text-primary rounded-md hover:bg-purple-50 dark:hover:bg-ds-primary/20 cursor-pointer transition-colors">
+                    <button className="px-4 py-1.5 text-xs border ds-border-primary ds-text-primary rounded-md hover:bg-ds-primary/10 dark:hover:bg-ds-primary/20 cursor-pointer transition-colors">
                       Mark as Completed
                     </button>
                     <button className="px-4 py-1.5 text-xs ds-bg-primary text-white rounded-md hover:bg-ds-primary/90 cursor-pointer transition-colors">
@@ -768,7 +768,7 @@ const PayrollDashboard = () => {
               >
                 <div className="w-full lg:w-[220px]">
 
-                  <div className="flex items-center justify-between bg-[#F7F2FD] dark:bg-gray-700 px-3 py-2">
+                  <div className="flex items-center justify-between bg-ds-primary/10 dark:bg-gray-700 px-3 py-2">
                     <div className="lg:hidden w-full flex justify-center">
                       <div className="w-10 h-1 rounded-full bg-gray-300 dark:bg-gray-500" />
                     </div>
@@ -822,7 +822,7 @@ const PayrollDashboard = () => {
                         key={r.id}
                         className="flex items-center gap-2 px-2 py-2.5 border-2 border-gray-50 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 drop-shadow-xs rounded-sm transition-colors"
                       >
-                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-purple-50 dark:bg-ds-primary/30">
+                        <div className="w-8 h-8 rounded-sm flex items-center justify-center flex-shrink-0 bg-ds-primary/10 dark:bg-ds-primary/30">
                           <img
                             src={r.icon}
                             alt={r.name}
@@ -892,7 +892,7 @@ const PayrollDashboard = () => {
                   <button
                     key={i}
                     onClick={() => setShowDrawer(true)}
-                    className="w-10 h-10 p-2 rounded-lg flex items-center justify-center border border-gray-100 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm hover:shadow-md hover:bg-purple-50 dark:hover:bg-ds-primary/20 transition-all cursor-pointer flex-shrink-0"
+                    className="w-10 h-10 p-2 rounded-lg flex items-center justify-center border border-gray-100 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm hover:shadow-md hover:bg-ds-primary/10 dark:hover:bg-ds-primary/20 transition-all cursor-pointer flex-shrink-0"
                   >
                     {icon}
                   </button>

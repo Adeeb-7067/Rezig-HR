@@ -8,7 +8,7 @@ const statusColors = {
     W: "bg-gray-400",
     H: "bg-blue-500",
     M: "bg-yellow-500",
-    S: "bg-purple-500",
+    S: "bg-ds-primary/100",
 };
 
 const statusLabels = {

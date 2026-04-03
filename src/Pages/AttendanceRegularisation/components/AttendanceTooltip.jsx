@@ -87,7 +87,7 @@ const AttendanceTooltip = ({
         <div className={ARROW_LEFT} />
         <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden`}>
           
-          <div className="bg-purple-100 dark:bg-ds-primary/40 px-4 py-2.5 rounded-t-[16.26px] flex justify-between items-center gap-2">
+          <div className="bg-ds-primary/10 dark:bg-ds-primary/40 px-4 py-2.5 rounded-t-[16.26px] flex justify-between items-center gap-2">
             <p className="text-gray-800 dark:text-white font-semibold text-sm shrink-0">
               {dateStr}
             </p>
@@ -152,7 +152,7 @@ const AttendanceTooltip = ({
         </div>
 
         {/* Body */}
-        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] ds-text-xs bg-[#FAF6FE] dark:bg-gray-900/50">
+        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] ds-text-xs bg-ds-primary/10 dark:bg-gray-900/50">
           <div className="flex justify-between items-center gap-4">
             <span className="text-gray-600 dark:text-gray-400 shrink-0">Shift :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">

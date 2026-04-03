@@ -102,8 +102,8 @@ const Level0MenuItem = ({ item, active, onClick }) => (
     onClick={onClick}
     className={`flex items-center gap-2 p-2 text-[0.7rem] font-semibold rounded cursor-pointer transition whitespace-nowrap
       ${active
-        ? "bg-[#8629DF] text-white"
-        : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
+        ? "ds-bg-primary text-white"
+        : "text-gray-700 dark:text-gray-300 hover:bg-ds-primary hover:text-white"
       }`}
   >
     {item.icon}
@@ -121,12 +121,12 @@ const Level1MenuItem = ({ item, active, onClick }) => (
       onClick={onClick}
       className={`flex items-center text-[0.7rem] font-medium px-2 py-1 cursor-pointer rounded transition whitespace-nowrap
         ${active
-          ? "bg-[#F3E9FF] text-[#8629DF] dark:bg-[#2a1b44] dark:text-[#A855F7]"
-          : "text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
+          ? "bg-ds-primary/10 ds-text-primary dark:bg-ds-primary/30 dark:text-ds-primary"
+          : "text-gray-700 dark:text-gray-300 hover:bg-ds-primary hover:text-white"
         }`}
     >
       {active && (
-        <GoTriangleRight className="absolute -left-4 text-[#8629DF] dark:text-[#A855F7]" />
+        <GoTriangleRight className="absolute -left-4 ds-text-primary dark:text-ds-primary" />
       )}
       {item.name}
     </div>

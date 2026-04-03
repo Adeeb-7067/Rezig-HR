@@ -103,7 +103,7 @@ if(theme ==='light'){
               <div className="flex items-center gap-3 cursor-pointer">
                   {/* Avatar */}
                 <div className="relative">
-                  <Avatar className="h-9 w-9 border border-purple-200 shadow-sm">
+                  <Avatar className="h-9 w-9 border border-ds-primary/30 shadow-sm">
                     <AvatarImage src='https://i.pravatar.cc/100' alt='Erica' />
                     <AvatarFallback>A</AvatarFallback>
                   </Avatar>

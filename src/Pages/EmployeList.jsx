@@ -52,7 +52,7 @@ const InlineSelect = ({
           text-gray-600 dark:text-gray-100
           shadow-sm
           hover:border-gray-400 dark:hover:border-gray-500
-          focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset
+          focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset
           transition-all duration-200
           ${className}
         `}
@@ -63,7 +63,7 @@ const InlineSelect = ({
 
         <ChevronDown
           size={14}
-          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"
+          className={`transition-transform ${open ? "rotate-180 text-ds-primary" : "text-gray-400"
             }`}
         />
       </button>
@@ -87,10 +87,10 @@ const InlineSelect = ({
               className={`
                 px-3 py-1.5 cursor-pointer
                 transition-all duration-150
-                hover:bg-[#9853F9]/15 hover:text-[#9853F9]
+                hover:bg-ds-primary/15 hover:text-ds-primary
                 dark:text-gray-100
                 ${value === opt.value
-                  ? "bg-[#9853F9]/20 text-[#9853F9] font-medium"
+                  ? "bg-ds-primary/20 text-ds-primary font-medium"
                   : ""
                 }
               `}
@@ -609,7 +609,7 @@ const EmployeList = () => {
       <div className="grid grid-cols-2 md:flex  md:justify-around  gap-2 md:gap-2 w-full flex-wrap-reverse md:flex-nowrap">
         <div
           className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[70%] xl:h-[35px] 
-  focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
+  focus-within:border-ds-primary focus-within:border-2 focus-within:shadow-md transition-all"
         >
           <input
             type="text"

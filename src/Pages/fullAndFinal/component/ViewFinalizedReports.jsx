@@ -5,7 +5,7 @@ const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-
 const sectionTitleClass = "text-base font-semibold mb-1 text-gray-500";
 const labelClass = "block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs mb-1";
 const inputClass =
-  "w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5";
+  "w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset rounded-sm px-4 py-1.5";
 const tableHeaderClass = "bg-ds-primary text-white text-left text-[0.65rem] font-semibold p-2 first:rounded-tl last:rounded-tr";
 const tableHeaderRightClass = "bg-ds-primary text-white text-right text-[0.65rem] font-semibold p-2";
 

@@ -20,7 +20,7 @@ const FormulaHeader = () => {
             text-ds-primary
             px-4 py-1.5
             rounded-md
-            hover:bg-purple-50
+            hover:bg-ds-primary/10
             dark:hover:bg-ds-primary/30
             transition
           "

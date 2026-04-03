@@ -70,7 +70,7 @@ const SelectedParameters = ({ selectedParameters = [], onRemove = () => {}, onUp
                     className={`flex items-center gap-1 text-[0.65rem] font-bold px-2 py-0.5 rounded-sm border transition-all
                         ${isSequenced
                             ? "ds-bg-primary text-white ds-border-primary"
-                        : "text-ds-primary bg-[#F7F2FD] dark:bg-[#2b1d3f] border-purple-100 dark:border-ds-primary/80 hover:bg-ds-primary hover:text-white"
+                        : "text-ds-primary bg-ds-primary/10 dark:bg-[#2b1d3f] border-ds-primary/20 dark:border-ds-primary/80 hover:bg-ds-primary hover:text-white"
                         }`}
                 >
                     {/* <ArrowUpDown size={10} /> */}

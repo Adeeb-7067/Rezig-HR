@@ -444,7 +444,7 @@ const MonthlyAttendanceImport = () => {
       <div className="grid grid-cols-2 md:flex gap-2 w-full">
         <div
           className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full md:w-[90%] xl:h-[35px] 
-       focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all"
+       focus-within:border-ds-primary focus-within:border-2 focus-within:shadow-md transition-all"
         >
           <input
             type="text"

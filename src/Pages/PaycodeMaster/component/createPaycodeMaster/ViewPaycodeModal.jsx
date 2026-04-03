@@ -22,7 +22,7 @@ const InfoCard = ({ title, rows }) => {
 
             {/* Header Strip */}
             <div className="
-        bg-primary
+        bg-ds-primary
         text-white
         text-[11px]
         font-semibold
@@ -39,7 +39,7 @@ const InfoCard = ({ title, rows }) => {
         px-3 py-1.5
         text-[11px]
         font-medium
-        text-purple-600
+        text-ds-primary
         bg-gray-50 dark:bg-gray-800
         border-b border-gray-200 dark:border-gray-700
       ">
@@ -125,9 +125,9 @@ const ViewPaycodeModal = ({ open, onClose, data }) => {
                     </div>
 
                     {/* Employee Code */}
-                    <div className="text-center text-sm sm:text-base font-medium text-purple-600">
+                    <div className="text-center text-sm sm:text-base font-medium text-ds-primary">
                         Employee Code :-{" "}
-                        <span className="font-semibold text-purple-700">
+                        <span className="font-semibold text-ds-primary">
                             {data?.code}
                         </span>
                     </div>

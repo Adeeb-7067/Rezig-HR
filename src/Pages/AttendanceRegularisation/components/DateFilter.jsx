@@ -137,7 +137,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
       {/* ── Original closed trigger UI (unchanged) ── */}
       <div
         onClick={handleOpen}
-        className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 dark:bg-gray-800 flex items-center justify-between cursor-pointer hover:border-purple-400 dark:hover:border-ds-primary transition-colors"
+        className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 dark:bg-gray-800 flex items-center justify-between cursor-pointer hover:border-ds-primary/50 dark:hover:border-ds-primary transition-colors"
       >
         <CalendarIcon className="text-gray-600 dark:text-gray-400" size={14} />
 
@@ -205,7 +205,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
                           "text-gray-800 dark:text-gray-100",
                           "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40",
                           year === currentDate.getFullYear() &&
-                            "bg-purple-50 dark:bg-ds-primary/20 font-semibold"
+                            "bg-ds-primary/10 dark:bg-ds-primary/20 font-semibold"
                         )}
                       >
                         {year}

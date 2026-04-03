@@ -102,7 +102,7 @@ const AttendanceRegularizeModal = ({
           <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <p className="font-medium text-[0.8rem] text-gray-800 dark:text-gray-100">Shift Details</p>
-              <span className="bg-purple-100 dark:bg-ds-primary/40 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
+              <span className="bg-ds-primary/10 dark:bg-ds-primary/40 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
                 Gurugram Office
               </span>
             </div>

@@ -24,7 +24,7 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
       {...props}
     />
   </div>

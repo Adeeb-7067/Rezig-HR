@@ -12,7 +12,7 @@ export default function Stepper({ steps, currentStep = 0 }) {
 
         {/* Progress line */}
         <div
-          className="absolute top-1/2 left-0 h-[2px] bg-[#8629DF] dark:bg-purple-600 z-10"
+          className="absolute top-1/2 left-0 h-[2px] ds-bg-primary dark:bg-ds-primary z-10"
           style={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
         />
 
@@ -31,10 +31,10 @@ export default function Stepper({ steps, currentStep = 0 }) {
         relative flex items-center justify-center rounded-full z-20
         ${
           index === currentStep
-            ? "w-5 h-5 border-6 border-[#8629DF] bg-white dark:bg-gray-900"
+            ? "w-5 h-5 border-6 ds-border-primary bg-white dark:bg-gray-900"
             : ""
         }
-        ${index < currentStep ? "bg-[#8629DF] h-5 w-5" : index > currentStep ? "bg-gray-300 h-3 w-3" : ""}
+        ${index < currentStep ? "ds-bg-primary h-5 w-5" : index > currentStep ? "bg-gray-300 h-3 w-3" : ""}
       `}
             >
               {index < currentStep && (
@@ -51,7 +51,7 @@ export default function Stepper({ steps, currentStep = 0 }) {
           <div key={index} className="flex justify-center flex-1">
             <span
               className={`text-xs sm:text-sm md:text-[16px] text-center ${
-                index === currentStep ? "text-[#8629DF]" : "text-gray-400"
+                index === currentStep ? "ds-text-primary" : "text-gray-400"
               }`}
             >
               {label}

@@ -17,7 +17,7 @@ const ViewFormulaModal = ({ open, onClose, data }) => {
             <div className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-lg shadow-2xl overflow-hidden">
 
                 {/* Header */}
-                <div className="flex justify-between items-center px-6 py-3 m-6 rounded-sm bg-gradient-to-r bg-primary text-white">
+                <div className="flex justify-between items-center px-6 py-3 m-6 rounded-sm bg-gradient-to-r bg-ds-primary text-white">
                     <h2 className="text-sm font-semibold">View Formula</h2>
 
                     <button

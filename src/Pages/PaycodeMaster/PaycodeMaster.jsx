@@ -71,7 +71,7 @@ const PaycodeMaster = () => {
         {!showCreate && (
           <button
             onClick={() => setShowCreate(true)}
-            className="ds-bg-primary text-white ds-text-xs px-2 md:px-4  rounded-sm flex justify-center items-center gap-1 py-1.5 md:text-[0.8rem] cursor-pointer w-fit"
+            className="ds-bg-primary text-white ds-text-xs px-2 md:px-4  rounded-sm flex justify-center items-center gap-1 py-2 md:text-[0.8rem] cursor-pointer w-fit"
           >
             <AiOutlinePlus className=" md:w-4 md:h-4 font-semibold" />
             {activeTab === "paycode"

@@ -27,7 +27,7 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
                     {/* Header */}
 
                     <div
-                        className="ds-bg-primary dark:bg-purple-700 
+                        className="ds-bg-primary dark:bg-ds-primary 
   text-white px-3 py-1.5 ds-text-xs font-medium 
   flex justify-between items-center"
                     >
@@ -48,7 +48,7 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
                         >
                             <ChevronUp
                                 size={16}
-                                className="ds-text-primary dark:text-purple-300"
+                                className="ds-text-primary dark:text-ds-primary"
                             />
                         </button>
 
@@ -81,7 +81,7 @@ const FieldsRowSelectorPanel = ({ fields = [], headerRow = "Row" }) => {
                                         className={`w-8 h-6 flex items-center justify-center rounded-sm transition cursor-pointer
                     ${isSelected
                                                 ? "ds-bg-primary text-white opacity-50 cursor-not-allowed"
-                                                : "bg-purple-50 ds-text-primary ds-hover-bg-primary hover:text-white dark:bg-purple-900/30 dark:text-purple-200 dark:hover:bg-ds-primary"
+                                                : "bg-ds-primary/10 ds-text-primary hover:bg-ds-primary hover:text-white dark:bg-ds-primary/30 dark:text-ds-primary dark:hover:bg-ds-primary"
                                             }`}
                                     >
                                         <Plus size={14} />

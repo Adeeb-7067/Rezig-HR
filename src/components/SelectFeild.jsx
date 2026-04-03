@@ -117,7 +117,7 @@ const SelectField = ({
               onClick={() => handleSelect(opt.value)}
               className={cn(
                 "px-4 py-1.5 cursor-pointer transition-all duration-150 ease-in-out",
-                "hover:bg-ds-primary/10 hover:ds-text-primary dark:text-gray-50",
+                "hover:bg-ds-primary/10 hover:text-ds-primary dark:text-gray-50",
                 value === opt.value &&
                 "bg-ds-primary/10 ds-text-primary font-medium",
               )}

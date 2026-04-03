@@ -69,7 +69,7 @@ const FormulaBuilder = ({ formula = "", setFormula = () => {} }) => {
             ds-text-primary
             text-xs px-6 py-1
             rounded-sm
-            hover:bg-purple-50 dark:hover:bg-ds-primary/20
+            hover:bg-ds-primary/10 dark:hover:bg-ds-primary/20
             transition
           "
           onClick={() => handleClear()}

@@ -59,7 +59,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
         bg-white dark:bg-gray-800
         border-gray-300 dark:border-gray-700
         text-gray-600 dark:text-gray-200
-        cursor-pointer hover:border-purple-500 transition h-7.5"
+        cursor-pointer hover:border-ds-primary/60 transition h-7.5"
                 >
                     <span className={`${value.length ? "" : "text-gray-400 dark:text-gray-500"}`}>
                         {value.length ? `${value.length} Selected` : "Select Fields"}
@@ -67,7 +67,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
 
                     <ChevronDown
                         size={14}
-                        className={`transition-transform ${open ? "rotate-180 text-[#8629DF]" : "text-gray-400"}`}
+                        className={`transition-transform ${open ? "rotate-180 ds-text-primary" : "text-gray-400"}`}
                     />
                 </div>
             </div>
@@ -94,7 +94,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
 
                         <button
                             onClick={selectAll}
-                            className="text-[#8629DF] hover:underline text-xs cursor-pointer"
+                            className="ds-text-primary hover:underline text-xs cursor-pointer"
                         >
                             Select All
                         </button>
@@ -112,14 +112,14 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
                                 key={item.value}
                                 className="flex items-center gap-2 ds-text-xs cursor-pointer
                 text-gray-700 dark:text-gray-200
-                hover:text-[#8629DF]"
+                hover:text-ds-primary"
                             >
 
                                 <input
                                     type="checkbox"
                                     checked={value.includes(item.value)}
                                     onChange={() => toggleOption(item.value)}
-                                    className="accent-[#8629DF]"
+                                    className="accent-ds-primary"
                                 />
 
                                 {item.label}
@@ -147,7 +147,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
                         <button
                             onClick={() => setOpen(false)}
                             className="ds-text-xs w-[50%] px-4 py-1 rounded cursor-pointer
-              bg-[#8629DF] text-white hover:bg-[#8629DF]/90"
+              ds-bg-primary text-white hover:bg-ds-primary/90"
                         >
                             Apply
                         </button>
@@ -167,9 +167,9 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
                             <div
                                 key={opt.value}
                                 className="flex items-center gap-1.5 px-2 py-0.5 
-                                    border border-[#8629DF]/20 
+                                    border border-ds-primary/20 
                                     rounded-xs text-[0.62rem] text-gray-600 dark:text-gray-300
-                                    hover:border-[#8629DF]/40 transition-colors shadow-sm"
+                                    hover:border-ds-primary/40 transition-colors shadow-sm"
                             >
                                 <span className="font-medium">{opt.label}</span>
                                 <button

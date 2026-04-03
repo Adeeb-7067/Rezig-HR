@@ -6,7 +6,7 @@ const stats = [
     { label: "Week Off", color: "border-gray-400 text-gray-500" },
     { label: "Total Holiday", color: "border-blue-500 text-blue-600" },
     { label: "Total Miss Punch", color: "border-yellow-500 text-yellow-600" },
-    { label: "Total Special Day", color: "border-purple-500 text-purple-600" },
+    { label: "Total Special Day", color: "border-ds-primary/60 text-ds-primary" },
 ];
 
 const AttendanceStats = () => {

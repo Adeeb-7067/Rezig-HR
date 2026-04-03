@@ -45,8 +45,8 @@ const UserPermissionTable = () => {
                 <button
                     onClick={selectAll}
                     className="text-ds-primary text-[0.65rem] font-bold 
-          bg-[#F7F2FD] dark:bg-[#2b1d3f] 
-          p-1 px-2 rounded-sm border border-purple-100 dark:border-ds-primary/80 hover:bg-ds-primary hover:text-white transition-all"
+          bg-ds-primary/10 dark:bg-[#2b1d3f] 
+          p-1 px-2 rounded-sm border border-ds-primary/20 dark:border-ds-primary/80 hover:bg-ds-primary hover:text-white transition-all"
                 >
                     Select All
                 </button>

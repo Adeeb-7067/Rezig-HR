@@ -123,7 +123,7 @@ const taxTableData = [
 //         onCheckedChange={(checked) =>
 //           onChange({ target: { name, value: checked ? "Yes" : "No" } })
 //         }
-//         className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+//         className="data-[state=checked]:bg-ds-primary data-[state=unchecked]:bg-gray-300"
 //       />
 //     </div>
 //   );
@@ -228,7 +228,7 @@ const TransactionHistory = () => {
         <div className="overflow-x-auto no-scrollbar">
           <div className="min-w-[900px] lg:min-w-full">
             <div
-              className="ds-text-xs font-semibold text-white bg-[#8629DF] py-2.5 px-4 rounded-t-md"
+              className="ds-text-xs font-semibold text-white ds-bg-primary py-2.5 px-4 rounded-t-md"
               style={{
                 display: "grid",
                 gridTemplateColumns: "140px 160px 1.5fr 1.5fr 1.5fr 80px",
@@ -267,7 +267,7 @@ const TransactionHistory = () => {
                   <div className="flex justify-center">
                     <Eye
                       size={16}
-                      className="cursor-pointer hover:text-purple-600"
+                      className="cursor-pointer hover:text-ds-primary"
                       onClick={() => handleView(item)}
                     />
                   </div>
@@ -278,8 +278,9 @@ const TransactionHistory = () => {
         </div>
       </div>
 
-      <div className="flex justify-end w-full">
-        <button className="btn-primary px-4 py-1 mt-3">
+      <div className="flex justify-end w-full mt-4">
+        <button className="font-semibold text-xs sm:text-[0.7rem] py-1.5 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white"
+        >
           Download
         </button>
       </div>
@@ -302,7 +303,7 @@ const TransactionHistory = () => {
               <div className="overflow-x-auto no-scrollbar">
                 <div className="min-w-[1100px] lg:min-w-full">
                   <div
-                    className="ds-text-xs font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
+                    className="ds-text-xs font-semibold text-white ds-bg-primary py-2 px-4 rounded-t-md"
                     style={{
                       display: "grid",
                       gridTemplateColumns:
@@ -351,7 +352,7 @@ const TransactionHistory = () => {
             </div>
 
             <div className="flex justify-end mt-8">
-              <button className="btn-primary">
+              <button type="button" className=" font-semibold text-xs sm:text-[0.7rem] py-1.5 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white" >
                 Download
               </button>
             </div>
@@ -372,7 +373,7 @@ const TaxConfigurationTable = ({ taxData }) => {
         <div className="overflow-auto no-scrollbar table-scroll">
           <div className="min-w-[1050px] lg:min-w-full">
             <div
-              className="ds-text-xs font-semibold text-white bg-[#8629DF]  px-4 py-2.5 rounded-t-md"
+              className="ds-text-xs font-semibold text-white ds-bg-primary  px-4 py-2.5 rounded-t-md"
               style={{
                 display: "grid",
                 gridTemplateColumns:
@@ -512,6 +513,12 @@ const IncomeTaxConfiguration = () => {
     { label: "Income Tax Configuration", value: "itc" },
     { label: "Income Tax Slab ", value: "its" },
   ];
+  const panelClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg";
+  const panelTitleClass = "text-base font-semibold mb-1 text-gray-500";
+  const secondaryBtnClass =
+    "bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
+  const primaryBtnClass =
+    "bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24";
   const isMobile = window.innerWidth < 768;
 
   return (
@@ -522,8 +529,8 @@ const IncomeTaxConfiguration = () => {
         {activeTab === "itc" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="col-span-1">
-              <div className="panel">
-                <h1 className="panel-title">
+              <div className={panelClass}>
+                <h1 className={panelTitleClass}>
                   Tax Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -624,8 +631,8 @@ const IncomeTaxConfiguration = () => {
                   />
                 </div>
               </div>
-              <div className="panel mt-4">
-                <h1 className="panel-title">
+              <div className={`${panelClass} mt-4`}>
+                <h1 className={panelTitleClass}>
                   Investment Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -674,8 +681,8 @@ const IncomeTaxConfiguration = () => {
               </div>
             </div>
             <div className="col-span-1">
-              <div className="panel">
-                <h1 className="panel-title">
+              <div className={panelClass}>
+                <h1 className={panelTitleClass}>
                   Tax Rebate Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -765,8 +772,8 @@ const IncomeTaxConfiguration = () => {
                 </div>
               </div>
 
-              <div className="panel mt-3">
-                <h1 className="panel-title">
+              <div className={`${panelClass} mt-3`}>
+                <h1 className={panelTitleClass}>
                   Exemption Details
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -875,8 +882,8 @@ const IncomeTaxConfiguration = () => {
         )}
         {activeTab === "its" && (
           <div>
-            <div className="panel">
-              <h1 className="panel-title">
+            <div className={panelClass}>
+              <h1 className={panelTitleClass}>
                 Tax Configuration
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -956,16 +963,16 @@ const IncomeTaxConfiguration = () => {
       <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-3">
         <button
           onClick={handleReset}
-          className="btn-outline"
+          className={secondaryBtnClass}
         >
           Reset
         </button>
-        <button className="btn-outline">
+        <button className={secondaryBtnClass}>
           Log Report
         </button>
         <button
           onClick={handleUpdate}
-          className="btn-primary"
+          className={primaryBtnClass}
         >
           Update
         </button>

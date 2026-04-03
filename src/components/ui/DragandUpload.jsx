@@ -61,7 +61,7 @@ const ExcelUpload = () => {
           className={`relative w-full max-w-xl cursor-pointer rounded-lg border-2 border-dashed text-center transition
             ${
               dragActive
-                ? "border-purple-500 bg-purple-50"
+                ? "border-ds-primary/60 bg-ds-primary/10"
                 : "border-gray-300 dark:border-gray-400 bg-white dark:bg-gray-900"
             }
 ${previewUrl ? "p-0 min-h-[160px]  overflow-hidden" : "p-10  min-h-[160px]"}

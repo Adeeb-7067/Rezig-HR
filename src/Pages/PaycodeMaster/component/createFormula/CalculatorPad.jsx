@@ -41,9 +41,9 @@ const CalculatorPad = ({ onKeyPress, onClear }) => {
                                 active:scale-95
 
                                 ${isEqual
-                                    ? "bg-primary text-white shadow-md"
+                                    ? "bg-ds-primary text-white shadow-md"
                                     : isOperator
-                                        ? "text-purple-700 dark:text-ds-primary bg-gray-200 dark:bg-gray-700 shadow-inner"
+                                        ? "text-ds-primary dark:text-ds-primary bg-gray-200 dark:bg-gray-700 shadow-inner"
                                         : isClear
                                             ? "text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-700 shadow-inner"
                                             : "text-gray-600 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 shadow-inner"

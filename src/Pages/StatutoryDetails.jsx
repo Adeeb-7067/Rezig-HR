@@ -24,7 +24,7 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
     />
   </div>
 );
@@ -57,7 +57,7 @@ const InputField = ({
 //           "shadow-sm focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-400 focus:outline-none",
 //           "hover:border-gray-400 dark:hover:border-gray-500",
 //           "transition-all duration-200 ease-in-out",
-// "dark:focus:ring-2 dark:focus:ring-[#9853F9] dark:focus:ring-inset",
+// "dark:focus:ring-2 dark:focus:ring-ds-primary dark:focus:ring-inset",
 
 //           className
 //         )}
@@ -77,7 +77,7 @@ const TextareaField = ({ label, name, value, onChange, className = "", ...props 
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full bg-white ds-text-xs dark:bg-gray-800 border border-gray-300 dark:border-gray-700  focus:border-2 focus:border-[#9853F9]  rounded-sm px-4 py-2 ${className}`}
+      className={`w-full bg-white ds-text-xs dark:bg-gray-800 border border-gray-300 dark:border-gray-700  focus:border-2 focus:border-ds-primary  rounded-sm px-4 py-2 ${className}`}
       {...props}
     />
   </div>

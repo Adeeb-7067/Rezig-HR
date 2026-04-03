@@ -14,7 +14,7 @@ const ShiftCategoryTable = () => {
         <div className="overflow-x-auto no-scrollbar">
           <div className="min-w-[550px]">
             {/* Header */}
-            <div className="bg-primary text-white ds-text-xs">
+            <div className="bg-ds-primary text-white ds-text-xs">
               <table className="w-full table-fixed text-Secondary">
                 <thead>
                   <tr>

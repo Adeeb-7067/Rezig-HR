@@ -49,7 +49,7 @@ const ForgotPassword = () => {
                 value={newPassword}
                 onChange={handlePasswordChange}
                 placeholder="*************"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
+                  className="bg-white border ds-border-primary text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
               />
               <button
                 type="button"
@@ -73,7 +73,7 @@ const ForgotPassword = () => {
                 value={confirmPassword}
                 onChange={handleConfirmPasswordChange}
                 placeholder="*************"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
+                  className="bg-white border ds-border-primary text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
               />
               <button
                 type="button"
@@ -85,7 +85,7 @@ const ForgotPassword = () => {
             </div>
 
             <Link to="/Dashboard">
-              <button className="w-full text-[0.8rem] py-2 px-8 mb-6 mt-4 cursor-pointer rounded-sm ds-bg-primary text-white ds-hover-bg-primary-90 transition-all">
+              <button className="w-full text-[0.8rem] py-2 px-8 mb-6 mt-4 cursor-pointer rounded-sm ds-bg-primary text-white hover:bg-ds-primary/90 transition-all">
                 Set Password
               </button>
             </Link>

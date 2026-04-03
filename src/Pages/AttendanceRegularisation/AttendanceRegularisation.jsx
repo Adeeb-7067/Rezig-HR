@@ -265,7 +265,7 @@ const AttendanceRegularisation = () => {
                   <div
                     key={item}
                     onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 ds-hover-bg-primary-80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-ds-primary/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
                       className={`w-4 h-4 flex-shrink-0 flex items-center justify-center border rounded ${currentValues.includes(item) ? "ds-bg-primary ds-border-primary" : "border-gray-300"}`}
@@ -314,7 +314,7 @@ const AttendanceRegularisation = () => {
       <div className="flex flex-row gap-2 w-full">
         {/* SEARCH — takes remaining space, dropdown anchored correctly */}
         <div ref={searchRef} className="relative flex-1 min-w-0">
-          <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full h-9 sm:h-[35px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all">
+          <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full h-9 sm:h-[35px] focus-within:border-ds-primary focus-within:border-2 focus-within:shadow-md transition-all">
             <input
               type="text"
               placeholder="Search here"
@@ -387,7 +387,7 @@ const AttendanceRegularisation = () => {
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 ds-accent-primary"
+                        className="w-4 h-4 accent-ds-primary"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -411,8 +411,8 @@ const AttendanceRegularisation = () => {
                     className={`btn-primary-half
     ${
       isAnyFilterChecked
-        ? "ds-bg-primary ds-hover-bg-primary-70 text-white cursor-pointer"
-        : "ds-bg-primary-80 opacity-50 cursor-not-allowed text-white"
+        ? "ds-bg-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+        : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
     }
   `}
                   >
@@ -519,21 +519,22 @@ const AttendanceRegularisation = () => {
                 setSelectedEmployee(null);
               }}
               type="button"
-                    className="py-1 px-7 sm:w-auto md:w-24 ds-text-xs ds-text-primary ds-border-primary border  font-semibold   bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-sm transition-all"
+                    className="font-semibold text-xs sm:text-[0.7rem] py-1.5 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary"
             >
               Back
             </button>
             {multipleCorrection && selectedDays.length > 0 && (
               <button
                 onClick={() => setOpenBulkModal(true)}
-                className={`btn-outline-half ${baseBtn}`}
-              >
+                type="button"
+                className="font-semibold text-xs sm:text-[0.7rem] py-1.5 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary"
+                >
                 Continue
               </button>
             )}
 
             <button
-              className={`btn-primary-half ds-bg-primary text-white ds-hover-bg-primary-80 ${baseBtn}`}
+              className={`btn-primary-half ds-bg-primary text-white hover:bg-ds-primary/80 ${baseBtn}`}
             >
               Process
             </button>

@@ -51,12 +51,12 @@ export const toastStyles: Record<
     icon: "error",
   },
   loading: {
-    bg: "bg-purple-50",
+    bg: "bg-ds-primary/10",
     label: "Loading",
-    labelColor: "text-purple-500",
-    border: "border-purple-500",
-    iconBg: "bg-purple-500",
-    closeBg: "bg-purple-500",
+    labelColor: "text-ds-primary",
+    border: "border-ds-primary/60",
+    iconBg: "bg-ds-primary/100",
+    closeBg: "bg-ds-primary/100",
     icon: "loading",
   },
   info: {

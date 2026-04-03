@@ -66,7 +66,7 @@ const LeaveConfiguration = () => {
         <div className="flex gap-0 sm:gap-3">
           <button
             onClick={() => setShowMaster(true)}
-            className="btn-primary-sm"
+            className="ds-bg-primary dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
           >
             <Plus className="md:w-4 md:h-4 font-semibold" />
             Add Leave Master
@@ -85,7 +85,7 @@ const LeaveConfiguration = () => {
           <div className="min-w-[750px]">
             {/* Header */}
             <div
-              className="ds-text-xs text-center font-semibold text-white bg-[#8629DF] py-2.5 px-6 rounded-t-sm"
+              className="ds-text-xs text-center font-semibold text-white ds-bg-primary py-2.5 px-6 rounded-t-sm"
               style={{
                 display: "grid",
                 gridTemplateColumns:
@@ -124,7 +124,7 @@ const LeaveConfiguration = () => {
                   <div className="flex justify-center text-center gap-2">
                     <Pencil
                       size={14}
-                      className="cursor-pointer hover:text-purple-600"
+                      className="cursor-pointer hover:text-ds-primary"
                     />
                 
                     <Trash2 size={14} className="cursor-pointer text-red-500" />

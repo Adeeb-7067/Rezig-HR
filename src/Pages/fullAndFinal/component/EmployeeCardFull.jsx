@@ -47,7 +47,7 @@ const EmployeeCardFull = ({ employee }) => {
                     (tag) => (
                         <span
                             key={tag}
-                            className="text-[#7B2CBF] text-[0.65rem] px-3 py-1 rounded-[4px]"
+                            className="text-ds-primary text-[0.65rem] px-3 py-1 rounded-[4px]"
                         >
                             {tag}
                         </span>

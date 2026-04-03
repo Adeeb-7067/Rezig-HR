@@ -85,7 +85,7 @@ const {showToast} = useToast();
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Enter your User Id / E-Mail"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full ds-text-xs sm:text-[0.8rem] font-semibold"
+                  className="bg-white border ds-border-primary text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full ds-text-xs sm:text-[0.8rem] font-semibold"
                 />
               </div>
 
@@ -103,7 +103,7 @@ const {showToast} = useToast();
                   value={password}
                   onChange={handlePasswordChange}
                   placeholder="Enter your Password"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
+                  className="bg-white border ds-border-primary text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
                 />
                 <span
                   className="absolute right-3 sm:right-4 top-8  cursor-pointer text-[#58585A] opacity-80"
@@ -131,7 +131,7 @@ const {showToast} = useToast();
                   value={domain}
                   onChange={handleDomainChange}
                   placeholder="Enter your Domain"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
+                  className="bg-white border ds-border-primary text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-sm sm:text-[0.8rem] font-semibold"
                 />
               </div>
             </div>
