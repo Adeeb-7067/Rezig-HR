@@ -278,7 +278,7 @@ function ActionCard({ icon, title, desc, color, showCards, delay = 0 ,onClick}) 
 
       className={`
         flex items-center gap-3 bg-gray-100 dark:bg-gray-800 p-3 cursor-pointer rounded-sm 
-         hover:text-white dark:text-white hover:shadow-lg hover:scale-[1.02]
+          dark:hover:ds-bg-primary dark:text-white hover:shadow-lg hover:scale-[1.02]
         transition-all duration-300 ease-out
         ${showCards ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}
       `}

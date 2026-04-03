@@ -741,19 +741,19 @@ const LoanAssignment = () => {
                     <div className="mt-4 flex gap-2 pt-3 border-t">
                       <button
                         onClick={handleResetFilters}
-                        className="btn-outline-half"
-                      >
+                        className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold ds-text-xs py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                        >
                         Reset
                       </button>
                       <button
                         onClick={handleApplyFilters}
                         disabled={!isAnyFilterChecked}
-                        className={`btn-primary-half
-    ${isAnyFilterChecked
-                        ? "ds-bg-primary hover:bg-ds-primary/70 text-white cursor-pointer"
-                        : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
-                      }
-  `}
+                        className={`font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white
+                          ${isAnyFilterChecked
+                                              ? "ds-bg-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+                                              : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
+                                            }
+                        `}
                       >
                         Apply
                       </button>
