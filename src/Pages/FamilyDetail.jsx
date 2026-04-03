@@ -16,7 +16,7 @@ const InputField = ({
   ...props
 }) => (
   <div>
-    <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]  mb-1">
+    <label className="block text-gray-500 dark:text-gray-50 ds-text-xs font-semibold mb-1">
       {label}
     </label>
     <input
@@ -24,7 +24,7 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full h-7.5 text-[0.7rem] bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
       {...props}
     />
   </div>
@@ -137,8 +137,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
       <div className="col-span-1">
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-          <h1 className="text-xl font-semibold  mb-1 text-gray-500">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
+          <h1 className="text-base font-semibold mb-1 text-gray-500 text-xl">
             Family Details
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -185,7 +185,7 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             />
           </div>
         </div>
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 grid grid-cols-1 md:grid-cols-2 gap-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
           <InputField
             label="First Nominee Name"
             name="firstNominee"
@@ -200,8 +200,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             options={relationOptions}
           />
         </div>
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
-          <h1 className="text-sm font-semibold text-gray-500 mb-1">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
+          <h1 className="text-base font-semibold mb-1 text-gray-500 text-sm">
             Emergency Contact Details 1
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -246,7 +246,7 @@ const FamilyDetail = ({ onNext, onPrev }) => {
         </div>
       </div>
       <div className="col-span-1">
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 grid grid-cols-1 md:grid-cols-2 rounded-lg">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2">
           <InputField
             label="First Child Name"
             name="firstChildName"
@@ -298,7 +298,7 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             options={bloodGroupOptions}
           />
         </div>
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 grid grid-cols-1 md:grid-cols-2 gap-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2 mt-3">
           <InputField
             label="Second Nominee Name"
             name="secondNominee"
@@ -313,8 +313,8 @@ const FamilyDetail = ({ onNext, onPrev }) => {
             options={relationOptions}
           />
         </div>
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
-          <h1 className="text-sm font-semibold mb-1 text-gray-500">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
+          <h1 className="text-base font-semibold mb-1 text-gray-500 text-sm">
             Contact Details 2
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -358,21 +358,28 @@ const FamilyDetail = ({ onNext, onPrev }) => {
           </div>
         </div>
         <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-2">
+           <button
+          onClick={()=>{window.history.back()}}
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+        >
+          Back
+        </button>
           <button
             onClick={onPrev}
-            className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+            className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
           >
             Previous
           </button>
           <button
             onClick={handleReset}
-            className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+            className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
           >
             Reset
           </button>
           <button
             onClick={onNext}
-            className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+            className="bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
           >
             Next
           </button>

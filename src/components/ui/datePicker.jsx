@@ -90,12 +90,12 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
           key={day}
           onClick={() => handleDateSelect(day)}
           className={cn(
-            "aspect-square flex items-center justify-center rounded-full cursor-pointer text-[0.7rem] transition-colors select-none",
+            "aspect-square flex items-center justify-center rounded-full cursor-pointer ds-text-xs transition-colors select-none",
             isSelected
-              ? "bg-purple-600 text-white"
+              ? "bg-ds-primary text-white"
               : isToday
-              ? "font-semibold text-purple-600 dark:text-purple-400 ring-1 ring-purple-400"
-              : "hover:bg-purple-100 dark:hover:bg-purple-900/40 text-gray-800 dark:text-gray-200"
+              ? "font-semibold text-ds-primary dark:text-ds-primary ring-1 ring-ds-primary/40"
+              : "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40 text-gray-800 dark:text-gray-200"
           )}
         >
           {day}
@@ -141,7 +141,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
     <div>
       {label && (
         <div className="flex items-center gap-1 mb-1">
-          <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">
+          <label className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs">
             {label}
           </label>
         </div>
@@ -161,8 +161,8 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
             "rounded-sm border border-gray-300 dark:border-gray-700",
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-700/60",
-            "px-4 py-1.5 text-[0.7rem] cursor-pointer transition-all duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset",
+            "px-4 py-1.5 ds-text-xs cursor-pointer transition-all duration-200",
+            "focus:outline-none focus:ring-2 focus:ring-ds-primary focus:ring-inset",
             selectedDate
               ? "text-gray-600 dark:text-gray-100"
               : "text-gray-400 dark:text-gray-500"
@@ -191,7 +191,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
             <div className="flex items-center justify-between mb-3 gap-1">
               <button
                 onClick={prevMonth}
-                className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
                 aria-label="Previous month"
               >
                 &#8592;
@@ -205,7 +205,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
                 <div className="relative">
                   <button
                     onClick={() => setIsYearDropdownOpen((v) => !v)}
-                    className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
                     aria-label="Select year"
                     aria-expanded={isYearDropdownOpen}
                   >
@@ -227,9 +227,9 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
                           className={cn(
                             "px-3 py-1 text-[0.72rem] cursor-pointer transition-colors",
                             "text-gray-800 dark:text-gray-100",
-                            "hover:bg-purple-100 dark:hover:bg-purple-900/40",
+                            "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40",
                             year === currentDate.getFullYear() &&
-                              "bg-purple-50 dark:bg-purple-900/20 font-semibold"
+                              "bg-purple-50 dark:bg-ds-primary/20 font-semibold"
                           )}
                         >
                           {year}
@@ -242,7 +242,7 @@ const Calendar = ({ label, name, value, onChange, style, onStyleOpen }) => {
 
               <button
                 onClick={nextMonth}
-                className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
                 aria-label="Next month"
               >
                 &#8594;

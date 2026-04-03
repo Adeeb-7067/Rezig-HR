@@ -77,7 +77,7 @@ const AttendanceRegularizeModal = ({
 
         {/* HEADER */}
         <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200 dark:border-gray-700 shrink-0">
-          <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
+          <h2 className="ds-text-primary font-semibold text-xs sm:text-sm truncate pr-2">
             {selectedDate}
           </h2>
 
@@ -102,12 +102,12 @@ const AttendanceRegularizeModal = ({
           <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3">
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <p className="font-medium text-[0.8rem] text-gray-800 dark:text-gray-100">Shift Details</p>
-              <span className="bg-purple-100 dark:bg-purple-900/40 text-black dark:text-purple-200 text-[0.7rem] px-2 py-[2px] rounded">
+              <span className="bg-purple-100 dark:bg-ds-primary/40 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
                 Gurugram Office
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-400">
+            <div className="grid grid-cols-2 gap-3 mx-2 ds-text-xs text-gray-600 dark:text-gray-400">
               <div>
                 <p>Shift In Date</p>
                 <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
@@ -131,7 +131,7 @@ const AttendanceRegularizeModal = ({
           <div className="border border-gray-200 dark:border-gray-700 rounded-md p-3">
             <p className="font-medium mb-2 text-[0.8rem] text-gray-800 dark:text-gray-100">Current Attendance Details</p>
 
-            <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-400">
+            <div className="grid grid-cols-2 gap-3 mx-2 ds-text-xs text-gray-600 dark:text-gray-400">
               <div>
                 <p>In Date</p>
                 <p className="font-medium text-gray-800 dark:text-gray-100">{shortDateStr}</p>
@@ -157,7 +157,7 @@ const AttendanceRegularizeModal = ({
             <p className="font-medium text-[0.8rem] mb-1 text-gray-800 dark:text-gray-100">Status</p>
             <div className="flex items-center gap-2 text-[0.8rem] text-gray-700 dark:text-gray-300">
               <span>Current Status :</span>
-              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full ds-text-xs">
                 Missed Punch
               </span>
             </div>
@@ -167,7 +167,7 @@ const AttendanceRegularizeModal = ({
           <div className="">
             <p className="font-medium mb-3 text-[0.8rem] text-gray-800 dark:text-gray-100">Correct Timing</p>
 
-            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
+            <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 ds-text-xs">
               {/* IN DATE */}
               <DatePickerField
                 label="In Date"
@@ -241,7 +241,7 @@ const AttendanceRegularizeModal = ({
         <div className="w-full flex justify-end px-4 py-3 border-t border-gray-200 dark:border-gray-700 shrink-0">
           <button
             onClick={handleRegularize}
-            className="w-full min-[480px]:w-auto py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white py-1.5"
           >
             Regularize
           </button>

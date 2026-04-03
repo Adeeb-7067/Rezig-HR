@@ -64,7 +64,7 @@ const SummaryConfiguration = () => {
                     label="Summary Sheet Position"
                     name="summaryPosition"
                     unSelectLabel="Select"
-                    className="h-7.5 text-[0.7rem]"
+                    className="h-7.5 ds-text-xs"
                     options={[
                         { label: "First", value: "first" },
                         { label: "Last", value: "last" }
@@ -91,10 +91,14 @@ const SummaryConfiguration = () => {
             </div>
 
             {/* Columns Selector */}
-            <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />
+            {toggles.configureSummary && (
+                <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />
+            )}
 
             {/* Rows Selector */}
-            <RowFieldsSelector title="List Of Fields (Rows)" fields={fieldsrow} />
+            {toggles.configureSummary && (
+                <RowFieldsSelector title="List Of Fields (Rows)" fields={fieldsrow} />
+            )}
 
         </div>
     );

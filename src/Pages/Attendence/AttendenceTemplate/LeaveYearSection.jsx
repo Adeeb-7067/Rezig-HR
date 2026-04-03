@@ -17,11 +17,7 @@ const LeaveYearSection = () => {
   });
 
   return (
-    <div
-      className="
-      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg   
-      "
-    >
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
       <h1 className="text-base font-semibold mb-1 text-gray-500">Leave Year</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">

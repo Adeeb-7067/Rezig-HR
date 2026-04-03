@@ -14,8 +14,6 @@ import EmployeeBadge from "./components/EmployeeBadge";
 import AttendanceRegularizeModal from "./components/AttendanceRegularizeModal";
 import AttendanceBulkRegularizeModal from "./components/AttendanceBulkRegularizeModal";
 
-
-
 const AttendanceRegularisation = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -49,7 +47,6 @@ const AttendanceRegularisation = () => {
   const filterDropdownRefs = useRef({});
   const dropdownRef = useRef(null);
   const searchRef = useRef(null);
-
 
   const filterOptions = [
     { key: "department", label: "Department" },
@@ -231,10 +228,10 @@ const AttendanceRegularisation = () => {
         <button
           data-filter-button={filterKey}
           onClick={() => toggleDropdown(filterKey)}
-          className="border border-gray-300 dark:border-gray-400 px-4 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[120px] sm:min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
+          className="border border-gray-300 dark:border-gray-400 px-4 py-2 rounded-full w-fit ds-text-xs flex justify-between items-center gap-2 min-w-[120px] sm:min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
+            <span className="text-gray-700 dark:text-gray-50 ds-text-xs font-medium">
               {label}
             </span>
           </div>
@@ -257,7 +254,7 @@ const AttendanceRegularisation = () => {
                       ? handleClearAll(filterKey)
                       : handleSelectAll(filterKey)
                   }
-                  className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
+                  className="text-sm ds-text-primary font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
@@ -268,10 +265,10 @@ const AttendanceRegularisation = () => {
                   <div
                     key={item}
                     onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
+                    className="flex items-center gap-3 px-2 py-1 ds-hover-bg-primary-80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
-                      className={`w-4 h-4 flex-shrink-0 flex items-center justify-center border rounded ${currentValues.includes(item) ? "bg-[#8629DF] border-[#8629DF]" : "border-gray-300"}`}
+                      className={`w-4 h-4 flex-shrink-0 flex items-center justify-center border rounded ${currentValues.includes(item) ? "ds-bg-primary ds-border-primary" : "border-gray-300"}`}
                     >
                       {currentValues.includes(item) && (
                         <svg
@@ -289,7 +286,7 @@ const AttendanceRegularisation = () => {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] font-semibold">{item}</span>
+                    <span className="ds-text-xs font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
@@ -306,7 +303,6 @@ const AttendanceRegularisation = () => {
 
   return (
     <div className="p-3 sm:p-4 md:p-5 space-y-4 sm:space-y-5">
-
       {/* PAGE HEADER */}
       <div className="flex flex-row justify-between gap-3 mt-2 mb-6 sm:mb-8 w-full">
         <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-[#252C58] dark:text-gray-50">
@@ -316,12 +312,8 @@ const AttendanceRegularisation = () => {
 
       {/* SEARCH + FILTER ROW */}
       <div className="flex flex-row gap-2 w-full">
-
         {/* SEARCH — takes remaining space, dropdown anchored correctly */}
-        <div
-          ref={searchRef}
-          className="relative flex-1 min-w-0"
-        >
+        <div ref={searchRef} className="relative flex-1 min-w-0">
           <div className="flex gap-2 rounded-sm px-3 items-center shadow drop-shadow-xs border border-gray-300 dark:border-gray-500 dark:bg-gray-800 w-full h-9 sm:h-[35px] focus-within:border-[#9853F9] focus-within:border-2 focus-within:shadow-md transition-all">
             <input
               type="text"
@@ -352,7 +344,7 @@ const AttendanceRegularisation = () => {
                   <span className="text-[0.85rem] text-gray-800 dark:text-gray-200 block sm:inline">
                     {emp.name}
                   </span>
-                  <span className="text-[0.7rem] text-gray-400 sm:ml-2 block sm:inline">
+                  <span className="ds-text-xs text-gray-400 sm:ml-2 block sm:inline">
                     • {emp.dept} • {emp.location}
                   </span>
                 </div>
@@ -365,7 +357,7 @@ const AttendanceRegularisation = () => {
         <div className="relative flex-shrink-0">
           <button
             onClick={() => setOpenFilter((prev) => !prev)}
-            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
+            className="ds-bg-primary dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
           >
             <HiAdjustmentsHorizontal className="w-4 h-4" />
             <span>Filter</span>
@@ -391,11 +383,11 @@ const AttendanceRegularisation = () => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded cursor-pointer"
+                      className="flex items-center gap-2 ds-text-xs text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded cursor-pointer"
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 accent-[#8629DF]"
+                        className="w-4 h-4 ds-accent-primary"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -409,18 +401,20 @@ const AttendanceRegularisation = () => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-xs sm:text-sm"
+                    className="btn-outline-half"
                   >
                     Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
-                    className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-xs sm:text-sm transition-all duration-200
-                      ${isAnyFilterChecked
-                        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-                      }`}
+                    className={`btn-primary-half
+    ${
+      isAnyFilterChecked
+        ? "ds-bg-primary ds-hover-bg-primary-70 text-white cursor-pointer"
+        : "ds-bg-primary-80 opacity-50 cursor-not-allowed text-white"
+    }
+  `}
                   >
                     Apply
                   </button>
@@ -451,9 +445,9 @@ const AttendanceRegularisation = () => {
             values.map((value) => (
               <div
                 key={`${filterKey}-${value}`}
-                className="bg-gray-100 dark:bg-gray-800 dark:border-gray-400 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
+                className="bg-gray-100 dark:bg-gray-800 dark:border-gray-400 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200"
               >
-                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                <span className="text-gray-900 dark:text-gray-50 ds-text-xs">
                   {value}
                 </span>
                 <button
@@ -498,7 +492,8 @@ const AttendanceRegularisation = () => {
           <div className="flex justify-end">
             <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-600 dark:text-gray-300">
               <span className="text-right leading-tight">
-                Enable Multiple<br className="sm:hidden" /> Correction
+                Enable Multiple
+                <br className="sm:hidden" /> Correction
               </span>
               <Switch
                 checked={multipleCorrection}
@@ -519,16 +514,27 @@ const AttendanceRegularisation = () => {
 
           {/* Action Buttons — full-width on mobile, auto-width on larger */}
           <div className="flex flex-row justify-end w-full gap-2 mt-4">
+            <button
+              onClick={() => {
+                setSelectedEmployee(null);
+              }}
+              type="button"
+                    className="py-1 px-7 sm:w-auto md:w-24 ds-text-xs ds-text-primary ds-border-primary border  font-semibold   bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-sm transition-all"
+            >
+              Back
+            </button>
             {multipleCorrection && selectedDays.length > 0 && (
               <button
                 onClick={() => setOpenBulkModal(true)}
-                className={`bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] cursor-pointer ${baseBtn}`}
+                className={`btn-outline-half ${baseBtn}`}
               >
                 Continue
               </button>
             )}
 
-            <button className={`bg-[#8629DF] text-white cursor-pointer ${baseBtn}`}>
+            <button
+              className={`btn-primary-half ds-bg-primary text-white ds-hover-bg-primary-80 ${baseBtn}`}
+            >
               Process
             </button>
 

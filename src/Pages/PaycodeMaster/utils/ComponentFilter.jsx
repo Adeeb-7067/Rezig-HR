@@ -35,7 +35,7 @@ const ComponentFilter = ({ groups, selected, onApply }) => {
             {/* Filter Button */}
             <button
                 onClick={() => setOpen(true)}
-                className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-sm shadow hover:opacity-90 transition"
+                className="flex items-center gap-2 ds-bg-primary text-white px-4 py-2 rounded-lg text-sm shadow hover:opacity-90 transition"
             >
                 <SlidersHorizontal size={16} />
                 Fields
@@ -46,7 +46,7 @@ const ComponentFilter = ({ groups, selected, onApply }) => {
                     {/* Overlay (Mobile Only) */}
                     <div className="fixed inset-0 bg-black/30 z-40 sm:hidden" />
 
-                    {/* Filter Panel */}
+                    {/* Filter bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg */}
                     <div
                         className="
                         fixed sm:absolute
@@ -82,7 +82,7 @@ const ComponentFilter = ({ groups, selected, onApply }) => {
                                         type="checkbox"
                                         checked={temp.includes(g)}
                                         onChange={() => toggle(g)}
-                                        className="w-5 h-5 accent-[#8629DF] rounded"
+                                        className="w-5 h-5 accent-ds-primary rounded"
                                     />
                                     {g}
                                 </label>
@@ -111,7 +111,7 @@ const ComponentFilter = ({ groups, selected, onApply }) => {
                                 onClick={handleApply}
                                 className="
                                     bg-gradient-to-r
-                                    from-[#8629DF]
+                                    from-ds-primary
                                     to-[#6D1FC7]
                                     text-white
                                     px-8 py-2

@@ -56,8 +56,18 @@ const Calendar = ({
   const triggerRef = useRef(null);
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -287,7 +297,7 @@ const Calendar = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-7 gap-1 text-center text-gray-500 dark:text-gray-400 font-medium mb-2 text-[0.7rem]">
+        <div className="grid grid-cols-7 gap-1 text-center text-gray-500 dark:text-gray-400 font-medium mb-2 ds-text-xs">
           {days.map((day, index) => (
             <div key={index}>{day}</div>
           ))}
@@ -303,7 +313,7 @@ const Calendar = ({
   return (
     <div className="flex flex-col space-y-1 w-full relative justify-center">
       {showLabel && label && (
-        <label className="text-[0.7rem] font-normal text-gray-700 dark:text-gray-200">
+        <label className="ds-text-xs font-normal text-gray-700 dark:text-gray-200">
           {label}
         </label>
       )}
@@ -318,7 +328,7 @@ const Calendar = ({
             "rounded-sm border border-gray-300 dark:border-gray-700",
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-800",
-            "px-2 text-[0.7rem] cursor-pointer",
+            "px-2 ds-text-xs cursor-pointer",
             "focus:border-2 focus:border-[#9853F9]",
             selectedDate
               ? "text-gray-700 dark:text-gray-100"
@@ -326,7 +336,7 @@ const Calendar = ({
             className,
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4 text-gray-400 text-[0.7rem] dark:text-gray-400" />
+          <CalendarIcon className="mr-2 h-4 w-4 text-gray-400 ds-text-xs dark:text-gray-400" />
           <span>{formatDate(selectedDate)}</span>
         </div>
       </div>
@@ -347,7 +357,7 @@ const SelectField = ({
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-[0.7rem] font-normal text-gray-700 dark:text-gray-200 mb-1">
+        <label className="block ds-text-xs font-normal text-gray-700 dark:text-gray-200 mb-1">
           {label}
         </label>
       )}
@@ -355,7 +365,7 @@ const SelectField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full px-2 rounded-sm py-1.5 text-[0.7rem] bg-white dark:bg-gray-800 ${className}`}
+        className={`w-full px-2 rounded-sm py-1.5 ds-text-xs bg-white dark:bg-gray-800 ${className}`}
       >
         {children}
       </select>
@@ -363,10 +373,9 @@ const SelectField = ({
   );
 };
 
-const btnPrevReset =
-  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
+const btnPrevReset = "btn-outline-half";
 const btnSave =
-  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer";
+  "btn-primary-half bg-[#8629DF] text-white hover:bg-[#8629DF]/80";
 
 const initialPayHeads = [
   {
@@ -479,9 +488,30 @@ export default function VariablePayment({ onNext, onPrev }) {
 
   // ── One-time payments ──
   const [oneTimePayments, setOneTimePayments] = useState([
-    { id: 1, name: "Joining Bonus", amount: 50000, frequency: "2", isTag: true, checked: true },
-    { id: 2, name: "Joining Bonus", amount: 25000, frequency: "April 2025", isTag: false, checked: false },
-    { id: 3, name: "Joining Bonus", amount: 25000, frequency: "April 2025", isTag: false, checked: false },
+    {
+      id: 1,
+      name: "Joining Bonus",
+      amount: 50000,
+      frequency: "2",
+      isTag: true,
+      checked: true,
+    },
+    {
+      id: 2,
+      name: "Joining Bonus",
+      amount: 25000,
+      frequency: "April 2025",
+      isTag: false,
+      checked: false,
+    },
+    {
+      id: 3,
+      name: "Joining Bonus",
+      amount: 25000,
+      frequency: "April 2025",
+      isTag: false,
+      checked: false,
+    },
   ]);
 
   // ── Reimbursement rows (PayHeadTable) ──
@@ -498,21 +528,21 @@ export default function VariablePayment({ onNext, onPrev }) {
   // Pay heads (SalaryTable) row handler
   const handlePayHeadChange = (index, field, value) => {
     setPayHeads((prev) =>
-      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row))
+      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row)),
     );
   };
 
   // One-time payments handler
   const handleOneTimePaymentChange = (index, field, value) => {
     setOneTimePayments((prev) =>
-      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row))
+      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row)),
     );
   };
 
   // Reimbursement (PayHeadTable) row handler
   const handleReimbursementChange = (index, field, value) => {
     setReimbursementRows((prev) =>
-      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row))
+      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row)),
     );
   };
 
@@ -535,10 +565,10 @@ export default function VariablePayment({ onNext, onPrev }) {
         annual: "",
         remarks: "",
         checked: false,
-      }))
+      })),
     );
     setOneTimePayments((prev) =>
-      prev.map((row) => ({ ...row, checked: false }))
+      prev.map((row) => ({ ...row, checked: false })),
     );
     setReimbursementRows(initialPayHeads);
   };
@@ -549,16 +579,28 @@ export default function VariablePayment({ onNext, onPrev }) {
     return (
       <div className="w-full flex justify-center overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
-          <table className="min-w-[800px] w-full text-[0.7rem] text-left border-collapse">
-            <thead className="bg-[#8629DF] h-12  text-white font-semibold divide-x divide-gray-200 border">
+          <table className="min-w-[800px] w-full ds-text-xs text-left border-collapse">
+            <thead className="bg-[#8629DF]  text-white font-semibold divide-x divide-gray-200 border">
               <tr>
-                <th className="text-[0.8rem] px-2 py-1.5 min-w-[130px]">Pay Head Name</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">From Date</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">To Date</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[140px]">Formula</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">Monthly Amount</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">Annual Amount</th>
-                <th className="text-[0.8rem] px-4 py-1.5">Remarks</th>
+                <th className="ds-text-xs px-2 py-2.5 min-w-[130px]">
+                  Pay Head Name
+                </th>
+                <th className="ds-text-xs px-4 py-2.5 min-w-[130px]">
+                  From Date
+                </th>
+                <th className="ds-text-xs px-4 py-2.5 min-w-[130px]">
+                  To Date
+                </th>
+                <th className="ds-text-xs px-4 py-2.5 min-w-[140px]">
+                  Formula
+                </th>
+                <th className="ds-text-xs px-4 py-2.5 min-w-[130px]">
+                  Monthly Amount
+                </th>
+                <th className="ds-text-xs px-4 py-2.5 min-w-[130px]">
+                  Annual Amount
+                </th>
+                <th className="ds-text-xs px-4 py-2.5">Remarks</th>
               </tr>
             </thead>
 
@@ -568,7 +610,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                   key={idx}
                   className="divide-x divide-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/50"
                 >
-                  <td className="px-2 py-2 flex items-center space-x-2 text-[0.7rem]">
+                  <td className="px-2 py-2 flex items-center space-x-2 ds-text-xs">
                     <input
                       type="checkbox"
                       checked={item.checked}
@@ -628,7 +670,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                       <input
                         type="text"
                         placeholder="Enter Amount"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
                         value={item.monthly}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "monthly", e.target.value)
@@ -644,7 +686,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                       <input
                         type="text"
                         placeholder="Enter Amount"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
                         value={item.annual}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "annual", e.target.value)
@@ -665,7 +707,7 @@ export default function VariablePayment({ onNext, onPrev }) {
                       <input
                         type="text"
                         placeholder="Enter Remarks"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 dark:text-gray-200"
                         value={item.remarks}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "remarks", e.target.value)
@@ -685,9 +727,9 @@ export default function VariablePayment({ onNext, onPrev }) {
   function PayHeadTable() {
     return (
       <div className="flex items-start justify-center">
-        <div className="w-full max-w-6xl bg-white dark:bg-gray-800 rounded-sm overflow-hidden">
+        <div className="w-full  bg-white dark:bg-gray-800 rounded-sm overflow-hidden">
           <div className="overflow-auto table-scroll">
-            <table className="min-w-[900px] w-full text-sm text-left border-collapse">
+            <table className="min-w-[900px] w-full ds-text-xs text-left border-collapse">
               <thead>
                 <tr className="bg-[#8629DF]  text-white font-semibold divide-x divide-purple-400 dark:divide-gray-700">
                   {[
@@ -700,7 +742,10 @@ export default function VariablePayment({ onNext, onPrev }) {
                     "Bill Submited",
                     "Bills Received",
                   ].map((col) => (
-                    <th key={col} className="px-4 py-3 text-[0.78rem] whitespace-nowrap">
+                    <th
+                      key={col}
+                      className="px-4 py-2.5 ds-text-xs whitespace-nowrap"
+                    >
                       {col}
                     </th>
                   ))}
@@ -719,35 +764,39 @@ export default function VariablePayment({ onNext, onPrev }) {
                           type="checkbox"
                           checked={row.checked}
                           onChange={(e) =>
-                            handleReimbursementChange(idx, "checked", e.target.checked)
+                            handleReimbursementChange(
+                              idx,
+                              "checked",
+                              e.target.checked,
+                            )
                           }
                           className="h-3.5 w-3.5 accent-[#8629DF] cursor-pointer"
                         />
-                        <span className="text-[0.78rem] font-semibold text-gray-800 dark:text-gray-200 leading-tight">
+                        <span className="text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 leading-tight">
                           {row.name}
                         </span>
                       </div>
                     </td>
 
-                    <td className="px-4 py-3 text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 min-w-[110px]">
+                    <td className="px-4 py-3 text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 min-w-[110px]">
                       {row.accumulated}
                     </td>
 
-                    <td className="px-4 py-3 text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 min-w-[90px]">
+                    <td className="px-4 py-3 text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 min-w-[90px]">
                       {row.claimed}
                     </td>
 
-                    <td className="px-4 py-3 text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 min-w-[110px]">
+                    <td className="px-4 py-3 text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 min-w-[110px]">
                       {row.holdClaimed}
                     </td>
 
-                    <td className="px-4 py-3 text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 min-w-[100px]">
+                    <td className="px-4 py-3 text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 min-w-[100px]">
                       {row.balance}
                     </td>
 
                     <td className="px-3 py-2 min-w-[130px]">
                       {row.amtFixed ? (
-                        <span className="text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 px-1">
+                        <span className="text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 px-1">
                           {row.amtToBePaid}
                         </span>
                       ) : (
@@ -756,16 +805,20 @@ export default function VariablePayment({ onNext, onPrev }) {
                           placeholder="Enter Amount"
                           value={row.amtToBePaid}
                           onChange={(e) =>
-                            handleReimbursementChange(idx, "amtToBePaid", e.target.value)
+                            handleReimbursementChange(
+                              idx,
+                              "amtToBePaid",
+                              e.target.value,
+                            )
                           }
-                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.72rem] text-gray-500 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
+                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
                         />
                       )}
                     </td>
 
                     <td className="px-3 py-2 min-w-[130px]">
                       {row.billFixed ? (
-                        <span className="text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 px-1">
+                        <span className="text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 px-1">
                           {row.billSubmitted}
                         </span>
                       ) : (
@@ -774,14 +827,18 @@ export default function VariablePayment({ onNext, onPrev }) {
                           placeholder="Enter Amount"
                           value={row.billSubmitted}
                           onChange={(e) =>
-                            handleReimbursementChange(idx, "billSubmitted", e.target.value)
+                            handleReimbursementChange(
+                              idx,
+                              "billSubmitted",
+                              e.target.value,
+                            )
                           }
-                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.72rem] text-gray-500 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
+                          className="w-full border border-gray-200 dark:border-gray-600 rounded-md px-2 py-1.5 text-[0.7rem] text-gray-600 dark:text-gray-300 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-purple-300 dark:focus:ring-purple-600 bg-white dark:bg-gray-700"
                         />
                       )}
                     </td>
 
-                    <td className="px-4 py-3 text-[0.78rem] font-bold text-gray-800 dark:text-gray-200 min-w-[110px]">
+                    <td className="px-4 py-3 text-[0.7rem] font-normal text-gray-600 dark:text-gray-200 min-w-[110px]">
                       {row.billsReceived}
                     </td>
                   </tr>
@@ -797,7 +854,9 @@ export default function VariablePayment({ onNext, onPrev }) {
   return (
     <div className="space-y-4">
       {/* Variable List */}
-      <h2 className="text-base font-semibold text-gray-500 dark:text-gray-200">Variable List</h2>
+      <h2 className="text-base font-semibold text-gray-500 dark:text-gray-200">
+        Variable List
+      </h2>
       <div className="rounded-lg p-2">
         <SalaryTable />
       </div>
@@ -819,13 +878,25 @@ export default function VariablePayment({ onNext, onPrev }) {
 
       {/* Buttons */}
       <div className="flex flex-row justify-end w-full gap-2">
-        <button type="button" className={btnPrevReset} onClick={onPrev}>
+        <button
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+          onClick={onPrev}
+        >
           Previous
         </button>
-        <button type="button" className={btnPrevReset} onClick={handleReset}>
+        <button
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+          onClick={handleReset}
+        >
           Reset
         </button>
-        <button type="button" className={btnSave} onClick={onNext}>
+        <button
+          type="button"
+          className="bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+          onClick={onNext}
+        >
           Save
         </button>
       </div>

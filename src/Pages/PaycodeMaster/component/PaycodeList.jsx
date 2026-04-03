@@ -46,7 +46,7 @@ const PaycodeList = ({ data }) => {
 
                         {/* Header */}
                         <div
-                            className="text-xs font-semibold text-white bg-primary py-3 px-6"
+                            className="text-xs font-semibold text-white ds-bg-primary py-3 px-6"
                             style={{
                                 display: "grid",
                                 gridTemplateColumns:
@@ -68,7 +68,7 @@ const PaycodeList = ({ data }) => {
                             {filteredData.map((item, i) => (
                                 <div
                                     key={i}
-                                    className="text-xs py-2 px-6 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                                    className="ds-text-xs text-gray-800 dark:text-gray-200 py-2 px-6 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                                     style={{
                                         display: "grid",
                                         gridTemplateColumns:
@@ -89,19 +89,19 @@ const PaycodeList = ({ data }) => {
                                         <Switch
                                             checked={item.status}
                                             onCheckedChange={() => handleToggle(i)}
-                                            className="data-[state=checked]:bg-[#7B2FF7]"
+                                            className="data-[state=checked]:bg-ds-primary"
                                         />
                                     </div>
 
                                     <div className="flex justify-center gap-4">
                                         <Eye
                                             size={14}
-                                            className="cursor-pointer hover:text-[#7B2FF7]"
+                                            className="cursor-pointer hover:text-ds-primary"
                                             onClick={() => setViewData(item)}
                                         />
                                         <Pencil
                                             size={14}
-                                            className="cursor-pointer hover:text-[#7B2FF7]"
+                                            className="cursor-pointer hover:text-ds-primary"
                                         />
                                         <Trash2
                                             size={14}
@@ -123,7 +123,7 @@ const PaycodeList = ({ data }) => {
             </div>
             {/* Footer */}
             <div className="flex justify-end p-4">
-                <button className="border border-[#7B2FF7] text-[#7B2FF7] text-xs sm:text-[0.7rem]   py-1   rounded-sm w-full sm:w-auto md:w-24 hover:bg-[#8629df] hover:text-white transition">
+                <button className="border border-ds-primary text-ds-primary text-xs sm:text-[0.7rem]   py-1   rounded-sm w-full sm:w-auto md:w-24 hover:bg-ds-primary hover:text-white transition">
                     Log Report
                 </button>
             </div>

@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
 import DateFilter from "./AttendanceRegularisation/components/DateFilter";
-
+import ToggleField from "@/components/ui/VariableTypeRow"
 const taxTableData = [
   {
     lowerLimit: "1.00",
@@ -56,78 +56,78 @@ const taxTableData = [
   },
 ];
 
-const ToggleField = ({
-  label,
-  name,
-  value,
-  onChange,
-  className = "",
-  info = null,
-}) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const iconRef = useRef(null);
-  const tooltipRef = useRef(null);
+// const ToggleField = ({
+//   label,
+//   name,
+//   value,
+//   onChange,
+//   className = "",
+//   info = null,
+// }) => {
+//   const [showTooltip, setShowTooltip] = useState(false);
+//   const iconRef = useRef(null);
+//   const tooltipRef = useRef(null);
 
-  useEffect(() => {
-    if (showTooltip && iconRef.current && tooltipRef.current) {
-      const iconRect = iconRef.current.getBoundingClientRect();
-      const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft =
-        window.pageXOffset || document.documentElement.scrollLeft;
-      const top = iconRect.top + scrollTop - tooltipRect.height - 8;
-      const left =
-        iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
-      tooltipRef.current.style.top = `${Math.max(4, top)}px`;
-      tooltipRef.current.style.left = `${Math.max(4, left)}px`;
-    }
-  }, [showTooltip]);
+//   useEffect(() => {
+//     if (showTooltip && iconRef.current && tooltipRef.current) {
+//       const iconRect = iconRef.current.getBoundingClientRect();
+//       const tooltipRect = tooltipRef.current.getBoundingClientRect();
+//       const scrollTop =
+//         window.pageYOffset || document.documentElement.scrollTop;
+//       const scrollLeft =
+//         window.pageXOffset || document.documentElement.scrollLeft;
+//       const top = iconRect.top + scrollTop - tooltipRect.height - 8;
+//       const left =
+//         iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
+//       tooltipRef.current.style.top = `${Math.max(4, top)}px`;
+//       tooltipRef.current.style.left = `${Math.max(4, left)}px`;
+//     }
+//   }, [showTooltip]);
 
-  return (
-    <div
-      className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}
-    >
-      <div className="flex items-center gap-1">
-        {info && (
-          <div className="relative">
-            <Info
-              ref={iconRef}
-              size={12}
-              className="text-[#8629DF] cursor-help"
-              onMouseEnter={() => setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
-            />
-            {showTooltip && (
-              <div
-                ref={tooltipRef}
-                className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
-                style={{ transform: "translateX(0)" }}
-              >
-                {info}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-              </div>
-            )}
-          </div>
-        )}
-        <Label
-          htmlFor={name}
-          className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold"
-        >
-          {label}
-        </Label>
-      </div>
-      <Switch
-        id={name}
-        checked={value === "Yes"}
-        onCheckedChange={(checked) =>
-          onChange({ target: { name, value: checked ? "Yes" : "No" } })
-        }
-        className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
-      />
-    </div>
-  );
-};
+//   return (
+//     <div
+//       className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}
+//     >
+//       <div className="flex items-center gap-1">
+//         {info && (
+//           <div className="relative">
+//             <Info
+//               ref={iconRef}
+//               size={12}
+//               className="ds-text-primary cursor-help"
+//               onMouseEnter={() => setShowTooltip(true)}
+//               onMouseLeave={() => setShowTooltip(false)}
+//             />
+//             {showTooltip && (
+//               <div
+//                 ref={tooltipRef}
+//                 className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
+//                 style={{ transform: "translateX(0)" }}
+//               >
+//                 {info}
+//                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+//               </div>
+//             )}
+//           </div>
+//         )}
+//         <Label
+//           htmlFor={name}
+//           className="ds-text-secondary ds-text-xs font-semibold"
+//         >
+//           {label}
+//         </Label>
+//       </div>
+//       <Switch
+//         id={name}
+//         checked={value === "Yes"}
+//         onCheckedChange={(checked) =>
+//           onChange({ target: { name, value: checked ? "Yes" : "No" } })
+//         }
+//         className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+//       />
+//     </div>
+//   );
+// };
 
 const TransactionHistory = () => {
   const mockTransactions = [
@@ -209,7 +209,7 @@ const TransactionHistory = () => {
   };
 
   return (
-    <div className="min-h-screen p-2 md:p-6">
+    <div className="min-h-screen py-3">
       <div className="flex flex-wrap md:flex-nowrap justify-between items-center">
         <h1 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-3">
           Transaction History Table
@@ -228,7 +228,7 @@ const TransactionHistory = () => {
         <div className="overflow-x-auto no-scrollbar">
           <div className="min-w-[900px] lg:min-w-full">
             <div
-              className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
+              className="ds-text-xs font-semibold text-white bg-[#8629DF] py-2.5 px-4 rounded-t-md"
               style={{
                 display: "grid",
                 gridTemplateColumns: "140px 160px 1.5fr 1.5fr 1.5fr 80px",
@@ -241,7 +241,7 @@ const TransactionHistory = () => {
               <div>User Name</div>
               <div>IP Address</div>
               <div>Card Name</div>
-              <div className="text-center">View</div>
+              <div className="text-center">Action</div>
             </div>
 
             <div
@@ -251,7 +251,7 @@ const TransactionHistory = () => {
               {mockTransactions.map((item, index) => (
                 <div
                   key={index}
-                  className="text-[0.7rem] py-2 px-4 border-b hover:bg-gray-200/30"
+                  className="ds-text-xs py-2 px-4 border-b hover:bg-gray-200/30"
                   style={{
                     display: "grid",
                     gridTemplateColumns: "140px 160px 1.5fr 1.5fr 1.5fr 80px",
@@ -279,7 +279,7 @@ const TransactionHistory = () => {
       </div>
 
       <div className="flex justify-end w-full">
-        <button className="bg-[#8629DF] text-white px-4 py-1 rounded-sm mt-3 text-[0.7rem]">
+        <button className="btn-primary px-4 py-1 mt-3">
           Download
         </button>
       </div>
@@ -302,7 +302,7 @@ const TransactionHistory = () => {
               <div className="overflow-x-auto no-scrollbar">
                 <div className="min-w-[1100px] lg:min-w-full">
                   <div
-                    className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
+                    className="ds-text-xs font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
                     style={{
                       display: "grid",
                       gridTemplateColumns:
@@ -327,7 +327,7 @@ const TransactionHistory = () => {
                     {mockModalData.map((item, index) => (
                       <div
                         key={index}
-                        className="text-[0.7rem] py-2 px-4 border-b hover:bg-gray-200/30"
+                        className="ds-text-xs py-2 px-4 border-b hover:bg-gray-200/30"
                         style={{
                           display: "grid",
                           gridTemplateColumns:
@@ -351,7 +351,7 @@ const TransactionHistory = () => {
             </div>
 
             <div className="flex justify-end mt-8">
-              <button className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24">
+              <button className="btn-primary">
                 Download
               </button>
             </div>
@@ -365,18 +365,18 @@ const TransactionHistory = () => {
 const TaxConfigurationTable = ({ taxData }) => {
   return (
     <div>
-      <h1 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-3">
-        Tax Configutration List
+      <h1 className="text-lg text-[#58585A] dark:text-gray-50 font-semibold mb-2">
+        Income Tax Slab Details
       </h1>
       <div className="rounded-sm mt-5 shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
         <div className="overflow-auto no-scrollbar table-scroll">
           <div className="min-w-[1050px] lg:min-w-full">
             <div
-              className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 rounded-t-md"
+              className="ds-text-xs font-semibold text-white bg-[#8629DF]  px-4 py-2.5 rounded-t-md"
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
+                  "60px 1fr 1fr 80px 120px 120px 1.6fr 1.6fr 120px",
                 gap: "6px",
                 alignItems: "center",
               }}
@@ -388,19 +388,18 @@ const TaxConfigurationTable = ({ taxData }) => {
               <div>Regime</div>
               <div>Slab Type</div>
               <div>Start Financial Yr</div>
-              <div>End Financial Yr</div>
-              <div>Edit</div>
-              <div>Delete</div>
+              <div className="text-center">End Financial Yr</div>
+              <div className="text-center">Action</div>
             </div>
 
             {taxData.map((tax, index) => (
               <div
                 key={index}
-                className="text-[0.7rem] py-2 px-3 border-b hover:bg-gray-100 dark:hover:bg-gray-500"
+                className="ds-text-xs py-2 px-3 border-b hover:bg-gray-100 dark:hover:bg-gray-500"
                 style={{
                   display: "grid",
                   gridTemplateColumns:
-                    "60px 1fr 1fr 80px 120px 120px 1.5fr 1.5fr 60px 60px",
+                    "60px 1fr 1fr 80px 120px 120px 1.6fr 1.6fr  120px",
                   gap: "6px",
                   alignItems: "center",
                 }}
@@ -412,11 +411,9 @@ const TaxConfigurationTable = ({ taxData }) => {
                 <div>{tax.regime}</div>
                 <div>{tax.slabType}</div>
                 <div>{tax.startYear}</div>
-                <div>{tax.endYear}</div>
-                <div className="text-center">
+                <div className="text-center">{tax.endYear}</div>
+                <div className="text-center flex justify-center gap-2">
                   <Pencil className="h-4 w-4 text-center" />
-                </div>
-                <div className="text-center">
                   <Trash2 className="h-4 w-4 text-center text-red-500" />
                 </div>
               </div>
@@ -525,8 +522,8 @@ const IncomeTaxConfiguration = () => {
         {activeTab === "itc" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="col-span-1">
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-base font-semibold mb-1 text-gray-500">
+              <div className="panel">
+                <h1 className="panel-title">
                   Tax Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -627,8 +624,8 @@ const IncomeTaxConfiguration = () => {
                   />
                 </div>
               </div>
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                <h1 className="text-base font-semibold mb-1 text-gray-500">
+              <div className="panel mt-4">
+                <h1 className="panel-title">
                   Investment Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -677,8 +674,8 @@ const IncomeTaxConfiguration = () => {
               </div>
             </div>
             <div className="col-span-1">
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-base font-semibold  mb-1 text-gray-500">
+              <div className="panel">
+                <h1 className="panel-title">
                   Tax Rebate Configuration
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -733,7 +730,7 @@ const IncomeTaxConfiguration = () => {
                   <div>
                     <label
                       htmlFor="dates"
-                      className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]"
+                      className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs"
                     >
                       Current LTA Block Period(From-To)
                     </label>
@@ -768,8 +765,8 @@ const IncomeTaxConfiguration = () => {
                 </div>
               </div>
 
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-3">
-                <h1 className="text-base font-semibold  mb-1 text-gray-500">
+              <div className="panel mt-3">
+                <h1 className="panel-title">
                   Exemption Details
                 </h1>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -878,8 +875,8 @@ const IncomeTaxConfiguration = () => {
         )}
         {activeTab === "its" && (
           <div>
-            <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-              <h1 className="text-base font-semibold  mb-1 text-gray-500">
+            <div className="panel">
+              <h1 className="panel-title">
                 Tax Configuration
               </h1>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -949,34 +946,34 @@ const IncomeTaxConfiguration = () => {
                 />
               </div>
             </div>
+
+            <div className="py-2 mt-1">
+              <TaxConfigurationTable taxData={taxTableData} />
+            </div>
           </div>
         )}
       </div>
       <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-3">
         <button
           onClick={handleReset}
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+          className="btn-outline"
         >
           Reset
         </button>
-        <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24">
+        <button className="btn-outline">
           Log Report
         </button>
         <button
           onClick={handleUpdate}
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
+          className="btn-primary"
         >
           Update
         </button>
       </div>
 
-      {showTaxTable && (
-        <div className="p-2 mt-1 md:p-6">
-          <TaxConfigurationTable taxData={taxTableData} />
-        </div>
-      )}
-
-      <TransactionHistory />
+      <div className="mt-3">
+        <TransactionHistory />
+      </div>
     </div>
   );
 };

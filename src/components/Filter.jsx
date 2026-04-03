@@ -26,7 +26,7 @@ const FilterComponent = ({
   showActiveTags = true,
   
   // Style customization
-  primaryColor = "#8629DF",
+  primaryColor = "var(--color-ds-primary)",
   textColor = "text-gray-700",
   bgColor = "bg-white",
   borderColor = "border-gray-300",
@@ -280,11 +280,11 @@ const FilterComponent = ({
         <button
           data-filter-button={filterKey}
           onClick={() => toggleDropdown(filterKey)}
-          className={`border ${borderColor} px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] ${bgColor} hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors`}
+          className={`border ${borderColor} px-5 py-2 rounded-full w-fit ds-text-xs flex justify-between items-center gap-2 min-w-[140px] ${bgColor} hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors`}
           style={{ borderColor: primaryColor }}
         >
           <div className="flex flex-col items-start">
-            <span className={`${textColor} text-[0.7rem] font-medium`}>
+            <span className={`${textColor} ds-text-xs font-medium`}>
               {label}
             </span>
           </div>
@@ -348,7 +348,7 @@ const FilterComponent = ({
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] font-semibold">
+                    <span className="ds-text-xs font-semibold">
                       {item}
                     </span>
                   </div>
@@ -382,9 +382,9 @@ const FilterComponent = ({
             return values.map((value, index) => (
               <div
                 key={`${key}-${value}-${index}`}
-                className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200 dark:border-gray-700"
+                className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200 dark:border-gray-700"
               >
-                <span className="text-gray-900 dark:text-gray-300 text-[0.7rem]">
+                <span className="text-gray-900 dark:text-gray-300 ds-text-xs">
                   {value}
                 </span>
                 <button
@@ -402,7 +402,7 @@ const FilterComponent = ({
           ) && (
             <button
               onClick={handleResetFilters}
-              className="text-[0.7rem] text-red-500 hover:text-red-700 px-2 py-1 border border-red-200 rounded-sm"
+              className="ds-text-xs text-red-500 hover:text-red-700 px-2 py-1 border border-red-200 rounded-sm"
             >
               Clear All Filters
             </button>
@@ -441,7 +441,7 @@ const FilterComponent = ({
         <div className="relative">
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="text-white cursor-pointer text-xs md:text-[0.7rem] px-4 py-2 min-w-[100px] rounded-sm flex items-center justify-center gap-1"
+            className="bg-ds-primary text-white ds-text-xs px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1 md:text-[0.8rem] cursor-pointer px-4 py-2 min-w-[100px]"
             style={{ backgroundColor: primaryColor }}
           >
             <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />

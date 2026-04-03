@@ -24,14 +24,14 @@ const SelectField = ({ label, name, value, onChange, children, className = "" })
   return (
     <div className="w-full relative" ref={dropdownRef}>
       {/* Label */}
-      <label className="block text-[0.7rem] font-normal text-black dark:text-gray-200 mb-1">
+      <label className="block ds-text-xs font-normal text-black dark:text-gray-200 mb-1">
         {label}
       </label>
 
       {/* Dropdown trigger */}
       <div
         className={cn(
-          "w-full px-4 py-1.5 rounded-sm text-[0.7rem] font-normal",
+          "w-full px-4 py-1.5 rounded-sm ds-text-xs font-normal",
           "bg-white dark:bg-gray-800",
           "border border-gray-300 dark:border-gray-700",
           "text-gray-900 dark:text-gray-100",
@@ -39,7 +39,7 @@ const SelectField = ({ label, name, value, onChange, children, className = "" })
           "hover:border-gray-400 dark:hover:border-gray-500",
           "transition-all duration-200 ease-in-out",
           "cursor-pointer",
-          "focus:border-2 focus:border-[#9853F9]",
+          "focus:border-2 ds-border-primary focus:ring-2 focus:ring-ds-primary",
           className
         )}
         onClick={() => setIsOpen(!isOpen)}
@@ -54,7 +54,7 @@ const SelectField = ({ label, name, value, onChange, children, className = "" })
             React.cloneElement(child, {
               onClick: () => handleSelect(child.props.value),
               className:
-                "px-4 py-1.5 text-[0.7rem] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700",
+                "px-4 py-1.5 ds-text-xs cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700",
             })
           )}
         </div>

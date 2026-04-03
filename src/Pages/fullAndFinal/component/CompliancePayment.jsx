@@ -4,11 +4,9 @@ import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
 import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
-const btnPrevReset =
-  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
-const btnSave =
-  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer";
-const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg";
+const btnPrevReset = "bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
+const btnSave = "font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white ds-bg-primary text-white hover:bg-ds-primary/80";
+const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3";
 const sectionTitleClass = "text-base font-semibold mb-2 text-gray-500 dark:text-gray-200 mt-2";
 
 export default function CompliancePayment({ onNext, onPrev }) {
@@ -170,7 +168,7 @@ export default function CompliancePayment({ onNext, onPrev }) {
 
           <button
             type="button"
-            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-4 py-1.5 mt-1 rounded-sm"
+            className="ds-bg-primary hover:bg-ds-primary/90 text-white ds-text-xs font-semibold px-4 py-1.5 mt-1 rounded-sm"
           >
             Calculate Gratuity
           </button>
@@ -285,7 +283,7 @@ export default function CompliancePayment({ onNext, onPrev }) {
           <button type="button" className={btnPrevReset}>
             Reset
           </button>
-          <button type="button" className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-4 py-1 rounded-sm">
+          <button type="button" className="ds-bg-primary hover:bg-ds-primary/90 text-white text-[0.7rem] font-semibold px-4 py-1 rounded-sm">
             Calculate
           </button>
         </div>

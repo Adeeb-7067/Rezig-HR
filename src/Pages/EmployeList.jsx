@@ -45,7 +45,7 @@ const InlineSelect = ({
         onClick={() => setOpen(!open)}
         className={`
           w-[4rem] h-7.5 px-3 py-1.5
-          rounded-sm text-[0.7rem]
+          rounded-sm ds-text-xs
           flex items-center justify-between
           bg-white dark:bg-gray-800
           border border-gray-300 dark:border-gray-700
@@ -76,7 +76,7 @@ const InlineSelect = ({
             rounded-sm shadow-lg
             border border-gray-200 dark:border-gray-700
             bg-white dark:bg-gray-800
-            text-[0.7rem]
+            ds-text-xs
             max-h-40 overflow-y-auto
           "
         >
@@ -506,10 +506,10 @@ const EmployeList = () => {
         <button
           data-filter-button={filterKey}
           onClick={() => handleToggleDropdown(filterKey)}
-          className="border border-gray-300 dark:border-gray-400 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
+          className="border border-gray-300 dark:border-gray-400 px-5 py-2 rounded-full w-fit ds-text-xs flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
+            <span className="text-gray-700 dark:text-gray-50 ds-text-xs font-medium">
               {label}
             </span>
           </div>
@@ -533,7 +533,7 @@ const EmployeList = () => {
                       ? handleClearAll(filterKey)
                       : handleSelectAll(filterKey)
                   }
-                  className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
+                  className="text-sm text-ds-primary dark:text-ds-primary font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
@@ -547,11 +547,11 @@ const EmployeList = () => {
                   <div
                     key={item}
                     onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-ds-primary/80 text-gray-900 hover:text-white dark:text-gray-50 dark:hover:bg-gray-700 cursor-pointer rounded"
                   >
                     <div
                       className={`w-4 h-4 flex items-center justify-center border rounded ${currentValues.includes(item)
-                          ? "bg-[#8629DF] border-[#8629DF]"
+                          ? "bg-ds-primary border-ds-primary"
                           : "border-gray-300"
                         }`}
                     >
@@ -572,7 +572,7 @@ const EmployeList = () => {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] font-semibold">{item}</span>
+                    <span className="ds-text-xs font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
@@ -593,11 +593,11 @@ const EmployeList = () => {
 
         {/* Buttons */}
         <div className="flex gap-0 sm:gap-3">
-          <div className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1 md:text-[0.8rem] cursor-pointer"
+          <div className="ds-bg-primary text-white ds-text-xs px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1 md:text-[0.8rem] cursor-pointer"
           >
             <Link
               to="/info"
-              className="flex items-center justify-center gap-1 text-[0.7rem]  md:text-[0.8rem]"
+              className="flex items-center justify-center gap-1 ds-text-xs md:text-[0.8rem]"
             >
               <AiOutlinePlus className=" md:w-4 md:h-4 font-semibold" />
               Add Employee
@@ -623,7 +623,7 @@ const EmployeList = () => {
         <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1 ">
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+            className="ds-bg-primary dark:border dark:border-gray-500 text-white cursor-pointer ds-text-xs px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
           >
             <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
             Filter{" "}
@@ -649,11 +649,11 @@ const EmployeList = () => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
+                      className="flex items-center gap-2 ds-text-xs text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 accent-[#8629DF]"
+                        className="w-4 h-4 accent-ds-primary"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -667,7 +667,7 @@ const EmployeList = () => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold ds-text-xs py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                   >
                     {/* <LuRefreshCw className="w-3 h-3" />  */}
                     Reset
@@ -675,10 +675,10 @@ const EmployeList = () => {
                   <button
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
-                    className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
+                    className={` font-semibold ds-text-xs py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer
     ${isAnyFilterChecked
-                        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                        ? "bg-ds-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+                        : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
                       }
   `}
                   >
@@ -691,12 +691,12 @@ const EmployeList = () => {
           )}
         </div>
 
-        <button className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
+        <button className="ds-bg-primary  dark:border dark:border-gray-500 text-white cursor-pointer ds-text-xs md:text-[0.7rem] px-4 p-2 md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
           <CiImport className="md:w-4 md:h-4" />
           Bulk Export
         </button>
 
-        <button className="bg-[#8629DF]  dark:border dark:border-gray-500 text-white cursor-pointer text-[0.7rem] md:text-[0.7rem] px-4 p-2  md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
+        <button className="ds-bg-primary  dark:border dark:border-gray-500 text-white cursor-pointer ds-text-xs md:text-[0.7rem] px-4 p-2  md:p-0 min-w-full md:min-w-[8.5rem] rounded-sm flex items-center justify-center gap-2">
           <CiExport className="md:w-4 md:h-4" />
           Bulk Import
         </button>
@@ -720,9 +720,9 @@ const EmployeList = () => {
             return values.map((value, index) => (
               <div
                 key={`${key}-${value}-${index}`}
-                className="bg-gray-100 dark:bg-gray-800 dark:borde-gray-400 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
+                className="bg-gray-100 dark:bg-gray-800 dark:borde-gray-400 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200"
               >
-                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                <span className="text-gray-900 dark:text-gray-50 ds-text-xs">
                   {value}
                 </span>
                 <button
@@ -741,7 +741,7 @@ const EmployeList = () => {
       <div className="rounded-sm mt-5 shadow drop-shadow-xs  border border-gray-200 dark:border-gray-600">
         <div className="overflow-x-auto no-scrollbar">
           <div
-            className="text-[0.7rem] min-w-[1050px] lg:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-[#8629DF]  py-1 px-4 min-h-[40px] "
+            className="ds-text-xs min-w-[1050px] lg:min-w-full sm:text-[0.8rem]  font-semibold text-white dark:text-gray-50 rounded-t-md  dark:border-gray-700 bg-ds-primary  py-1 px-4 min-h-[40px] "
             style={{
               display: "grid",
               gridTemplateColumns:
@@ -856,8 +856,8 @@ const EmployeList = () => {
           <div className="flex items-center gap-1 sm:gap-2 flex-wrap justify-center lg:justify-end">
             <button
               className="px-2 sm:px-3 py-1 border rounded 
-      border-[#8629DF] dark:border-[#A970FF]
-      hover:bg-[#8629DF] hover:text-white"
+      border-ds-primary dark:border-ds-primary
+      hover:bg-ds-primary hover:text-white"
             >
               &lt; Back
             </button>
@@ -867,8 +867,8 @@ const EmployeList = () => {
                 key={num}
                 className={`px-2 sm:px-3 py-1 border rounded transition
           ${num === 1
-                    ? "bg-[#8629DF] text-white border-[#8629DF]"
-                    : "border-[#8629DF] dark:border-[#A970FF] text-gray-700 dark:text-gray-300 hover:bg-[#8629DF] hover:text-white"
+                    ? "bg-ds-primary text-white border-ds-primary"
+                    : "border-ds-primary dark:border-ds-primary text-gray-700 dark:text-gray-300 hover:bg-ds-primary hover:text-white"
                   }`}
               >
                 {num}
@@ -881,17 +881,17 @@ const EmployeList = () => {
 
             <button
               className="px-2 sm:px-3 py-1 border rounded 
-      border-[#8629DF] dark:border-[#A970FF]
+      border-ds-primary dark:border-ds-primary
       text-gray-700 dark:text-gray-300
-      hover:bg-[#8629DF] hover:text-white"
+      hover:bg-ds-primary hover:text-white"
             >
               25
             </button>
 
             <button
               className="px-2 sm:px-3 py-1 border rounded 
-      border-[#8629DF] dark:border-[#A970FF]
-      hover:bg-[#8629DF] hover:text-white"
+      border-ds-primary dark:border-ds-primary
+      hover:bg-ds-primary hover:text-white"
             >
               Next &gt;
             </button>

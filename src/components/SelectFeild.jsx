@@ -56,7 +56,7 @@ const SelectField = ({
             <Info
               ref={iconRef}
               size={12}
-              className="text-[#8629DF] cursor-help"
+              className="ds-text-primary cursor-help"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             />
@@ -74,7 +74,7 @@ const SelectField = ({
             )}
           </div>
         )}
-        <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">
+        <label className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs">
           {label}
         </label>
       </div>
@@ -83,11 +83,11 @@ const SelectField = ({
         type="button"
         onClick={() => setOpen(!open)}
         className={cn(
-          "w-full h-7.5 px-4 py-1.5 rounded-sm text-[0.7rem] font-normal flex items-center justify-between",
+          "w-full h-7.5 px-4 py-1.5 rounded-sm ds-text-xs font-normal flex items-center justify-between",
           "bg-white dark:bg-gray-800",
           "border border-gray-300 dark:border-gray-700",
           "text-gray-600 dark:text-white",
-          "focus:ring-2 focus:ring-[#9853F9] focus:ring-inset focus:outline-none",
+          "focus:ring-2 focus:ring-ds-primary focus:ring-inset focus:outline-none",
           "transition-all duration-200",
           className,
         )}
@@ -99,7 +99,7 @@ const SelectField = ({
         </span>
         <ChevronDown
           size={14}
-          className={`transition-transform ${open ? "rotate-180 text-[#9853F9]" : "text-gray-400"}`}
+          className={`transition-transform ${open ? "rotate-180 ds-text-primary" : "text-gray-400"}`}
         />
       </button>
 
@@ -107,7 +107,7 @@ const SelectField = ({
         <ul
           className={cn(
             "absolute z-[999] mt-1 w-full rounded-sm shadow-lg border border-gray-200 dark:border-gray-700",
-            "bg-white dark:bg-gray-800 text-[0.7rem]",
+            "bg-white dark:bg-gray-800 ds-text-xs",
             "max-h-40 overflow-y-auto transition-all duration-150 ease-in-out no-scrollbar",
           )}
         >
@@ -117,9 +117,9 @@ const SelectField = ({
               onClick={() => handleSelect(opt.value)}
               className={cn(
                 "px-4 py-1.5 cursor-pointer transition-all duration-150 ease-in-out",
-                "hover:bg-[#9853F9]/15 hover:text-[#9853F9] dark:text-gray-50",
+                "hover:bg-ds-primary/10 hover:ds-text-primary dark:text-gray-50",
                 value === opt.value &&
-                "bg-[#9853F9]/20 text-[#9853F9] font-medium",
+                "bg-ds-primary/10 ds-text-primary font-medium",
               )}
             >
               {opt.label}

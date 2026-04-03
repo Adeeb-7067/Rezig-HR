@@ -41,7 +41,7 @@ body {
 }
 
 .bg-primary {
-  background-color: #8629df;
+  background-color: var(--color-ds-primary);
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -76,10 +76,12 @@ body {
 
 .dropdown-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #8629df #f3f4f6;
+  scrollbar-color: var(--color-ds-primary) #f3f4f6;
 }
 
 @theme inline {
+  /* App brand primary (used by ds-* classes and Tailwind utilities: bg-ds-primary, text-ds-primary, border-ds-primary) */
+  --color-ds-primary: #8629DF;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -151,8 +153,8 @@ body {
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   /* custom css  */
-  --color-purple-700: #8629DF;
-  --color-text-purple-600: #8629DF;
+  --color-purple-700: var(--color-ds-primary);
+  --color-text-purple-600: var(--color-ds-primary);
   --text-xs: clamp(0.65rem, 0.6rem + 0.2vw, 0.75rem);
   --text-sm: clamp(0.75rem, 0.7rem + 0.3vw, 0.875rem);
   --text-base: clamp(0.875rem, 0.8rem + 0.4vw, 1rem);
@@ -189,6 +191,23 @@ body {
 
   .text-body {
     font-size: var(--text-base);
+  }
+
+  /* Design tokens: primary color + small label size only (no button/panel presets) */
+  .ds-text-primary {
+    color: var(--color-ds-primary);
+  }
+
+  .ds-bg-primary {
+    background-color: var(--color-ds-primary);
+  }
+
+  .ds-border-primary {
+    border-color: var(--color-ds-primary);
+  }
+
+  .ds-text-xs {
+    font-size: 0.7rem;
   }
 
 }
@@ -258,7 +277,7 @@ body {
 
 .table-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #8629df #f3f4f6;
+  scrollbar-color: var(--color-ds-primary) #f3f4f6;
 }
 
 /* Chrome, Edge, Safari */
@@ -273,18 +292,18 @@ body {
 }
 
 .table-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8629df, #6d1fc7);
+  background: var(--color-ds-primary);
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 
 .table-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #6d1fc7, #5a16a8);
+  background: color-mix(in srgb, var(--color-ds-primary) 82%, black);
 }
 
 /* Dark Mode Scrollbar */
 .dark .table-scroll {
-  scrollbar-color: #8629df #1f2937;
+  scrollbar-color: var(--color-ds-primary) #1f2937;
 }
 
 .dark .table-scroll::-webkit-scrollbar-track {

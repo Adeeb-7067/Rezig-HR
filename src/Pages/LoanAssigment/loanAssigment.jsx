@@ -167,7 +167,6 @@ const LoanAssignment = () => {
       document.removeEventListener("mousedown", handleClickOutsideSearch);
   }, []);
 
-  // Sample data grouped by employee name (matching your screenshot)
   const loanAssignments = [
     {
       id: 1,
@@ -543,10 +542,10 @@ const LoanAssignment = () => {
         <button
           data-filter-button={filterKey}
           onClick={() => handleToggleDropdown(filterKey)}
-          className="border border-gray-300 dark:border-gray-400 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
+          className="border border-gray-300 dark:border-gray-400 px-5 py-2 rounded-full w-fit ds-text-xs flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 dark:text-gray-50 hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
+            <span className="text-gray-700 dark:text-gray-50 ds-text-xs font-medium">
               {label}
             </span>
           </div>
@@ -569,7 +568,7 @@ const LoanAssignment = () => {
                       ? handleClearAll(filterKey)
                       : handleSelectAll(filterKey)
                   }
-                  className="text-sm text-[#8629DF] dark:text-[#8629DF] font-medium"
+                  className="text-sm ds-text-primary dark:text-[#8629DF] font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
@@ -607,7 +606,7 @@ const LoanAssignment = () => {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] font-semibold">{item}</span>
+                    <span className="ds-text-xs font-semibold">{item}</span>
                   </div>
                 ))}
               </div>
@@ -671,7 +670,7 @@ const LoanAssignment = () => {
 
               {/* SEARCH DROPDOWN */}
               {showSearchDropdown && filteredData.length > 0 && (
-                <div className="absolute z-50 top-full left-0 mt-1 w-full bg-white dark:bg-gray-800 border rounded shadow-lg">
+                        <div className="absolute z-50 top-full left-0 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded shadow-lg">
                   {filteredData.map((item) => (
                     <div
                       key={item.id}
@@ -682,12 +681,12 @@ const LoanAssignment = () => {
                       }}
                       className="px-4 py-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
                     >
-                      <span className="text-[0.9rem] text-gray-800 dark:text-gray-200">
-                        {item.employeeName}
-                      </span>
-                      <span className="text-[0.7rem] text-gray-400 ml-2">
-                        • {item.department} • {item.location}
-                      </span>
+                        <span className="text-[0.85rem] text-gray-800 dark:text-gray-200 block sm:inline">
+                                        {item.employeeName}
+                                    </span>
+                                    <span className="text-[0.7rem] text-gray-400 sm:ml-2 block sm:inline">
+                                        • {item.dept} • {item.location}
+                                    </span>
                     </div>
                   ))}
                 </div>
@@ -697,17 +696,17 @@ const LoanAssignment = () => {
             {/* FILTER BUTTON */}
             <div className="relative shrink-0">
               <button
-                onClick={() => setOpen((prev) => !prev)}
-                className="flex items-center justify-center gap-1 sm:gap-2 bg-[#8629DF] hover:bg-[#8629DF]/90 text-white px-3 sm:px-4 rounded-sm transition-all h-9 sm:h-[35px] text-xs sm:text-sm font-medium whitespace-nowrap min-w-[80px] sm:min-w-[100px]"
-              >
-                <HiAdjustmentsHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                <span>Filter</span>
-                {open ? (
-                  <IoMdArrowDropup className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                ) : (
-                  <IoMdArrowDropdown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                )}
-              </button>
+                                     onClick={() => setOpen((prev) => !prev)}
+                                     className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs px-3 sm:px-4 rounded-sm flex items-center justify-center gap-1 h-9 sm:h-[35px] whitespace-nowrap"
+                                 >
+                                     <HiAdjustmentsHorizontal className="w-4 h-4" />
+                                     <span>Filter</span>
+                                     {open ? (
+                                         <IoMdArrowDropup className="w-3 h-3" />
+                                     ) : (
+                                         <IoMdArrowDropdown className="w-3 h-3" />
+                                     )}
+                                 </button>
 
               {/* FILTER DROPDOWN */}
               {open && (
@@ -724,7 +723,7 @@ const LoanAssignment = () => {
                       {filterOptions.map((f) => (
                         <label
                           key={f.key}
-                          className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
+                          className="flex items-center gap-2 ds-text-xs text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                         >
                           <input
                             type="checkbox"
@@ -742,18 +741,19 @@ const LoanAssignment = () => {
                     <div className="mt-4 flex gap-2 pt-3 border-t">
                       <button
                         onClick={handleResetFilters}
-                        className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
+                        className="btn-outline-half"
                       >
                         Reset
                       </button>
                       <button
                         onClick={handleApplyFilters}
                         disabled={!isAnyFilterChecked}
-                        className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-              ${isAnyFilterChecked
-                            ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                            : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
-                          }`}
+                        className={`btn-primary-half
+    ${isAnyFilterChecked
+                        ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
+                        : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                      }
+  `}
                       >
                         Apply
                       </button>
@@ -784,9 +784,9 @@ const LoanAssignment = () => {
               return values.map((value, index) => (
                 <div
                   key={`${key}-${value}-${index}`}
-                  className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200 dark:border-gray-600"
+                  className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200 dark:border-gray-600"
                 >
-                  <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                  <span className="text-gray-900 dark:text-gray-50 ds-text-xs">
                     {value}
                   </span>
                   <button

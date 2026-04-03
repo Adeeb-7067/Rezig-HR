@@ -6,6 +6,7 @@ import { BsFolder } from "react-icons/bs";
 import { FaCamera, FaTimes } from "react-icons/fa";
 import { FiSearch, FiPhone } from "react-icons/fi";
 import SelectField from "@/components/SelectFeild";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
 const InputField = ({
   label,
@@ -17,7 +18,7 @@ const InputField = ({
   ...props
 }) => (
   <div>
-    <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]  mb-1">
+    <label className="block text-gray-500 dark:text-gray-50 ds-text-xs font-semibold mb-1">
       {label}
     </label>
     <input
@@ -25,14 +26,14 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full text-[0.7rem] h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+      className={`w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
     />
   </div>
 );
 
 const SearchInput = ({ label, name, value, onChange, icon: Icon }) => (
   <div className="relative">
-    <label className="block text-[0.7rem] font-semibold text-gray-500 dark:text-gray-50 mb-1">
+    <label className="block text-gray-500 dark:text-gray-50 ds-text-xs font-semibold mb-1">
       {label}
     </label>
     <div className="relative h-7.5">
@@ -148,15 +149,15 @@ const PersonalInfo = ({ onNext }) => {
     "presentAddress",
     "unitDepartment",
     "permanentAddress",
-    "taxPAN"
+    "taxPAN",
   ];
 
   // Function to render section based on name
   const renderSection = (sectionName) => {
-    switch(sectionName) {
+    switch (sectionName) {
       case "personal":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg ">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
             <h1 className="text-base font-semibold mb-1 text-gray-500">
               Personal Details
             </h1>
@@ -279,7 +280,7 @@ const PersonalInfo = ({ onNext }) => {
 
       case "professional":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10   p-2 px-3 rounded-lg">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
             <h1 className="text-base font-semibold mb-1 text-gray-500">
               Professional Details
             </h1>
@@ -340,7 +341,7 @@ const PersonalInfo = ({ onNext }) => {
 
       case "family":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
             <InputField
               label="Father Name"
               name="fatherName"
@@ -382,7 +383,7 @@ const PersonalInfo = ({ onNext }) => {
 
       case "manager":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
             <SearchInput
               label="L1 Manager"
               name="l1Manager"
@@ -441,8 +442,8 @@ const PersonalInfo = ({ onNext }) => {
 
       case "presentAddress":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg">
-            <h1 className="text-base text-gray-500 font-semibold mb-1">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
+            <h1 className="text-base font-semibold mb-1 text-gray-500">
               Present Address
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -521,24 +522,18 @@ const PersonalInfo = ({ onNext }) => {
               />
             </div>
             <div className="flex mt-2 gap-2">
-              <input
-                type="checkbox"
-                name="sameAsPermanent"
-                checked={formData.sameAsPermanent}
-                onChange={handleChange}
-                id="Address"
-                className="h-4 w-4 mt-1 "
+              <VariableTypeRow
+                label={
+                  "Use present address as permanent address"
+                }
               />
-              <p className="text-[14px] text-gray-500">
-                Use present address as permanent address
-              </p>
             </div>
           </div>
         );
 
       case "unitDepartment":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg grid grid-cols-1 md:grid-cols-2 gap-2">
             <SelectField
               label="Unit Name"
               name="unitName"
@@ -608,8 +603,8 @@ const PersonalInfo = ({ onNext }) => {
 
       case "permanentAddress":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg">
-            <h1 className="text-base text-gray-500 font-semibold mb-1">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
+            <h1 className="text-base font-semibold mb-1 text-gray-500">
               Permanent Address
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
@@ -689,7 +684,7 @@ const PersonalInfo = ({ onNext }) => {
 
       case "taxPAN":
         return (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  p-2 rounded-lg">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <InputField
                 label="PAN"
@@ -708,7 +703,7 @@ const PersonalInfo = ({ onNext }) => {
                 <option>New Regime</option>
               </SelectField>
             </div>
-            <p className="text-sm mt-2 text-gray-500">
+            <p className="ds-text-xs mt-2 text-gray-500">
               Enter PAN in format: AAAPA1234A
             </p>
           </div>
@@ -730,7 +725,7 @@ const PersonalInfo = ({ onNext }) => {
           {renderSection("presentAddress")}
           {renderSection("permanentAddress")}
         </div>
-        
+
         <div className="col-span-1 space-y-4">
           {/* Right Column Sections in desktop order */}
           {renderSection("professional")}
@@ -751,16 +746,23 @@ const PersonalInfo = ({ onNext }) => {
 
       {/* Buttons */}
       <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-4">
+          <button
+          onClick={()=>{window.history.back()}}
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Back
+        </button>
         <button
           type="button"
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Reset
         </button>
         <button
           type="button"
           onClick={onNext}
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white"
         >
           Next
         </button>

@@ -3,116 +3,125 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Plus, Triangle } from "lucide-react";
 import { componentdummyData } from "./component/componentdummyData";
 
+const CODE_GROUPS = ["Salary Field"];
+
 const ComponentGroupTable = ({ search = "", groups, onAddParameter = () => {} }) => {
 
-    const [openGroup, setOpenGroup] = useState(null);
+    const [openGroups, setOpenGroups] = useState(new Set());
 
     const toggleGroup = (group) => {
-        setOpenGroup((prev) => (prev === group ? null : group));
+        setOpenGroups((prev) => {
+            const next = new Set(prev);
+            next.has(group) ? next.delete(group) : next.add(group);
+            return next;
+        });
     };
 
+    const isOpen = (group) => openGroups.has(group);
+    const uniqueGroups = [...new Set(groups)];
+
     return (
-
         <div className="border border-gray-200 dark:border-gray-700 overflow-hidden rounded-sm">
-
-            {/* Scroll only body */}
             <div className="max-h-[350px] overflow-y-auto table-scroll no-scrollbar bg-white dark:bg-gray-800">
 
-                <table className="w-full text-[0.7rem]">
+                {/* ✅ Fix: always 3 fixed columns so layout never shifts */}
+                <table className="w-full ds-text-xs table-fixed">
+                    <colgroup>
+                        <col className="w-[30%]" />
+                        <col className="w-[55%]" />
+                        <col className="w-[15%]" />
+                    </colgroup>
 
                     <tbody>
+                        {uniqueGroups.map((group) => {
 
-                        {groups.map((group) => (
+                            const hasCode = CODE_GROUPS.includes(group);
+                            const open = isOpen(group);
 
-                            <React.Fragment key={group}>
+                            const seen = new Set();
+                            const uniqueItems = (componentdummyData[group] || []).filter((item) => {
+                                const key = `${item.code}__${item.desc}`;
+                                if (seen.has(key)) return false;
+                                seen.add(key);
+                                return true;
+                            });
 
-                                {/* Group Header */}
-                                <tr>
-                                    <td colSpan={3} className="p-0">
+                            const filteredItems = uniqueItems.filter((item) => {
+                                if (!search.trim()) return true;
+                                const q = search.toLowerCase();
+                                return (
+                                    item.code?.toLowerCase().includes(q) ||
+                                    item.desc?.toLowerCase().includes(q)
+                                );
+                            });
 
-                                        <div
-                                            onClick={() => toggleGroup(group)}
-                                            className="
-                                                flex items-center justify-between 
-                                                px-4 py-2 
-                                                bg-gray-50 dark:bg-gray-700/50
-                                                cursor-pointer 
-                                                hover:bg-gray-100 dark:hover:bg-gray-700
-                                                transition-all
-                                            "
-                                        >
+                            return (
+                                <React.Fragment key={group}>
 
-                                            <div className="flex items-center gap-2">
-
-                                                <Triangle
-                                                    size={6}
-                                                    fill="currentColor"
-                                                    stroke="none"
-                                                    className={`transition-transform duration-200 ${openGroup === group
-                                                        ? "rotate-180 text-gray-500 dark:text-gray-400"
-                                                        : "rotate-90 text-[#8629DF]"
+                                    {/* Group Header — always colSpan 3 */}
+                                    <tr>
+                                        <td colSpan={3} className="p-0">
+                                            <div
+                                                onClick={() => toggleGroup(group)}
+                                                className="
+                                                    flex items-center justify-between
+                                                    px-4 py-2
+                                                    bg-gray-50 dark:bg-gray-700/50
+                                                    cursor-pointer
+                                                    hover:bg-gray-100 dark:hover:bg-gray-700
+                                                    transition-all
+                                                "
+                                            >
+                                                <div className="flex items-center gap-2">
+                                                    <Triangle
+                                                        size={6}
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                        className={`transition-transform duration-200 ${
+                                                            open
+                                                                ? "rotate-180 text-gray-500 dark:text-gray-400"
+                                                                : "rotate-90 ds-text-primary"
                                                         }`}
-                                                />
-
-                                                <span
-                                                    className={`font-bold uppercase tracking-tight ${openGroup === group
-                                                        ? "text-gray-600 dark:text-gray-200"
-                                                        : "text-[#8629DF] dark:text-purple-400"
+                                                    />
+                                                    <span
+                                                        className={`font-bold uppercase tracking-tight ${
+                                                            open
+                                                                ? "text-gray-600 dark:text-gray-200"
+                                                                : "ds-text-primary dark:text-ds-primary"
                                                         }`}
-                                                >
-                                                    {group}
-                                                </span>
+                                                    >
+                                                        {group}
+                                                    </span>
+                                                </div>
 
+                                                {open ? (
+                                                    <ChevronUp size={14} className="text-gray-400 dark:text-gray-500" />
+                                                ) : (
+                                                    <ChevronDown size={14} className="ds-text-primary dark:text-ds-primary" />
+                                                )}
                                             </div>
-
-                                            {openGroup === group ? (
-                                                <ChevronUp
-                                                    size={14}
-                                                    className="text-gray-400 dark:text-gray-500"
-                                                />
-                                            ) : (
-                                                <ChevronDown
-                                                    size={14}
-                                                    className="text-[#8629DF] dark:text-purple-400"
-                                                />
-                                            )}
-
-                                        </div>
-
-                                    </td>
-                                </tr>
-
-                                {/* Column Header */}
-                                {openGroup === group && (
-                                    <tr className="bg-gray-100 dark:bg-gray-700/80 text-[0.65rem] font-bold uppercase tracking-wider sticky top-0 z-10">
-                                        <th className="px-6 py-1.5 text-left text-gray-500 dark:text-gray-300">
-                                            Code
-                                        </th>
-                                        <th className="px-6 py-1.5 text-left text-gray-500 dark:text-gray-300">
-                                            Description
-                                        </th>
-                                        <th className="px-6 py-1.5 text-center text-gray-500 dark:text-gray-300">
-                                            Add
-                                        </th>
+                                        </td>
                                     </tr>
-                                )}
 
-                                {/* Rows */}
-                                {openGroup === group &&
-                                    componentdummyData[group]
-                                        .filter((item) => {
+                                    {/* Column Headers — always 3 cols */}
+                                    {open && (
+                                        <tr className="bg-gray-100 dark:bg-gray-700/80 text-[0.65rem] font-bold uppercase tracking-wider sticky top-0 z-10">
+                                            {hasCode ? (
+                                                <>
+                                                    <th className="px-4 py-1.5 text-left text-gray-500 dark:text-gray-300">Code</th>
+                                                    <th className="px-4 py-1.5 text-left text-gray-500 dark:text-gray-300">Description</th>
+                                                </>
+                                            ) : (
+                                                // ✅ Name spans col 1 + col 2 so Add stays in col 3
+                                                <th colSpan={2} className="px-4 py-1.5 text-left text-gray-500 dark:text-gray-300">Name</th>
+                                            )}
+                                            <th className="px-4 py-1.5 text-center text-gray-500 dark:text-gray-300">Add</th>
+                                        </tr>
+                                    )}
 
-                                            if (!search.trim()) return true;
-
-                                            const q = search.toLowerCase();
-
-                                            return (
-                                                item.code.toLowerCase().includes(q) ||
-                                                item.desc.toLowerCase().includes(q)
-                                            );
-                                        })
-                                        .map((item, i) => (
-
+                                    {/* Rows — always 3 cols */}
+                                    {open &&
+                                        filteredItems.map((item, i) => (
                                             <tr
                                                 key={i}
                                                 className="
@@ -121,55 +130,51 @@ const ComponentGroupTable = ({ search = "", groups, onAddParameter = () => {} })
                                                     transition-all
                                                 "
                                             >
+                                                {hasCode ? (
+                                                    <>
+                                                        <td className="px-4 py-2 text-[0.65rem] font-bold">
+                                                            <span className="bg-purple-50 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary px-2 py-0.5 rounded-sm border border-purple-100 dark:border-ds-primary/50">
+                                                                {item.code}
+                                                            </span>
+                                                        </td>
+                                                        <td className="px-4 py-2 text-gray-600 dark:text-gray-200">
+                                                            {item.desc}
+                                                        </td>
+                                                    </>
+                                                ) : (
+                                                    // ✅ Name spans col 1 + col 2
+                                                    <td colSpan={2} className="px-4 py-2 text-gray-600 dark:text-gray-200">
+                                                        {item.desc}
+                                                    </td>
+                                                )}
 
-                                                <td className="px-6 py-2 text-[0.65rem] font-bold">
-
-                                                    <span className="bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 px-2 py-0.5 rounded-sm border border-purple-100 dark:border-purple-800">
-                                                        {item.code}
-                                                    </span>
-
-                                                </td>
-
-                                                <td className="px-6 py-2 text-gray-600 dark:text-gray-200">
-                                                    {item.desc}
-                                                </td>
-
-                                                <td className="px-6 py-2 text-center">
-
+                                                <td className="px-4 py-2 text-center">
                                                     <button
                                                         onClick={() => onAddParameter(item)}
                                                         className="
-                                                            w-full  px-3 py-1 flex justify-center items-center  rounded-sm
-                                                            bg-[#8629DF] dark:bg-gray-700
-                                                            text-[#FFFFFF] dark:text-purple-300
-                                                            hover:bg-[#8629DF]/60 hover:text-white
-                                                            dark:hover:bg-[#8629DF] dark:hover:text-white
-
-                                                            transition-all font-bold text-sm cursor-pointer 
+                                                            w-full px-3 py-1 flex justify-center items-center rounded-sm
+                                                            bg-ds-primary dark:bg-gray-700
+                                                            text-white dark:text-ds-primary
+                                                            hover:bg-ds-primary/60 hover:text-white
+                                                            dark:hover:bg-ds-primary dark:hover:text-white
+                                                            transition-all font-bold text-sm cursor-pointer
                                                         "
                                                     >
-                                                        <Plus className='w-5 h-5'/>
-                                                        
+                                                        <Plus className="w-5 h-5" />
                                                     </button>
-
                                                 </td>
-
                                             </tr>
+                                        ))
+                                    }
 
-                                        ))}
-
-                            </React.Fragment>
-
-                        ))}
-
+                                </React.Fragment>
+                            );
+                        })}
                     </tbody>
-
                 </table>
 
             </div>
-
         </div>
-
     );
 };
 

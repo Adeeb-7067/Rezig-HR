@@ -49,7 +49,7 @@ const FormulaBuilder = ({ formula = "", setFormula = () => {} }) => {
             transition
             resize-none
             outline-none
-            focus:ring-2 focus:ring-[#8629DF]/30
+            focus:ring-2 focus:ring-2 focus:ring-ds-primary/30
             break-all
           "
         />
@@ -65,11 +65,11 @@ const FormulaBuilder = ({ formula = "", setFormula = () => {} }) => {
         <button
           className="
             w-full sm:w-auto
-            border border-[#8629DF]
-            text-[#8629DF]
+            border ds-border-primary
+            ds-text-primary
             text-xs px-6 py-1
             rounded-sm
-            hover:bg-purple-50 dark:hover:bg-purple-900/20
+            hover:bg-purple-50 dark:hover:bg-ds-primary/20
             transition
           "
           onClick={() => handleClear()}
@@ -80,7 +80,7 @@ const FormulaBuilder = ({ formula = "", setFormula = () => {} }) => {
         <button
           className="
             w-full sm:w-auto
-            bg-primary
+            bg-ds-primary
             text-white
             text-xs px-6 py-1
             rounded-sm

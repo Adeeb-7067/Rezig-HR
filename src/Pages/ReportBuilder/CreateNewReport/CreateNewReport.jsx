@@ -9,7 +9,7 @@ import UserPermissionTable from "./UserPermissionTable";
 
 
 
-const CreateNewReport = () => {
+const CreateNewReport = ({ onBack }) => {
     const [selectedParams, setSelectedParams] = useState([]);
 
     const handleAddParameter = (item) => {
@@ -35,7 +35,7 @@ const CreateNewReport = () => {
     };
 
     return (
-        <div className="p-6 space-y-6">
+        <div className="space-y-6">
 
             {/* <ReportHeader /> */}
 
@@ -43,7 +43,7 @@ const CreateNewReport = () => {
 
                 <ComponentList onAddParameter={handleAddParameter} />
 
-                <SelectedParameters 
+                <SelectedParameters
                     selectedParameters={selectedParams}
                     onRemove={handleRemoveParameter}
                     onUpdateOrder={handleUpdateOrder}
@@ -53,8 +53,23 @@ const CreateNewReport = () => {
 
             <UserPermissionTable />
 
-            <ReportActions />
+      <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-4">
+                    <button
+                        onClick={() => { onBack() }}
+                        type="button"
+                        className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                    >
+                        Back
+                    </button>
+                <button className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+                    Reset
+                </button>
 
+                <button className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white hover:bg-ds-primary/80">
+                    Create Report
+                </button>
+
+            </div>
         </div>
     );
 };

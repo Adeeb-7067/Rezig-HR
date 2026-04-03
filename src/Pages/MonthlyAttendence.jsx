@@ -38,22 +38,22 @@ export default function AttendanceImport() {
         {/* Toggle Button */}
 
         <div
-          className="flex justify-between cursor-pointer   bg-primary  rounded-sm p-0.5"
+          className="flex justify-between cursor-pointer   ds-bg-primary  rounded-sm p-0.5"
           onClick={toggleCards}
         >
-          <h1 className="text-white font-semibold  text-[1.4rem] px-2 py-1">
+          <h1 className="text-white  text-xl md:text-[1.4rem] font-normal px-2 ">
             Attendance
           </h1>
-          <button className="flex items-center justify-center gap-2  m-2 px-0.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-sm border border-gray-300 hover:shadow-md cursor-pointer transition-all duration-300 active:scale-95">
+          <button className="flex items-center justify-center gap-2  m-1 px-0.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-sm border border-gray-300 hover:shadow-md cursor-pointer transition-all duration-300 active:scale-95">
             <span
             // className={`transition-transform duration-300  ${
             //   showCards ? "rotate-0 scale-100" : "rotate-180 scale-90"
             // }`}
             >
               {showCards ? (
-                <MdOutlineKeyboardArrowUp size={22} />
+                <MdOutlineKeyboardArrowUp size={20} />
               ) : (
-                <MdOutlineKeyboardArrowDown size={22} />
+                <MdOutlineKeyboardArrowDown size={20} />
               )}
             </span>
           </button>
@@ -71,11 +71,12 @@ export default function AttendanceImport() {
             </h1>
             <div className="space-y-3">
               <ActionCard
-                color="bg-[#8629DF]"
+                color="ds-bg-primary"
                 icon={Attendance1}
                 title="Import Monthly Attendance"
                 desc="Upload Full Attendance Records For A Month"
                 showCards={showCards}
+                onClick={toggleCards}
                 delay={0}
               />
               <ActionCard
@@ -84,6 +85,8 @@ export default function AttendanceImport() {
                 title="Import Weekly Off"
                 desc="Bulk Upload Weekly Offs For Employees"
                 showCards={showCards}
+                          onClick={toggleCards}
+
                 delay={50}
               />
               <ActionCard
@@ -92,6 +95,8 @@ export default function AttendanceImport() {
                 title="Import Attendance LWP Dates"
                 desc="Bulk Upload LWP Dates For Selected Employees"
                 showCards={showCards}
+                          onClick={toggleCards}
+
                 delay={100}
               />
               <ActionCard
@@ -100,6 +105,8 @@ export default function AttendanceImport() {
                 title="Import OT Hours/Day"
                 desc="Upload Daily Overtime Hours In Bulk"
                 showCards={showCards}
+                          onClick={toggleCards}
+
                 delay={150}
               />
               <ActionCard
@@ -108,6 +115,8 @@ export default function AttendanceImport() {
                 title="Import Regularization/Leave"
                 desc="Upload Approved Leaves Or Corrections"
                 showCards={showCards}
+                          onClick={toggleCards}
+
                 delay={200}
               />
             </div>
@@ -122,6 +131,8 @@ export default function AttendanceImport() {
               <ActionCard
                 color="bg-green-600"
                 icon={Attendance6}
+                          onClick={toggleCards}
+
                 title="Assign Shift"
                 desc="Allocate Day, Night, Or Rotational Shifts"
                 showCards={showCards}
@@ -131,6 +142,8 @@ export default function AttendanceImport() {
                 color="bg-emerald-600"
                 icon={Attendance7}
                 title="Assign Holiday"
+                          onClick={toggleCards}
+
                 desc="Set Official Holidays For Employees / Groups"
                 showCards={showCards}
                 delay={300}
@@ -138,6 +151,8 @@ export default function AttendanceImport() {
               <ActionCard
                 color="bg-blue-500"
                 icon={Attendance8}
+                          onClick={toggleCards}
+
                 title="Assign Weekly Off"
                 desc="Define Weekly Offs For Employees"
                 showCards={showCards}
@@ -155,6 +170,8 @@ export default function AttendanceImport() {
               <ActionCard
                 color="bg-purple-600"
                 icon={Attendance9}
+                          onClick={toggleCards}
+
                 title="Attendance Process"
                 desc="Process Final Attendance, Shifts & OT"
                 showCards={showCards}
@@ -163,6 +180,8 @@ export default function AttendanceImport() {
               <ActionCard
                 color="bg-orange-500"
                 icon={Attendance10}
+                          onClick={toggleCards}
+
                 title="Attendance Punch Correction"
                 desc="Correct Missing Or Wrong Punch Times"
                 showCards={showCards}
@@ -183,18 +202,21 @@ export default function AttendanceImport() {
           Click the "Show All Cards" button above to display all attendance import options.
         </p>
       </div> */}
+{
+  !showCards && (
 
-      <div className="mt-16 md:mt-0 ">
-        <MonthlyAttendanceImport />
-      </div>
+    <div className="mt-16 md:mt-0 ">
+    <MonthlyAttendanceImport />
+  </div>
+  )
+}
       {/* Buttons */}
       <div className="flex flex-wrap justify-end w-full gap-2 mt-6">
         {/* Cancel */}
         <button
           type="button"
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] 
-               text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] 
-               py-1 rounded-sm
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24
+               py-1
                w-[48%] sm:w-auto md:w-24"
         >
           Cancel
@@ -203,8 +225,8 @@ export default function AttendanceImport() {
         {/* Export */}
         <button
           type="button"
-          className="bg-[#8629DF] text-white font-semibold 
-               text-xs sm:text-[0.7rem] py-1.2 rounded-sm
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white
+               py-1.5
                w-[48%] sm:w-auto md:w-24"
         >
           <span className="flex justify-center gap-3">
@@ -216,8 +238,8 @@ export default function AttendanceImport() {
         {/* Import & Save */}
         <button
           type="button"
-          className="bg-[#8629DF] text-white font-semibold 
-               text-xs sm:text-[0.7rem] py-2 md:py-1.2 rounded-sm
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white
+               py-2 md:py-1
                w-full sm:w-full md:w-fit  px-4"
         >
           <span className="flex justify-center gap-3">
@@ -249,12 +271,14 @@ function Section({ title, children, showCards }) {
   );
 }
 
-function ActionCard({ icon, title, desc, color, showCards, delay = 0 }) {
+function ActionCard({ icon, title, desc, color, showCards, delay = 0 ,onClick}) {
   return (
     <div
+          onClick={onClick}
+
       className={`
         flex items-center gap-3 bg-gray-100 dark:bg-gray-800 p-3 cursor-pointer rounded-sm 
-        hover:bg-[#8629DF]/90 hover:text-white dark:text-white hover:shadow-lg hover:scale-[1.02]
+        hover:bg-ds-primary/90 hover:text-white dark:text-white hover:shadow-lg hover:scale-[1.02]
         transition-all duration-300 ease-out
         ${showCards ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}
       `}
@@ -273,7 +297,7 @@ function ActionCard({ icon, title, desc, color, showCards, delay = 0 }) {
         <p className="font-semibold text-[0.9rem] group-hover:translate-x-1">
           {title}
         </p>
-        <p className="text-[0.7rem] group-hover:translate-x-1">{desc}</p>
+        <p className="ds-text-xs group-hover:translate-x-1">{desc}</p>
       </div>
     </div>
   );

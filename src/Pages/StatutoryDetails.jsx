@@ -4,7 +4,7 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import SelectField from "@/components/SelectFeild";
-import VariableTypeRow from "@/components/ui/VariableTypeRow";
+import ToggleField from "@/components/ui/VariableTypeRow";
 // Reusable Input Component
 const InputField = ({
   label,
@@ -16,7 +16,7 @@ const InputField = ({
   ...props
 }) => (
   <div>
-    <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]  mb-1">
+    <label className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs  mb-1">
       {label}
     </label>
     <input
@@ -24,7 +24,7 @@ const InputField = ({
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full h-7.5 text-[0.7rem] bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+      className={`w-full h-7.5 ds-text-xs bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
     />
   </div>
 );
@@ -77,35 +77,35 @@ const TextareaField = ({ label, name, value, onChange, className = "", ...props 
       name={name}
       value={value}
       onChange={onChange}
-      className={`w-full bg-white text-[.7rem] dark:bg-gray-800 border border-gray-300 dark:border-gray-700  focus:border-2 focus:border-[#9853F9]  rounded-sm px-4 py-2 ${className}`}
+      className={`w-full bg-white ds-text-xs dark:bg-gray-800 border border-gray-300 dark:border-gray-700  focus:border-2 focus:border-[#9853F9]  rounded-sm px-4 py-2 ${className}`}
       {...props}
     />
   </div>
 );
 
 
-const ToggleField = ({ label, name, value, onChange, className = "" }) => {
-  return (
-    <div className={`flex items-center justify-between  gap-3 mr-4 py-2 ${className}`}>
-      <Label
-        htmlFor={name}
-        className="text-gray-500 dark:text-gray-50  text-[0.7rem] font-semibold"
-      >
-        {label}
-      </Label>
-      <Switch
-        id={name}
-        checked={value === "Yes"}
-        onCheckedChange={(checked) =>
-          onChange({
-            target: { name, value: checked ? "Yes" : "No" },
-          })
-        }
-        className="data-[state=checked]:bg-violet-600  data-[state=unchecked]:bg-gray-300 "
-      />
-    </div>
-  );
-};
+// const ToggleField = ({ label, name, value, onChange, className = "" }) => {
+//   return (
+//     <div className={`flex items-center justify-between  gap-3 mr-4 py-2 ${className}`}>
+//       <Label
+//         htmlFor={name}
+//         className="text-gray-500 dark:text-gray-50 ds-text-xs font-semibold"
+//       >
+//         {label}
+//       </Label>
+//       <Switch
+//         id={name}
+//         checked={value === "Yes"}
+//         onCheckedChange={(checked) =>
+//           onChange({
+//             target: { name, value: checked ? "Yes" : "No" },
+//           })
+//         }
+//         className="data-[state=checked]:bg-ds-primary data-[state=unchecked]:bg-gray-300 "
+//       />
+//     </div>
+//   );
+// };
 const StatutoryDetails = ({ onNext,onPrev }) => {
   const [formData, setFormData] = useState({
     // Statutory Details
@@ -176,12 +176,12 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 items-stretch">
       <div className="col-span-1">
         {/* Statutory Details */}
-      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
   <h1 className="text-sm text-gray-500 font-semibold mb-1">Statutory Details</h1>
 
   <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
     {/* LEFT COLUMN - All Toggles */}
-    <div className="space-y-6 mt-4">
+    <div className="space-y-10 mt-2">
       <ToggleField
         label="PF Applicable"
         name="pfApplicable"
@@ -279,7 +279,7 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
 
 
         {/* FNF Details */}
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm text-gray-500 font-semibold mb-1">FNF (Full & Final) Date</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <DatePickerField
@@ -347,7 +347,7 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
 
       <div className="col-span-1">
         {/* Bank Details */}
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
           <h1 className="text-xl text-gray-500  font-semibold mb-2">Bank Details</h1>
           <p className="text-sm  text-gray-500 font-semibold mb-1">Salary Account</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -386,7 +386,7 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
         </div>
 
         {/* Reimbursement Account */}
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm text-gray-500 font-semibold mb-1">Reimbursement Account</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <InputField
@@ -420,7 +420,7 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
         </div>
 
         {/* Other Details */}
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm text-gray-500 font-semibold mb-1">Other Details</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             <InputField
@@ -457,7 +457,7 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
         </div>
 
         {/* Identification Details */}
-        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 rounded-lg mt-3">
+        <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg mt-3">
           <h1 className="text-sm font-semibold text-gray-500 mb-1">Add Identification Details</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
             <InputField
@@ -521,48 +521,23 @@ const StatutoryDetails = ({ onNext,onPrev }) => {
     mt-2
   "
 >
+  
   <button
     onClick={onPrev}
-    className="
-      bg-white dark:bg-[#E4E6EB]/10
-      border border-[#8629DF]
-      text-[#8629DF]
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
   >
     Previous
   </button>
 
   <button
-    className="
-      bg-white dark:bg-[#E4E6EB]/10
-      border border-[#8629DF]
-      text-[#8629DF]
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
   >
     Reset
   </button>
 
   <button
     onClick={onNext}
-    className="
-      bg-[#8629DF]
-      text-white
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+    className="bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
   >
     Next
   </button>

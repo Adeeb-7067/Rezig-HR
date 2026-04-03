@@ -19,7 +19,7 @@ const initialState = {
   condition: "=",
 };
 
-const LeaveMaster = () => {
+const LeaveMaster = ({onBack}) => {
   const [form, setForm] = useState(initialState);
 
   const handleChange = (e) => {
@@ -37,8 +37,7 @@ const LeaveMaster = () => {
       </h1>
 
       <div
-        className="
-      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg"
+        className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2"
       >
         <h1 className="text-base font-semibold mb-1 text-gray-500">
           Leave Master
@@ -229,7 +228,7 @@ const LeaveMaster = () => {
       </div>
 
       {/* ================= CREDIT SECTION ================= */}
-      <div className="      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2 mt-4">
         <SwitchStartVariable
           label="Do you want to Credit Leave"
           checked={form.credit}
@@ -291,15 +290,22 @@ const LeaveMaster = () => {
 
       {/* ================= FOOTER ================= */}
       <div className="flex justify-end gap-4 mt-3">
+         <button
+          onClick={()=>{onBack()}}
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 py-1"
+        >
+          Back
+        </button>
         <button
           type="button"
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 py-1"
         >
           Reset
         </button>
         <button
           type="button"
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white py-1"
         >
           Update
         </button>

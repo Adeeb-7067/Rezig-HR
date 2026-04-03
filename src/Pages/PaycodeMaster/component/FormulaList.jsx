@@ -76,20 +76,7 @@ const EditableRow = ({ values, onChange, onSave, onCancel }) => {
   );
 };
 
-// ══════════════════════════════════════════════════════════
-//  FormulaList — Fully Controlled Component
-//
-//  Props:
-//    data       : array of formula objects (required)
-//    onView     : (item, index) => void
-//    onEdit     : (updatedItem, index) => void
-//    onDelete   : (item, index) => void
-//
-//  The component does NOT own the data. Every mutation
-//  is communicated to the parent via callbacks.
-//  Only local UI state (editIndex, editValues, viewData)
-//  lives inside.
-// ══════════════════════════════════════════════════════════
+
 const FormulaList = ({ data, onView, onEdit, onDelete }) => {
   const [viewData, setViewData] = useState(null);
   const [editIndex, setEditIndex] = useState(null);
@@ -136,17 +123,17 @@ const FormulaList = ({ data, onView, onEdit, onDelete }) => {
 
   return (
     <div>
-      <h1 className="text-lg text-[#58585A] font-semibold mb-3">
+        <h1 className="text-xl sm:text-2xl font-semibold text-[#252C58] dark:text-gray-50 mb-3 ">
         Formula List
       </h1>
 
-      <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
+      <div className="bg-white dark:bg-gray-900 rounded-sm border border-gray-200 dark:border-gray-700 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <div className="min-w-[700px]">
 
             {/* Header */}
             <div
-              className="text-[0.7rem] font-semibold text-white bg-primary py-3 px-6"
+              className="ds-text-xs font-semibold text-white bg-primary py-3 px-6"
               style={gridStyle}
             >
               <div>Formula Code</div>
@@ -167,7 +154,7 @@ const FormulaList = ({ data, onView, onEdit, onDelete }) => {
               {data?.map((item, i) => (
                 <div
                   key={item.code || i}
-                  className="text-[0.7rem] py-3 px-6 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="ds-text-xs py-3 px-6 border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
                   style={gridStyle}
                 >
                   {editIndex === i ? (
@@ -193,12 +180,12 @@ const FormulaList = ({ data, onView, onEdit, onDelete }) => {
                       <div className="flex justify-center gap-4">
                         <Eye
                           size={14}
-                          className="cursor-pointer hover:text-[#7B2FF7]"
+                          className="cursor-pointer hover:text-ds-primary"
                           onClick={() => handleView(item, i)}
                         />
                         <Pencil
                           size={14}
-                          className="cursor-pointer hover:text-[#7B2FF7]"
+                          className="cursor-pointer hover:text-ds-primary"
                           onClick={() => startEdit(i)}
                         />
                         <Trash2

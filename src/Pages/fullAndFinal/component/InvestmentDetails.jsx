@@ -5,10 +5,8 @@ import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
 import VariableTypeRow from "@/components/ui/VariableTypeRow";
 
-const btnPrevReset =
-  "bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
-const btnSave =
-  "bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer";
+const btnPrevReset = "bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24";
+const btnSave = "font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white ds-bg-primary text-white hover:bg-ds-primary/80";
 
 /* ─── Section 80C / Other Section accordion ─── */
 function SectionAccordion({ label, rows, setRows }) {
@@ -29,7 +27,7 @@ function SectionAccordion({ label, rows, setRows }) {
     );
 
   return (
-    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-visible">
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg overflow-visible">
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
@@ -38,10 +36,10 @@ function SectionAccordion({ label, rows, setRows }) {
           </h3>
 
           <div className="flex flex-col leading-tight">
-            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-purple-400">
+            <h1 className="text-[1rem] font-semibold text-center ds-text-primary dark:text-ds-primary">
               50,000,00
             </h1>
-            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-400">
+            <span className="ds-text-xs text-start text-gray-500 dark:text-gray-400">
               Amount
             </span>
           </div>
@@ -50,14 +48,14 @@ function SectionAccordion({ label, rows, setRows }) {
           <button
             type="button"
             onClick={addRow}
-            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-3 py-1.5 rounded-sm"
+            className="ds-bg-primary hover:bg-ds-primary/90 text-white ds-text-xs font-semibold px-3 py-1.5 rounded-sm"
           >
             Add Fields
           </button>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="flex items-center justify-center w-7 h-7 rounded-sm bg-[#8629DF] text-white hover:bg-[#7620c7] shrink-0 transition-transform"
+            className="flex items-center justify-center w-7 h-7 rounded-sm ds-bg-primary text-white hover:bg-ds-primary/90 shrink-0 transition-transform"
             aria-expanded={open}
           >
             <ChevronDown
@@ -93,10 +91,10 @@ function SectionAccordion({ label, rows, setRows }) {
               </div>
 
               <div className="flex flex-col mx-3">
-                <label className="text-gray-500 dark:text-gray-400 font-semibold text-[0.7rem]">
+                <label className="text-gray-500 dark:text-gray-400 font-semibold ds-text-xs">
                   Description
                 </label>
-                <span className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                <span className="ds-text-xs text-gray-500 dark:text-gray-400">
                   Description
                 </span>
               </div>
@@ -114,7 +112,7 @@ function SectionAccordion({ label, rows, setRows }) {
               <button
                 type="button"
                 onClick={() => removeRow(idx)}
-                className="flex items-center justify-center w-8 h-8 bg-white/70 dark:bg-gray-700/50 text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5 rounded"
+                className="flex items-center justify-center w-8 h-8  text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5 rounded"
               >
                 <Trash2 size={16} />
               </button>
@@ -145,7 +143,7 @@ function HouseRentAccordion({ rows, setRows }) {
     );
 
   return (
-    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 rounded-lg overflow-visible">
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg overflow-visible">
       {/* Header bar */}
       <div className="flex items-center justify-between px-3 py-3">
         <div className="flex flex-row justify-between w-[50%]">
@@ -154,10 +152,10 @@ function HouseRentAccordion({ rows, setRows }) {
           </h3>
 
           <div className="flex flex-col leading-tight">
-            <h1 className="text-[1rem] font-semibold text-center text-[#8629DF] dark:text-purple-400">
+            <h1 className="text-[1rem] font-semibold text-center ds-text-primary dark:text-ds-primary">
               50,000,00
             </h1>
-            <span className="text-[0.7rem] text-start text-gray-500 dark:text-gray-400">
+            <span className="ds-text-xs text-start text-gray-500 dark:text-gray-400">
               Amount
             </span>
           </div>
@@ -167,14 +165,14 @@ function HouseRentAccordion({ rows, setRows }) {
           <button
             type="button"
             onClick={addRow}
-            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-3 py-1.5 rounded-sm"
+            className="ds-bg-primary hover:bg-ds-primary/90 text-white ds-text-xs font-semibold px-3 py-1.5 rounded-sm"
           >
             Add Fields
           </button>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="flex items-center justify-center w-7 h-7 rounded-sm bg-[#8629DF] text-white hover:bg-[#7620c7] shrink-0 transition-transform"
+            className="flex items-center justify-center w-7 h-7 rounded-sm ds-bg-primary text-white hover:bg-ds-primary/90 shrink-0 transition-transform"
             aria-expanded={open}
           >
             <ChevronDown
@@ -247,7 +245,7 @@ function HouseRentAccordion({ rows, setRows }) {
                 <button
                   type="button"
                   onClick={() => removeRow(idx)}
-                  className="flex items-center justify-center w-8 h-8 text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5 bg-white dark:bg-gray-700/50 rounded"
+                  className="flex items-center justify-center w-8 h-8 text-red-500 hover:text-red-700 dark:hover:text-red-400 mb-0.5  rounded"
                 >
                   <Trash2 size={16} />
                 </button>
@@ -293,7 +291,7 @@ export default function InvestmentDetails({ onNext, onPrev }) {
       </h2>
 
       {/* Under Section 80C Limit */}
-      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
         <div className="w-fit">
           <InputField
             label="Under Section 80C Limit"
@@ -320,7 +318,7 @@ export default function InvestmentDetails({ onNext, onPrev }) {
       {/* House Rent Details */}
       <HouseRentAccordion rows={houseRentRows} setRows={setHouseRentRows} />
 
-      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           <InputField label={"Landlord PAN"} />
           <VariableTypeRow label={"Landlord Declarations"} />
@@ -328,7 +326,7 @@ export default function InvestmentDetails({ onNext, onPrev }) {
       </div>
 
       {/* Other Income / Deduction */}
-      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+      <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
         <h3 className="text-base font-semibold mb-2 text-gray-500 dark:text-gray-400">
           Other Income / Deduction
         </h3>

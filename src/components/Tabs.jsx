@@ -20,11 +20,11 @@ const Tabs = ({ tabs, activeTab, onChange }) => {
             {/* Label */}
             <span
               className={`
-                text-[0.8rem] md:text-base font-medium transition-colors cursor-pointer
+                ds-text-xs md:text-base font-medium transition-colors cursor-pointer
 
                 ${
                   isActive
-                    ? "text-purple-600 dark:text-purple-400"
+                    ? "ds-text-primary"
                     : `
                       text-gray-500 dark:text-gray-400
                       hover:text-gray-700 dark:hover:text-gray-200
@@ -41,7 +41,7 @@ const Tabs = ({ tabs, activeTab, onChange }) => {
                 className="
                   absolute left-0 right-0 -bottom-[1px]
                   h-[2px] rounded
-                  bg-purple-600 dark:bg-purple-400
+                  bg-ds-primary
                   transition-all duration-300
                 "
               />

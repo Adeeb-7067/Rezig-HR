@@ -16,7 +16,7 @@ const ShiftMasterTable = () => {
                 List Of Shift Category
             </h3>
 
-            <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="rounded-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
 
                 {/* Horizontal Scroll Wrapper */}
                 <div className="overflow-x-auto no-scrollbar">
@@ -25,16 +25,15 @@ const ShiftMasterTable = () => {
 
                         {/* Header */}
                         <div className="bg-primary text-white">
-                            <table className="w-full table-fixed text-[0.7rem]">
+                            <table className="w-full table-fixed ds-text-xs">
                                 <thead>
                                     <tr>
-                                        <th className="px-2 py-3 text-left w-[15%]">Shift Code</th>
-                                        <th className="px-2 py-3 text-left w-[25%]">Description</th>
-                                        <th className="px-2 py-3 text-left w-[15%]">Start Time</th>
-                                        <th className="px-2 py-3 text-left w-[15%]">End Time</th>
-                                        <th className="px-2 py-3 text-left w-[10%]">Shift Day</th>
-                                        <th className="px-2 py-3 text-center w-[5%]">Edit</th>
-                                        <th className="px-0 py-3  text-center w-[5%]">Delete</th>
+                                        <th className="px-2 py-2.5 text-left w-[15%]">Shift Code</th>
+                                        <th className="px-2 py-2.5 text-left w-[25%]">Description</th>
+                                        <th className="px-2 py-2.5 text-left w-[15%]">Start Time</th>
+                                        <th className="px-2 py-2.5 text-left w-[15%]">End Time</th>
+                                        <th className="px-2 py-2.5 text-left w-[10%]">Shift Day</th>
+                                        <th className="px-2 py-2.5 text-center w-[15%]">Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -42,7 +41,7 @@ const ShiftMasterTable = () => {
 
                         {/* Body */}
                         <div className="max-h-[190px] overflow-y-auto table-scroll bg-white dark:bg-gray-800">
-                            <table className="w-full table-fixed text-[0.7rem]">
+                            <table className="w-full table-fixed ds-text-xs">
 
                                 <tbody className="text-gray-700 dark:text-gray-200">
 
@@ -61,15 +60,13 @@ const ShiftMasterTable = () => {
 
                                             <td className="px-4 py-2 w-[10%]">{item.day}</td>
 
-                                            <td className="px-4 py-2 text-center w-[5%]">
-                                                <button className="p-1 hover:bg-gray-100 dark:hover:bg-gray-600 rounded">
-                                                    <Pencil size={14} />
+                                            <td className="px-4 py-2 text-center w-[15%] ">
+                                                <button className="p-1 cursor-pointer rounded">
+                                                    <Pencil size={14} className="hover:text-gray-500 hover:scale-110" />
                                                 </button>
-                                            </td>
-
-                                            <td className="px-4 py-2 text-center w-[5%]">
-                                                <button className="p-1 hover:bg-red-50 dark:hover:bg-red-900/30 rounded">
-                                                    <Trash2 size={14} className="text-red-500" />
+                                        
+                                                <button className="p-1 cursor-pointer rounded">
+                                                    <Trash2 size={14} className="text-red-500 hover:scale-110" />
                                                 </button>
                                             </td>
 

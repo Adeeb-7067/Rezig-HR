@@ -97,8 +97,8 @@ const AttendanceCalendar = ({
         <div className="border rounded-lg overflow-hidden w-full">
             {/* Week Header */}
             <div
-                className={`grid grid-cols-7 dark:bg-gray-800 dark:text-white bg-gray-100 font-medium text-gray-500 ${
-                    compact ? "text-[0.7rem]" : "text-[0.6rem] sm:text-xs"
+                className={`grid grid-cols-7 ds-bg-primary text-white  font-medium  ${
+                    compact ? "ds-text-xs" : "text-[0.6rem] sm:text-xs"
                 }`}
             >
                 {weekDays.map((day, i) => (

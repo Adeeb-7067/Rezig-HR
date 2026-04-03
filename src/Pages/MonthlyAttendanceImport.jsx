@@ -351,10 +351,10 @@ const MonthlyAttendanceImport = () => {
         <button
           data-filter-button={filterKey}
           onClick={() => toggleDropdown(filterKey)}
-          className="border border-gray-300 dark:border-gray-500 px-5 py-2 rounded-full w-fit text-[0.7rem] flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 hover:bg-gray-50 transition-colors"
+          className="border border-gray-300 dark:border-gray-500 px-5 py-2 rounded-full w-fit ds-text-xs flex justify-between items-center gap-2 min-w-[140px] bg-white dark:bg-gray-800 hover:bg-gray-50 transition-colors"
         >
           <div className="flex flex-col items-start">
-            <span className="text-gray-700 dark:text-gray-50 text-[0.7rem] font-medium">
+            <span className="text-gray-700 dark:text-gray-50 ds-text-xs font-medium">
               {label}
             </span>
           </div>
@@ -377,7 +377,7 @@ const MonthlyAttendanceImport = () => {
                       ? handleClearAll(filterKey)
                       : handleSelectAll(filterKey)
                   }
-                  className="text-sm text-[#8629DF] font-medium"
+                  className="text-sm ds-text-primary font-medium"
                 >
                   {isAllSelected ? "Clear All" : "Select All"}
                 </button>
@@ -390,12 +390,12 @@ const MonthlyAttendanceImport = () => {
                   <div
                     key={item}
                     onClick={() => handleDropdownItemClick(filterKey, item)}
-                    className="flex items-center gap-3 px-2 py-1 hover:bg-[#8629DF]/80 text-gray-900 hover:text-white cursor-pointer rounded"
+                    className="flex items-center gap-3 px-2 py-1 hover:bg-ds-primary/80 text-gray-900 hover:text-white cursor-pointer rounded"
                   >
                     <div
                       className={`w-4 h-4 flex items-center justify-center border rounded ${
                         currentValues.includes(item)
-                          ? "bg-[#8629DF] border-[#8629DF]"
+                          ? "ds-bg-primary ds-border-primary"
                           : "border-gray-300"
                       }`}
                     >
@@ -416,7 +416,7 @@ const MonthlyAttendanceImport = () => {
                         </svg>
                       )}
                     </div>
-                    <span className="text-[0.7rem] dark:text-gray-50 font-semibold">
+                    <span className="ds-text-xs dark:text-gray-50 font-semibold">
                       {item}
                     </span>
                   </div>
@@ -459,7 +459,7 @@ const MonthlyAttendanceImport = () => {
         <div className="relative min-w-[50%] md:min-w-[5rem] flex items-center justify-center gap-1">
           <button
             onClick={() => setOpen((prev) => !prev)}
-            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
+            className="ds-bg-primary dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-[50%] md:min-w-[5rem] rounded-sm flex items-center justify-center gap-1 h-full"
           >
             <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
             Filter{" "}
@@ -485,11 +485,11 @@ const MonthlyAttendanceImport = () => {
                   {filterOptions.map((f) => (
                     <label
                       key={f.key}
-                      className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
+                      className="flex items-center gap-2 ds-text-xs text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded"
                     >
                       <input
                         type="checkbox"
-                        className="w-4 h-4 accent-[#8629DF]"
+                        className="w-4 h-4 accent-ds-primary"
                         checked={tempVisibleFilters[f.key]}
                         onChange={(e) =>
                           handleTempCheckboxChange(f.key, e.target.checked)
@@ -503,20 +503,19 @@ const MonthlyAttendanceImport = () => {
                 <div className="mt-4 flex gap-2 pt-3 border-t">
                   <button
                     onClick={handleResetFilters}
-                    className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
+                    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                   >
                     Reset
                   </button>
                   <button
                     onClick={handleApplyFilters}
                     disabled={!isAnyFilterChecked}
-                    className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-                      ${
-                        isAnyFilterChecked
-                          ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                          : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                    className={`font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white
+    ${isAnyFilterChecked
+                        ? "ds-bg-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+                        : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
                       }
-                    `}
+  `}
                   >
                     Apply
                   </button>
@@ -546,9 +545,9 @@ const MonthlyAttendanceImport = () => {
             return values.map((value, index) => (
               <div
                 key={`${key}-${value}-${index}`}
-                className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200 dark:border-gray-500"
+                className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200 dark:border-gray-500"
               >
-                <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                <span className="text-gray-900 dark:text-gray-50 ds-text-xs">
                   {value}
                 </span>
                 <button
@@ -572,7 +571,7 @@ const MonthlyAttendanceImport = () => {
             <div className="flex flex-col gap-2 justify-between w-full">
               <label
                 htmlFor="leaveTemplateId"
-                className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
+                className="ds-text-xs w-[50%] mt-3 dark:text-gray-200"
               >
                 Leave Template ID
               </label>
@@ -592,7 +591,7 @@ const MonthlyAttendanceImport = () => {
             <div className="flex flex-col gap-2 justify-between w-full">
               <label
                 htmlFor="monthYear"
-                className="text-[0.7rem] w-[50%] mt-3 dark:text-gray-200"
+                className="ds-text-xs w-[50%] mt-3 dark:text-gray-200"
               >
                 Month - Year
               </label>

@@ -26,7 +26,7 @@ const OvertimeSection = () => {
     const Field = ({ label, name }) => (
         <div className="flex flex-col space-y-1">
             <div className="flex items-center gap-2">
-                <Info size={14} className="text-[#8629DF]" />
+                <Info size={14} className="ds-text-primary" />
                 <label className="text-xs font-medium text-gray-700 dark:text-gray-300">
                     {label}
                 </label>
@@ -50,7 +50,7 @@ const OvertimeSection = () => {
           dark:text-gray-200
           focus:outline-none
           focus:ring-1
-          focus:ring-[#8629DF]
+          focus:ring-ds-primary
         "
             />
         </div>
@@ -59,7 +59,7 @@ const OvertimeSection = () => {
     return (
        <div
       className="
-      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg"
+      bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2"
     >
       <h1 className="text-base font-semibold mb-1 text-gray-500">
                 Overtime Configuration

@@ -5,15 +5,14 @@ import RezigLogo from "../Assets/SigninLogo.png";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-import { setDomain, setEmail, setPassword } from "../Redux/Features/userslice";
 import { Link } from "react-router-dom";
-import toast from "react-hot-toast";
+import { useToast } from "@/toastMessages/toastContext";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const { email, password, domain } = useSelector((state) => state.user);
-
+const {showToast} = useToast();
   const handleEmailChange = (e) => {
     dispatch(setEmail(e.target.value));
   };
@@ -33,6 +32,7 @@ const SignIn = () => {
     console.log("Domain:", domain);
   };
 
+  
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-3 dark:bg-white">
       {/* Left Banner Section */}
@@ -85,7 +85,7 @@ const SignIn = () => {
                   value={email}
                   onChange={handleEmailChange}
                   placeholder="Enter your User Id / E-Mail"
-                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full text-[0.7rem] sm:text-[0.8rem] font-semibold"
+                  className="bg-white border border-[#9853F9] text-gray-600 rounded-sm px-3 sm:px-4 py-2  w-full ds-text-xs sm:text-[0.8rem] font-semibold"
                 />
               </div>
 
@@ -139,7 +139,7 @@ const SignIn = () => {
             {/* Submit Button */}
             <Link to="/Dashboard">
               <button
-              onClick={()=>toast.success('Sign-in Complete')}
+              onClick={()=>showToast("Logged In Successfully", "success")}
               className="w-full text-[#FFFFF] text-sm sm:text-base md:text-[0.8rem] py-3 sm:py-2 px-6 sm:px-10 cursor-pointer rounded-sm bg-[#FACC16] font-semibold border border-[#FACC16] mt-5">
                 Sign In
               </button>

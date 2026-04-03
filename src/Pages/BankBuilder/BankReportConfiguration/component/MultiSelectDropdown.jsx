@@ -110,7 +110,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
 
                             <label
                                 key={item.value}
-                                className="flex items-center gap-2 text-[0.7rem] cursor-pointer
+                                className="flex items-center gap-2 ds-text-xs cursor-pointer
                 text-gray-700 dark:text-gray-200
                 hover:text-[#8629DF]"
                             >
@@ -137,7 +137,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
 
                         <button
                             onClick={reset}
-                            className="text-[0.7rem] w-[50%] px-3 py-1 rounded
+                            className="ds-text-xs w-[50%] px-3 py-1 rounded
               bg-gray-200 dark:bg-gray-700 cursor-pointer
               text-gray-700 dark:text-gray-200"
                         >
@@ -146,7 +146,7 @@ const MultiSelectDropdown = ({ label, options = [], value = [], onChange }) => {
 
                         <button
                             onClick={() => setOpen(false)}
-                            className="text-[0.7rem] w-[50%] px-4 py-1 rounded cursor-pointer
+                            className="ds-text-xs w-[50%] px-4 py-1 rounded cursor-pointer
               bg-[#8629DF] text-white hover:bg-[#8629DF]/90"
                         >
                             Apply

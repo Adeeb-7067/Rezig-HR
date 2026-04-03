@@ -34,12 +34,11 @@ const EmployeeCardFull = ({ employee }) => {
                     </p>
 
                     {/* POLICY */}
-                    <p className="text-[0.7rem] text-gray-500 dark:text-gray-400 mt-0.5">
+                    <p className="ds-text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                         Standard Full-Time Policy
                     </p>
 
                 </div>
-
             </div>
 
             {/* TAGS */}
@@ -48,7 +47,7 @@ const EmployeeCardFull = ({ employee }) => {
                     (tag) => (
                         <span
                             key={tag}
-                            className="bg-[#7B2CBF] text-white text-[0.65rem] px-3 py-1 rounded-[4px]"
+                            className="text-[#7B2CBF] text-[0.65rem] px-3 py-1 rounded-[4px]"
                         >
                             {tag}
                         </span>

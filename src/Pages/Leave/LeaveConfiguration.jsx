@@ -66,7 +66,7 @@ const LeaveConfiguration = () => {
         <div className="flex gap-0 sm:gap-3">
           <button
             onClick={() => setShowMaster(true)}
-            className="bg-[#8629DF] text-white text-[0.7rem] px-2 md:px-4 w-full rounded-sm flex justify-center items-center gap-1 py-1 md:text-[0.8rem] cursor-pointer"
+            className="btn-primary-sm"
           >
             <Plus className="md:w-4 md:h-4 font-semibold" />
             Add Leave Master
@@ -85,11 +85,11 @@ const LeaveConfiguration = () => {
           <div className="min-w-[750px]">
             {/* Header */}
             <div
-              className="text-[0.7rem] text-center font-semibold text-white bg-[#8629DF] py-3 px-6 rounded-t-sm"
+              className="ds-text-xs text-center font-semibold text-white bg-[#8629DF] py-2.5 px-6 rounded-t-sm"
               style={{
                 display: "grid",
                 gridTemplateColumns:
-                  "1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.6fr 0.6fr",
+                  "1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.12fr",
                 alignItems: "center",
               }}
             >
@@ -98,8 +98,8 @@ const LeaveConfiguration = () => {
               <div>Description</div>
               <div>Maximum Leave</div>
               <div>Paid</div>
-              <div className="text-center">Edit</div>
-              <div className="text-center">Delete</div>
+              <div className="text-center">Action</div>
+           
             </div>
 
             {/* Body */}
@@ -107,11 +107,11 @@ const LeaveConfiguration = () => {
               {data.map((item, index) => (
                 <div
                   key={index}
-                  className="text-[0.7rem] text-center py-3 px-6 border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50  dark:hover:bg-gray-700"
+                  className="ds-text-xs text-center py-3 px-6 border-b border-gray-200 dark:border-gray-600 hover:bg-gray-50  dark:hover:bg-gray-700"
                   style={{
                     display: "grid",
                     gridTemplateColumns:
-                      "1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.6fr 0.6fr",
+                      "1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.12fr",
                     alignItems: "center",
                   }}
                 >
@@ -121,14 +121,12 @@ const LeaveConfiguration = () => {
                   <div>{item.max}</div>
                   <div>{item.paid}</div>
 
-                  <div className="flex justify-center">
+                  <div className="flex justify-center text-center gap-2">
                     <Pencil
                       size={14}
                       className="cursor-pointer hover:text-purple-600"
                     />
-                  </div>
-
-                  <div className="flex justify-center">
+                
                     <Trash2 size={14} className="cursor-pointer text-red-500" />
                   </div>
                 </div>

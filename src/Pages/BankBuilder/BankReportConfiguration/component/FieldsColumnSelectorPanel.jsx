@@ -30,11 +30,11 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
 
                     <div
                         className="bg-[#8629DF] dark:bg-purple-700 
-  text-white px-3 py-1.5 text-[0.7rem] font-medium 
+  text-white px-3 py-1.5 ds-text-xs font-medium 
   flex justify-between items-center"
                     >
 
-                        <span className="font-normal text-[0.7rem] uppercase tracking-wider">
+                        <span className="font-normal ds-text-xs uppercase tracking-wider">
                             All Fields
                         </span>
 
@@ -50,7 +50,7 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
                         >
                             <ChevronUp
                                 size={16}
-                                className="text-[#8629DF] dark:text-purple-300"
+                                className="ds-text-primary dark:text-purple-300"
                             />
                         </button>
 
@@ -72,7 +72,7 @@ const FieldsColumnSelectorPanel = ({ fields = [] }) => {
                             return (
                                 <div
                                     key={field}
-                                    className="flex items-center justify-between px-3 py-1 border-b text-[0.7rem] border-gray-50 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+                                    className="flex items-center justify-between px-3 py-1 border-b ds-text-xs border-gray-50 dark:border-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
 
                                 >
 

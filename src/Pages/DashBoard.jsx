@@ -270,26 +270,26 @@ const StatsCard = ({
     >
       {/* Top Section */}
       <div className="text-center mb-1 leading-tight">
-        <p className=" text-[0.8rem] md:text-[1rem] font-bold text-[#8629DF]">{totalEmployees}</p>
-        <p className="text-gray-900 font-semibold text-[0.7rem] md:text-[0.8rem] dark:text-gray-400">{mainHeading}</p>
+        <p className=" text-[0.8rem] md:text-[1rem] font-bold ds-text-primary">{totalEmployees}</p>
+          <p className="text-gray-900 font-semibold ds-text-xs md:text-[0.8rem] dark:text-gray-400">{mainHeading}</p>
       </div>
 
       {/* Bottom Section - Two Stats */}
       <div className="flex justify-between ">
         {/* New Joiners */}
         <div className="leading-tight">
-          <p className="text-[0.8rem] md:text-sm font-bold text-[#8629DF] text-center">{newJoiners}</p>
+          <p className="text-[0.8rem] md:text-sm font-bold ds-text-primary text-center">{newJoiners}</p>
           <p className="text-black font-semibold text-[0.6rem] md:text-[0.76rem] dark:text-gray-400 text-center">{heading1}</p>
-          <p className="text-green-500 text-[0.7rem]">
+          <p className="text-green-500 ds-text-xs">
             +{newJoinersGrowth}% Growth
           </p>
         </div>
 
         {/* Resigned */}
         <div className="text-right leading-tight">
-          <p className="text-[0.8rem] md:text-sm font-bold text-[#8629DF] text-center">{resigned}</p>
+          <p className="text-[0.8rem] md:text-sm font-bold ds-text-primary text-center">{resigned}</p>
           <p className="text-black font-semibold text-[0.6rem] md:text-[0.76rem] dark:text-gray-400 text-center">{heading2}</p>
-          <p className="text-red-500 text-[0.7rem]">
+          <p className="text-red-500 ds-text-xs">
             {attritionRate}% Attrition Rate
           </p>
         </div>
@@ -527,21 +527,21 @@ const StatsCard = ({
         </div>
         <div className=" col-span-2  overflow-x-auto bg-[#FFFFFF] dark:bg-gray-800 mt-12 border border-gray-200 dark:border-gray-700 drop-shadow-md rounded-lg  lg:overflow-hidden lg:w-full">
           <table className="min-w-xl [@media(min-width:1440px)]:min-w-[700px] over-x-auto  w-full  text-sm text-left">
-            <thead className="bg-[#8629DF]  text-[14px] text-white py-[6px] px-[10px]  rounded-t-2xl   ">
+            <thead className="ds-bg-primary  text-[14px] text-white py-[6px] px-[10px]  rounded-t-2xl   ">
               <tr>
-                <th className="px-6 py-2 text-[0.7rem] font-medium text-center ">
+                <th className="px-6 py-2 ds-text-xs font-medium text-center ">
                   Employee Name
                 </th>
-                <th className="px-6 py-2 text-[0.7rem] font-medium text-center">
+                <th className="px-6 py-2 ds-text-xs font-medium text-center">
                   Department
                 </th>
-                <th className="px-6 py-2 text-[0.7rem] font-medium text-center">
+                <th className="px-6 py-2 ds-text-xs font-medium text-center">
                   Age
                 </th>
-                <th className="px-6 py-2 text-[0.7rem] font-medium text-center">
+                <th className="px-6 py-2 ds-text-xs font-medium text-center">
                   Discipline
                 </th>
-                <th className="px-6 py-2 text-[0.7rem] font-medium text-center ">
+                <th className="px-6 py-2 ds-text-xs font-medium text-center ">
                   Daily Attendance
                 </th>
               </tr>
@@ -596,7 +596,7 @@ const StatsCard = ({
         </div>
         <div className="cols-span-1  overflow-x-auto bg-white dark:bg-gray-800 drop-shadow-sm rounded-sm h-fit">
           <div className="w-full text-[0.7rem] text-center rounded-sm     border border-gray-200 dark:border-gray-700   ">
-            <div className="grid grid-cols-3 bg-[#8629DF]  text-white font-medium rounded-t-sm">
+            <div className="grid grid-cols-3 ds-bg-primary text-white font-medium rounded-t-sm">
               <div className="px-6 py-2">Month</div>
               <div className="px-6 py-2">Department</div>
               <div className="px-6 py-2">No. of Employee</div>

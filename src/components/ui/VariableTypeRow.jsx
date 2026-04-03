@@ -58,7 +58,7 @@ const VariableTypeRow = ({
                         <Info
                             ref={iconRef}
                             size={14}
-                            className="text-[#8629DF] cursor-help"
+                            className="ds-text-primary cursor-help"
                             onMouseEnter={() => setShowTooltip(true)}
                             onMouseLeave={() => setShowTooltip(false)}
                         />
@@ -77,7 +77,7 @@ const VariableTypeRow = ({
 
                 <span
                     className={cn(
-                        "text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200",
+                        "ds-text-xs font-semibold text-gray-500 dark:text-gray-200",
                         labelClass
                     )}
                 >
@@ -96,8 +96,7 @@ const VariableTypeRow = ({
                 onCheckedChange={onCheckedChange}
                 className={cn(
                     "bg-gray-300",
-                    "data-[state=checked]:!bg-[#8629DF]",
-                    "data-[state=checked]:!border-[#8629DF]",
+                    "data-[state=checked]:bg-ds-primary data-[state=checked]:border-ds-primary",
                     "transition-all duration-300",
                     switchClass
                 )}

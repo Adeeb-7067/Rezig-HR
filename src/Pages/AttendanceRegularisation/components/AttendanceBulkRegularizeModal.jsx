@@ -74,7 +74,7 @@ const AttendanceBulkRegularizeModal = ({
 
         {/* HEADER */}
         <div className="flex justify-between items-center px-4 py-3 border-b dark:border-gray-700 shrink-0">
-          <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
+          <h2 className="ds-text-primary font-semibold text-xs sm:text-sm truncate pr-2">
             {selectedDays.length > 0 && formatSelectedDate(dates[0]?.day)}
           </h2>
 
@@ -101,12 +101,12 @@ const AttendanceBulkRegularizeModal = ({
               <div className="border dark:border-gray-700 rounded-md p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <p className="font-medium text-[0.8rem]">Shift Details</p>
-                  <span className="bg-purple-100 dark:bg-purple-900/30 text-black dark:text-purple-300 text-[0.7rem] px-2 py-[2px] rounded">
+                  <span className="bg-purple-100 dark:bg-ds-primary/30 text-black dark:text-ds-primary ds-text-xs px-2 py-[2px] rounded">
                     Gurugram Office
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-300">
+                <div className="grid grid-cols-2 gap-3 mx-2 ds-text-xs text-gray-600 dark:text-gray-300">
                   <div>
                     <p>Shift In Date</p>
                     <p className="font-medium">{formatShortDate(item.day)}</p>
@@ -130,7 +130,7 @@ const AttendanceBulkRegularizeModal = ({
               <div className="border dark:border-gray-700 rounded-md p-3">
                 <p className="font-medium mb-2 text-[0.8rem]">Current Attendance Details</p>
 
-                <div className="grid grid-cols-2 gap-5 mx-2 text-sm text-gray-600 dark:text-gray-300">
+                <div className="grid grid-cols-2 gap-3 mx-2 ds-text-xs text-gray-600 dark:text-gray-300">
                   <div>
                     <p>In Date</p>
                     <p className="font-medium">{formatShortDate(item.day)}</p>
@@ -157,7 +157,7 @@ const AttendanceBulkRegularizeModal = ({
                 <div className="flex items-center gap-2 text-[0.8rem]">
                   <span>Current Status :</span>
                   {/* ml-12 only on sm+ to match desktop design; removed on mobile to prevent overflow */}
-              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full ds-text-xs">
                     Missed Punch
                   </span>
                 </div>
@@ -168,7 +168,7 @@ const AttendanceBulkRegularizeModal = ({
                 <p className="font-medium mb-3 text-[0.8rem]">Correct Timing</p>
 
                 {/* Desktop: grid-cols-2 (original). Mobile < 480px: single column */}
-                <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 text-[0.7rem]">
+                <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-3 ds-text-xs">
 
                   {/* IN DATE */}
                   <DatePickerField 
@@ -237,7 +237,7 @@ const AttendanceBulkRegularizeModal = ({
               {dates[index + 1] && (
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4 pt-4">
                   <div className="flex justify-between items-center">
-                    <h2 className="text-[#8629DF] font-semibold text-xs sm:text-sm truncate pr-2">
+                    <h2 className="ds-text-primary font-semibold text-xs sm:text-sm truncate pr-2">
                       {formatSelectedDate(dates[index + 1].day)}
                     </h2>
                     <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-400 text-white text-xs font-medium shrink-0">
@@ -253,7 +253,9 @@ const AttendanceBulkRegularizeModal = ({
 
         {/* FOOTER */}
         <div className="w-full flex justify-end px-4 py-3 border-t dark:border-gray-700 shrink-0">
-          <button className="w-full min-[480px]:w-fit py-1 px-3 bg-[#8629DF] hover:bg-[#7620c7] text-white rounded-sm text-sm font-medium">
+          <button
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white py-1.5"
+           >
             Regularize All
           </button>
         </div>

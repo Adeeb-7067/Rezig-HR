@@ -47,14 +47,14 @@ const ReportFilterCard = ({
 
                 <button
                     onClick={onSearch}
-                    className="py-1 px-6 sm:w-auto md:w-24 text-[0.7rem] font-semibold text-white bg-[#8629DF] hover:opacity-90 rounded-sm transition-all"
+                    className="py-1 px-6 sm:w-auto md:w-24 ds-text-xs font-semibold text-white bg-ds-primary hover:opacity-90 rounded-sm transition-all"
                 >
                     Search
                 </button>
 
                 <button
                     onClick={handleReset}
-                    className="py-1 px-7 sm:w-auto md:w-24 text-[0.7rem] font-semibold text-gray-600 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-sm transition-all"
+                    className="py-1 px-7 sm:w-auto md:w-24 ds-text-xs ds-text-primary ds-border-primary border  font-semibold   bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-sm transition-all"
                 >
                     Reset
                 </button>

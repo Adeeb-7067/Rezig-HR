@@ -71,13 +71,13 @@ ${previewUrl ? "p-0 min-h-[160px]  overflow-hidden" : "p-10  min-h-[160px]"}
           {/* Upload Content */}
           {!previewUrl && (
             <>
-              <p className="mb-3 text-[0.8rem] text-gray-600 dark:text-gray-200">
+              <p className="mb-3 ds-text-xs text-gray-600 dark:text-gray-200">
                 Drag & drop Excel file here or
               </p>
 
               <button
                 type="button"
-                className="inline-flex items-center gap-2 rounded-full bg-[#8629DF] px-5 py-2 text-xs font-medium text-white hover:bg-purple-700"
+                className="inline-flex items-center gap-2 rounded-full ds-bg-primary px-5 py-2 ds-text-xs font-medium text-white hover:bg-ds-primary/90"
               >
                 <UploadCloud className="h-4 w-4" />
                 Upload File

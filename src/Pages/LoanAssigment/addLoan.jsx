@@ -5,6 +5,7 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import SelectField from "@/components/SelectFeild";
 import DatePickerField from "@/components/ui/datePicker";
+import { useToast } from "@/toastMessages/toastContext";
 
 const ToggleField = ({
   label,
@@ -49,7 +50,7 @@ const ToggleField = ({
             <Info
               ref={iconRef}
               size={12}
-              className="text-[#8629DF] cursor-help"
+              className="ds-text-primary cursor-help"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             />
@@ -57,9 +58,7 @@ const ToggleField = ({
               <div
                 ref={tooltipRef}
                 className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
-                style={{
-                  transform: "translateX(0)",
-                }}
+                style={{ transform: "translateX(0)" }}
               >
                 {info}
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
@@ -69,7 +68,7 @@ const ToggleField = ({
         )}
         <Label
           htmlFor={name}
-          className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold"
+          className="text-gray-500 dark:text-gray-50 ds-text-xs font-semibold"
         >
           {label}
         </Label>
@@ -78,17 +77,34 @@ const ToggleField = ({
         id={name}
         checked={value === "Yes"}
         onCheckedChange={(checked) =>
-          onChange({
-            target: { name, value: checked ? "Yes" : "No" },
-          })
+          onChange({ target: { name, value: checked ? "Yes" : "No" } })
         }
-        className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+        className="data-[state=checked]:bg-ds-primary data-[state=unchecked]:bg-gray-300"
       />
     </div>
   );
 };
 
+const emptyForm = {
+  payCode: "",
+  loanAdvance: "",
+  calculationMethod: "",
+  principal: "",
+  intrest: "",
+  installmentDeducted: "",
+  noOfInstallments: "",
+  installmentAmount: "",
+  dueAmount: "",
+  balance: "",
+  startDeductingFrom: "",
+  transactionDate: "",
+  loanTypePerkMap: "",
+  loanAdvanceAcNo: "",
+};
+
 const AddLoan = () => {
+  const { showToast } = useToast();
+
   // Static Employee Data
   const employee = {
     name: "Aman Sharma",
@@ -104,25 +120,8 @@ const AddLoan = () => {
     tags: ["Full Time", "Engineering", "Payroll Eligible"],
   };
 
-  // ── Form State ──
-  const [formData, setFormData] = useState({
-    payCode: "",
-    loanAdvance: "",
-    calculationMethod: "",
-    principal: "",
-    intrest: "",
-    installmentDeducted: "",
-    noOfInstallments: "",
-    installmentAmount: "",
-    dueAmount: "",
-    balance: "",
-    startDeductingFrom: "",
-    transactionDate: "",
-    loanTypePerkMap: "",
-    loanAdvanceAcNo: "",
-  });
+  const [formData, setFormData] = useState(emptyForm);
 
-  // ── Handle Change (works for InputField, SelectField, DatePickerField) ──
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -130,27 +129,77 @@ const AddLoan = () => {
 
   // ── Reset Form ──
   const handleReset = () => {
-    setFormData({
-      payCode: "",
-      loanAdvance: "",
-      calculationMethod: "",
-      principal: "",
-      intrest: "",
-      installmentDeducted: "",
-      noOfInstallments: "",
-      installmentAmount: "",
-      dueAmount: "",
-      balance: "",
-      startDeductingFrom: "",
-      transactionDate: "",
-      loanTypePerkMap: "",
-      loanAdvanceAcNo: "",
-    });
+    const hasData = Object.values(formData).some((v) => v !== "");
+
+    if (!hasData) {
+      showToast("Form is already empty.", "info");
+      return;
+    }
+
+    setFormData(emptyForm);
+    showToast("Form has been reset successfully.", "warning");
   };
 
   // ── Save Form ──
   const handleSave = () => {
-    console.log("Form Data:", formData);
+    // Required field check
+    const requiredFields = [
+      "payCode",
+      "loanAdvance",
+      "calculationMethod",
+      "principal",
+      "noOfInstallments",
+      "transactionDate",
+    ];
+    const missing = requiredFields.filter((f) => !formData[f]);
+
+    if (missing.length > 0) {
+      showToast("Please fill all required fields before saving.", "error");
+      return;
+    }
+
+    // Numeric validation
+    if (formData.principal && isNaN(Number(formData.principal))) {
+      showToast("Principal must be a valid number.", "alert");
+      return;
+    }
+
+    if (
+      formData.noOfInstallments &&
+      isNaN(Number(formData.noOfInstallments))
+    ) {
+      showToast("No. of Installments must be a valid number.", "alert");
+      return;
+    }
+
+    if (
+      formData.installmentAmount &&
+      isNaN(Number(formData.installmentAmount))
+    ) {
+      showToast("Installment Amount must be a valid number.", "alert");
+      return;
+    }
+
+    // Save loading state feedback
+    showToast("Saving loan details...", "loading");
+
+    // Simulate async save
+    setTimeout(() => {
+      showToast("Loan details saved successfully!", "success");
+      console.log("Form Data:", formData);
+    }, 1500);
+  };
+
+  // ── Back ──
+  const handleBack = () => {
+    const hasData = Object.values(formData).some((v) => v !== "");
+
+    if (hasData) {
+      showToast("Unsaved changes will be lost on navigation.", "warning");
+      setTimeout(() => window.history.back(), 1800);
+    } else {
+      window.history.back();
+    }
   };
 
   return (
@@ -218,7 +267,7 @@ const AddLoan = () => {
           {employee.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-[#8629DF] text-white text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
+              className="ds-text-primary ds-text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
             >
               {tag}
             </span>
@@ -347,16 +396,23 @@ const AddLoan = () => {
 
       <div className="flex justify-end gap-4 mt-3">
         <button
+          onClick={handleBack}
+          type="button"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        >
+          Back
+        </button>
+        <button
           type="button"
           onClick={handleReset}
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Reset
         </button>
         <button
           type="button"
           onClick={handleSave}
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white hover:bg-ds-primary/80"
         >
           Save
         </button>

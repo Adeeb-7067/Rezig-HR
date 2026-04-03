@@ -14,15 +14,11 @@ const SwitchStartVariable = ({
             <Switch
                 checked={checked}
                 onCheckedChange={onCheckedChange}
-                className="
-          data-[state=checked]:bg-[#8629DF]
-          data-[state=unchecked]:bg-gray-300
-          dark:data-[state=unchecked]:bg-gray-600
-        "
+                className="data-[state=checked]:bg-ds-primary data-[state=checked]:border-ds-primary data-[state=unchecked]:bg-gray-300 dark:data-[state=unchecked]:bg-gray-600"
             />
 
             {/* Label */}
-            <Label className="text-[0.7rem] text-gray-600 dark:text-gray-200 ">
+            <Label className="ds-text-xs text-gray-600 dark:text-gray-200 ">
                 {label}
             </Label>
 

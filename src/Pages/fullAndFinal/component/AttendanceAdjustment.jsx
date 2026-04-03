@@ -4,12 +4,12 @@ export default function AttendanceAdjustment({ onNext, onPrev }) {
         <div className="space-y-4">
 
             {/* Title */}
-            <h2 className="text-base font-semibold text-gray-500">
+            <h2 className="text-base font-semibold mb-1 text-gray-500">
                 Attendance Adjustment
             </h2>
 
             {/* Card */}
-            <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+            <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
 
                 <p className="text-base font-semibold text-gray-500 dark:text-gray-200 mb-3">
                     Attendance Calculation Method
@@ -29,7 +29,8 @@ export default function AttendanceAdjustment({ onNext, onPrev }) {
 
                         <div className="w-10 h-5 bg-gray-300 peer-focus:outline-none 
                         rounded-full peer dark:bg-gray-600 
-                        peer-checked:bg-[#8629DF] 
+                        peer-checked:bg-ds-primary 
+                        dark:peer-checked:bg-ds-primary
                         after:content-[''] after:absolute after:top-[2px] after:left-[2px] 
                         after:bg-white after:border-gray-300 after:border 
                         after:rounded-full after:h-4 after:w-4 after:transition-all 
@@ -37,7 +38,7 @@ export default function AttendanceAdjustment({ onNext, onPrev }) {
 
                     </label>
 
-                    <span className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                    <span className="ds-text-xs text-gray-500 dark:text-gray-400">
                         Mark Attendance According To Attendance Machine
                     </span>
 
@@ -48,18 +49,18 @@ export default function AttendanceAdjustment({ onNext, onPrev }) {
             {/* Buttons */}
             <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-3">
                 <button
-                    className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                     onClick={onPrev}
                 >
                     Previous
                 </button>
                 <button
-                    className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                 >
                     Reset
                 </button>
                 <button
-                    className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+                    className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white hover:bg-ds-primary/80"
                     onClick={onNext}
                 >
                     Save

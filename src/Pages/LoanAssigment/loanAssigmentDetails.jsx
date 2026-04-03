@@ -1,5 +1,5 @@
 // LoanAssignmentDetail.jsx
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { Pencil, Trash2, FileText, X, Upload } from "lucide-react";
 import { HiOutlineOfficeBuilding } from "react-icons/hi";
@@ -53,7 +53,7 @@ const ToggleField = ({
             <Info
               ref={iconRef}
               size={12}
-              className="text-[#8629DF] cursor-help"
+              className="ds-text-primary cursor-help"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             />
@@ -73,7 +73,7 @@ const ToggleField = ({
         )}
         <Label
           htmlFor={name}
-          className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold"
+          className="text-gray-500 dark:text-gray-50 ds-text-xs font-semibold"
         >
           {label}
         </Label>
@@ -86,7 +86,7 @@ const ToggleField = ({
             target: { name, value: checked ? "Yes" : "No" },
           })
         }
-        className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
+        className="data-[state=checked]:bg-ds-primary data-[state=unchecked]:bg-gray-300"
       />
     </div>
   );
@@ -272,9 +272,9 @@ const EditInstallmentModal = ({ loan, onClose }) => {
               <button
                 key={tab.key}
                 onClick={() => setActiveTab(tab.key)}
-                className={`text-[0.7rem] sm:text-[0.75rem] font-medium pb-3 mr-4 sm:mr-8 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
+                className={`ds-text-xs sm:text-[0.75rem] font-medium pb-3 mr-4 sm:mr-8 border-b-2 transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
                   activeTab === tab.key
-                    ? "border-[#8629DF] text-[#8629DF]"
+                    ? "ds-border-primary ds-text-primary"
                     : "border-transparent text-gray-500 hover:text-gray-700"
                 }`}
               >
@@ -352,13 +352,13 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
 
         {/* Reason */}
         <div>
-          <label className="block text-[0.7rem] text-gray-500 font-semibold dark:text-gray-400 ">
+          <label className="block ds-text-xs text-gray-500 font-semibold dark:text-gray-400 ">
             Adjustment Reason
           </label>
           <textarea
             rows={3}
             placeholder="Enter Leave Type"
-            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+            className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-ds-primary resize-none"
           />
         </div>
       </div>
@@ -369,16 +369,16 @@ const AdjustInstallmentTab = ({ loan, onClose }) => (
       </div>
     </div>
     <div className="flex justify-end gap-2 mt-6 pt-4 border-t border-gray-100 dark:border-gray-700">
-      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
         Export
       </button>
-      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
         Import & Save
       </button>
-      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+      <button className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
         Reset
       </button>
-      <button className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24">
+      <button className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white">
         Submit
       </button>
     </div>{" "}
@@ -488,13 +488,13 @@ const AddExtraAmountTab = ({ loan, onClose }) => {
       <div className="flex justify-end gap-3">
         <button
           onClick={handleReset}
-          className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+          className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
         >
           Reset
         </button>
         <button
           onClick={() => console.log("Add Amount", formData)}
-          className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+          className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white"
         >
           Add Amount
         </button>
@@ -569,7 +569,7 @@ const ForeclosureTab = ({ loan, onClose }) => (
         <textarea
           rows={4}
           placeholder="Enter Bank Details"
-          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-ds-primary resize-none"
         />
       </div>
       <div>
@@ -579,7 +579,7 @@ const ForeclosureTab = ({ loan, onClose }) => (
         <textarea
           rows={4}
           placeholder="Enter Remarks"
-          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-[#8629DF] resize-none"
+          className="w-full border border-gray-200 dark:border-gray-600 rounded px-3 py-2 text-[0.78rem] dark:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-ds-primary resize-none"
         />
       </div>
     </div>
@@ -587,12 +587,12 @@ const ForeclosureTab = ({ loan, onClose }) => (
     {/* Action Buttons */}
     <div className="flex justify-end gap-3">
       <button
-        className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
       >
         Reset
       </button>
       <button
-        className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+        className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white"
       >
         Add Amount
       </button>
@@ -644,7 +644,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
           Loan Assigment
         </h1>
         <div className="flex gap-2 sm:gap-3 shrink-0">
-          <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px]">
+          <div className="ds-bg-primary text-white text-[0.7rem] px-3 sm:px-4 rounded-sm flex justify-center items-center gap-1 py-2 sm:py-1.5 min-w-[120px]">
             <Link
               to="/addLoan"
               className="flex items-center justify-center gap-1 text-[0.7rem] md:text-[0.8rem]"
@@ -657,8 +657,8 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
       </div>
 
       {/* ── Employee Info Card ── */}
-      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-5 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[480px] lg:w-[50%]">
-        <div className="flex flex-row items-start gap-3 sm:gap-4">
+      <div className="border border-gray-200 dark:border-gray-700 rounded-xl p-2 sm:p-3 mb-5 bg-white dark:bg-gray-800 w-full md:max-w-[450px] lg:w-[50%]">
+        <div className="flex flex-row items-start gap-1 sm:gap-2">
           {employee.avatar ? (
             <img
               src={employee.avatar}
@@ -676,7 +676,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
             </div>
           )}
           <div className="flex-1 min-w-0">
-            <div className="flex flex-wrap justify-between items-center gap-x-2 gap-y-1 mb-0.5">
+            <div className="flex flex-wrap justify-between items-center gap-x-1 gap-y-1 mb-0.5">
               <span className="text-[1rem] sm:text-[1.1rem] font-semibold text-gray-900 dark:text-gray-50 truncate">
                 {employee.name}
               </span>
@@ -688,10 +688,10 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
               {employee.empCode}
             </p>
             <div className="mb-3">
-              <p className="text-[0.7rem] font-medium text-gray-700 dark:text-gray-200 mb-1">
+              <p className="ds-text-xs font-medium text-gray-700 dark:text-gray-200 mb-1">
                 {employee.existingLoan.type}
               </p>
-              <dl className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[0.7rem] text-gray-500 dark:text-gray-400">
+              <dl className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 ds-text-xs text-gray-500 dark:text-gray-400">
                 <dt>Current Loan</dt>
                 <dd className="text-gray-700 dark:text-gray-300">{employee.existingLoan.currentLoan}</dd>
                 <dt>EMI</dt>
@@ -706,27 +706,27 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
           {employee.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-[#8629DF] text-white text-[0.7rem] px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
+              className="ds-text-primary ds-text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[4px]"
             >
               {tag}
             </span>
           ))}
         </div>
-      </div>
+      </div> 
 
       <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-3">
         {/* ── Stats row ── */}
         <div className="flex flex-wrap items-center gap-3 mb-5 px-2 sm:px-4 py-3">
           <div className="flex items-center gap-2 py-1 px-2 border border-gray-200 dark:border-gray-600 rounded-sm w-full sm:w-auto">
             <SmallAvatar name={employee.name} />
-            <span className="text-[0.7rem] font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap truncate max-w-[140px] sm:max-w-none">
+            <span className="ds-text-xs font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap truncate max-w-[140px] sm:max-w-none">
               {employee.unitId} | {String(employee.name).slice(0, 9)} Shar
             </span>
           </div>
 
           <div className="flex items-center gap-2 rounded-sm py-2 px-2 border border-gray-200 dark:border-gray-600 min-w-0 w-full sm:w-auto">
-            <HiOutlineOfficeBuilding className="w-4 h-4 text-[#8629DF] flex-shrink-0" />
-            <span className="text-[0.7rem] text-gray-900 dark:text-gray-300 whitespace-nowrap font-semibold truncate max-w-[180px] sm:max-w-none">
+            <HiOutlineOfficeBuilding className="w-4 h-4 ds-text-primary flex-shrink-0" />
+            <span className="ds-text-xs text-gray-900 dark:text-gray-300 whitespace-nowrap font-semibold truncate max-w-[180px] sm:max-w-none">
               Department : {employee.department}
             </span>
           </div>
@@ -735,7 +735,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
 
           {/* Balance Amount box */}
           <div className="border-t-4 border-[#CB30E0] rounded-sm px-4 sm:px-6 py-2 text-center flex-1 sm:flex-none min-w-[140px] shadow-sm flex-shrink-0 bg-gray-50 dark:bg-gray-700/30">
-            <p className="text-[0.9rem] sm:text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
+            <p className="text-[0.9rem] sm:text-[1rem] font-bold ds-text-primary dark:text-gray-50">
               {employee.balanceAmount}
             </p>
             <p className="text-[0.65rem] sm:text-[0.7rem] text-gray-900 dark:text-gray-300 tracking-wide">
@@ -745,10 +745,10 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
 
           {/* Installment Paid box */}
           <div className="border-t-4 border-green-400 rounded-sm px-4 sm:px-6 py-2 text-center flex-1 sm:flex-none min-w-[140px] shadow-sm flex-shrink-0 bg-gray-50 dark:bg-gray-700/30">
-            <p className="text-[1rem] font-bold text-[#8629DF] dark:text-gray-50">
+            <p className="text-[1rem] font-bold ds-text-primary dark:text-gray-50">
               {employee.installmentPaid}
             </p>
-            <p className="text-[0.7rem] text-gray-900 dark:text-gray-300 tracking-wide">
+            <p className="ds-text-xs text-gray-900 dark:text-gray-300 tracking-wide">
               Installment Paid
             </p>
           </div>
@@ -761,9 +761,9 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
 
         {/* ── Table ── */}
         <div className="rounded-sm overflow-x-auto overflow-y-hidden border border-gray-200 dark:border-gray-700">
-          <table className="w-full text-[0.7rem] border-collapse min-w-[640px]">
+          <table className="w-full ds-text-xs border-collapse min-w-[640px]">
             <thead>
-              <tr className="bg-[#8629DF] text-white text-left">
+              <tr className="ds-bg-primary text-white text-left">
                 {[
                   "Loan Name",
                   "Principal",
@@ -796,7 +796,7 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
                     >
                       <td className="px-4 py-3 text-gray-800 dark:text-gray-100 whitespace-nowrap relative">
                         {isExpanded && (
-                          <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#8629DF] rounded-r-full" />
+                          <span className="absolute left-0 top-0 bottom-0 w-[3px] ds-bg-primary rounded-r-full" />
                         )}
                         {loan.loanName}
                       </td>
@@ -826,8 +826,8 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
                           <button
                             onClick={() => toggleExpand(loan)}
                             className={`p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors ${isExpanded
-                                ? "text-[#8629DF]"
-                                : "text-gray-400 hover:text-[#8629DF]"
+                                ? "ds-text-primary"
+                                : "text-gray-400 hover:text-ds-primary"
                               } ${!hasEmis ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}`}
                             disabled={!hasEmis}
                             title="View EMI details"
@@ -926,8 +926,18 @@ const LoanAssignmentDetail = ({ employee: rawEmployee, onBack }) => {
             </tbody>
           </table>
         </div>
-      </div>
     </div>
+        <div className="flex justify-end mt-4">
+
+         <button
+                  onClick={()=>{onBack()}}
+                  type="button"
+                  className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                  >
+                  Back
+                </button>
+                  </div>
+      </div>
   );
 };
 

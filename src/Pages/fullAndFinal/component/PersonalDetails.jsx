@@ -12,7 +12,7 @@ const InputField = ({
     ...props
 }) => (
     <div>
-        <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem] mb-1">
+        <label className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs mb-1">
             {label}
         </label>
         <input
@@ -20,7 +20,7 @@ const InputField = ({
             name={name}
             value={value}
             onChange={onChange}
-            className={`w-full text-[0.7rem] h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+            className={`w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
             {...props}
         />
     </div>
@@ -115,7 +115,7 @@ export default function PersonalDetails({ onSave }) {
             {/* Buttons */}
             <div className="flex flex-row sm:flex-row justify-end w-full gap-2 mt-3">
                 <button
-                    className="bg-white dark:bg-[#E4E6EB]/10 border border-[#8629DF] text-[#8629DF] font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
+                    className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                     onClick={() => setFormData({
                         leavingReason: "",
                         resignDate: "",
@@ -130,7 +130,7 @@ export default function PersonalDetails({ onSave }) {
                 </button>
 
                 <button
-                    className="bg-[#8629DF] text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer"
+                    className="font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white hover:bg-ds-primary/80"
                     onClick={() => onSave(formData)}
                 >
                     Save

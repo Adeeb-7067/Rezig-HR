@@ -44,9 +44,9 @@ const UserPermissionTable = () => {
 
                 <button
                     onClick={selectAll}
-                    className="text-[#8629df] text-[0.65rem] font-bold 
+                    className="text-ds-primary text-[0.65rem] font-bold 
           bg-[#F7F2FD] dark:bg-[#2b1d3f] 
-          p-1 px-2 rounded-sm border border-purple-100 dark:border-purple-800 hover:bg-[#8629DF] hover:text-white transition-all"
+          p-1 px-2 rounded-sm border border-purple-100 dark:border-ds-primary/80 hover:bg-ds-primary hover:text-white transition-all"
                 >
                     Select All
                 </button>
@@ -57,7 +57,7 @@ const UserPermissionTable = () => {
             <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm">
 
                 {/* Table Header */}
-                <div className="grid grid-cols-3 bg-[#8629DF] text-white text-[0.65rem] font-bold uppercase tracking-wider px-4 py-2">
+                <div className="grid grid-cols-3 ds-bg-primary text-white text-[0.65rem] font-bold uppercase tracking-wider px-4 py-2">
 
                     <div>User</div>
 
@@ -76,7 +76,7 @@ const UserPermissionTable = () => {
                             key={i}
                             className="grid grid-cols-3 px-4 py-2 items-center border-b
                border-gray-100 dark:border-gray-700
-              text-[0.7rem]
+              ds-text-xs
                hover:bg-gray-50 dark:hover:bg-gray-700/30
                transition-all"
                         >
@@ -94,12 +94,7 @@ const UserPermissionTable = () => {
                                 <Switch
                                     checked={u.enabled}
                                     onCheckedChange={() => toggleUser(i)}
-                                    className="
-                   scale-75
-                   data-[state=checked]:bg-[#8629DF]
-                   data-[state=unchecked]:bg-gray-200
-                   dark:data-[state=unchecked]:bg-gray-700
-                   "
+                                    className="scale-75 data-[state=checked]:bg-ds-primary data-[state=checked]:border-ds-primary data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                                 />
 
                             </div>

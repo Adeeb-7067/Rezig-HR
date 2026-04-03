@@ -37,10 +37,7 @@ const BiometricAttendanceSection = () => {
     setToggles((prev) => ({ ...prev, [key]: val }));
 
   return (
-    <div
-      className="
-           bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg"
-    >
+    <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg">
       <h1 className="text-base font-semibold mb-1 text-gray-500">
         Biometric Attendance
       </h1>

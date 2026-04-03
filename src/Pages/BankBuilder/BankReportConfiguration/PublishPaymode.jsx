@@ -37,7 +37,7 @@ const PublishPaymode = () => {
                 {/* All Fields */}
                 <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm">
 
-                    <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 py-1.5 font-semibold uppercase tracking-wider">
+                    <div className="bg-[#8629DF] text-white ds-text-xs px-3 py-1.5 font-semibold uppercase tracking-wider">
                         All Fields 
                     </div>
 
@@ -47,7 +47,7 @@ const PublishPaymode = () => {
 
                             <div
                                 key={i}
-                                className="flex justify-between items-center px-3 py-1.5 text-[0.7rem] border-b border-gray-50 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                                className="flex justify-between items-center px-3 py-1.5 ds-text-xs border-b border-gray-50 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                             >
 
                                 <span className="font-medium">{mode}</span>
@@ -70,7 +70,7 @@ const PublishPaymode = () => {
                 {/* Selected Fields */}
                 <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden shadow-sm">
 
-                    <div className="bg-[#8629DF] text-white text-[0.7rem] px-3 py-1.5 font-semibold uppercase tracking-wider">
+                    <div className="bg-[#8629DF] text-white ds-text-xs px-3 py-1.5 font-semibold uppercase tracking-wider">
                         Selected Fields
                     </div>
 
@@ -80,7 +80,7 @@ const PublishPaymode = () => {
 
                             <div
                                 key={i}
-                                className="flex justify-between items-center px-3 py-1.5 text-[0.7rem] border-b border-gray-50 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
+                                className="flex justify-between items-center px-3 py-1.5 ds-text-xs border-b border-gray-50 dark:border-gray-700 text-gray-600 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
                             >
 
                                 <span className="font-medium">{mode}</span>
@@ -103,7 +103,7 @@ const PublishPaymode = () => {
                 {/* Changed Captions */}
                 <div className="border border-gray-200 dark:border-gray-700 rounded-sm overflow-hidden p-3 bg-white dark:bg-gray-800 shadow-sm">
 
-                    <div className="text-[#8629DF] text-[0.7rem] font-bold uppercase tracking-wider mb-3 border-b border-gray-100 dark:border-gray-700 pb-1">
+                    <div className="ds-text-primary ds-text-xs font-bold uppercase tracking-wider mb-3 border-b border-gray-100 dark:border-gray-700 pb-1">
                         Changed Captions
                     </div>
 
@@ -116,14 +116,14 @@ const PublishPaymode = () => {
                                 <InputField
                                     label=""
                                     placeholder="Enter Caption"
-                                    className="h-7.5 text-[0.7rem] px-3"
+                                    className="h-7.5 ds-text-xs px-3"
                                 />
                             </div>
 
                         ))}
 
                         {selected.length === 0 && (
-                            <div className="text-[0.7rem] text-gray-400 italic text-center py-4">
+                            <div className="ds-text-xs text-gray-400 italic text-center py-4">
                                 Select fields to edit captions
                             </div>
                         )}

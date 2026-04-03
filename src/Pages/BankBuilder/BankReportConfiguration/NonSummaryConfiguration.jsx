@@ -1,5 +1,5 @@
 import SelectField from "@/components/SelectFeild";
-import { Switch } from "@/components/ui/switch";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 import ColumnFieldsSelector from "./component/ColumnFieldsSelector";
 import { useState } from "react";
 
@@ -44,19 +44,11 @@ const NonSummaryConfiguration = () => {
 
             {/* Enable Toggle */}
 
-            <div className="flex items-center gap-3">
-
-                <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                    Do you want to configure non-summary sheet
-                </span>
-
-                <Switch 
-                    className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                    checked={toggles.configureNonSummary}
-                    onCheckedChange={(val) => handleToggle("configureNonSummary", val)}
-                />
-
-            </div>
+            <VariableTypeRow 
+                label="Do you want to configure non-summary sheet"
+                checked={toggles.configureNonSummary}
+                onCheckedChange={(val) => handleToggle("configureNonSummary", val)}
+            />
 
 
             {/* Configuration Grid */}
@@ -69,108 +61,68 @@ const NonSummaryConfiguration = () => {
                     value={form.nonSummaryPosition}
                     onChange={handleChange}
                     unSelectLabel="Select Fields"
-                    className="h-7.5 text-[0.7rem]"
+                    className="h-7.5 ds-text-xs"
                     options={[
                         { label: "field1", value: "fields1" },
                         { label: "field2", value: "field2" }
                     ]}
                 />
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm ">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Active Consolidate Sheet
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.activeConsolidate}
-                        onCheckedChange={(val) => handleToggle("activeConsolidate", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Active Consolidate Sheet"
+                    checked={toggles.activeConsolidate}
+                    onCheckedChange={(val) => handleToggle("activeConsolidate", val)}
+                    containerClass="justify-between"
+                />
 
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Consider Hold Employee(s)
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.considerHoldEmployee}
-                        onCheckedChange={(val) => handleToggle("considerHoldEmployee", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Consider Hold Employee(s)"
+                    checked={toggles.considerHoldEmployee}
+                    onCheckedChange={(val) => handleToggle("considerHoldEmployee", val)}
+                    containerClass="justify-between"
+                />
 
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm ">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Consider (-ve Employee(s))
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.considerNegativeEmployee}
-                        onCheckedChange={(val) => handleToggle("considerNegativeEmployee", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Consider (-ve Employee(s))"
+                    checked={toggles.considerNegativeEmployee}
+                    onCheckedChange={(val) => handleToggle("considerNegativeEmployee", val)}
+                    containerClass="justify-between"
+                />
 
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Consider Zero Salaried Employee(s)
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.considerZeroSalaried}
-                        onCheckedChange={(val) => handleToggle("considerZeroSalaried", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Consider Zero Salaried Employee(s)"
+                    checked={toggles.considerZeroSalaried}
+                    onCheckedChange={(val) => handleToggle("considerZeroSalaried", val)}
+                    containerClass="justify-between"
+                />
 
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Consider FNF Employee(s)
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.considerFNF}
-                        onCheckedChange={(val) => handleToggle("considerFNF", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Consider FNF Employee(s)"
+                    checked={toggles.considerFNF}
+                    onCheckedChange={(val) => handleToggle("considerFNF", val)}
+                    containerClass="justify-between"
+                />
 
 
-                <div className="flex items-center justify-between gap-2  p-2 rounded-sm">
-
-                    <span className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-300 leading-tight">
-                        Consider Name in Bank
-                    </span>
-
-                    <Switch 
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={toggles.considerNameInBank}
-                        onCheckedChange={(val) => handleToggle("considerNameInBank", val)}
-                    />
-
-                </div>
+                <VariableTypeRow 
+                    label="Consider Name in Bank"
+                    checked={toggles.considerNameInBank}
+                    onCheckedChange={(val) => handleToggle("considerNameInBank", val)}
+                    containerClass="justify-between"
+                />
 
             </div>
 
 
             {/* Column Fields Section */}
 
-            <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />
+            {toggles.configureNonSummary && (
+                <ColumnFieldsSelector title="List Of Fields (Columns)" fields={fields} />
+            )}
 
         </div>
 

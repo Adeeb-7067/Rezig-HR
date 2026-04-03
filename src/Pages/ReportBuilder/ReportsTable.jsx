@@ -1,4 +1,4 @@
-import { Eye, Copy, Download, Trash2 } from "lucide-react";
+import { Copy, Download, Pencil, Trash2 } from "lucide-react";
 
 const ReportsTable = ({ data }) => {
     return (
@@ -17,12 +17,14 @@ const ReportsTable = ({ data }) => {
                     <div className="min-w-[650px]">
 
                         {/* Header */}
-                        <div className="bg-[#8629DF] text-white text-[0.7rem] font-semibold rounded-t-sm">
-                            <div className="grid grid-cols-4 px-4 py-2 uppercase tracking-wider">
+                        <div className="bg-ds-primary text-white ds-text-xs font-semibold rounded-t-sm">
+                            <div className="grid grid-cols-5 px-4 py-2 uppercase tracking-wider">
                                 <div>Report Type</div>
                                 <div>Report Name</div>
-                                <div>Created On</div>
-                                <div>Action</div>
+                                <div className="flex justify-center">Created On</div>
+                                <div className="flex justify-center">Duplicate</div>
+
+                                <div className="flex justify-center">Action</div>
                             </div>
                         </div>
 
@@ -32,33 +34,36 @@ const ReportsTable = ({ data }) => {
                             {data.map((item, index) => (
                                 <div
                                     key={index}
-                                    className="grid grid-cols-4 px-4 py-2 border-t border-gray-200 dark:border-gray-700
-                  text-[0.7rem] hover:bg-gray-50 dark:hover:bg-gray-700/50 transition items-center"
+                                    className="grid grid-cols-5 px-4 py-2 border-t border-gray-200 dark:border-gray-700
+                  ds-text-xs hover:bg-gray-50 dark:hover:bg-gray-700/50 transition items-center"
                                 >
 
-                                    <div className="text-gray-600 dark:text-gray-200 font-medium">
+                                    <div className="text-gray-800 dark:text-gray-200 font-medium">
                                         {item.type}
                                     </div>
 
-                                    <div className="text-gray-600 dark:text-gray-200">
+                                    <div className="text-gray-800 dark:text-gray-200">
                                         {item.name}
                                     </div>
 
-                                    <div className="text-gray-500 dark:text-gray-400">
+                                    <div className="text-gray-800 dark:text-gray-400 flex justify-center">
                                         {item.date}
                                     </div>
 
-                                    <div className="flex gap-4 items-center">
+                                    <div className="flex justify-center">
+                                        <Copy size={14} className="cursor-pointer text-gray-800 dark:text-gray-300 hover:text-ds-primary transition-colors" />
+                                    </div>
 
-                                        <Eye size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                    <div className="flex justify-center gap-4">
 
-                                        <Copy size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                        <Download size={14} className="cursor-pointer text-gray-800 dark:text-gray-300 hover:text-ds-primary transition-colors" />
 
-                                        <Download size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                        <Pencil size={14} className="cursor-pointer text-gray-800 dark:text-gray-300 hover:text-ds-primary transition-colors" />
 
-                                        <Trash2 size={14} className="cursor-pointer text-red-400 hover:text-red-600 transition-colors" />
+                                        <Trash2 size={14} className="cursor-pointer text-red-800 dark:text-red-500 hover:text-red-600 transition-colors" />
 
                                     </div>
+
 
                                 </div>
                             ))}

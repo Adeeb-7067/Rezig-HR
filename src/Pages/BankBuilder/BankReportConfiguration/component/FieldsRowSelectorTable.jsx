@@ -98,7 +98,7 @@ const SortableRow = ({
           className="w-full h-7 text-[11px] px-2 rounded 
           border border-gray-200 dark:border-gray-700 
           bg-gray-50 dark:bg-gray-800 
-          focus:outline-none focus:ring-1 focus:ring-purple-500
+          focus:outline-none focus:ring-1 focus:ring-ds-primary
           disabled:opacity-50"
         />
       </div>
@@ -153,7 +153,7 @@ const FieldsRowSelectorTable = ({
     <div className="border rounded-md overflow-hidden border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
 
       {/* HEADER */}
-      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] bg-[#8629DF] text-white text-[0.8rem] font-normal">
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] bg-ds-primary text-white text-[0.8rem] font-normal">
         <div className="px-3 py-1.5 border-r border-purple-400/50">
           Selected Fields
         </div>

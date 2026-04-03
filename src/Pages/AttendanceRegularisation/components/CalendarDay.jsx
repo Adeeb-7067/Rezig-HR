@@ -102,7 +102,7 @@ const CalendarDay = ({
                             : "text-gray-400 dark:text-gray-500"
                         }
                         ${compact
-                            ? "text-[0.7rem]"
+                            ? "ds-text-xs"
                             : "text-[0.65rem] sm:text-xs md:text-sm"
                         }
                     `}
@@ -116,7 +116,7 @@ const CalendarDay = ({
                         checked={checked}
                         onChange={toggleDay}
                         onClick={(e) => e.stopPropagation()}
-                        className="shrink-0 w-3 h-3 rounded border border-gray-300 dark:border-gray-500 bg-white dark:bg-gray-700 text-[#8629DF] focus:ring-[#8629DF] cursor-pointer"
+                        className="shrink-0 w-3 h-3 rounded border border-gray-300 dark:border-gray-500 bg-white dark:bg-gray-700 ds-text-primary focus:ring-1 focus:ring-ds-primary cursor-pointer accent-ds-primary"
                         aria-label={`Select ${day}`}
                     />
                 )}
@@ -155,7 +155,7 @@ const CalendarDay = ({
                                     } w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3`}
                                 />
                                 {/* Hide status letter on very small screens to save space */}
-                                <span className="hidden sm:inline text-[0.7rem] md:text-[0.9rem] font-semibold text-gray-800 dark:text-gray-200">
+                                <span className=" inline ds-text-xs md:text-[0.9rem] font-semibold text-gray-800 dark:text-gray-200">
                                     {Array.isArray(data.status)
                                         ? data.status.join(" ")
                                         : data.status}

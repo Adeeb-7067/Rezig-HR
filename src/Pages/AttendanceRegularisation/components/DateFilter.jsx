@@ -92,12 +92,12 @@ const DatePicker = ({ placeholder, value, onChange }) => {
           key={day}
           onClick={() => handleDateSelect(day)}
           className={cn(
-            "aspect-square flex items-center justify-center rounded-full cursor-pointer text-[0.7rem] transition-colors select-none",
+            "aspect-square flex items-center justify-center rounded-full cursor-pointer ds-text-xs transition-colors select-none",
             isSelected
-              ? "bg-purple-600 text-white"
+              ? "bg-ds-primary text-white"
               : isToday
-              ? "font-semibold text-purple-600 dark:text-purple-400 ring-1 ring-purple-400"
-              : "hover:bg-purple-100 dark:hover:bg-purple-900/40 text-gray-800 dark:text-gray-200"
+              ? "font-semibold text-ds-primary dark:text-ds-primary ring-1 ring-ds-primary/40"
+              : "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40 text-gray-800 dark:text-gray-200"
           )}
         >
           {day}
@@ -137,12 +137,13 @@ const DatePicker = ({ placeholder, value, onChange }) => {
       {/* ── Original closed trigger UI (unchanged) ── */}
       <div
         onClick={handleOpen}
-        className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 dark:bg-gray-800 flex items-center justify-between cursor-pointer hover:border-purple-400 dark:hover:border-purple-500 transition-colors"
+        className="w-full border border-gray-300 dark:border-gray-600 rounded-md px-3 py-1.5 dark:bg-gray-800 flex items-center justify-between cursor-pointer hover:border-purple-400 dark:hover:border-ds-primary transition-colors"
       >
-        <span className={`text-sm ${selectedDate ? "text-gray-800 dark:text-gray-200" : "text-gray-500"}`}>
+        <CalendarIcon className="text-gray-600 dark:text-gray-400" size={14} />
+
+        <span className={`ds-text-xs ${selectedDate ? "text-gray-800 dark:text-gray-200" : "text-gray-500"}`}>
           {selectedDate ? formatDisplay(selectedDate) : placeholder}
         </span>
-        <CalendarIcon className="text-gray-600 dark:text-gray-400" size={16} />
       </div>
 
       {/* ── Calendar popover (styled like Calendar/DatePicker component) ── */}
@@ -165,7 +166,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
           <div className="flex items-center justify-between mb-3 gap-1">
             <button
               onClick={prevMonth}
-              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
               aria-label="Previous month"
             >
               &#8592;
@@ -180,7 +181,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
               <div className="relative">
                 <button
                   onClick={() => setIsYearDropdownOpen((v) => !v)}
-                  className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                  className="text-[0.8rem] font-semibold text-gray-600 dark:text-gray-100 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
                   aria-label="Select year"
                   aria-expanded={isYearDropdownOpen}
                 >
@@ -202,9 +203,9 @@ const DatePicker = ({ placeholder, value, onChange }) => {
                         className={cn(
                           "px-3 py-1 text-[0.72rem] cursor-pointer transition-colors",
                           "text-gray-800 dark:text-gray-100",
-                          "hover:bg-purple-100 dark:hover:bg-purple-900/40",
+                          "hover:bg-ds-primary/10 dark:hover:bg-ds-primary/40",
                           year === currentDate.getFullYear() &&
-                            "bg-purple-50 dark:bg-purple-900/20 font-semibold"
+                            "bg-purple-50 dark:bg-ds-primary/20 font-semibold"
                         )}
                       >
                         {year}
@@ -217,7 +218,7 @@ const DatePicker = ({ placeholder, value, onChange }) => {
 
             <button
               onClick={nextMonth}
-              className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                className="p-1 rounded text-gray-500 dark:text-gray-300 hover:text-ds-primary dark:hover:text-ds-primary transition-colors"
               aria-label="Next month"
             >
               &#8594;

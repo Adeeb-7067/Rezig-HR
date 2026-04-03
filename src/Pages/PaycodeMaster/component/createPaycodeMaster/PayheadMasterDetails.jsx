@@ -22,7 +22,7 @@ const PayheadMasterDetails = () => {
     };
 
     return (
-            <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg">
+            <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3">
             {/* Title */}
               <h1 className="text-base font-semibold mb-1 text-gray-500 dark:text-gray-50">
                 Payhead Master Details

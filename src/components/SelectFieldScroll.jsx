@@ -35,7 +35,7 @@ const SelectFieldScroll = ({
         <div className="relative w-full" ref={dropdownRef}>
 
             {label && (
-                <label className="block text-[0.7rem] font-semibold text-gray-500 dark:text-gray-200 mb-1">
+                <label className="block ds-text-xs font-semibold text-gray-500 dark:text-gray-200 mb-1">
                     {label}
                 </label>
             )}
@@ -45,13 +45,13 @@ const SelectFieldScroll = ({
                 type="button"
                 onClick={() => setOpen((prev) => !prev)}
                 className={cn(
-                    "w-full h-8 px-3 rounded-sm text-[0.7rem]",
+                    "w-full h-8 px-3 rounded-sm ds-text-xs",
                     "flex items-center justify-between",
                     "bg-white dark:bg-gray-800",
                     "border border-gray-300 dark:border-gray-700",
                     "text-gray-700 dark:text-gray-100",
                     "transition-all duration-150",
-                    "focus:ring-2 focus:ring-[#8629DF] focus:outline-none",
+                    "focus:ring-2 focus:ring-ds-primary focus:outline-none",
                     className
                 )}
             >
@@ -63,7 +63,7 @@ const SelectFieldScroll = ({
                     size={14}
                     className={cn(
                         "transition-transform duration-200",
-                        open ? "rotate-180 text-[#8629DF]" : "text-gray-400"
+                        open ? "rotate-180 ds-text-primary" : "text-gray-400"
                     )}
                 />
             </button>
@@ -90,9 +90,9 @@ const SelectFieldScroll = ({
                                 className={cn(
                                     "px-3 py-1.5 cursor-pointer",
                                     "transition-colors duration-150",
-                                    "hover:bg-[#8629DF]/10 hover:text-[#8629DF]",
+                                    "hover:bg-ds-primary/10 hover:text-ds-primary",
                                     active &&
-                                    "bg-[#8629DF]/20 text-[#8629DF] font-medium"
+                                    "bg-ds-primary/20 ds-text-primary font-medium"
                                 )}
                             >
                                 {opt.label}

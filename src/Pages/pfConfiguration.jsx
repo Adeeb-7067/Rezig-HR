@@ -5,86 +5,86 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { Info } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import ToggleField from "@/components/ui/VariableTypeRow";
+// const ToggleField = ({
+//   label,
+//   name,
+//   value,
+//   onChange,
+//   className = "",
+//   info = null,
+// }) => {
+//   const [showTooltip, setShowTooltip] = useState(false);
+//   const iconRef = useRef(null);
+//   const tooltipRef = useRef(null);
 
-const ToggleField = ({
-  label,
-  name,
-  value,
-  onChange,
-  className = "",
-  info = null,
-}) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  const iconRef = useRef(null);
-  const tooltipRef = useRef(null);
+//   // Position tooltip when shown
+//   useEffect(() => {
+//     if (showTooltip && iconRef.current && tooltipRef.current) {
+//       const iconRect = iconRef.current.getBoundingClientRect();
+//       const tooltipRect = tooltipRef.current.getBoundingClientRect();
+//       const scrollTop =
+//         window.pageYOffset || document.documentElement.scrollTop;
+//       const scrollLeft =
+//         window.pageXOffset || document.documentElement.scrollLeft;
 
-  // Position tooltip when shown
-  useEffect(() => {
-    if (showTooltip && iconRef.current && tooltipRef.current) {
-      const iconRect = iconRef.current.getBoundingClientRect();
-      const tooltipRect = tooltipRef.current.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const scrollLeft =
-        window.pageXOffset || document.documentElement.scrollLeft;
+//       const top = iconRect.top + scrollTop - tooltipRect.height - 8;
+//       const left =
+//         iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
 
-      const top = iconRect.top + scrollTop - tooltipRect.height - 8;
-      const left =
-        iconRect.left + scrollLeft + iconRect.width / 2 - tooltipRect.width / 2;
+//       tooltipRef.current.style.top = `${Math.max(4, top)}px`;
+//       tooltipRef.current.style.left = `${Math.max(4, left)}px`;
+//     }
+//   }, [showTooltip]);
 
-      tooltipRef.current.style.top = `${Math.max(4, top)}px`;
-      tooltipRef.current.style.left = `${Math.max(4, left)}px`;
-    }
-  }, [showTooltip]);
-
-  return (
-    <div
-      className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}
-    >
-      <div className="flex items-center gap-1">
-        {info && (
-          <div className="relative">
-            <Info
-              ref={iconRef}
-              size={12}
-              className="text-[#8629DF] cursor-help"
-              onMouseEnter={() => setShowTooltip(true)}
-              onMouseLeave={() => setShowTooltip(false)}
-            />
-            {showTooltip && (
-              <div
-                ref={tooltipRef}
-                className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
-                style={{
-                  transform: "translateX(0)",
-                }}
-              >
-                {info}
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-              </div>
-            )}
-          </div>
-        )}
-        <Label
-          htmlFor={name}
-          className="text-gray-500 dark:text-gray-50 text-[0.7rem] font-semibold"
-        >
-          {label}
-        </Label>
-      </div>
-      <Switch
-        id={name}
-        checked={value === "Yes"}
-        onCheckedChange={(checked) =>
-          onChange({
-            target: { name, value: checked ? "Yes" : "No" },
-          })
-        }
-        className="data-[state=checked]:bg-violet-600 data-[state=unchecked]:bg-gray-300"
-      />
-    </div>
-  );
-};
+//   return (
+//     <div
+//       className={`flex items-center justify-between gap-3 mr-4 py-2 ${className}`}
+//     >
+//       <div className="flex items-center gap-1">
+//         {info && (
+//           <div className="relative">
+//             <Info
+//               ref={iconRef}
+//               size={12}
+//               className="ds-text-primary cursor-help"
+//               onMouseEnter={() => setShowTooltip(true)}
+//               onMouseLeave={() => setShowTooltip(false)}
+//             />
+//             {showTooltip && (
+//               <div
+//                 ref={tooltipRef}
+//                 className="fixed z-[99999] w-48 p-2 bg-gray-900 text-white text-xs rounded shadow-lg"
+//                 style={{
+//                   transform: "translateX(0)",
+//                 }}
+//               >
+//                 {info}
+//                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+//               </div>
+//             )}
+//           </div>
+//         )}
+//         <Label
+//           htmlFor={name}
+//           className="text-gray-500 dark:text-gray-50 ds-text-xs font-semibold"
+//         >
+//           {label}
+//         </Label>
+//       </div>
+//       <Switch
+//         id={name}
+//         checked={value === "Yes"}
+//         onCheckedChange={(checked) =>
+//           onChange({
+//             target: { name, value: checked ? "Yes" : "No" },
+//           })
+//         }
+//         className="data-[state=checked]:bg-ds-primary data-[state=unchecked]:bg-gray-300"
+//       />
+//     </div>
+//   );
+// };
 
 const initialFormData = {
   // PF Configuration
@@ -190,8 +190,8 @@ const PfConfiguration = () => {
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="col-span-1">
-                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                  <h1 className="text-base font-semibold  mb-1 text-gray-500">
+                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2">
+                  <h1 className="text-base font-semibold mb-1 text-gray-500">
                     PF Configuration
                   </h1>
 
@@ -236,8 +236,8 @@ const PfConfiguration = () => {
                     />
                   </div>
                 </div>
-                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
-                  <h1 className="text-base font-semibold  mb-1 text-gray-500 ">
+                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2 mt-4">
+                  <h1 className="text-base font-semibold mb-1 text-gray-500">
                     Account
                   </h1>
 
@@ -306,7 +306,7 @@ const PfConfiguration = () => {
                 </div>
               </div>
               <div className="col-span-1">
-                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg ">
+                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <ToggleField
                       label={"PF Applicable"}
@@ -340,7 +340,7 @@ const PfConfiguration = () => {
                   </div>
                 </div>
 
-                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg mt-4">
+                <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2 mt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <ToggleField
                       info={"this is Pf on overtime feild "}
@@ -469,8 +469,8 @@ const PfConfiguration = () => {
         {activeTab === "esi" && (
           <div>
             <div className="">
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-base font-semibold  mb-1 text-gray-500">
+              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2">
+                <h1 className="text-base font-semibold mb-1 text-gray-500">
                   ESI Configuration
                 </h1>
 
@@ -617,8 +617,8 @@ const PfConfiguration = () => {
         {activeTab === "pt" && (
           <div>
             <div>
-              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-                <h1 className="text-base font-semibold  mb-1 text-gray-500">
+              <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2">
+                <h1 className="text-base font-semibold mb-1 text-gray-500">
                   Professional Tax (PT) Configuration
                 </h1>
 
@@ -677,8 +677,8 @@ const PfConfiguration = () => {
           </div>
         )}
         {activeTab === "lwf" && (
-          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10  gap-2 p-2 rounded-lg">
-            <h1 className="text-base font-semibold  mb-1 text-gray-500">
+          <div className="bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-2 gap-2">
+            <h1 className="text-base font-semibold mb-1 text-gray-500">
               Labour Welfare Fund (LWF) Configuration
             </h1>
 
@@ -726,31 +726,14 @@ const PfConfiguration = () => {
         >
           <button
             onClick={handleReset}
-            className="
-      bg-white dark:bg-[#E4E6EB]/10
-      border border-[#8629DF]
-      text-[#8629DF]
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+            className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24 py-1 w-full sm:w-auto md:w-24"
           >
             Reset
           </button>
 
           <button
             onClick={handleUpdate}
-            className="
-      bg-[#8629DF]
-      text-white
-      font-semibold
-      text-xs sm:text-[0.7rem]
-      py-1
-      rounded-sm
-      w-full sm:w-auto md:w-24
-    "
+            className="bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24 py-1 w-full sm:w-auto md:w-24"
           >
             Update
           </button>

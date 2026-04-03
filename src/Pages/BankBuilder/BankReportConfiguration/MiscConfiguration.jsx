@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
+import VariableTypeRow from "@/components/ui/VariableTypeRow";
 import InputField from "@/components/inputfeild";
 import SelectField from "@/components/SelectFeild";
 import RowFieldsSelector from "./component/RowFieldsSelector";
@@ -80,17 +80,12 @@ const MiscConfiguration = () => {
                     onChange={setSelectedBanks}
                 />
 
-                <div className="flex items-center justify-between  p-2 rounded-sm h-7.5">
-                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                        Consider Other Bank(s)
-                    </span>
-
-                    <Switch
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={considerOtherBank}
-                        onCheckedChange={setConsiderOtherBank}
-                    />
-                </div>
+                <VariableTypeRow 
+                    label="Consider Other Bank(s)"
+                    checked={considerOtherBank}
+                    onCheckedChange={setConsiderOtherBank}
+                    containerClass="justify-between"
+                />
 
                 <SelectField
                     name="reportVisibility"
@@ -98,7 +93,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Report visibility"
                     unSelectLabel="Select"
-                    className="h-7.5 text-[0.7rem]"
+                    className="h-7.5 ds-text-xs"
                     options={[
                         { label: "Yes", value: "yes" },
                         { label: "No", value: "no" }
@@ -134,7 +129,7 @@ const MiscConfiguration = () => {
                     onChange={handleChange}
                     label="Report Title / Heading"
                     unSelectLabel="All Sheets"
-                    className="h-7.5 text-[0.7rem]"
+                    className="h-7.5 ds-text-xs"
                     options={[
                         { label: "Right", value: "right" },
                         { label: "Center", value: "center" },
@@ -147,7 +142,7 @@ const MiscConfiguration = () => {
                     name="reportName"
                     value={formData.reportName}
                     onChange={handleChange}
-                    className="h-7.5 text-[0.7rem]" 
+                    className="h-7.5 ds-text-xs" 
                 />
 
                 <InputField 
@@ -155,20 +150,15 @@ const MiscConfiguration = () => {
                     name="reportSubtitle"
                     value={formData.reportSubtitle}
                     onChange={handleChange}
-                    className="h-7.5 text-[0.7rem]" 
+                    className="h-7.5 ds-text-xs" 
                 />
 
-                <div className="flex items-center justify-between border border-gray-100 dark:border-gray-800 p-2 rounded-sm h-7.5">
-                    <span className="text-[0.7rem] font-semibold text-gray-500 dark:text-gray-300">
-                        Show Company Name & Address
-                    </span>
-
-                    <Switch
-                        className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
-                        checked={showCompanyAddress}
-                        onCheckedChange={setShowCompanyAddress}
-                    />
-                </div>
+                <VariableTypeRow 
+                    label="Show Company Name & Address"
+                    checked={showCompanyAddress}
+                    onCheckedChange={setShowCompanyAddress}
+                    containerClass="justify-between"
+                />
 
             </div>
 

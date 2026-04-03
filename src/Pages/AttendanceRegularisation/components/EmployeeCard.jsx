@@ -28,7 +28,7 @@ const EmployeeCard = ({ employee }) => {
             </div>
 
             {/* STATUS */}
-              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full text-[0.7rem]">
+              <span className="bg-amber-50 dark:bg-amber-900/30 text-amber-400 dark:text-amber-300 px-2 py-1 rounded-full ds-text-xs">
               Missed Punch
             </span>
           </div>
@@ -39,7 +39,7 @@ const EmployeeCard = ({ employee }) => {
           </p>
 
           {/* TIME INFO */}
-          <div className="text-[0.7rem] text-gray-500 dark:text-gray-400 mt-1 space-y-[2px]">
+          <div className="ds-text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-[2px]">
             <p>
               In Time -{" "}
               <span className="text-gray-700 dark:text-gray-300">10:15 am</span>
@@ -57,7 +57,7 @@ const EmployeeCard = ({ employee }) => {
         {[employee?.dept, employee?.location].filter(Boolean).map((tag) => (
           <span
             key={tag}
-            className="bg-[#7B2CBF] text-white text-[0.6rem] sm:text-[0.65rem] px-2 sm:px-3 py-1 rounded-[4px]"
+            className=" ds-text-primary text-[0.6rem] sm:text-[0.65rem] px-2 sm:px-3 py-1 rounded-[4px]"
           >
             {tag}
           </span>

@@ -166,7 +166,7 @@ const SalaryMonthCard = ({
         onClick?.();
       }
     }}
-    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 dark:hover:border-purple-700 transition-all hover:shadow-lg"
+    className="bg-white dark:bg-gray-800 rounded-md shadow-md border border-gray-100 dark:border-gray-700 p-3 relative flex-1 min-w-0 cursor-pointer hover:border-purple-200 dark:hover:border-ds-primary transition-all hover:shadow-lg"
   >
     <div
       className="absolute top-3 right-3 flex items-center gap-1"
@@ -193,22 +193,22 @@ const SalaryMonthCard = ({
     </p>
 
     <div className="bg-[#FAF6FE] dark:bg-gray-700 flex flex-col items-center justify-center mb-2 rounded-lg py-3 px-4">
-      <p className="text-[0.8rem] md:text-[1rem] font-medium text-[#8629DF] dark:text-purple-400">
+      <p className="text-[0.8rem] md:text-[1rem] font-medium ds-text-primary ">
         {netPay}
       </p>
-      <p className="text-[0.7rem] font-medium text-gray-500 dark:text-gray-400">
+      <p className="ds-text-xs font-medium text-gray-500 dark:text-gray-400">
         Net Pay
       </p>
     </div>
 
     <div className="flex items-center justify-between pt-2">
-      <div className="flex items-center text-[0.7rem] font-semibold text-green-500 dark:text-green-400">
+      <div className="flex items-center ds-text-xs font-semibold text-green-500 dark:text-green-400">
         <span>
           <ArrowUp className="w-3 h-3 text-green-500 dark:text-green-400" />
         </span>
         <span>{grossEarnings}</span>
       </div>
-      <div className="flex items-center text-[0.7rem] font-semibold text-red-500 dark:text-red-400">
+      <div className="flex items-center ds-text-xs font-semibold text-red-500 dark:text-red-400">
         <span>
           <ArrowDown className="w-3 h-3 text-red-500 dark:text-red-400" />
         </span>
@@ -251,7 +251,7 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-0">
           {/* EARNINGS */}
           <div className="m-4 rounded-sm border-b sm:border-b-0 sm:border-r border-gray-200 dark:border-gray-700 bg-green-50 dark:bg-green-900/20">
-            <p className="text-[0.75rem] text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded bg-green-50 dark:bg-green-900/30 mb-3">
+            <p className="text-[0.75rem] text-[#333333] dark:text-gray-200 uppercase tracking-wide px-3 py-2 rounded font-bold bg-green-50 dark:bg-green-900/30 mb-3">
               Earnings
             </p>
             <ul className="space-y-2 mb-3 mx-3">
@@ -303,7 +303,7 @@ const SalaryDetailsModal = ({ salary, onClose, onDownload }) => {
               onDownload?.(salary);
               onClose?.();
             }}
-            className="px-5 py-1 rounded-sm bg-[#8629DF] text-white text-[0.75rem] font-medium hover:opacity-90"
+            className="px-5 py-1 rounded-sm ds-bg-primary text-white text-[0.75rem] font-medium hover:opacity-90"
           >
             Download
           </button>
@@ -350,14 +350,14 @@ const SalaryDetailsCard = () => {
         />
       )}
       {/* Purple header with title + nav arrows + icons */}
-      <div className="flex items-center justify-between bg-[#8629DF] dark:bg-purple-800 rounded-t-xl px-4 py-2 w-[100%]">
+      <div className="flex items-center justify-between ds-bg-primary  rounded-t-xl px-4 py-2 w-[100%]">
         <div className="flex items-center gap-2">
           <img
             src="/user.png"
             alt="Salary"
             className="w-6 h-6 invert brightness-0"
           />
-          <h2 className="text-[0.7rem] font-bold text-white">Salary Details</h2>
+          <h2 className="ds-text-xs font-bold text-white">Salary Details</h2>
         </div>
         <div className="flex items-center gap-2">
           <button
@@ -510,9 +510,9 @@ const AnnouncementsCard = () => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl  overflow-hidden">
       {/* Header: purple bar with megaphone icon and title */}
-      <div className="flex items-center gap-2 bg-[#8629DF] px-4 py-2">
+      <div className="flex items-center gap-2 ds-bg-primary px-4 py-2">
         <Megaphone className="w-5 h-5 text-white shrink-0 fill-white" />
-        <h2 className="text-[0.7rem] font-bold text-white">
+        <h2 className="ds-text-xs font-bold text-white">
           Announcements & Tasks
         </h2>
       </div>
@@ -544,14 +544,14 @@ const AnnouncementsCard = () => {
               </p>
               <div className="flex items-center gap-2">
                 <p
-                  className={`text-[0.7rem] ${card.hasDownload ? "text-[#8629DF] dark:text-gray-400" : "text-gray-500 dark:text-gray-400"} font-medium`}
+                  className={`ds-text-xs ${card.hasDownload ? "ds-text-primary dark:text-gray-400" : "text-gray-500 dark:text-gray-400"} font-medium`}
                 >
                   {card.meta}
                 </p>
                 {card.hasDownload && (
                   <button
                     type="button"
-                    className="p-1 rounded hover:bg-white/50 text-[#8629DF] shrink-0"
+                    className="p-1 rounded hover:bg-white/50 ds-text-primary shrink-0"
                     aria-label="Download"
                   >
                     <Download size={14} className="stroke-[3]" />
@@ -570,7 +570,7 @@ const AnnouncementsCard = () => {
 const attendancePieData = [
   { name: "Present", value: 75, color: "#34C759" },
   { name: "Absent(LOP)", value: 5, color: "#FF383C" },
-  { name: "Leave", value: 6, color: "#8629DF" },
+  { name: "Leave", value: 6, color: "var(--color-ds-primary)" },
   { name: "Half Day", value: 15, color: "#FFCC00  " },
 ];
 
@@ -586,7 +586,7 @@ const GRAY_RING = "#E5E7EB";
 
 const AttendancePieCard = () => (
   <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-6">
-    <h2 className="text-[1rem] font-bold text-[#8629DF] dark:text-purple-400 mb-8">
+    <h2 className="text-[1rem] font-bold ds-text-primary dark:text-ds-primary mb-8">
       Monthly Attendance Piechart
     </h2>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -705,9 +705,9 @@ const WishesCard = () => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Purple header with chat bubble icon (Figma) – no arrows */}
-      <div className="flex items-center gap-2 bg-[#8629DF] px-4 py-2">
+      <div className="flex items-center gap-2 ds-bg-primary px-4 py-3">
         <MessageSquareMore className="w-4 h-4 text-white shrink-0 fill-white" />
-        <h2 className="text-[0.7rem] font-bold text-white">Wishes</h2>
+        <h2 className="ds-text-xs font-bold text-white">Wishes</h2>
       </div>
       <div className="p-4">
         {/* Tabs with count – active tab has purple underline */}
@@ -720,7 +720,7 @@ const WishesCard = () => {
               className={cn(
                 "px-2 py-3 text-[0.8rem] font-medium transition-colors relative",
                 activeTab === tab
-                  ? "text-[#8629DF] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-[#8629DF]"
+                  ? "ds-text-primary after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-ds-primary"
                   : "text-gray-500 hover:text-gray-700",
               )}
             >
@@ -756,14 +756,14 @@ const WishesCard = () => {
                       </span>
                     )}
                   </p>
-                  <p className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                  <p className="ds-text-xs text-gray-500 dark:text-gray-400">
                     Date: {p.date}
                   </p>
                 </div>
               </div>
               <button
                 type="button"
-                className="px-3 py-1.5 rounded-md bg-[#8629DF] text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
+                className="px-3 py-1.5 rounded-md ds-bg-primary text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
               >
                 Send Wish
               </button>
@@ -810,7 +810,7 @@ const WishesCard = () => {
                       </span>
                     )}
                   </p>
-                  <p className="text-[0.7rem] text-gray-500 dark:text-gray-400">
+                  <p className="ds-text-xs text-gray-500 dark:text-gray-400">
                     Date: {p.date}
                   </p>
                 </div>
@@ -818,7 +818,7 @@ const WishesCard = () => {
 
               <button
                 type="button"
-                className="px-3 py-1.5 rounded-md bg-[#8629DF] text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
+                className="px-3 py-1.5 rounded-md ds-bg-primary text-white text-[0.7rem] font-bold hover:shadow-md transition-shadow shrink-0"
               >
                 {activeTab === "birthday"
                   ? "Send Wish"
@@ -1048,8 +1048,8 @@ const CalendarCard = () => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 p-4 min-w-0">
       {/* <div className="flex items-center gap-2 mb-3">
-        <div className="w-8 h-8 rounded-lg bg-[#F3E9FF] dark:bg-purple-900/30 flex items-center justify-center">
-          <CalendarIcon className="w-4 h-4 text-[#8629DF]" />
+        <div className="w-8 h-8 rounded-lg bg-[#F3E9FF] dark:bg-ds-primary/30 flex items-center justify-center">
+          <CalendarIcon className="w-4 h-4 ds-text-primary" />
         </div>
         <h2 className="text-[1rem] font-bold text-[#333333] dark:text-gray-400">
           Attendance Calendar
@@ -1075,10 +1075,10 @@ const CalendarCard = () => {
           {summaryBoxes.map((b, i) => (
             <span
               key={i}
-              className="px-2.5 py-1.5 rounded-md border min-w-[5rem] border-gray-200 dark:border-gray-600 border-t-2 text-[0.7rem] font-medium flex items-center gap-1.5 bg-white dark:bg-gray-700 text-[#333333] dark:text-gray-200"
+              className="px-2.5 py-1.5 rounded-md border min-w-[5rem] border-gray-200 dark:border-gray-600 border-t-2 ds-text-xs font-medium flex items-center gap-1.5 bg-white dark:bg-gray-700 text-[#333333] dark:text-gray-200"
               style={{ borderTopColor: b.color }}
             >
-              <span className="text-[#8629DF]">{b.count}</span> - {b.label}
+              <span className="ds-text-primary">{b.count}</span> - {b.label}
             </span>
           ))}
         </div>
@@ -1101,7 +1101,7 @@ const CalendarCard = () => {
 
       {/* Enable Multiple Correction */}
       <div className="flex items-center gap-2 mb-3">
-        <label className="text-[0.7rem] font-medium text-gray-600 dark:text-gray-400">
+        <label className="ds-text-xs font-medium text-gray-600 dark:text-gray-400">
           Enable Multiple Correction
         </label>
         <button
@@ -1112,7 +1112,7 @@ const CalendarCard = () => {
           className={cn(
             "w-9 h-5 rounded-full transition relative flex-shrink-0",
             multipleCorrection
-              ? "bg-[#8629DF]"
+              ? "ds-bg-primary"
               : "bg-gray-300 dark:bg-gray-600",
           )}
         >
@@ -1149,7 +1149,7 @@ const CalendarCard = () => {
         <div className="flex justify-end mt-4">
           <button
             onClick={() => setBulkRegularizeOpen(true)}
-            className="px-4 py-2 bg-[#8629DF] text-white text-[0.7rem] font-bold rounded-md hover:bg-[#7620c7] transition-all shadow-md"
+            className="px-4 py-2 ds-bg-primary text-white text-[0.7rem] font-bold rounded-md hover:bg-ds-primary/90 transition-all shadow-md"
           >
             Open Multiple Correction ({selectedDays.length})
           </button>
@@ -1227,20 +1227,20 @@ const HolidaysCard = () => {
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 overflow-hidden">
       {/* Purple header: calendar icon + title + year dropdown (white text on lighter purple, white chevron) */}
-      <div className="flex items-center justify-between gap-3 bg-[#8629DF] px-4 py-2.5">
+      <div className="flex items-center justify-between gap-3 ds-bg-primary px-4 py-1.5">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="w-5 h-5 text-white shrink-0" />
-          <h2 className="text-[0.7rem] font-bold text-white">
+          <CalendarIcon className="w-3 h-3 text-white shrink-0" />
+          <h2 className="ds-text-xs font-bold text-white">
             Holidays (Jan - May)
           </h2>
         </div>
         <select
           value={year}
           onChange={(e) => setYear(e.target.value)}
-          className="text-[0.8rem] font-medium rounded-md pl-2.5 pr-8 py-1.5 bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 cursor-pointer appearance-none bg-no-repeat bg-[length:14px] bg-[right_10px_center]"
+          className="ds-text-xs font-medium rounded-md pl-2.5 pr-8 py-1.5 bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-1 focus:ring-white/50 cursor-pointer appearance-none bg-no-repeat bg-[length:14px] bg-[right_10px_center]"
           style={{
             backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
           }}
           aria-label="Select year"
         >
@@ -1265,7 +1265,7 @@ const HolidaysCard = () => {
           style={{ transform: `translateY(-${currentIndex * 50}%)` }}
         >
           {holidaysByMonth.map((m, idx) => (
-            <div key={idx} className=" flex-shrink-0 px-4 py-3 flex flex-col">
+            <div key={idx} className=" flex-shrink-0 px-4 py-2 flex flex-col">
               <div className="border border-gray-100 dark:border-gray-700 shadow-md rounded-md overflow-hidden flex-1 flex flex-col">
                 {/* Month Header */}
                 <p
@@ -1284,7 +1284,7 @@ const HolidaysCard = () => {
                       {h}
                       {(h.includes("Republic Day") ||
                         h.includes("New Year")) && (
-                        <span className="ml-auto px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-purple-900/40 text-[#8629DF] dark:text-purple-300 border border-purple-100 dark:border-purple-800/50">
+                        <span className="ml-auto px-2 py-0.5 rounded-md text-[0.65rem] font-medium bg-purple-50 dark:bg-ds-primary/40 ds-text-primary dark:text-ds-primary border border-purple-100 dark:border-ds-primary/50">
                           National Holiday
                         </span>
                       )}
@@ -1334,7 +1334,7 @@ const CTCReimbursementCard = () => (
     <div className="min-w-[320px] rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700">
       <table className="w-full text-left">
         <thead>
-          <tr className="bg-[#8629DF] ">
+          <tr className="ds-bg-primary ">
             <th className="px-4 py-2 text-[0.7rem] font-medium text-white text-center">
               Type
             </th>
@@ -1372,7 +1372,7 @@ const TASK_STATUSES = [
   {
     value: "not_started",
     label: "Mark as Not Started",
-    bg: "bg-[#8629DF] text-white",
+    bg: "ds-bg-primary text-white",
   },
   {
     value: "in_progress",
@@ -1514,7 +1514,7 @@ const TaskDetailsModal = ({ task, onClose }) => {
                   onClick={() => setStatus(s.value)}
                   className={cn(
                     "px-3 py-1.5 rounded text-[0.7rem] font-medium whitespace-nowrap transition-colors",
-                    status === s.value ? "bg-[#8629DF] text-white" : s.bg,
+                    status === s.value ? "ds-bg-primary text-white" : s.bg,
                   )}
                 >
                   {s.label}
@@ -1537,13 +1537,13 @@ const TaskDetailsModal = ({ task, onClose }) => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Add Comment"
-                className="w-full h-24 rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-[0.8rem] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#8629DF] resize-none"
+                className="w-full h-24 rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-[0.8rem] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-ds-primary resize-none"
               />
               <div className="flex justify-end mt-2">
                 <button
                   type="button"
                   onClick={() => setComment("")}
-                  className="px-4 py-2 rounded-md bg-[#8629DF] text-white text-[0.8rem] font-medium hover:opacity-90"
+                  className="px-4 py-2 rounded-md ds-bg-primary text-white text-[0.8rem] font-medium hover:opacity-90"
                 >
                   Submit
                 </button>
@@ -1613,9 +1613,9 @@ const TasksModal = ({ onClose, onTaskClick }) => (
       aria-hidden
     />
     <div className="relative bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-[350px] max-h-[calc(100vh-6rem)] flex flex-col border border-gray-200 dark:border-gray-700">
-      <div className="flex items-center justify-between px-5 py-4 bg-[#8629DF] rounded-t-xl shrink-0">
+      <div className="flex items-center justify-between px-5 py-4 ds-bg-primary rounded-t-xl shrink-0">
         <h3 className="text-[1.25rem] font-bold text-white">Tasks</h3>
-        <span className="w-8 h-8 rounded-full bg-[#8629DF] border-2 border-white/40 flex items-center justify-center text-white text-[0.9rem] font-bold">
+        <span className="w-8 h-8 rounded-full ds-bg-primary border-2 border-white/40 flex items-center justify-center text-white text-[0.9rem] font-bold">
           {String(tasksData.length).padStart(2, "0")}
         </span>
       </div>
@@ -1632,13 +1632,13 @@ const TasksModal = ({ onClose, onTaskClick }) => (
                 onTaskClick?.(t);
               }
             }}
-            className="rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/40 p-3 flex gap-3 cursor-pointer hover:border-[#8629DF]/50 hover:bg-gray-100 dark:hover:bg-gray-700/60 transition-colors"
+            className="rounded-lg border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700/40 p-3 flex gap-3 cursor-pointer hover:border-ds-primary/50 hover:bg-gray-100 dark:hover:bg-gray-700/60 transition-colors"
           >
             <div className="shrink-0 pt-0.5">
               {t.completed ? (
                 <CheckCircle className="w-5 h-5 text-green-500" />
               ) : (
-                <span className="block w-3 h-3 rounded-full bg-[#8629DF]" />
+                <span className="block w-3 h-3 rounded-full ds-bg-primary" />
               )}
             </div>
             <div className="min-w-0 flex-1">

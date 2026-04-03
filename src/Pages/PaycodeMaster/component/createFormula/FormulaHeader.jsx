@@ -16,12 +16,12 @@ const FormulaHeader = () => {
                     className="
             flex items-center gap-2
             text-xs font-medium
-            border border-[#7B2FF7]
-            text-[#7B2FF7]
+            border border-ds-primary
+            text-ds-primary
             px-4 py-1.5
             rounded-md
             hover:bg-purple-50
-            dark:hover:bg-purple-900/30
+            dark:hover:bg-ds-primary/30
             transition
           "
                 >
@@ -47,7 +47,7 @@ const FormulaHeader = () => {
                             </p>
                         </div>
 
-                        <Switch className="data-[state=checked]:bg-[#7B2FF7]" />
+                        <Switch className="data-[state=checked]:bg-ds-primary" />
                     </div>
                 </div>
             </div>

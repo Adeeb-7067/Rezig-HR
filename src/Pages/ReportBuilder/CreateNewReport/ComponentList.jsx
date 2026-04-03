@@ -9,7 +9,7 @@ import ComponentSearch from "@/Pages/PaycodeMaster/utils/ComponentSearch";
 import ComponentGroupTable from "./ComponentGroupTable";
 import { componentdummyData } from "./component/componentdummyData";
 
-const ComponentList = ({ onAddParameter = () => {} }) => {
+const ComponentList = ({ onAddParameter = () => { } }) => {
 
     const groups = Object.keys(componentdummyData);
 
@@ -23,9 +23,7 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
 
     const isAnySelected = tempGroups.length > 0;
 
-    /* -----------------------------
-        CLOSE DROPDOWN ON OUTSIDE CLICK
-    ------------------------------*/
+
     useEffect(() => {
 
         const handleOutsideClick = (e) => {
@@ -107,7 +105,7 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
                     <div ref={dropdownRef} className="relative min-w-[50%] md:min-w-[5.5rem] flex items-center justify-center gap-1">
                         <button
                             onClick={() => setIsFilterOpen(!isFilterOpen)}
-                            className="bg-[#8629DF] dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-full md:min-w-[5.5rem] rounded-sm flex items-center justify-center gap-1 h-[35px]"
+                            className="bg-ds-primary dark:border dark:border-gray-500 text-white cursor-pointer text-xs md:text-[0.7rem] px-4 p-1 md:p-0 min-w-full md:min-w-[5.5rem] rounded-sm flex items-center justify-center gap-1 h-[35px]"
                         >
                             <HiAdjustmentsHorizontal className="md:w-4 md:h-4" />
                             Filter{" "}
@@ -131,11 +129,11 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
                                         {groups.map((group) => (
                                             <label
                                                 key={group}
-                                                className="flex items-center gap-2 text-[0.7rem] text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded cursor-pointer transition-colors"
+                                                className="flex items-center gap-2 ds-text-xs text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-700 p-1 rounded cursor-pointer transition-colors"
                                             >
                                                 <input
                                                     type="checkbox"
-                                                    className="w-4 h-4 accent-[#8629DF]"
+                                                    className="w-4 h-4 accent-ds-primary"
                                                     checked={tempGroups.includes(group)}
                                                     onChange={() => toggleGroup(group)}
                                                 />
@@ -148,7 +146,7 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
                                     <div className="mt-4 flex gap-2 pt-3 border-t border-gray-100 dark:border-gray-700">
                                         <button
                                             onClick={handleReset}
-                                            className="flex-1 flex items-center justify-center gap-1 cursor-pointer bg-gray-200 dark:bg-gray-800 border px-3 py-2 rounded-md text-gray-700 dark:text-gray-50 dark:border-gray-400 hover:bg-gray-300 text-sm"
+                                            className="bg-white dark:bg-[#E4E6EB]/10 border border-ds-primary text-ds-primary font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24"
                                         >
                                             Reset
                                         </button>
@@ -156,12 +154,12 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
                                         <button
                                             onClick={handleApply}
                                             disabled={!isAnySelected}
-                                            className={`flex-1 flex items-center justify-center gap-1 px-3 py-2 rounded-md text-sm transition-all duration-200
-                        ${isAnySelected
-                                                    ? "bg-[#8629DF] hover:bg-[#8629DF]/70 text-white cursor-pointer"
-                                                    : "bg-[#8629DF]/80 opacity-50 cursor-not-allowed text-white"
+                                            className={`font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-[50%] sm:w-auto md:w-24 cursor-pointer bg-ds-primary text-white
+    ${isAnySelected
+                                                    ? "bg-ds-primary hover:bg-ds-primary/70 text-white cursor-pointer"
+                                                    : "bg-ds-primary/80 opacity-50 cursor-not-allowed text-white"
                                                 }
-                      `}
+  `}
                                         >
                                             Apply
                                         </button>
@@ -177,9 +175,9 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
                     {selectedGroups.map((group) => (
                         <div
                             key={group}
-                            className="bg-gray-100 dark:bg-gray-800 dark:border-gray-400 px-3 py-1 rounded-sm text-[0.7rem] flex items-center gap-2 border border-gray-200"
+                            className="bg-gray-100 dark:bg-gray-800 dark:border-gray-400 px-3 py-1 rounded-sm ds-text-xs flex items-center gap-2 border border-gray-200"
                         >
-                            <span className="text-gray-900 dark:text-gray-50 text-[0.7rem]">
+                            <span className="text-gray-900 dark:text-gray-50 ds-text-xs">
                                 {group}
                             </span>
                             <button
@@ -195,7 +193,7 @@ const ComponentList = ({ onAddParameter = () => {} }) => {
             </div>
 
             {/* TABLE HEADER */}
-            <div className="bg-[#8629DF] rounded-t-sm text-white px-5 py-2 text-[0.75rem] font-bold uppercase tracking-wider">
+            <div className="bg-ds-primary rounded-t-sm text-white px-5 py-2 text-[0.75rem] font-bold uppercase tracking-wider">
                 Report Parameters
             </div>
 

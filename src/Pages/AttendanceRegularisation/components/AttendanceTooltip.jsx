@@ -87,12 +87,12 @@ const AttendanceTooltip = ({
         <div className={ARROW_LEFT} />
         <div className={`${TOOLTIP_BOX} ml-[10px] overflow-hidden`}>
           
-          <div className="bg-purple-100 dark:bg-purple-900/40 px-4 py-2.5 rounded-t-[16.26px] flex justify-between items-center gap-2">
+          <div className="bg-purple-100 dark:bg-ds-primary/40 px-4 py-2.5 rounded-t-[16.26px] flex justify-between items-center gap-2">
             <p className="text-gray-800 dark:text-white font-semibold text-sm shrink-0">
               {dateStr}
             </p>
             <div className="bg-amber-400 rounded p-1 shrink-0">
-              <Sun size={14} className="text-white" />
+              <Sun size={14} className="text-white" /> 
             </div>
           </div>
 
@@ -103,7 +103,7 @@ const AttendanceTooltip = ({
                   Status :-
                 </span>
                 <span className="text-[13px] text-amber-600 dark:text-amber-400 font-medium text-right">
-                  {statusText}
+                  {statusText} 
                 </span>
               </div>
             )}
@@ -138,7 +138,7 @@ const AttendanceTooltip = ({
 
         {/* Header */}
         <div className="px-4 py-2 rounded-t-[16.26px] flex justify-between items-center gap-2">
-          <p className="text-[#8629DF] dark:text-purple-400 font-semibold text-sm shrink-0">
+          <p className="ds-text-primary dark:text-ds-primary font-semibold text-sm shrink-0">
             {dateStr || "Thu, 1st May 2025"}
           </p>
 
@@ -152,7 +152,7 @@ const AttendanceTooltip = ({
         </div>
 
         {/* Body */}
-        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] text-[0.7rem] bg-[#FAF6FE] dark:bg-gray-900/50">
+        <div className="px-4 pt-3 pb-4 flex flex-col gap-[6px] ds-text-xs bg-[#FAF6FE] dark:bg-gray-900/50">
           <div className="flex justify-between items-center gap-4">
             <span className="text-gray-600 dark:text-gray-400 shrink-0">Shift :-</span>
             <span className="text-gray-800 dark:text-gray-200 text-right font-semibold text-[0.8rem]">

@@ -32,8 +32,18 @@ const Calendar = ({
   const triggerRef = useRef(null);
 
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -263,7 +273,7 @@ const Calendar = ({
           </button>
         </div>
 
-        <div className="grid grid-cols-7 gap-1 text-center text-gray-500 dark:text-gray-400 font-medium mb-2 text-[0.7rem]">
+        <div className="grid grid-cols-7 gap-1 text-center text-gray-500 dark:text-gray-400 font-medium mb-2 ds-text-xs">
           {days.map((day, index) => (
             <div key={index}>{day}</div>
           ))}
@@ -279,7 +289,7 @@ const Calendar = ({
   return (
     <div className="flex flex-col space-y-1 w-full relative justify-center">
       {showLabel && label && (
-        <label className="text-[0.7rem] font-normal text-gray-700 dark:text-gray-200">
+        <label className="ds-text-xs font-normal text-gray-700 dark:text-gray-200">
           {label}
         </label>
       )}
@@ -294,7 +304,7 @@ const Calendar = ({
             "rounded-sm border border-gray-300 dark:border-gray-700",
             "bg-white dark:bg-gray-800",
             "hover:bg-gray-50 dark:hover:bg-gray-800",
-            "px-2 text-[0.7rem] cursor-pointer",
+            "px-2 ds-text-xs cursor-pointer",
             "focus:border-2 focus:border-[#9853F9]",
             selectedDate
               ? "text-gray-700 dark:text-gray-100"
@@ -302,7 +312,7 @@ const Calendar = ({
             className,
           )}
         >
-          <CalendarIcon className="mr-2 h-4 w-4 text-gray-400 text-[0.7rem] dark:text-gray-400" />
+          <CalendarIcon className="mr-2 h-4 w-4 text-gray-400 ds-text-xs dark:text-gray-400" />
           <span>{formatDate(selectedDate)}</span>
         </div>
       </div>
@@ -323,7 +333,7 @@ const SelectField = ({
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-[0.7rem] font-normal text-gray-700 dark:text-gray-200 mb-1">
+        <label className="block ds-text-xs font-normal text-gray-700 dark:text-gray-200 mb-1">
           {label}
         </label>
       )}
@@ -331,7 +341,7 @@ const SelectField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full px-2 rounded-sm py-1.5 text-[0.7rem] bg-white dark:bg-gray-800 ${className}`}
+        className={`w-full px-2 rounded-sm py-1.5 ds-text-xs bg-white dark:bg-gray-800 ${className}`}
       >
         {children}
       </select>
@@ -438,7 +448,9 @@ const initialFormData = {
 const SalaryAssigment = ({ onNext, onPrev }) => {
   const [formData, setFormData] = useState(initialFormData);
   const [payHeads, setPayHeads] = useState(initialPayHeads);
-  const [oneTimePayments, setOneTimePayments] = useState(initialOneTimePayments);
+  const [oneTimePayments, setOneTimePayments] = useState(
+    initialOneTimePayments,
+  );
 
   // ── Handlers ──
 
@@ -452,13 +464,13 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
 
   const handlePayHeadChange = (index, field, value) => {
     setPayHeads((prev) =>
-      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row))
+      prev.map((row, i) => (i === index ? { ...row, [field]: value } : row)),
     );
   };
 
   const handleOneTimePaymentChange = (id, field, value) => {
     setOneTimePayments((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r))
+      prev.map((r) => (r.id === id ? { ...r, [field]: value } : r)),
     );
   };
 
@@ -478,9 +490,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       const withoutSplits = cloned.filter((r) => r.parentId !== parentId);
 
       if (freq === 1) {
-        return withoutSplits.map((r) =>
-          r.id === parentId ? parent : r
-        );
+        return withoutSplits.map((r) => (r.id === parentId ? parent : r));
       }
 
       const base = Math.floor(totalAmount / freq);
@@ -509,7 +519,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
 
   const handleDateChange = (id, value) => {
     setOneTimePayments((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, date: value } : r))
+      prev.map((r) => (r.id === id ? { ...r, date: value } : r)),
     );
   };
 
@@ -529,16 +539,28 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
     return (
       <div className="w-full flex justify-center  overflow-auto rounded-lg no-scrollbar table-scroll">
         <div className="w-full  dark:bg-[#E4E6EB]/10 rounded-sm shadow-sm overflow-auto md:overflow-visible">
-          <table className="min-w-[800px] w-full text-[0.7rem] text-left border-collapse ">
-            <thead className="bg-[#8629DF] h-12  text-white font-semibold divide-x divide-gray-200">
-              <tr>
-                <th className="text-[0.8rem] px-2 py-1.5 min-w-[130px]">Pay Head Name</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">From Date</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">To Date</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[140px]">Formula</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">Monthly Amount</th>
-                <th className="text-[0.8rem] px-4 py-1.5 min-w-[130px]">Annual Amount</th>
-                <th className="text-[0.8rem] px-4 py-1.5">Remarks</th>
+          <table className="min-w-[800px] w-full ds-text-xs text-left border-collapse rounded-sm shadow drop-shadow-xs border border-gray-200 dark:border-gray-600">
+            <thead className="bg-[#8629DF] text-white font-semibold rounded-t-md">
+              <tr className="divide-x divide-gray-200">
+                <th className="ds-text-xs px-2 py-3 min-w-[130px]">
+                  Pay Head Name
+                </th>
+                <th className="ds-text-xs px-4 py-3 min-w-[130px]">
+                  From Date
+                </th>
+                <th className="ds-text-xs px-4 py-3 min-w-[130px]">
+                  To Date
+                </th>
+                <th className="ds-text-xs px-4 py-3 min-w-[140px]">
+                  Formula
+                </th>
+                <th className="ds-text-xs px-4 py-3 min-w-[170px]">
+                  Monthly Amount
+                </th>
+                <th className="ds-text-xs px-4 py-3 min-w-[130px]">
+                  Annual Amount
+                </th>
+                <th className="ds-text-xs px-4 py-3">Remarks</th>
               </tr>
             </thead>
 
@@ -546,9 +568,9 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
               {payHeads.map((item, idx) => (
                 <tr
                   key={idx}
-                  className="divide-x divide-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                  className="divide-x divide-gray-200 hover:bg-gray-200/30 dark:hover:bg-gray-500/30 dark:bg-[#A1A1AA]/5"
                 >
-                  <td className="px-2 py-2 flex items-center space-x-2 text-[0.7rem]">
+                  <td className="px-2 py-2 flex items-center space-x-2 ds-text-xs">
                     <input
                       type="checkbox"
                       checked={item.checked}
@@ -608,7 +630,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       <input
                         type="text"
                         placeholder="Enter Amount"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200"
                         value={item.monthly}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "monthly", e.target.value)
@@ -624,7 +646,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       <input
                         type="text"
                         placeholder="Enter Amount"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200"
                         value={item.annual}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "annual", e.target.value)
@@ -645,7 +667,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       <input
                         type="text"
                         placeholder="Enter Remarks"
-                        className="rounded-md px-2 py-1 text-[0.7rem] w-full focus:outline-none focus:ring-0 border border-gray-200"
+                        className="rounded-md px-2 py-1 ds-text-xs w-full focus:outline-none focus:ring-0 border border-gray-200"
                         value={item.remarks}
                         onChange={(e) =>
                           handlePayHeadChange(idx, "remarks", e.target.value)
@@ -677,9 +699,9 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
 
     return (
       <div className="w-full mx-auto mt-6 bg-white dark:bg-[#E4E6EB]/10 border border-gray-300 dark:border-gray-600 rounded-sm overflow-auto sm:overflow-visible">
-        <table className="w-full text-[0.8rem] border-separate border-spacing-0">
+        <table className="w-full text-[0.8rem] border-separate border-spacing-0 ">
           <thead>
-            <tr className="bg-[#8629DF]  text-white text-[0.8rem]">
+            <tr className="bg-[#8629DF]  text-white ds-text-xs">
               <th className="px-6 py-3 text-left font-semibold rounded-tl-sm">
                 Pay Head Name
               </th>
@@ -690,7 +712,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
             </tr>
           </thead>
 
-          <tbody className="dark:text-gray-200 text-[0.7rem]">
+          <tbody className="dark:text-gray-200 ds-text-xs">
             {visibleRows.map((row) => {
               const isParent = !row.isSplit;
               return (
@@ -705,7 +727,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                       {!row.isSplit && (
                         <input
                           type="checkbox"
-                          className="w-4 h-4"
+                          className="w-3 h-3 accent-[#8629DF]"
                           checked={!!row.checked}
                           onChange={(e) =>
                             handleOneTimePaymentChange(
@@ -739,7 +761,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
                             e.target.value,
                           )
                         }
-                        className="w-24 text-center rounded px-2 py-1 focus:outline-none focus:ring-0 text-[0.7rem] border border-gray-300"
+                        className="w-24 text-center rounded px-2 py-1 focus:outline-none focus:ring-0 ds-text-xs border border-gray-300"
                       />
                     </div>
                   </td>
@@ -805,9 +827,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
             className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 font-normal"
             value={formData.salaryTemplate}
             onChange={handleChange}
-            options={[
-              { value: "Salary", label: "Salary" },
-            ]}
+            options={[{ value: "Salary", label: "Salary" }]}
           />
           <Selectf
             label="Currency"
@@ -836,7 +856,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       <div className="mt-6 w-full">
         <SalaryTable />
         <div className="w-full flex justify-end">
-          <button className="py-0.5 px-8 my-2.5 mt-6 text-[0.7rem] text-red-600 border border-red-500 rounded-sm cursor-pointer hover:bg-red-50 transition-colors">
+          <button className="py-0.5 px-8 my-2.5 mt-6 ds-text-xs text-red-600 border border-red-500 rounded-sm cursor-pointer hover:bg-red-50 transition-colors">
             Delete
           </button>
         </div>
@@ -856,7 +876,7 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
           </h1>
           <div>
             <textarea
-              className="w-full h-[120px] p-3 text-[0.7rem] border border-gray-300 dark:border-gray-700 dark:bg-[#E4E6EB]/10 text-black dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent resize-none"
+              className="w-full h-[120px] p-3 ds-text-xs border border-gray-300 dark:border-gray-700 dark:bg-[#E4E6EB]/10 text-black dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-transparent resize-none"
               placeholder="Write Here ..."
               value={formData.notes}
               onChange={handleNotesChange}
@@ -876,47 +896,21 @@ const SalaryAssigment = ({ onNext, onPrev }) => {
       >
         <button
           onClick={onPrev}
-          className="
-            bg-white dark:bg-[#E4E6EB]/10
-            border border-[#8629DF]
-            text-[#8629DF]
-            font-semibold
-            text-xs sm:text-[0.7rem]
-            py-1
-            rounded-sm
-            w-full sm:w-auto md:w-24
-    "
+          className="btn-outline"
         >
           Previous
         </button>
 
         <button
           onClick={handleReset}
-          className="
-           bg-white dark:bg-[#E4E6EB]/10
-           border border-[#8629DF]
-           text-[#8629DF]
-           font-semibold
-           text-xs sm:text-[0.7rem]
-           py-1
-           rounded-sm
-           w-full sm:w-auto md:w-24
-    "
+          className="btn-outline"
         >
           Reset
         </button>
 
         <button
           onClick={onNext}
-          className="
-           bg-[#8629DF]
-           text-white
-           font-semibold
-           text-xs sm:text-[0.7rem]
-           py-1
-           rounded-sm
-           w-full sm:w-auto md:w-24
-    "
+          className="btn-primary"
         >
           Next
         </button>

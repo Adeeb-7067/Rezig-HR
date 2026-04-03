@@ -1,13 +1,13 @@
 import InputField from "@/components/inputfeild";
 import { useState } from "react";
 
-const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 p-2 px-3 rounded-lg";
+const cardClass = "bg-[#EFEFEF]/70 dark:bg-[#E4E6EB]/10 gap-2 p-2 rounded-lg px-3";
 const sectionTitleClass = "text-base font-semibold mb-1 text-gray-500";
-const labelClass = "block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem] mb-1";
+const labelClass = "block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs mb-1";
 const inputClass =
-  "w-full text-[0.7rem] h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5";
-const tableHeaderClass = "bg-[#8629DF] text-white text-left text-[0.65rem] font-semibold p-2 first:rounded-tl last:rounded-tr";
-const tableHeaderRightClass = "bg-[#8629DF] text-white text-right text-[0.65rem] font-semibold p-2";
+  "w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5";
+const tableHeaderClass = "bg-ds-primary text-white text-left text-[0.65rem] font-semibold p-2 first:rounded-tl last:rounded-tr";
+const tableHeaderRightClass = "bg-ds-primary text-white text-right text-[0.65rem] font-semibold p-2";
 
 const additionRows = [
   { payHead: "Basic Salary Arrear", actualAmount: "₹5,000", payableAmount: "₹5,000" },
@@ -43,10 +43,10 @@ export default function ViewFinalizedReports() {
         <div className="flex flex-col lg:flex-row w-full gap-2 mb-2">
           {/* Addition Pay Heads */}
           <div className=" rounded-lg p-2 w-full min-w-[60%] ">
-            <p className="text-[0.7rem] font-semibold text-[#252C58] dark:text-gray-200 mb-1">
+            <p className="ds-text-xs font-semibold text-[#252C58] dark:text-gray-200 mb-1">
               Addition Pay Heads
             </p>
-            <table className="w-full text-[0.7rem] rounded-lg drop-shadow-sm">
+            <table className="w-full ds-text-xs rounded-lg drop-shadow-sm">
               <thead>
                 <tr>
                   <th className={tableHeaderClass}>Pay Head</th>
@@ -63,10 +63,10 @@ export default function ViewFinalizedReports() {
                   </tr>
                 ))}
                 <tr className="bg-gray-50 dark:bg-gray-700/30">
-                  <td className="p-2 font-semibold text-[#8629DF] text-[0.7rem]" colSpan={2}>
+                  <td className="p-2 font-semibold ds-text-primary ds-text-xs" colSpan={2}>
                     Total Additions
                   </td>
-                  <td className="p-2 text-right font-semibold text-[#8629DF] text-[0.7rem]">{additionTotal}</td>
+                  <td className="p-2 text-right font-semibold ds-text-primary ds-text-xs">{additionTotal}</td>
                 </tr>
               </tbody>
             </table>
@@ -74,10 +74,10 @@ export default function ViewFinalizedReports() {
 
           {/* Deduction Pay Heads */}
           <div className=" rounded-lg  min-w-[40%] w-full p-2">
-            <p className="text-[0.7rem] font-semibold text-[#252C58] dark:text-gray-200 mb-1">
+            <p className="ds-text-xs font-semibold text-[#252C58] dark:text-gray-200 mb-1">
               Deduction Pay Heads
             </p>
-            <table className="w-full text-[0.7rem] drop-shadow-sm ">
+            <table className="w-full ds-text-xs drop-shadow-sm ">
               <thead>
                 <tr>
                   <th className={tableHeaderClass}>Pay Head</th>
@@ -92,8 +92,8 @@ export default function ViewFinalizedReports() {
                   </tr>
                 ))}
                 <tr className="bg-gray-50 dark:bg-gray-700/30">
-                  <td className="p-2 font-semibold text-[#8629DF] text-[0.7rem]">Total Deductions</td>
-                  <td className="p-2 text-right font-semibold text-[#8629DF] text-[0.7rem]">{deductionTotal}</td>
+                  <td className="p-2 font-semibold ds-text-primary ds-text-xs">Total Deductions</td>
+                  <td className="p-2 text-right font-semibold ds-text-primary ds-text-xs">{deductionTotal}</td>
                 </tr>
               </tbody>
             </table>
@@ -106,7 +106,7 @@ export default function ViewFinalizedReports() {
           </p>
           <button
             type="button"
-            className="bg-[#8629DF] hover:bg-[#7620c7] text-white text-[0.7rem] font-semibold px-4 py-1 rounded-sm shrink-0"
+            className="bg-ds-primary hover:bg-ds-primary/90 text-white ds-text-xs font-semibold px-4 py-1 rounded-sm shrink-0"
           >
             Finalized Process
           </button>
@@ -135,7 +135,7 @@ export default function ViewFinalizedReports() {
       < div className="flex flex-col sm:flex-row justify-end gap-2 mt-3" >
         <button
           type="button"
-          className="bg-[#8629DF] hover:bg-[#7620c7] text-white font-semibold text-xs sm:text-[0.7rem] py-1 px-4 rounded-sm w-full sm:w-auto md:w-24"
+          className="bg-ds-primary text-white font-semibold text-xs sm:text-[0.7rem] py-1 rounded-sm w-full sm:w-auto md:w-24"
         >
           Save
         </button>
@@ -145,7 +145,7 @@ export default function ViewFinalizedReports() {
       < div className="flex flex-col sm:flex-row justify-end gap-2 mt-3" >
         <button
           type="button"
-          className="bg-[#8629DF] hover:bg-[#7620c7] text-white font-semibold text-[0.7rem] py-1 px-5 rounded-sm w-full sm:w-auto"
+          className="bg-ds-primary hover:bg-ds-primary/90 text-white font-semibold text-[0.7rem] py-1 px-5 rounded-sm w-full sm:w-auto"
         >
           Download Full & Final Slip
         </button>

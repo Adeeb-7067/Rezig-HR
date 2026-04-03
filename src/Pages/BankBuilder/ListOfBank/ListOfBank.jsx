@@ -37,7 +37,7 @@ const ListOfBank = ({ onCreate }) => {
 
                         {/* Header */}
                         <div
-                            className="text-[0.7rem] font-semibold text-white bg-[#8629DF] py-2 px-4 uppercase tracking-wider"
+                            className="ds-text-xs font-semibold text-white ds-bg-primary py-2 px-4 uppercase tracking-wider"
                             style={{
                                 display: "grid",
                                 gridTemplateColumns: "0.8fr 1.7fr 2fr 80px 80px 120px",
@@ -60,7 +60,7 @@ const ListOfBank = ({ onCreate }) => {
 
                                 <div
                                     key={i}
-                                    className="text-gray-600 dark:text-gray-200 py-2 px-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all text-[0.7rem]"
+                                    className="text-gray-700 dark:text-gray-200 py-2 px-4 border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-all ds-text-xs"
                                     style={{
                                         display: "grid",
                                 gridTemplateColumns: "0.8fr 1.7fr 2fr 80px 80px 120px",
@@ -71,27 +71,27 @@ const ListOfBank = ({ onCreate }) => {
 
                                     <div className="font-medium">{row.name}</div>
 
-                                    <div>{row.summary}</div>
+                                    <div className="text-center">{row.summary}</div>
 
-                                    <div>{row.nonsummary}</div>
+                                    <div className="text-center">{row.nonsummary}</div>
 
                                     <div className="flex justify-center">
                                         <Switch
                                             checked={row.status}
                                             onCheckedChange={() => toggleStatus(i)}
-                                            className="scale-75 data-[state=checked]:bg-[#8629DF] data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
+                                            className="scale-75 data-[state=checked]:bg-ds-primary data-[state=checked]:border-ds-primary data-[state=unchecked]:bg-gray-200 dark:data-[state=unchecked]:bg-gray-700"
                                         />
                                     </div>
 
                                     <div className="flex justify-center">
-                                        <Copy size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                        <Copy size={14} className="cursor-pointer text-gray-700 dark:text-gray-300 hover:text-ds-primary transition-colors" />
                                     </div>
 
                                     <div className="flex justify-center gap-4">
 
-                                        <Download size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                        <Download size={14} className="cursor-pointer text-gray-700 dark:text-gray-300 hover:text-ds-primary transition-colors" />
 
-                                        <Pencil size={14} className="cursor-pointer text-gray-400 hover:text-[#8629DF] transition-colors" />
+                                        <Pencil size={14} className="cursor-pointer text-gray-700 dark:text-gray-300 hover:text-ds-primary transition-colors" />
 
                                         <Trash2 size={14} className="cursor-pointer text-red-400 hover:text-red-600 transition-colors" />
 

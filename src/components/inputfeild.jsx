@@ -40,7 +40,7 @@ const InputField = ({
             <Info
               ref={iconRef}
               size={12}
-              className="text-[#8629DF] cursor-help"
+              className="ds-text-primary cursor-help"
               onMouseEnter={() => setShowTooltip(true)}
               onMouseLeave={() => setShowTooltip(false)}
             />
@@ -58,7 +58,7 @@ const InputField = ({
             )}
           </div>
         )}
-        <label className="block text-gray-500 font-semibold dark:text-gray-50 text-[0.7rem]">
+        <label className="block text-gray-500 font-semibold dark:text-gray-50 ds-text-xs">
           {label}
         </label>
       </div>
@@ -67,7 +67,7 @@ const InputField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full text-[0.7rem] h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
+        className={`w-full ds-text-xs h-7.5 bg-white dark:bg-gray-800 text-gray-600 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-[#9853F9] focus:ring-inset rounded-sm px-4 py-1.5 ${className}`}
         {...props}
       />
     </div>
