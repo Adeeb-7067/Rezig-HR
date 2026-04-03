@@ -10,12 +10,12 @@ const BankReportHeader = ({ onCreate, showConfig }) => {
             <button
                 onClick={onCreate}
                 className="
-          flex items-center gap-2
+          flex items-center gap-1
           ds-bg-primary
           text-white
           h-8.5 px-4
           rounded-sm
-          text-[0.8rem] font-semibold
+          text-[0.8rem] font-normal
           shadow-sm
           hover:opacity-90
           transition-all
