@@ -1,14 +1,9 @@
 import React, { useRef } from 'react';
 import satyaKabir from "../Assets/image 2.png";
 import Rezig from "../Assets/SigninLogo.png";
-import { useSelector, useDispatch } from "react-redux";
-import { setEmail } from "../Redux/Features/userslice";
 import { Link } from 'react-router-dom';
 
 const ForgotPassword = () => {
-  const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.user);
-
    const inputRefs = useRef([]);
 
   const handleChange = (e, index) => {

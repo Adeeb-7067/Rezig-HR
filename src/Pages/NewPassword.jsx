@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import satyaKabir from "../Assets/image 2.png";
 import Rezig from "../Assets/SigninLogo.png";
-import { useSelector, useDispatch } from "react-redux";
-import { setNewPassWord, setConfirmPassword } from "../Redux/Features/userslice";
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react'; // ✅ eye icons (lightweight)
 
 const ForgotPassword = () => {
-  const dispatch = useDispatch();
-  const { newPassword, confirmPassword } = useSelector((state) => state.user);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handlePasswordChange = (e) => {
-    dispatch(setNewPassWord(e.target.value));
+    setNewPassword(e.target.value);
   };
   const handleConfirmPasswordChange = (e) => {
-    dispatch(setConfirmPassword(e.target.value));
+    setConfirmPassword(e.target.value);
   };
 
   return (

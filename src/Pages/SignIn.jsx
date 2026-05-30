@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import signinBanner from "../Assets/SignIn.png";
 import satyaKabir from "../Assets/image 2.png";
 import RezigLogo from "../Assets/SigninLogo.png";
-import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 import { Link } from "react-router-dom";
@@ -10,19 +9,21 @@ import { useToast } from "@/toastMessages/toastContext";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
-  const { email, password, domain } = useSelector((state) => state.user);
-const {showToast} = useToast();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [domain, setDomain] = useState("");
+  const {showToast} = useToast();
+
   const handleEmailChange = (e) => {
-    dispatch(setEmail(e.target.value));
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    dispatch(setPassword(e.target.value));
+    setPassword(e.target.value);
   };
 
   const handleDomainChange = (e) => {
-    dispatch(setDomain(e.target.value));
+    setDomain(e.target.value);
   };
 
   const handleSubmit = (e) => {
